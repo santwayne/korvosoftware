@@ -1,0 +1,54 @@
+{
+  "expo": {
+    "name": "Korvo",
+    "slug": "royaltally",
+    "version": "1.0.0",
+    "scheme": "expo-nativewind-ts-app",
+    "orientation": "portrait",
+    "icon": "./assets/splash-logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#077BC3"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "splash": {
+        "image": "./assets/splash-logo.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#077BC3"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/splash-logo.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.santkaur.royalsoftware",
+      "splash": {
+        "image": "./assets/splash-logo.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#077BC3"
+      },
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      "@react-native-community/datetimepicker"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "bb565fa4-b850-414a-8bee-38581fd50c97"
+      }
+    },
+    "owner": "wayneesolutions"
+  }
+}
