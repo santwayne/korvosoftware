@@ -19,7 +19,7 @@ const options = {
         description: 'Development server'
       },
       {
-        url: 'https://royalapp.wayneesolutions.com',
+        url: 'https://korvo.wayneesolutions.com',
         description: 'Production server'
       }
     ],
