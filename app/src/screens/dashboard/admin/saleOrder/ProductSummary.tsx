@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
         backgroundColor: '#fff',
-        borderRadius: 8,
+        borderRadius: 14,
         padding: 12,
         marginHorizontal: 16,
         marginVertical: 6,
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     continueBtn: {
         backgroundColor: '#007bff',
         padding: 10,
-        borderRadius: 8,
+        borderRadius: 999,
         alignItems: 'center',
         marginBottom: 10,
     },
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
 
     checkoutBtn: {
         padding: 16,
-        borderRadius: 8,
+        borderRadius: 999,
         position: 'absolute',
         bottom: 40,
         left: 20,

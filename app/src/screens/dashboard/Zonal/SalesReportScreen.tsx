@@ -162,12 +162,12 @@ const SalesReportScreen = () => {
 
   const getRoleColor = (role: string) => {
     const colors: { [key: string]: string } = {
-      rsm: '#3B82F6',
-      asm: '#10B981',
-      salesman: '#F59E0B',
-      dealers: '#8B5CF6',
+      rsm: '#B8142F',
+      asm: '#15803D',
+      salesman: '#B45309',
+      dealers: '#7D0B1E',
       distibutors: '#06B6D4',
-      subdealer: '#EF4444',
+      subdealer: '#B91C1C',
     };
     return colors[role] || '#6B7280';
   };
@@ -218,25 +218,25 @@ const SalesReportScreen = () => {
             'Total Sales',
             formatCurrency(salesData?.totalSales || 0),
             'trending-up',
-            '#10B981'
+            '#15803D'
           )}
           {renderStatCard(
             'Total Orders',
             salesData?.totalOrders || 0,
             'list',
-            '#3B82F6'
+            '#B8142F'
           )}
           {renderStatCard(
             'Avg Order Value',
             formatCurrency(salesData?.averageOrderValue || 0),
             'calculator',
-            '#F59E0B'
+            '#B45309'
           )}
           {renderStatCard(
             'Completion Rate',
             formatPercentage(salesData?.completedOrders || 0, salesData?.totalOrders || 1),
             'checkmark-circle',
-            '#8B5CF6'
+            '#7D0B1E'
           )}
         </View>
       </View>
@@ -249,14 +249,14 @@ const SalesReportScreen = () => {
             'Completed',
             salesData?.completedOrders || 0,
             'checkmark-circle',
-            '#10B981',
+            '#15803D',
             formatPercentage(salesData?.completedOrders || 0, salesData?.totalOrders || 1)
           )}
           {renderStatCard(
             'Pending',
             salesData?.pendingOrders || 0,
             'time',
-            '#F59E0B',
+            '#B45309',
             formatPercentage(salesData?.pendingOrders || 0, salesData?.totalOrders || 1)
           )}
         </View>
@@ -379,7 +379,7 @@ const SalesReportScreen = () => {
           </View>
         ) : (
           <View style={styles.emptyTrends}>
-            <Ionicons name="trending-up-outline" size={48} color="#9CA3AF" />
+            <Ionicons name="trending-up-outline" size={48} color="#6B7280" />
             <Text style={styles.emptyTrendsText}>No sales data available</Text>
           </View>
         )}
@@ -390,7 +390,7 @@ const SalesReportScreen = () => {
         <Text style={styles.sectionTitle}>Performance Insights</Text>
         <View style={styles.insightsList}>
           <View style={styles.insightCard}>
-            <Ionicons name="trending-up" size={24} color="#10B981" />
+            <Ionicons name="trending-up" size={24} color="#15803D" />
             <View style={styles.insightContent}>
               <Text style={styles.insightTitle}>Best Performing Role</Text>
               <Text style={styles.insightValue}>
@@ -401,7 +401,7 @@ const SalesReportScreen = () => {
           </View>
           
           <View style={styles.insightCard}>
-            <Ionicons name="people" size={24} color="#3B82F6" />
+            <Ionicons name="people" size={24} color="#B8142F" />
             <View style={styles.insightContent}>
               <Text style={styles.insightTitle}>Total Team Members</Text>
               <Text style={styles.insightValue}>{teamMembers.length}</Text>
@@ -409,7 +409,7 @@ const SalesReportScreen = () => {
           </View>
           
           <View style={styles.insightCard}>
-            <Ionicons name="calculator" size={24} color="#F59E0B" />
+            <Ionicons name="calculator" size={24} color="#B45309" />
             <View style={styles.insightContent}>
               <Text style={styles.insightTitle}>Average Order Value</Text>
               <Text style={styles.insightValue}>{formatCurrency(salesData?.averageOrderValue || 0)}</Text>
@@ -423,7 +423,7 @@ const SalesReportScreen = () => {
   if (loading && !salesData) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading sales report...</Text>
       </View>
     );
@@ -437,7 +437,7 @@ const SalesReportScreen = () => {
           style={styles.backBtn}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Sales Report</Text>
         <View style={styles.headerRight} />
@@ -480,7 +480,7 @@ const SalesReportScreen = () => {
             <Ionicons 
               name={view.icon as any} 
               size={20} 
-              color={selectedView === view.key ? '#3B82F6' : '#6B7280'} 
+              color={selectedView === view.key ? '#B8142F' : '#6B7280'} 
             />
             <Text style={[
               styles.viewBtnText,
@@ -539,7 +539,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   headerRight: {
     width: 40,
@@ -554,11 +554,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     marginHorizontal: 4,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
   },
   periodBtnActive: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
   },
   periodBtnText: {
     fontSize: 14,
@@ -582,10 +582,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 8,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   viewBtnActive: {
-    backgroundColor: '#EBF4FF',
+    backgroundColor: '#FBEEEE',
   },
   viewBtnText: {
     marginLeft: 8,
@@ -594,7 +594,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   viewBtnTextActive: {
-    color: '#3B82F6',
+    color: '#B8142F',
   },
   content: {
     flex: 1,
@@ -608,7 +608,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   statsGrid: {
@@ -647,7 +647,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   statTitle: {
@@ -656,7 +656,7 @@ const styles = StyleSheet.create({
   },
   statSubtitle: {
     fontSize: 10,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 2,
   },
   statusGrid: {
@@ -682,7 +682,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -698,7 +698,7 @@ const styles = StyleSheet.create({
   performerName: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   performerRole: {
@@ -712,7 +712,7 @@ const styles = StyleSheet.create({
   performerSales: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#059669',
+    color: '#15803D',
     marginBottom: 2,
   },
   performerOrders: {
@@ -751,7 +751,7 @@ const styles = StyleSheet.create({
   roleSalesName: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   roleSalesMembers: {
@@ -764,7 +764,7 @@ const styles = StyleSheet.create({
   roleSalesAmount: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#059669',
+    color: '#15803D',
     marginBottom: 2,
   },
   roleSalesOrders: {
@@ -810,7 +810,7 @@ const styles = StyleSheet.create({
   memberName: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   memberRole: {
@@ -823,7 +823,7 @@ const styles = StyleSheet.create({
   memberSales: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#059669',
+    color: '#15803D',
     marginBottom: 2,
   },
   memberOrders: {
@@ -858,7 +858,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   trendBarFill: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     borderRadius: 10,
     minHeight: 4,
   },
@@ -869,7 +869,7 @@ const styles = StyleSheet.create({
   },
   trendBarValue: {
     fontSize: 10,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
   emptyTrends: {
@@ -910,7 +910,7 @@ const styles = StyleSheet.create({
   insightValue: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
 });
 

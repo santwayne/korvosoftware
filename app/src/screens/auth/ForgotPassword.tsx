@@ -57,7 +57,7 @@ const ForgotPassword: React.FC<Props> = ({ navigation }) => {
           autoCapitalize="none"
           autoCorrect={false}
           keyboardType="default"
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#6B7280"
         />
 
         <TouchableOpacity 
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginBottom: 32,
     lineHeight: 20,
   },
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     paddingHorizontal: 16,
     paddingVertical: 16,
     marginBottom: 24,
@@ -127,8 +127,8 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   submitButton: {
-    backgroundColor: '#077BC3',
-    borderRadius: 8,
+    backgroundColor: '#A3122A',
+    borderRadius: 999,
     paddingVertical: 16,
     marginBottom: 16,
     marginTop: 8,
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   backButtonText: {
-    color: '#077BC3',
+    color: '#A3122A',
     textAlign: 'center',
     fontWeight: '600',
     fontSize: 14,

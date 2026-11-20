@@ -32,8 +32,8 @@ interface DispatchItem {
 }
 
 const STATUS_COLOR: Record<string, string> = {
-  pending:          '#F59E0B',
-  fully_dispatched: '#10B981',
+  pending:          '#B45309',
+  fully_dispatched: '#15803D',
 };
 
 const STATUS_LABEL: Record<string, string> = {
@@ -215,7 +215,7 @@ const PendingOrdersManagementScreen = () => {
   if (loading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator size="large" color="#077BC3" />
+        <ActivityIndicator size="large" color="#A3122A" />
         <Text style={styles.loadingText}>Loading dispatch orders...</Text>
       </View>
     );
@@ -298,7 +298,7 @@ const PendingOrdersManagementScreen = () => {
                   <Ionicons
                     name={isExpanded ? 'chevron-up' : 'chevron-down'}
                     size={16}
-                    color="#9CA3AF"
+                    color="#6B7280"
                     style={{ marginLeft: 8 }}
                   />
                 </View>
@@ -329,8 +329,8 @@ const PendingOrdersManagementScreen = () => {
                           <Text style={styles.expandedAmount}>₹{(item.totalAmount || 0).toLocaleString('en-IN')}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginTop: 6 }}>
-                          <Text style={{ fontSize: 11, color: '#077BC3', fontWeight: '600' }}>View Details</Text>
-                          <Ionicons name="chevron-forward" size={12} color="#077BC3" style={{ marginLeft: 2 }} />
+                          <Text style={{ fontSize: 11, color: '#A3122A', fontWeight: '600' }}>View Details</Text>
+                          <Ionicons name="chevron-forward" size={12} color="#A3122A" style={{ marginLeft: 2 }} />
                         </View>
                       </TouchableOpacity>
                     );
@@ -360,14 +360,14 @@ const PendingOrdersManagementScreen = () => {
           style={[styles.tabItem, activeTab === 'list' && styles.tabItemActive]}
           onPress={() => setActiveTab('list')}
         >
-          <Ionicons name="list-outline" size={18} color={activeTab === 'list' ? '#077BC3' : '#9CA3AF'} />
+          <Ionicons name="list-outline" size={18} color={activeTab === 'list' ? '#A3122A' : '#6B7280'} />
           <Text style={[styles.tabLabel, activeTab === 'list' && styles.tabLabelActive]}>Pending Orders</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.tabItem, activeTab === 'hierarchy' && styles.tabItemActive]}
           onPress={() => setActiveTab('hierarchy')}
         >
-          <Ionicons name="git-network-outline" size={18} color={activeTab === 'hierarchy' ? '#077BC3' : '#9CA3AF'} />
+          <Ionicons name="git-network-outline" size={18} color={activeTab === 'hierarchy' ? '#A3122A' : '#6B7280'} />
           <Text style={[styles.tabLabel, activeTab === 'hierarchy' && styles.tabLabelActive]}>Hierarchy</Text>
         </TouchableOpacity>
       </View>
@@ -381,11 +381,11 @@ const PendingOrdersManagementScreen = () => {
               <Text style={styles.summaryLab}>Total</Text>
             </View>
             <View style={styles.summaryCard}>
-              <Text style={[styles.summaryVal, { color: '#F59E0B' }]}>{pendingCount}</Text>
+              <Text style={[styles.summaryVal, { color: '#B45309' }]}>{pendingCount}</Text>
               <Text style={styles.summaryLab}>Pending</Text>
             </View>
             <View style={styles.summaryCard}>
-              <Text style={[styles.summaryVal, { color: '#10B981' }]}>{dispatches.length - pendingCount}</Text>
+              <Text style={[styles.summaryVal, { color: '#15803D' }]}>{dispatches.length - pendingCount}</Text>
               <Text style={styles.summaryLab}>Dispatched</Text>
             </View>
           </View>
@@ -407,17 +407,17 @@ const PendingOrdersManagementScreen = () => {
 
           {/* Search */}
           <View style={styles.searchBar}>
-            <Ionicons name="search" size={16} color="#9CA3AF" />
+            <Ionicons name="search" size={16} color="#6B7280" />
             <TextInput
               style={styles.searchInput}
               placeholder="Search by party or order number..."
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
               value={searchQuery}
               onChangeText={setSearchQuery}
             />
             {searchQuery.length > 0 && (
               <TouchableOpacity onPress={() => setSearchQuery('')}>
-                <Ionicons name="close-circle" size={16} color="#9CA3AF" />
+                <Ionicons name="close-circle" size={16} color="#6B7280" />
               </TouchableOpacity>
             )}
           </View>
@@ -463,7 +463,7 @@ const styles = StyleSheet.create({
   },
   summaryCard: {
     flex: 1, backgroundColor: '#F9FAFB',
-    borderRadius: 10, padding: 12, alignItems: 'center',
+    borderRadius: 14, padding: 12, alignItems: 'center',
   },
   summaryVal: { fontSize: 20, fontWeight: 'bold', color: '#111827' },
   summaryLab: { fontSize: 11, color: '#6B7280', marginTop: 2 },
@@ -477,32 +477,32 @@ const styles = StyleSheet.create({
   // Tab Bar
   tabBar: { flexDirection: 'row', backgroundColor: '#fff', borderBottomWidth: 1, borderBottomColor: '#E5E7EB' },
   tabItem: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, paddingVertical: 13, borderBottomWidth: 3, borderBottomColor: 'transparent' },
-  tabItemActive: { borderBottomColor: '#077BC3' },
-  tabLabel: { fontSize: 14, fontWeight: '600', color: '#9CA3AF' },
-  tabLabelActive: { color: '#077BC3' },
+  tabItemActive: { borderBottomColor: '#A3122A' },
+  tabLabel: { fontSize: 14, fontWeight: '600', color: '#6B7280' },
+  tabLabelActive: { color: '#A3122A' },
 
   // Hierarchy
-  hierStrip: { flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 18, backgroundColor: '#077BC3', borderRadius: 14, marginBottom: 16, elevation: 4 },
+  hierStrip: { flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 18, backgroundColor: '#A3122A', borderRadius: 14, marginBottom: 16, elevation: 4 },
   hierStripItem: { alignItems: 'center', flex: 1 },
   hierStripDivider: { borderLeftWidth: 1, borderLeftColor: 'rgba(255,255,255,0.3)' },
   hierStripVal: { color: '#fff', fontSize: 20, fontWeight: 'bold', marginTop: 4 },
-  hierStripLab: { color: '#DBEAFE', fontSize: 10, marginTop: 2, fontWeight: '600', textTransform: 'uppercase' },
+  hierStripLab: { color: '#FFD2D9', fontSize: 10, marginTop: 2, fontWeight: '600', textTransform: 'uppercase' },
 
-  partyCard: { backgroundColor: '#fff', borderRadius: 12, padding: 14, borderWidth: 1, borderColor: '#E5E7EB', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', elevation: 2 },
+  partyCard: { backgroundColor: '#fff', borderRadius: 14, padding: 14, borderWidth: 1, borderColor: '#E5E7EB', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', elevation: 2 },
   partyCardLeft: { flexDirection: 'row', alignItems: 'center', flex: 1, minWidth: 0, marginRight: 8 },
-  partyAvatar: { width: 42, height: 42, borderRadius: 21, backgroundColor: '#077BC3', justifyContent: 'center', alignItems: 'center', marginRight: 10, flexShrink: 0 },
+  partyAvatar: { width: 42, height: 42, borderRadius: 21, backgroundColor: '#A3122A', justifyContent: 'center', alignItems: 'center', marginRight: 10, flexShrink: 0 },
   partyAvatarText: { color: '#fff', fontSize: 14, fontWeight: 'bold' },
   partyCardName: { fontSize: 14, fontWeight: '700', color: '#111827' },
   pendingBadge: { backgroundColor: '#FFFBEB', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 5, marginTop: 4, alignSelf: 'flex-start' },
-  pendingBadgeText: { fontSize: 10, color: '#F59E0B', fontWeight: '600' },
+  pendingBadgeText: { fontSize: 10, color: '#B45309', fontWeight: '600' },
   partyCardRight: { flexDirection: 'row', alignItems: 'center', flexShrink: 0 },
   partyStatItem: { alignItems: 'center', width: 60 },
   partyStatVal: { fontSize: 13, fontWeight: '700', color: '#111827', textAlign: 'center' },
-  partyStatLab: { fontSize: 8, color: '#9CA3AF', marginTop: 2, fontWeight: '600', letterSpacing: 0.4 },
+  partyStatLab: { fontSize: 8, color: '#6B7280', marginTop: 2, fontWeight: '600', letterSpacing: 0.4 },
   partyStatDivider: { width: 1, height: 28, backgroundColor: '#E5E7EB', marginHorizontal: 4 },
 
   expandedItems: { backgroundColor: '#F9FAFB', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: '#E5E7EB', marginTop: 6 },
-  expandedCard: { backgroundColor: '#fff', borderRadius: 8, padding: 12, marginBottom: 8, borderWidth: 1, borderColor: '#E5E7EB' },
+  expandedCard: { backgroundColor: '#fff', borderRadius: 14, padding: 12, marginBottom: 8, borderWidth: 1, borderColor: '#E5E7EB' },
   expandedOrderNum: { fontSize: 13, fontWeight: '700', color: '#111827' },
   expandedLabel: { fontSize: 12, color: '#6B7280' },
   expandedAmount: { fontSize: 14, fontWeight: '800', color: '#111827' },
@@ -510,7 +510,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14, paddingVertical: 7,
     borderRadius: 20, backgroundColor: '#F3F4F6',
   },
-  filterPillActive: { backgroundColor: '#077BC3' },
+  filterPillActive: { backgroundColor: '#A3122A' },
   filterText:       { fontSize: 12, fontWeight: '600', color: '#6B7280' },
   filterTextActive: { color: '#fff' },
 
@@ -525,14 +525,14 @@ const styles = StyleSheet.create({
   list: { padding: 16, paddingBottom: 40 },
 
   card: {
-    backgroundColor: '#fff', borderRadius: 12,
+    backgroundColor: '#fff', borderRadius: 14,
     padding: 14, marginBottom: 12,
     borderWidth: 1, borderColor: '#E5E7EB',
     elevation: 2,
   },
   cardHeader:  { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
   orderNumber: { fontSize: 14, fontWeight: 'bold', color: '#111827' },
-  dateText:    { fontSize: 11, color: '#9CA3AF', marginTop: 2 },
+  dateText:    { fontSize: 11, color: '#6B7280', marginTop: 2 },
   badge: { paddingHorizontal: 8, paddingVertical: 4, borderRadius: 6 },
   badgeText: { fontSize: 10, fontWeight: 'bold', textTransform: 'uppercase' },
 
@@ -547,7 +547,7 @@ const styles = StyleSheet.create({
     alignItems: 'center', marginTop: 10,
     paddingTop: 10, borderTopWidth: 1, borderTopColor: '#F3F4F6',
   },
-  amtLabel: { fontSize: 10, color: '#9CA3AF', fontWeight: '600' },
+  amtLabel: { fontSize: 10, color: '#6B7280', fontWeight: '600' },
   amtValue: { fontSize: 16, fontWeight: '800', color: '#111827' },
   itemsCountBox: {
     backgroundColor: '#F3F4F6', paddingHorizontal: 10,
@@ -557,7 +557,7 @@ const styles = StyleSheet.create({
 
   empty:        { alignItems: 'center', marginTop: 80 },
   emptyText:    { fontSize: 16, fontWeight: '600', color: '#6B7280', marginTop: 12 },
-  emptySubText: { fontSize: 13, color: '#9CA3AF', marginTop: 6 },
+  emptySubText: { fontSize: 13, color: '#6B7280', marginTop: 6 },
 });
 
 export default PendingOrdersManagementScreen;

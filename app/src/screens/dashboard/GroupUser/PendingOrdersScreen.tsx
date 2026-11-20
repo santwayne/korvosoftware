@@ -12,17 +12,17 @@ import OrderDetailsModal from '../../../components/OrderDetailsModal';
 
 const STATUS_COLORS: Record<string, string> = {
   draft:              '#6B7280',
-  pending:            '#F59E0B',
-  pending_approval:   '#F59E0B',
-  confirmed:          '#3B82F6',
-  processing:         '#3B82F6',
-  approved:           '#10B981',
-  sent_to_tally:      '#8B5CF6',
-  dispatched:         '#8B5CF6',
-  fully_dispatched:   '#059669',
-  shipped:            '#8B5CF6',
-  delivered:          '#059669',
-  cancelled:          '#EF4444',
+  pending:            '#B45309',
+  pending_approval:   '#B45309',
+  confirmed:          '#B8142F',
+  processing:         '#B8142F',
+  approved:           '#15803D',
+  sent_to_tally:      '#7D0B1E',
+  dispatched:         '#7D0B1E',
+  fully_dispatched:   '#15803D',
+  shipped:            '#7D0B1E',
+  delivered:          '#15803D',
+  cancelled:          '#B91C1C',
   returned:           '#6B7280',
 };
 
@@ -59,15 +59,15 @@ const ROLE_LABELS: Record<string, string> = {
 };
 
 const ROLE_COLORS: Record<string, string> = {
-  superadmin:  '#7C3AED',
-  admin:       '#2563EB',
+  superadmin:  '#7D0B1E',
+  admin:       '#A3122A',
   groupuser:   '#0891B2',
   zonal:       '#0D9488',
-  rsm:         '#059669',
+  rsm:         '#15803D',
   asm:         '#16A34A',
   salesman:    '#65A30D',
-  dealers:     '#D97706',
-  dealer:      '#D97706',
+  dealers:     '#B45309',
+  dealer:      '#B45309',
   distibutors: '#B45309',
   distributor: '#B45309',
   subdealer:   '#92400E',
@@ -75,10 +75,10 @@ const ROLE_COLORS: Record<string, string> = {
 
 const FILTER_PILLS = [
   { key: 'all',             label: 'All' },
-  { key: 'pending_approval',label: 'Pending', color: '#F59E0B' },
-  { key: 'approved',        label: 'Approved', color: '#10B981' },
-  { key: 'processing',      label: 'Processing', color: '#3B82F6' },
-  { key: 'dispatched',      label: 'Shipped', color: '#8B5CF6' },
+  { key: 'pending_approval',label: 'Pending', color: '#B45309' },
+  { key: 'approved',        label: 'Approved', color: '#15803D' },
+  { key: 'processing',      label: 'Processing', color: '#B8142F' },
+  { key: 'dispatched',      label: 'Shipped', color: '#7D0B1E' },
 ];
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -324,7 +324,7 @@ const PendingOrdersScreen = () => {
                     <Text style={[styles.hierarchyName, { color: nodeColor }]} numberOfLines={1}>{node.label}</Text>
                   </View>
                   {idx < chain.length - 1 && (
-                    <Ionicons name="chevron-forward" size={14} color="#9CA3AF" style={{ marginHorizontal: 2 }} />
+                    <Ionicons name="chevron-forward" size={14} color="#6B7280" style={{ marginHorizontal: 2 }} />
                   )}
                 </React.Fragment>
               );
@@ -361,10 +361,10 @@ const PendingOrdersScreen = () => {
           </View>
           <View style={styles.viewDetailBtn}>
             {isLoadingThis ? (
-              <ActivityIndicator size="small" color="#2563EB" />
+              <ActivityIndicator size="small" color="#A3122A" />
             ) : (
               <>
-                <Ionicons name="eye-outline" size={14} color="#2563EB" />
+                <Ionicons name="eye-outline" size={14} color="#A3122A" />
                 <Text style={styles.viewDetailText}>View Details</Text>
               </>
             )}
@@ -376,10 +376,10 @@ const PendingOrdersScreen = () => {
 
   const getPriorityColor = (p: string) => {
     switch (p) {
-      case 'urgent': return '#EF4444';
-      case 'high':   return '#F59E0B';
-      case 'medium': return '#3B82F6';
-      case 'low':    return '#10B981';
+      case 'urgent': return '#B91C1C';
+      case 'high':   return '#B45309';
+      case 'medium': return '#B8142F';
+      case 'low':    return '#15803D';
       default:       return '#6B7280';
     }
   };
@@ -431,17 +431,17 @@ const PendingOrdersScreen = () => {
       {/* Search */}
       <View style={styles.searchSection}>
         <View style={styles.searchBar}>
-          <Ionicons name="search" size={18} color="#9CA3AF" />
+          <Ionicons name="search" size={18} color="#6B7280" />
           <TextInput
             placeholder="Search by order ID, party, or item..."
             style={styles.searchInput}
             value={searchQuery}
             onChangeText={setSearchQuery}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
           {searchQuery.length > 0 && (
             <TouchableOpacity onPress={() => setSearchQuery('')}>
-              <Ionicons name="close-circle" size={18} color="#9CA3AF" />
+              <Ionicons name="close-circle" size={18} color="#6B7280" />
             </TouchableOpacity>
           )}
         </View>
@@ -465,7 +465,7 @@ const PendingOrdersScreen = () => {
 
       {/* Hierarchy legend */}
       <View style={styles.legendRow}>
-        <Ionicons name="git-branch-outline" size={13} color="#9CA3AF" />
+        <Ionicons name="git-branch-outline" size={13} color="#6B7280" />
         <Text style={styles.legendText}>
           {activeTab === 'sales'
             ? 'Creator → Dealer  (sorted by order date)'
@@ -476,7 +476,7 @@ const PendingOrdersScreen = () => {
       {/* List */}
       {loading ? (
         <View style={styles.loadingBox}>
-          <ActivityIndicator size="large" color="#2563EB" />
+          <ActivityIndicator size="large" color="#A3122A" />
           <Text style={styles.loadingText}>Loading orders...</Text>
         </View>
       ) : (
@@ -527,13 +527,13 @@ const styles = StyleSheet.create({
   subtitle: { fontSize: 13, color: '#6B7280', marginTop: 4 },
 
   summaryStrip: {
-    flexDirection: 'row', backgroundColor: '#2563EB',
+    flexDirection: 'row', backgroundColor: '#A3122A',
     marginHorizontal: 20, marginTop: 14, borderRadius: 14, paddingVertical: 14,
   },
   summaryItem:    { flex: 1, alignItems: 'center' },
   summaryDivider: { borderLeftWidth: 1, borderLeftColor: 'rgba(255,255,255,0.3)' },
   summaryVal:     { color: '#fff', fontSize: 18, fontWeight: 'bold' },
-  summaryLab:     { color: '#BFDBFE', fontSize: 10, marginTop: 2, fontWeight: '600' },
+  summaryLab:     { color: '#FFD2D9', fontSize: 10, marginTop: 2, fontWeight: '600' },
 
   tabContainer: {
     flexDirection: 'row', backgroundColor: '#E5E7EB',
@@ -546,7 +546,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000', shadowOpacity: 0.1, shadowRadius: 4,
   },
   tabText:       { fontSize: 12, fontWeight: 'bold', color: '#6B7280' },
-  activeTabText: { color: '#2563EB' },
+  activeTabText: { color: '#A3122A' },
 
   searchSection: { paddingHorizontal: 20, paddingVertical: 10 },
   searchBar: {
@@ -565,7 +565,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12, paddingVertical: 8,
     borderRadius: 20, backgroundColor: '#F3F4F6', gap: 6,
   },
-  filterPillActive:     { backgroundColor: '#2563EB' },
+  filterPillActive:     { backgroundColor: '#A3122A' },
   filterPillText:       { fontSize: 12, fontWeight: '600', color: '#6B7280' },
   filterPillTextActive: { color: '#fff' },
   filterDot:            { width: 8, height: 8, borderRadius: 4 },
@@ -574,7 +574,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center',
     paddingHorizontal: 20, paddingBottom: 8, gap: 4,
   },
-  legendText: { fontSize: 11, color: '#9CA3AF' },
+  legendText: { fontSize: 11, color: '#6B7280' },
 
   listContent: { paddingHorizontal: 20, paddingBottom: 40 },
   loadingBox:  { flex: 1, justifyContent: 'center', alignItems: 'center' },
@@ -582,7 +582,7 @@ const styles = StyleSheet.create({
 
   // Order card
   orderCard: {
-    backgroundColor: '#fff', borderRadius: 12, padding: 14, marginBottom: 12,
+    backgroundColor: '#fff', borderRadius: 14, padding: 14, marginBottom: 12,
     borderWidth: 1, borderColor: '#E5E7EB',
     shadowColor: '#000', shadowOpacity: 0.03, shadowRadius: 8, elevation: 2,
   },
@@ -590,7 +590,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start',
   },
   orderIdText: { fontSize: 14, fontWeight: 'bold', color: '#111827' },
-  dateText:    { fontSize: 11, color: '#9CA3AF', marginTop: 2 },
+  dateText:    { fontSize: 11, color: '#6B7280', marginTop: 2 },
   statusBadge: { paddingHorizontal: 8, paddingVertical: 4, borderRadius: 6 },
   statusText:  { fontSize: 10, fontWeight: 'bold', textTransform: 'uppercase' },
 
@@ -612,7 +612,7 @@ const styles = StyleSheet.create({
   // Card body
   cardBody: { marginBottom: 4 },
   nameRow:  { flexDirection: 'row', alignItems: 'center', marginBottom: 6 },
-  nameLabel:    { fontSize: 11, color: '#9CA3AF', fontWeight: '600', minWidth: 42 },
+  nameLabel:    { fontSize: 11, color: '#6B7280', fontWeight: '600', minWidth: 42 },
   itemName:     { fontSize: 13, fontWeight: '600', color: '#374151', flex: 1 },
   moreItems:    { fontSize: 10, color: '#6B7280', marginLeft: 4 },
   priorityText: { fontSize: 12, fontWeight: '700' },
@@ -622,19 +622,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
     marginTop: 10, paddingTop: 10, borderTopWidth: 1, borderTopColor: '#F3F4F6',
   },
-  amountLabel: { fontSize: 10, color: '#9CA3AF', fontWeight: '600' },
+  amountLabel: { fontSize: 10, color: '#6B7280', fontWeight: '600' },
   amountValue: { fontSize: 15, fontWeight: '800', color: '#111827' },
   viewDetailBtn: {
     flexDirection: 'row', alignItems: 'center', gap: 4,
-    backgroundColor: '#EFF6FF', paddingHorizontal: 10, paddingVertical: 6,
-    borderRadius: 8, borderWidth: 1, borderColor: '#BFDBFE',
+    backgroundColor: '#FBEEEE', paddingHorizontal: 10, paddingVertical: 6,
+    borderRadius: 999, borderWidth: 1, borderColor: '#FFD2D9',
   },
-  viewDetailText: { fontSize: 12, fontWeight: '600', color: '#2563EB' },
+  viewDetailText: { fontSize: 12, fontWeight: '600', color: '#A3122A' },
 
   // Empty state
   emptyContainer: { alignItems: 'center', marginTop: 80 },
   emptyText:      { color: '#6B7280', marginTop: 12, fontSize: 16, fontWeight: '600' },
-  emptySubText:   { color: '#9CA3AF', marginTop: 6, fontSize: 13 },
+  emptySubText:   { color: '#6B7280', marginTop: 6, fontSize: 13 },
 });
 
 export default PendingOrdersScreen;

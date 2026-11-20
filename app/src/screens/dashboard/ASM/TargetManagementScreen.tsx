@@ -75,12 +75,12 @@ const TargetManagementScreen = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const periods = [
-    { key: 'current', label: 'Current Period', color: '#F59E0B' },
-    { key: 'month', label: 'This Month', color: '#10B981' },
+    { key: 'current', label: 'Current Period', color: '#B45309' },
+    { key: 'month', label: 'This Month', color: '#15803D' },
   ];
 
   const targetPeriodOptions = [
-    { key: 'monthly', label: 'Monthly', color: '#3B82F6' },
+    { key: 'monthly', label: 'Monthly', color: '#B8142F' },
   ];
 
   const fetchTargets = async () => {
@@ -207,8 +207,8 @@ const TargetManagementScreen = () => {
 
   const getRoleColor = (role: string) => {
     const colors: { [key: string]: string } = {
-      'salesman': '#EF4444',
-      'dealers': '#8B5CF6',
+      'salesman': '#B91C1C',
+      'dealers': '#7D0B1E',
       'distibutors': '#06B6D4',
       'subdealer': '#84CC16',
     };
@@ -226,10 +226,10 @@ const TargetManagementScreen = () => {
   };
 
   const getAchievementColor = (percentage: number) => {
-    if (percentage >= 100) return '#10B981';
-    if (percentage >= 75) return '#3B82F6';
-    if (percentage >= 50) return '#F59E0B';
-    return '#EF4444';
+    if (percentage >= 100) return '#15803D';
+    if (percentage >= 75) return '#B8142F';
+    if (percentage >= 50) return '#B45309';
+    return '#B91C1C';
   };
 
   const getAchievementStatus = (percentage: number) => {
@@ -312,15 +312,15 @@ const TargetManagementScreen = () => {
 
       <View style={styles.targetActions}>
         <TouchableOpacity style={styles.actionButton}>
-          <Ionicons name="eye-outline" size={16} color="#F59E0B" />
+          <Ionicons name="eye-outline" size={16} color="#B45309" />
           <Text style={styles.actionText}>View Details</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton}>
-          <Ionicons name="create-outline" size={16} color="#3B82F6" />
+          <Ionicons name="create-outline" size={16} color="#B8142F" />
           <Text style={styles.actionText}>Edit Target</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton}>
-          <Ionicons name="trending-up-outline" size={16} color="#10B981" />
+          <Ionicons name="trending-up-outline" size={16} color="#15803D" />
           <Text style={styles.actionText}>Performance</Text>
         </TouchableOpacity>
       </View>
@@ -334,7 +334,7 @@ const TargetManagementScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#F59E0B" />
+        <ActivityIndicator size="large" color="#B45309" />
         <Text style={styles.loadingText}>Loading targets...</Text>
       </View>
     );
@@ -348,14 +348,14 @@ const TargetManagementScreen = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Target Management</Text>
         <TouchableOpacity 
           style={styles.addButton}
           onPress={() => setShowCreateTarget(true)}
         >
-          <Ionicons name="add" size={24} color="#F59E0B" />
+          <Ionicons name="add" size={24} color="#B45309" />
         </TouchableOpacity>
       </View>
 
@@ -367,7 +367,7 @@ const TargetManagementScreen = () => {
           placeholder="Search team members..."
           value={searchQuery}
           onChangeText={setSearchQuery}
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#6B7280"
         />
       </View>
 
@@ -426,7 +426,7 @@ const TargetManagementScreen = () => {
           filteredTargets.map(renderTargetCard)
         ) : (
           <View style={styles.emptyContainer}>
-            <Ionicons name="flag-outline" size={64} color="#9CA3AF" />
+            <Ionicons name="flag-outline" size={64} color="#6B7280" />
             <Text style={styles.emptyTitle}>No targets found</Text>
             <Text style={styles.emptySubtitle}>
               {searchQuery 
@@ -618,7 +618,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   addButton: {
     padding: 8,
@@ -641,7 +641,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   periodSelector: {
     backgroundColor: 'white',
@@ -655,12 +655,12 @@ const styles = StyleSheet.create({
   periodButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 999,
     marginRight: 8,
     backgroundColor: '#F3F4F6',
   },
   selectedPeriodButton: {
-    backgroundColor: '#F59E0B',
+    backgroundColor: '#B45309',
   },
   periodButtonText: {
     fontSize: 14,
@@ -678,7 +678,7 @@ const styles = StyleSheet.create({
   overallStatCard: {
     flex: 1,
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginHorizontal: 4,
     alignItems: 'center',
@@ -688,7 +688,7 @@ const styles = StyleSheet.create({
   overallStatValue: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
   },
   overallStatLabel: {
     fontSize: 12,
@@ -702,7 +702,7 @@ const styles = StyleSheet.create({
   },
   targetCard: {
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginBottom: 12,
     borderWidth: 1,
@@ -738,7 +738,7 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   userRole: {
     fontSize: 14,
@@ -775,17 +775,17 @@ const styles = StyleSheet.create({
   targetAmount: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   achievedAmount: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#10B981',
+    color: '#15803D',
   },
   remainingAmount: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#EF4444',
+    color: '#B91C1C',
   },
   progressContainer: {
     marginBottom: 12,
@@ -799,7 +799,7 @@ const styles = StyleSheet.create({
   progressLabel: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   progressPercentage: {
     fontSize: 14,
@@ -836,7 +836,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 12,
     paddingVertical: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
   },
   actionText: {
@@ -858,7 +858,7 @@ const styles = StyleSheet.create({
   },
   emptySubtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 8,
     textAlign: 'center',
   },
@@ -906,7 +906,7 @@ const styles = StyleSheet.create({
   formInput: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
     backgroundColor: '#fff',
@@ -924,7 +924,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   selectedPeriodOption: {
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
     backgroundColor: '#EBF8FF',
   },
   periodLabel: {
@@ -933,7 +933,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   selectedPeriodLabel: {
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '600',
   },
   // Additional form styles
@@ -951,7 +951,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   selectedUserOption: {
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
     backgroundColor: '#EBF8FF',
   },
   userOptionText: {
@@ -959,7 +959,7 @@ const styles = StyleSheet.create({
     color: '#374151',
   },
   selectedUserOptionText: {
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '500',
   },
   textArea: {
@@ -970,9 +970,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     padding: 16,
-    borderRadius: 8,
+    borderRadius: 999,
     marginTop: 16,
   },
   submitButtonText: {
@@ -981,7 +981,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   disabledButton: {
-    backgroundColor: '#9CA3AF',
+    backgroundColor: '#6B7280',
   },
 });
 

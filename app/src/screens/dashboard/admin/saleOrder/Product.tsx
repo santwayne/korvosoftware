@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderWidth: 1,
         borderColor: '#ddd',
-        borderRadius: 12,
+        borderRadius: 14,
         padding: 8,
         alignItems: 'center',
     },
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#007bff',
         paddingHorizontal: 12,
         paddingVertical: 6,
-        borderRadius: 8,
+        borderRadius: 999,
     },
     summaryText: {
         color: '#fff',
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#007bff',
         paddingHorizontal: 12,
         paddingVertical: 6,
-        borderRadius: 8,
+        borderRadius: 999,
     },
 
 

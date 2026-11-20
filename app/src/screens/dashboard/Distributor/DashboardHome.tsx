@@ -257,7 +257,7 @@ const DashboardHome = () => {
               <Text style={styles.userRole}>Distributor</Text>
             </View>
             <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-              <Ionicons name="log-out-outline" size={24} color="#EF4444" />
+              <Ionicons name="log-out-outline" size={24} color="#B91C1C" />
             </TouchableOpacity>
           </View>
           <View style={styles.companyInfo}>
@@ -274,13 +274,13 @@ const DashboardHome = () => {
               title="Pending Orders"
               value={stats.pendingOrders}
               icon="time"
-              color="#F59E0B"
+              color="#B45309"
             />
             <StatCard
               title="Approved Orders"
               value={stats.approvedOrders}
               icon="checkmark-done-circle"
-              color="#10B981"
+              color="#15803D"
             />
             <StatCard
               title="Total Sales"
@@ -292,13 +292,13 @@ const DashboardHome = () => {
               title="Target Achievement"
               value={`${stats.targetAchievement}%`}
               icon="flag"
-              color="#DC2626"
+              color="#B91C1C"
             />
             <StatCard
               title="Available Products"
               value={stats.availableProducts}
               icon="cube"
-              color="#3B82F6"
+              color="#B8142F"
             />
           </View>
         </View>
@@ -311,28 +311,28 @@ const DashboardHome = () => {
               title="Create Order"
               description="Create new order"
               icon="add-circle-outline"
-              color="#3B82F6"
+              color="#B8142F"
               onPress={() => (navigation as any).navigate('DistributorCreateOrder')}
             />
             <QuickActionCard
               title="My Orders"
               description="View all orders"
               icon="list-outline"
-              color="#F59E0B"
+              color="#B45309"
               onPress={() => (navigation as any).navigate('DistributorOrderList')}
             />
             <QuickActionCard
               title="Target Management"
               description="View assigned targets"
               icon="flag-outline"
-              color="#8B5CF6"
+              color="#7D0B1E"
               onPress={() => (navigation as any).navigate('MyTargetsScreen')}
             />
             <QuickActionCard
               title="Sales Report"
               description="View performance"
               icon="bar-chart-outline"
-              color="#10B981"
+              color="#15803D"
               onPress={() => (navigation as any).navigate('SalesReportScreen')}
             />
           </View>
@@ -354,7 +354,7 @@ const DashboardHome = () => {
             </View>
             
             <View style={styles.activityItem}>
-              <View style={[styles.activityIcon, { backgroundColor: '#3B82F6' }]}>
+              <View style={[styles.activityIcon, { backgroundColor: '#B8142F' }]}>
                 <Ionicons name="add" size={16} color="white" />
               </View>
               <View style={styles.activityContent}>
@@ -365,7 +365,7 @@ const DashboardHome = () => {
             </View>
             
             <View style={styles.activityItem}>
-              <View style={[styles.activityIcon, { backgroundColor: '#10B981' }]}>
+              <View style={[styles.activityIcon, { backgroundColor: '#15803D' }]}>
                 <Ionicons name="trending-up" size={16} color="white" />
               </View>
               <View style={styles.activityContent}>
@@ -461,7 +461,7 @@ const styles = StyleSheet.create({
   },
   logoutButton: {
     padding: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: 'rgba(239, 68, 68, 0.1)',
     marginLeft: 16,
   },
@@ -473,7 +473,7 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   userRole: {
@@ -490,7 +490,7 @@ const styles = StyleSheet.create({
   companyName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   companyCode: {
     fontSize: 14,
@@ -506,7 +506,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   statsGrid: {
@@ -543,7 +543,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   statTitle: {
     fontSize: 14,
@@ -622,7 +622,7 @@ const styles = StyleSheet.create({
   activityTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   activityDescription: {
@@ -632,7 +632,7 @@ const styles = StyleSheet.create({
   },
   activityTime: {
     fontSize: 10,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   // Modal styles
   modalOverlay: {
@@ -662,7 +662,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginLeft: 12,
   },
   modalMessage: {
@@ -680,7 +680,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 12,
     paddingHorizontal: 20,
-    borderRadius: 8,
+    borderRadius: 999,
     alignItems: 'center',
   },
   cancelButton: {

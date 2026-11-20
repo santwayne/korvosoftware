@@ -41,10 +41,10 @@ const TargetManagementScreen = () => {
   const [showFilterModal, setShowFilterModal] = useState(false);
 
   const periods = [
-    { key: 'current', label: 'Current Period', color: '#3B82F6' },
-    { key: 'month', label: 'This Month', color: '#10B981' },
-    { key: 'quarter', label: 'This Quarter', color: '#F59E0B' },
-    { key: 'year', label: 'This Year', color: '#8B5CF6' },
+    { key: 'current', label: 'Current Period', color: '#B8142F' },
+    { key: 'month', label: 'This Month', color: '#15803D' },
+    { key: 'quarter', label: 'This Quarter', color: '#B45309' },
+    { key: 'year', label: 'This Year', color: '#7D0B1E' },
   ];
 
   const fetchTargets = async () => {
@@ -85,9 +85,9 @@ const TargetManagementScreen = () => {
 
   const getRoleColor = (role: string) => {
     const colors: { [key: string]: string } = {
-      'asm': '#F59E0B',
-      'salesman': '#EF4444',
-      'dealers': '#8B5CF6',
+      'asm': '#B45309',
+      'salesman': '#B91C1C',
+      'dealers': '#7D0B1E',
       'distibutors': '#06B6D4',
       'subdealer': '#84CC16',
     };
@@ -106,10 +106,10 @@ const TargetManagementScreen = () => {
   };
 
   const getAchievementColor = (percentage: number) => {
-    if (percentage >= 100) return '#10B981';
-    if (percentage >= 75) return '#3B82F6';
-    if (percentage >= 50) return '#F59E0B';
-    return '#EF4444';
+    if (percentage >= 100) return '#15803D';
+    if (percentage >= 75) return '#B8142F';
+    if (percentage >= 50) return '#B45309';
+    return '#B91C1C';
   };
 
   const getAchievementStatus = (percentage: number) => {
@@ -192,15 +192,15 @@ const TargetManagementScreen = () => {
 
       <View style={styles.targetActions}>
         <TouchableOpacity style={styles.actionButton}>
-          <Ionicons name="eye-outline" size={16} color="#3B82F6" />
+          <Ionicons name="eye-outline" size={16} color="#B8142F" />
           <Text style={styles.actionText}>View Details</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton}>
-          <Ionicons name="create-outline" size={16} color="#F59E0B" />
+          <Ionicons name="create-outline" size={16} color="#B45309" />
           <Text style={styles.actionText}>Edit Target</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton}>
-          <Ionicons name="trending-up-outline" size={16} color="#10B981" />
+          <Ionicons name="trending-up-outline" size={16} color="#15803D" />
           <Text style={styles.actionText}>Performance</Text>
         </TouchableOpacity>
       </View>
@@ -214,7 +214,7 @@ const TargetManagementScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading targets...</Text>
       </View>
     );
@@ -228,11 +228,11 @@ const TargetManagementScreen = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Target Management</Text>
         <TouchableOpacity style={styles.addButton}>
-          <Ionicons name="add" size={24} color="#3B82F6" />
+          <Ionicons name="add" size={24} color="#B8142F" />
         </TouchableOpacity>
       </View>
 
@@ -244,7 +244,7 @@ const TargetManagementScreen = () => {
           placeholder="Search team members..."
           value={searchQuery}
           onChangeText={setSearchQuery}
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#6B7280"
         />
       </View>
 
@@ -303,7 +303,7 @@ const TargetManagementScreen = () => {
           filteredTargets.map(renderTargetCard)
         ) : (
           <View style={styles.emptyContainer}>
-            <Ionicons name="flag-outline" size={64} color="#9CA3AF" />
+            <Ionicons name="flag-outline" size={64} color="#6B7280" />
             <Text style={styles.emptyTitle}>No targets found</Text>
             <Text style={styles.emptySubtitle}>
               {searchQuery 
@@ -349,7 +349,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   addButton: {
     padding: 8,
@@ -372,7 +372,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   periodSelector: {
     backgroundColor: 'white',
@@ -386,12 +386,12 @@ const styles = StyleSheet.create({
   periodButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 999,
     marginRight: 8,
     backgroundColor: '#F3F4F6',
   },
   selectedPeriodButton: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
   },
   periodButtonText: {
     fontSize: 14,
@@ -409,7 +409,7 @@ const styles = StyleSheet.create({
   overallStatCard: {
     flex: 1,
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginHorizontal: 4,
     alignItems: 'center',
@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
   overallStatValue: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
   },
   overallStatLabel: {
     fontSize: 12,
@@ -433,7 +433,7 @@ const styles = StyleSheet.create({
   },
   targetCard: {
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginBottom: 12,
     borderWidth: 1,
@@ -469,7 +469,7 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   userRole: {
     fontSize: 14,
@@ -506,17 +506,17 @@ const styles = StyleSheet.create({
   targetAmount: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   achievedAmount: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#10B981',
+    color: '#15803D',
   },
   remainingAmount: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#EF4444',
+    color: '#B91C1C',
   },
   progressContainer: {
     marginBottom: 12,
@@ -530,7 +530,7 @@ const styles = StyleSheet.create({
   progressLabel: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   progressPercentage: {
     fontSize: 14,
@@ -567,7 +567,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 12,
     paddingVertical: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
   },
   actionText: {
@@ -589,7 +589,7 @@ const styles = StyleSheet.create({
   },
   emptySubtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 8,
     textAlign: 'center',
   },

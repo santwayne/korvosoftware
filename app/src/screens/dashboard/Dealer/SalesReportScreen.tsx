@@ -124,7 +124,7 @@ const SalesReportScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#8B5CF6" />
+        <ActivityIndicator size="large" color="#7D0B1E" />
         <Text style={styles.loadingText}>Loading sales report...</Text>
       </View>
     );
@@ -134,11 +134,11 @@ const SalesReportScreen = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Sales Report</Text>
         <TouchableOpacity style={styles.filterButton}>
-          <Ionicons name="filter" size={20} color="#8B5CF6" />
+          <Ionicons name="filter" size={20} color="#7D0B1E" />
         </TouchableOpacity>
       </View>
 
@@ -156,7 +156,7 @@ const SalesReportScreen = () => {
         <View style={styles.summaryItem}>
           <Text style={styles.summaryLabel}>Avg Growth</Text>
           <Text style={[styles.summaryValue, { 
-            color: salesStats.averageGrowth >= 0 ? '#10B981' : '#EF4444' 
+            color: salesStats.averageGrowth >= 0 ? '#15803D' : '#B91C1C' 
           }]}>
             {formatGrowth(salesStats.averageGrowth)}
           </Text>
@@ -180,23 +180,23 @@ const SalesReportScreen = () => {
                 <Ionicons 
                   name={item.growth >= 0 ? 'trending-up' : 'trending-down'} 
                   size={14} 
-                  color={item.growth >= 0 ? '#059669' : '#DC2626'} 
+                  color={item.growth >= 0 ? '#15803D' : '#B91C1C'} 
                 />
                 <Text style={[styles.growthText, {
-                  color: item.growth >= 0 ? '#059669' : '#DC2626'
+                  color: item.growth >= 0 ? '#15803D' : '#B91C1C'
                 }]}>{formatGrowth(item.growth)}</Text>
               </View>
             </View>
             <View style={styles.salesDetails}>
               <View style={styles.salesItem}>
-                <Ionicons name="trending-up" size={18} color="#8B5CF6" />
+                <Ionicons name="trending-up" size={18} color="#7D0B1E" />
                 <View style={styles.salesItemInfo}>
                   <Text style={styles.salesItemLabel}>Sales</Text>
                   <Text style={styles.salesItemValue}>{formatCurrency(item.sales)}</Text>
                 </View>
               </View>
               <View style={styles.salesItem}>
-                <Ionicons name="cart-outline" size={18} color="#10B981" />
+                <Ionicons name="cart-outline" size={18} color="#15803D" />
                 <View style={styles.salesItemInfo}>
                   <Text style={styles.salesItemLabel}>Orders</Text>
                   <Text style={styles.salesItemValue}>{item.orders}</Text>
@@ -210,7 +210,7 @@ const SalesReportScreen = () => {
         <View style={styles.insightsCard}>
           <Text style={styles.insightsTitle}>Performance Insights</Text>
           <View style={styles.insightItem}>
-            <Ionicons name="analytics-outline" size={20} color="#8B5CF6" />
+            <Ionicons name="analytics-outline" size={20} color="#7D0B1E" />
             <View style={styles.insightContent}>
               <Text style={styles.insightLabel}>Best Performing Month</Text>
               <Text style={styles.insightValue}>
@@ -224,7 +224,7 @@ const SalesReportScreen = () => {
             </View>
           </View>
           <View style={styles.insightItem}>
-            <Ionicons name="trending-up-outline" size={20} color="#10B981" />
+            <Ionicons name="trending-up-outline" size={20} color="#15803D" />
             <View style={styles.insightContent}>
               <Text style={styles.insightLabel}>Average Order Value</Text>
               <Text style={styles.insightValue}>
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
   backButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     justifyContent: 'center',
     alignItems: 'center',
@@ -279,12 +279,12 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   filterButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     justifyContent: 'center',
     alignItems: 'center',
@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
   summaryValue: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   summaryDivider: {
     width: 1,
@@ -346,7 +346,7 @@ const styles = StyleSheet.create({
   monthText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   growthBadge: {
     flexDirection: 'row',
@@ -383,7 +383,7 @@ const styles = StyleSheet.create({
   salesItemValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   insightsCard: {
     backgroundColor: '#FFFFFF',
@@ -399,7 +399,7 @@ const styles = StyleSheet.create({
   insightsTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   insightItem: {
@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
   insightValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
 });
 

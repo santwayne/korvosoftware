@@ -80,7 +80,7 @@ const ResetPassword: React.FC<Props> = ({ navigation, route }) => {
             placeholder="Enter new password"
             secureTextEntry={!showNewPassword}
             autoCapitalize="none"
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
           <TouchableOpacity
             onPress={() => setShowNewPassword(!showNewPassword)}
@@ -89,7 +89,7 @@ const ResetPassword: React.FC<Props> = ({ navigation, route }) => {
             <Ionicons
               name={showNewPassword ? "eye-off-outline" : "eye-outline"}
               size={20}
-              color="#9CA3AF"
+              color="#6B7280"
             />
           </TouchableOpacity>
         </View>
@@ -104,7 +104,7 @@ const ResetPassword: React.FC<Props> = ({ navigation, route }) => {
             placeholder="Re-enter new password"
             secureTextEntry={!showConfirmPassword}
             autoCapitalize="none"
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
           <TouchableOpacity
             onPress={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -113,7 +113,7 @@ const ResetPassword: React.FC<Props> = ({ navigation, route }) => {
             <Ionicons
               name={showConfirmPassword ? "eye-off-outline" : "eye-outline"}
               size={20}
-              color="#9CA3AF"
+              color="#6B7280"
             />
           </TouchableOpacity>
         </View>
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginBottom: 32,
     lineHeight: 20,
   },
@@ -194,12 +194,12 @@ const styles = StyleSheet.create({
   },
   hintText: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginBottom: 16,
   },
   submitButton: {
-    backgroundColor: '#077BC3',
-    borderRadius: 8,
+    backgroundColor: '#A3122A',
+    borderRadius: 999,
     paddingVertical: 16,
     marginBottom: 16,
     marginTop: 24,
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   backButtonText: {
-    color: '#077BC3',
+    color: '#A3122A',
     textAlign: 'center',
     fontWeight: '600',
     fontSize: 14,

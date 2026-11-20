@@ -183,12 +183,12 @@ const TeamManagementScreen = () => {
 
   const getRoleColor = (role: string) => {
     const colors: { [key: string]: string } = {
-      rsm: '#3B82F6',
-      asm: '#10B981',
-      salesman: '#F59E0B',
-      dealers: '#8B5CF6',
+      rsm: '#B8142F',
+      asm: '#15803D',
+      salesman: '#B45309',
+      dealers: '#7D0B1E',
       distibutors: '#06B6D4',
-      subdealer: '#EF4444',
+      subdealer: '#B91C1C',
     };
     return colors[role] || '#6B7280';
   };
@@ -255,7 +255,7 @@ const TeamManagementScreen = () => {
         </View>
         <TouchableOpacity style={styles.viewDetailsBtn}>
           <Text style={styles.viewDetailsText}>View Details</Text>
-          <Ionicons name="chevron-forward" size={16} color="#3B82F6" />
+          <Ionicons name="chevron-forward" size={16} color="#B8142F" />
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
@@ -325,7 +325,7 @@ const TeamManagementScreen = () => {
   if (loading && teamMembers.length === 0) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading team data...</Text>
       </View>
     );
@@ -339,7 +339,7 @@ const TeamManagementScreen = () => {
           style={styles.backBtn}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Team Management</Text>
         <View style={styles.headerRight} />
@@ -355,9 +355,9 @@ const TeamManagementScreen = () => {
         <View style={styles.statsSection}>
           <Text style={styles.sectionTitle}>Team Overview</Text>
           <View style={styles.statsGrid}>
-            {renderStatCard('Total Members', teamStats.totalMembers, 'people', '#3B82F6')}
-            {renderStatCard('Total Sales', `₹${teamStats.totalSales.toLocaleString()}`, 'trending-up', '#10B981')}
-            {renderStatCard('Total Orders', teamStats.totalOrders, 'list', '#F59E0B')}
+            {renderStatCard('Total Members', teamStats.totalMembers, 'people', '#B8142F')}
+            {renderStatCard('Total Sales', `₹${teamStats.totalSales.toLocaleString()}`, 'trending-up', '#15803D')}
+            {renderStatCard('Total Orders', teamStats.totalOrders, 'list', '#B45309')}
           </View>
         </View>
 
@@ -393,7 +393,7 @@ const TeamManagementScreen = () => {
             style={styles.filterBtn}
             onPress={() => setShowRoleFilter(!showRoleFilter)}
           >
-            <Ionicons name="filter" size={20} color="#3B82F6" />
+            <Ionicons name="filter" size={20} color="#B8142F" />
             <Text style={styles.filterText}>Filter</Text>
           </TouchableOpacity>
         </View>
@@ -422,7 +422,7 @@ const TeamManagementScreen = () => {
             onEndReachedThreshold={0.1}
             ListEmptyComponent={
               <View style={styles.emptyContainer}>
-                <Ionicons name="people-outline" size={48} color="#9CA3AF" />
+                <Ionicons name="people-outline" size={48} color="#6B7280" />
                 <Text style={styles.emptyText}>No team members found</Text>
                 <Text style={styles.emptySubtext}>
                   {searchQuery || selectedRole ? 'Try adjusting your search or filter' : 'No team members available'}
@@ -432,7 +432,7 @@ const TeamManagementScreen = () => {
             ListFooterComponent={
               loading && teamMembers.length > 0 ? (
                 <View style={styles.loadingMore}>
-                  <ActivityIndicator size="small" color="#3B82F6" />
+                  <ActivityIndicator size="small" color="#B8142F" />
                   <Text style={styles.loadingMoreText}>Loading more...</Text>
                 </View>
               ) : null
@@ -478,7 +478,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   headerRight: {
     width: 40,
@@ -492,7 +492,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   statsGrid: {
@@ -531,7 +531,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   statTitle: {
@@ -570,7 +570,7 @@ const styles = StyleSheet.create({
   roleCount: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   roleLabel: {
@@ -599,22 +599,22 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   filterBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 999,
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderWidth: 1,
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
   },
   filterText: {
     marginLeft: 8,
     fontSize: 16,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '500',
   },
   membersSection: {
@@ -631,7 +631,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     backgroundColor: '#F3F4F6',
-    borderRadius: 8,
+    borderRadius: 999,
   },
   clearFilterText: {
     fontSize: 14,
@@ -667,7 +667,7 @@ const styles = StyleSheet.create({
   memberName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   memberRole: {
@@ -677,7 +677,7 @@ const styles = StyleSheet.create({
   },
   memberEmail: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   memberStats: {
     alignItems: 'flex-end',
@@ -685,7 +685,7 @@ const styles = StyleSheet.create({
   memberSales: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#059669',
+    color: '#15803D',
     marginBottom: 2,
   },
   memberOrders: {
@@ -712,7 +712,7 @@ const styles = StyleSheet.create({
   },
   viewDetailsText: {
     fontSize: 14,
-    color: '#3B82F6',
+    color: '#B8142F',
     marginRight: 4,
   },
   emptyContainer: {
@@ -728,7 +728,7 @@ const styles = StyleSheet.create({
   },
   emptySubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
   loadingMore: {
@@ -760,7 +760,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   closeBtn: {
     padding: 8,
@@ -792,7 +792,7 @@ const styles = StyleSheet.create({
   detailName: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   detailRole: {
@@ -802,7 +802,7 @@ const styles = StyleSheet.create({
   },
   detailEmail: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   detailSection: {
     backgroundColor: 'white',
@@ -818,7 +818,7 @@ const styles = StyleSheet.create({
   detailSectionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   detailStats: {
@@ -831,7 +831,7 @@ const styles = StyleSheet.create({
   detailStatValue: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#059669',
+    color: '#15803D',
     marginBottom: 4,
   },
   detailStatLabel: {
@@ -853,7 +853,7 @@ const styles = StyleSheet.create({
   detailInfoValue: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
   },
 });
 

@@ -142,14 +142,14 @@ const DashboardHome = () => {
   const getOrderStatusColor = (status: string) => {
     const colorMap: { [key: string]: string } = {
       'draft': '#6B7280',
-      'pending': '#F59E0B',
-      'confirmed': '#3B82F6',
-      'approved': '#10B981',
-      'processing': '#8B5CF6',
-      'shipped': '#059669',
-      'delivered': '#10B981',
-      'cancelled': '#EF4444',
-      'rejected': '#DC2626'
+      'pending': '#B45309',
+      'confirmed': '#B8142F',
+      'approved': '#15803D',
+      'processing': '#7D0B1E',
+      'shipped': '#15803D',
+      'delivered': '#15803D',
+      'cancelled': '#B91C1C',
+      'rejected': '#B91C1C'
     };
     return colorMap[status] || '#6B7280';
   };
@@ -234,7 +234,7 @@ const DashboardHome = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#EF4444" />
+        <ActivityIndicator size="large" color="#B91C1C" />
         <Text style={styles.loadingText}>Loading dashboard...</Text>
       </View>
     );
@@ -262,7 +262,7 @@ const DashboardHome = () => {
             activeOpacity={0.7}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Ionicons name="log-out-outline" size={24} color="#EF4444" />
+            <Ionicons name="log-out-outline" size={24} color="#B91C1C" />
           </TouchableOpacity>
         </View>
         <View style={styles.companyInfo}>
@@ -279,37 +279,37 @@ const DashboardHome = () => {
             title="Total Customers"
             value={stats.totalCustomers}
             icon="people"
-            color="#3B82F6"
+            color="#B8142F"
           />
           <StatCard
             title="Total Sales"
             value={`₹${stats.totalSales.toLocaleString()}`}
             icon="trending-up"
-            color="#10B981"
+            color="#15803D"
           />
           <StatCard
             title="Pending Orders"
             value={stats.pendingOrders}
             icon="time"
-            color="#F59E0B"
+            color="#B45309"
           />
           <StatCard
             title="Completed Orders"
             value={stats.completedOrders}
             icon="checkmark-circle"
-            color="#059669"
+            color="#15803D"
           />
           <StatCard
             title="Target Achievement"
             value={`${stats.targetAchievement}%`}
             icon="flag-outline"
-            color="#DC2626"
+            color="#B91C1C"
           />
           <StatCard
             title="Daily Visits"
             value={stats.dailyVisits}
             icon="walk"
-            color="#8B5CF6"
+            color="#7D0B1E"
           />
         </View>
       </View>
@@ -322,28 +322,28 @@ const DashboardHome = () => {
             title="Create Order"
             description="Create new order"
             icon="add-circle-outline"
-            color="#3B82F6"
+            color="#B8142F"
             onPress={() => (navigation as any).navigate('SalesmanCreateOrder')}
           />
           <QuickActionCard
             title="My Orders"
             description="View all orders"
             icon="list-outline"
-            color="#F59E0B"
+            color="#B45309"
             onPress={() => (navigation as any).navigate('SalesmanOrderList')}
           />
           <QuickActionCard
             title="My Targets"
             description="View your targets"
             icon="flag-outline"
-            color="#10B981"
+            color="#15803D"
             onPress={() => navigation.navigate('MyTargetsScreen')}
           />
           <QuickActionCard
             title="Pending Approvals"
             description="Approve orders"
             icon="checkmark-circle-outline"
-            color="#8B5CF6"
+            color="#7D0B1E"
             onPress={() => navigation.navigate('PendingApprovalsScreen')}
           />
         </View>
@@ -368,7 +368,7 @@ const DashboardHome = () => {
             ))
           ) : (
             <View style={styles.emptyActivity}>
-              <Ionicons name="time-outline" size={48} color="#9CA3AF" />
+              <Ionicons name="time-outline" size={48} color="#6B7280" />
               <Text style={styles.emptyActivityText}>No recent activity</Text>
               <Text style={styles.emptyActivitySubtext}>Your recent orders will appear here</Text>
             </View>
@@ -387,7 +387,7 @@ const DashboardHome = () => {
       <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
           <View style={styles.modalHeader}>
-            <Ionicons name="log-out-outline" size={32} color="#EF4444" />
+            <Ionicons name="log-out-outline" size={32} color="#B91C1C" />
             <Text style={styles.modalTitle}>Logout</Text>
           </View>
           
@@ -459,7 +459,7 @@ const styles = StyleSheet.create({
   },
   logoutButton: {
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: 'rgba(239, 68, 68, 0.1)',
     marginLeft: 16,
     minWidth: 48,
@@ -476,12 +476,12 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   userRole: {
     fontSize: 14,
-    color: '#EF4444',
+    color: '#B91C1C',
     fontWeight: '600',
     textTransform: 'uppercase',
   },
@@ -493,7 +493,7 @@ const styles = StyleSheet.create({
   companyName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   companyCode: {
     fontSize: 14,
@@ -509,7 +509,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   statsGrid: {
@@ -546,7 +546,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   statTitle: {
     fontSize: 14,
@@ -625,7 +625,7 @@ const styles = StyleSheet.create({
   activityTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   activityDescription: {
@@ -635,7 +635,7 @@ const styles = StyleSheet.create({
   },
   activityTime: {
     fontSize: 10,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   emptyActivity: {
     alignItems: 'center',
@@ -650,7 +650,7 @@ const styles = StyleSheet.create({
   },
   emptyActivitySubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   // Modal styles
   modalOverlay: {
@@ -680,7 +680,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginLeft: 12,
   },
   modalMessage: {
@@ -698,7 +698,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 12,
     paddingHorizontal: 20,
-    borderRadius: 8,
+    borderRadius: 999,
     alignItems: 'center',
   },
   cancelButton: {
@@ -712,7 +712,7 @@ const styles = StyleSheet.create({
     color: '#374151',
   },
   logoutButtonModal: {
-    backgroundColor: '#EF4444',
+    backgroundColor: '#B91C1C',
   },
   logoutButtonText: {
     fontSize: 16,

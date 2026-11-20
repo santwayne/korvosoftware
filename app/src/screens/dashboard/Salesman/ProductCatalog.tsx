@@ -187,7 +187,7 @@ const ProductCatalog = () => {
           ]}>
             <Text style={[
               styles.stockText,
-              { color: item.stock.current <= item.stock.minimum ? '#D97706' : '#059669' }
+              { color: item.stock.current <= item.stock.minimum ? '#B45309' : '#15803D' }
             ]}>
               {item.stock.current <= item.stock.minimum ? 'Low Stock' : 'In Stock'}
             </Text>
@@ -207,7 +207,7 @@ const ProductCatalog = () => {
           style={styles.actionButton}
           onPress={() => handleProductSelect(item)}
         >
-          <Ionicons name="eye" size={20} color="#3B82F6" />
+          <Ionicons name="eye" size={20} color="#B8142F" />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.actionButton}
@@ -215,7 +215,7 @@ const ProductCatalog = () => {
             navigation.navigate('CreateOrder', { selectedProduct: item });
           }}
         >
-          <Ionicons name="add-circle" size={20} color="#EF4444" />
+          <Ionicons name="add-circle" size={20} color="#B91C1C" />
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
@@ -224,7 +224,7 @@ const ProductCatalog = () => {
   // Render empty state
   const renderEmptyState = () => (
     <View style={styles.emptyState}>
-      <Ionicons name="cube-outline" size={64} color="#9CA3AF" />
+      <Ionicons name="cube-outline" size={64} color="#6B7280" />
       <Text style={styles.emptyTitle}>No Products Found</Text>
       <Text style={styles.emptySubtitle}>
         {searchQuery || selectedCategory !== 'all' 
@@ -275,7 +275,7 @@ const ProductCatalog = () => {
             value={searchQuery}
             onChangeText={setSearchQuery}
             placeholder="Search products..."
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
           {searchQuery.length > 0 && (
             <TouchableOpacity onPress={() => setSearchQuery('')}>
@@ -348,12 +348,12 @@ const ProductCatalog = () => {
       {/* Products List */}
       {loading ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#EF4444" />
+          <ActivityIndicator size="large" color="#B91C1C" />
           <Text style={styles.loadingText}>Loading products...</Text>
         </View>
       ) : error ? (
         <View style={styles.errorContainer}>
-          <Ionicons name="alert-circle" size={48} color="#EF4444" />
+          <Ionicons name="alert-circle" size={48} color="#B91C1C" />
           <Text style={styles.errorText}>{error}</Text>
           <TouchableOpacity style={styles.retryButton} onPress={fetchProducts}>
             <Text style={styles.retryButtonText}>Retry</Text>
@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9FAFB',
   },
   header: {
-    backgroundColor: '#EF4444',
+    backgroundColor: '#B91C1C',
     paddingTop: 50,
     paddingBottom: 16,
     paddingHorizontal: 16,
@@ -429,7 +429,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   categoryScroll: {
     marginBottom: 12,
@@ -437,12 +437,12 @@ const styles = StyleSheet.create({
   categoryButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     marginRight: 8,
   },
   categoryButtonSelected: {
-    backgroundColor: '#EF4444',
+    backgroundColor: '#B91C1C',
   },
   categoryButtonText: {
     fontSize: 14,
@@ -465,14 +465,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 4,
     marginRight: 8,
-    borderRadius: 4,
+    borderRadius: 999,
   },
   sortButtonText: {
     fontSize: 14,
     color: '#6B7280',
   },
   sortButtonSelected: {
-    color: '#EF4444',
+    color: '#B91C1C',
     fontWeight: '600',
   },
   sortOrderButton: {
@@ -498,15 +498,15 @@ const styles = StyleSheet.create({
   errorText: {
     marginTop: 12,
     fontSize: 16,
-    color: '#EF4444',
+    color: '#B91C1C',
     textAlign: 'center',
   },
   retryButton: {
     marginTop: 16,
     paddingHorizontal: 24,
     paddingVertical: 8,
-    backgroundColor: '#EF4444',
-    borderRadius: 6,
+    backgroundColor: '#B91C1C',
+    borderRadius: 999,
   },
   retryButtonText: {
     color: '#fff',
@@ -548,7 +548,7 @@ const styles = StyleSheet.create({
   productName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   productCode: {
@@ -558,7 +558,7 @@ const styles = StyleSheet.create({
   },
   productCategory: {
     fontSize: 12,
-    color: '#EF4444',
+    color: '#B91C1C',
     marginBottom: 8,
   },
   priceContainer: {
@@ -569,7 +569,7 @@ const styles = StyleSheet.create({
   productPrice: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#059669',
+    color: '#15803D',
   },
   productUnit: {
     fontSize: 14,
@@ -620,7 +620,7 @@ const styles = StyleSheet.create({
   },
   emptySubtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
     marginTop: 8,
     lineHeight: 20,
@@ -629,8 +629,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
     paddingHorizontal: 16,
     paddingVertical: 8,
-    backgroundColor: '#EF4444',
-    borderRadius: 6,
+    backgroundColor: '#B91C1C',
+    borderRadius: 999,
   },
   clearFiltersText: {
     color: '#fff',

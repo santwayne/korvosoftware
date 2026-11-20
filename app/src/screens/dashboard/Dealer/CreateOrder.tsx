@@ -422,7 +422,7 @@ const CreateOrder = () => {
           Stock: {item.stock.current} {item.stock.current <= item.stock.minimum ? '(Low Stock)' : ''}
         </Text>
       </View>
-      <Ionicons name="add-circle" size={24} color="#EF4444" />
+      <Ionicons name="add-circle" size={24} color="#B91C1C" />
     </TouchableOpacity>
   );
 
@@ -431,7 +431,7 @@ const CreateOrder = () => {
       <View style={styles.orderItemHeader}>
         <Text style={styles.orderItemName}>{item.productName}</Text>
         <TouchableOpacity onPress={() => removeOrderItem(item.productId)}>
-          <Ionicons name="trash-outline" size={20} color="#EF4444" />
+          <Ionicons name="trash-outline" size={20} color="#B91C1C" />
         </TouchableOpacity>
       </View>
 
@@ -552,7 +552,7 @@ const CreateOrder = () => {
             onPress={() => setShowPriceListModal(true)}
           >
             {loadingPriceLists ? (
-              <ActivityIndicator size="small" color="#EF4444" />
+              <ActivityIndicator size="small" color="#B91C1C" />
             ) : (
               <Text style={priceListName ? styles.customerName : styles.placeholderText}>
                 {priceListName || 'Select Price List (optional)'}
@@ -579,7 +579,7 @@ const CreateOrder = () => {
 
           {orderItems.length === 0 ? (
             <View style={styles.emptyState}>
-              <Ionicons name="cube-outline" size={48} color="#9CA3AF" />
+              <Ionicons name="cube-outline" size={48} color="#6B7280" />
               <Text style={styles.emptyText}>No products added</Text>
               <Text style={styles.emptySubtext}>Tap "Add Product" to start building your order</Text>
             </View>
@@ -731,7 +731,7 @@ const CreateOrder = () => {
           <View style={styles.modalContent}>
             {priceListNames.length === 0 ? (
               <View style={styles.emptyState}>
-                <Ionicons name="pricetag-outline" size={48} color="#9CA3AF" />
+                <Ionicons name="pricetag-outline" size={48} color="#6B7280" />
                 <Text style={styles.emptyText}>No price lists available</Text>
                 <Text style={styles.emptySubtext}>Price lists are synced from Tally</Text>
               </View>
@@ -745,7 +745,7 @@ const CreateOrder = () => {
                   <View style={styles.customerOptionInfo}>
                     <Text style={[styles.customerOptionName, priceListName === name && styles.selectedPriceListText]}>{name}</Text>
                   </View>
-                  {priceListName === name && <Ionicons name="checkmark" size={20} color="#EF4444" />}
+                  {priceListName === name && <Ionicons name="checkmark" size={20} color="#B91C1C" />}
                 </TouchableOpacity>
               ))
             )}
@@ -784,7 +784,7 @@ const CreateOrder = () => {
               refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
               ListEmptyComponent={
                 <View style={styles.emptyProducts}>
-                  <Ionicons name="cube-outline" size={48} color="#9CA3AF" />
+                  <Ionicons name="cube-outline" size={48} color="#6B7280" />
                   <Text style={styles.emptyProductsText}>No products found</Text>
                 </View>
               }
@@ -798,93 +798,93 @@ const CreateOrder = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#F9FAFB' },
-  header: { backgroundColor: '#EF4444', paddingTop: 50, paddingBottom: 16, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  header: { backgroundColor: '#B91C1C', paddingTop: 50, paddingBottom: 16, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   backButton: { padding: 8 },
   headerTitle: { fontSize: 20, fontWeight: 'bold', color: '#fff' },
   headerSpacer: { width: 40 },
   content: { flex: 1, padding: 16 },
   section: { backgroundColor: '#fff', borderRadius: 12, padding: 16, marginBottom: 16, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4, elevation: 3 },
   sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 },
-  sectionTitle: { fontSize: 18, fontWeight: 'bold', color: '#1F2937', marginBottom: 12 },
+  sectionTitle: { fontSize: 18, fontWeight: 'bold', color: '#111827', marginBottom: 12 },
   customerSelector: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 16, backgroundColor: '#F3F4F6', borderRadius: 8, borderWidth: 1, borderColor: '#D1D5DB' },
-  customerName: { fontSize: 16, fontWeight: '600', color: '#1F2937' },
+  customerName: { fontSize: 16, fontWeight: '600', color: '#111827' },
   customerDetails: { fontSize: 14, color: '#6B7280', marginTop: 2 },
-  placeholderText: { fontSize: 16, color: '#9CA3AF' },
+  placeholderText: { fontSize: 16, color: '#6B7280' },
   clearPriceList: { marginTop: 8, alignSelf: 'flex-start' },
-  clearPriceListText: { fontSize: 13, color: '#EF4444' },
-  addButton: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#EF4444', paddingHorizontal: 12, paddingVertical: 8, borderRadius: 6 },
+  clearPriceListText: { fontSize: 13, color: '#B91C1C' },
+  addButton: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#B91C1C', paddingHorizontal: 12, paddingVertical: 8, borderRadius: 999 },
   addButtonText: { color: '#fff', fontWeight: '600', marginLeft: 4 },
   emptyState: { alignItems: 'center', padding: 32 },
   emptyText: { fontSize: 16, fontWeight: '600', color: '#6B7280', marginTop: 8 },
-  emptySubtext: { fontSize: 14, color: '#9CA3AF', marginTop: 4, textAlign: 'center' },
+  emptySubtext: { fontSize: 14, color: '#6B7280', marginTop: 4, textAlign: 'center' },
   orderItem: { backgroundColor: '#F9FAFB', borderRadius: 8, padding: 12, marginBottom: 12, borderWidth: 1, borderColor: '#E5E7EB' },
   orderItemHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 },
-  orderItemName: { fontSize: 16, fontWeight: '600', color: '#1F2937', flex: 1 },
+  orderItemName: { fontSize: 16, fontWeight: '600', color: '#111827', flex: 1 },
   orderItemDetails: { gap: 8 },
   inputRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   inputLabel: { fontSize: 14, color: '#6B7280', minWidth: 80 },
   readOnlyValue: { fontSize: 14, color: '#374151', fontWeight: '500' },
-  finalRateValue: { fontSize: 14, color: '#059669', fontWeight: '600' },
-  quantityInput: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 4, padding: 8, width: 80, textAlign: 'center' },
-  priceInput: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 4, padding: 8, width: 100, textAlign: 'center' },
-  negativeInput: { borderColor: '#F59E0B', color: '#B45309' },
-  discountInput: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 4, padding: 8, width: 80, textAlign: 'center' },
-  taxInput: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 4, padding: 8, width: 80, textAlign: 'center' },
+  finalRateValue: { fontSize: 14, color: '#15803D', fontWeight: '600' },
+  quantityInput: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 10, padding: 8, width: 80, textAlign: 'center' },
+  priceInput: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 10, padding: 8, width: 100, textAlign: 'center' },
+  negativeInput: { borderColor: '#B45309', color: '#B45309' },
+  discountInput: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 10, padding: 8, width: 80, textAlign: 'center' },
+  taxInput: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 10, padding: 8, width: 80, textAlign: 'center' },
   totalRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 8, paddingTop: 8, borderTopWidth: 1, borderTopColor: '#E5E7EB' },
-  totalLabel: { fontSize: 16, fontWeight: '600', color: '#1F2937' },
-  totalValue: { fontSize: 16, fontWeight: 'bold', color: '#059669' },
+  totalLabel: { fontSize: 16, fontWeight: '600', color: '#111827' },
+  totalValue: { fontSize: 16, fontWeight: 'bold', color: '#15803D' },
   summaryContainer: { backgroundColor: '#F9FAFB', borderRadius: 8, padding: 16 },
   summaryRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 },
   summaryLabel: { fontSize: 14, color: '#6B7280' },
-  summaryValue: { fontSize: 14, fontWeight: '500', color: '#1F2937' },
+  summaryValue: { fontSize: 14, fontWeight: '500', color: '#111827' },
   finalTotalRow: { marginTop: 8, paddingTop: 8, borderTopWidth: 1, borderTopColor: '#E5E7EB' },
-  finalTotalLabel: { fontSize: 18, fontWeight: 'bold', color: '#1F2937' },
-  finalTotalValue: { fontSize: 18, fontWeight: 'bold', color: '#059669' },
+  finalTotalLabel: { fontSize: 18, fontWeight: 'bold', color: '#111827' },
+  finalTotalValue: { fontSize: 18, fontWeight: 'bold', color: '#15803D' },
   inputGroup: { marginBottom: 16 },
-  textInput: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, padding: 12, fontSize: 16, backgroundColor: '#fff' },
+  textInput: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 10, padding: 12, fontSize: 16, backgroundColor: '#fff' },
   textArea: { height: 80, textAlignVertical: 'top' },
   priorityButtons: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  priorityButton: { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 6, borderWidth: 1, borderColor: '#D1D5DB', backgroundColor: '#fff' },
-  priorityButtonSelected: { backgroundColor: '#EF4444', borderColor: '#EF4444' },
+  priorityButton: { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 999, borderWidth: 1, borderColor: '#D1D5DB', backgroundColor: '#fff' },
+  priorityButtonSelected: { backgroundColor: '#B91C1C', borderColor: '#B91C1C' },
   priorityButtonText: { fontSize: 14, color: '#6B7280' },
   priorityButtonTextSelected: { color: '#fff' },
   paymentButtons: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  paymentButton: { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 6, borderWidth: 1, borderColor: '#D1D5DB', backgroundColor: '#fff' },
-  paymentButtonSelected: { backgroundColor: '#10B981', borderColor: '#10B981' },
+  paymentButton: { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 999, borderWidth: 1, borderColor: '#D1D5DB', backgroundColor: '#fff' },
+  paymentButtonSelected: { backgroundColor: '#15803D', borderColor: '#15803D' },
   paymentButtonText: { fontSize: 14, color: '#6B7280' },
   paymentButtonTextSelected: { color: '#fff' },
   buttonContainer: { flexDirection: 'row', gap: 12, marginBottom: 32 },
-  draftButton: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F3F4F6', padding: 16, borderRadius: 12, borderWidth: 1, borderColor: '#D1D5DB', gap: 8 },
+  draftButton: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F3F4F6', padding: 16, borderRadius: 999, borderWidth: 1, borderColor: '#D1D5DB', gap: 8 },
   draftButtonText: { color: '#6B7280', fontSize: 16, fontWeight: '600' },
-  submitButton: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#059669', padding: 16, borderRadius: 12, gap: 8 },
+  submitButton: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#15803D', padding: 16, borderRadius: 999, gap: 8 },
   submitButtonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
-  createButtonDisabled: { backgroundColor: '#9CA3AF', borderColor: '#9CA3AF' },
+  createButtonDisabled: { backgroundColor: '#6B7280', borderColor: '#6B7280' },
   modalContainer: { flex: 1, backgroundColor: '#fff' },
   modalHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 16, borderBottomWidth: 1, borderBottomColor: '#E5E7EB' },
-  modalCancelText: { fontSize: 16, color: '#EF4444' },
-  modalTitle: { fontSize: 18, fontWeight: 'bold', color: '#1F2937' },
+  modalCancelText: { fontSize: 16, color: '#B91C1C' },
+  modalTitle: { fontSize: 18, fontWeight: 'bold', color: '#111827' },
   modalSpacer: { width: 60 },
   modalContent: { flex: 1, padding: 16 },
   modalSubtext: { fontSize: 14, color: '#6B7280', marginBottom: 16, textAlign: 'center' },
   customerOption: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 16, backgroundColor: '#F9FAFB', borderRadius: 8, borderWidth: 1, borderColor: '#E5E7EB', marginBottom: 8 },
-  selectedPriceListOption: { borderColor: '#EF4444', backgroundColor: '#FEF2F2' },
-  selectedPriceListText: { color: '#EF4444' },
+  selectedPriceListOption: { borderColor: '#B91C1C', backgroundColor: '#FEF2F2' },
+  selectedPriceListText: { color: '#B91C1C' },
   customerOptionInfo: { flex: 1 },
-  customerOptionName: { fontSize: 16, fontWeight: '600', color: '#1F2937' },
+  customerOptionName: { fontSize: 16, fontWeight: '600', color: '#111827' },
   customerOptionDetails: { fontSize: 14, color: '#6B7280', marginTop: 2 },
   searchContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#F3F4F6', borderRadius: 8, paddingHorizontal: 12, marginBottom: 16 },
   searchInput: { flex: 1, padding: 12, fontSize: 16 },
   categoryScroll: { marginBottom: 16 },
-  categoryButton: { paddingHorizontal: 16, paddingVertical: 8, borderRadius: 20, backgroundColor: '#F3F4F6', marginRight: 8 },
-  categoryButtonSelected: { backgroundColor: '#EF4444' },
+  categoryButton: { paddingHorizontal: 16, paddingVertical: 8, borderRadius: 999, backgroundColor: '#F3F4F6', marginRight: 8 },
+  categoryButtonSelected: { backgroundColor: '#B91C1C' },
   categoryButtonText: { fontSize: 14, color: '#6B7280' },
   categoryButtonTextSelected: { color: '#fff' },
   productItem: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 16, backgroundColor: '#F9FAFB', borderRadius: 8, marginBottom: 8, borderWidth: 1, borderColor: '#E5E7EB' },
   productInfo: { flex: 1 },
-  productName: { fontSize: 16, fontWeight: '600', color: '#1F2937' },
+  productName: { fontSize: 16, fontWeight: '600', color: '#111827' },
   productCode: { fontSize: 14, color: '#6B7280', marginTop: 2 },
-  productPrice: { fontSize: 14, fontWeight: '500', color: '#059669', marginTop: 2 },
-  productStock: { fontSize: 12, color: '#F59E0B', marginTop: 2 },
+  productPrice: { fontSize: 14, fontWeight: '500', color: '#15803D', marginTop: 2 },
+  productStock: { fontSize: 12, color: '#B45309', marginTop: 2 },
   emptyProducts: { alignItems: 'center', padding: 32 },
   emptyProductsText: { fontSize: 16, color: '#6B7280', marginTop: 8 },
 });

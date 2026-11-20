@@ -240,32 +240,32 @@ export const OutstandingManagementScreen = () => {
 
   const getStatusColor = (status: string) => {
     const colors = {
-      'pending': '#F59E0B',
-      'overdue': '#EF4444',
-      'partially_paid': '#3B82F6',
-      'paid': '#10B981',
+      'pending': '#B45309',
+      'overdue': '#B91C1C',
+      'partially_paid': '#B8142F',
+      'paid': '#15803D',
       'written_off': '#6B7280',
-      'disputed': '#8B5CF6'
+      'disputed': '#7D0B1E'
     };
     return colors[status] || '#6B7280';
   };
 
   const getRiskColor = (riskLevel: string) => {
     const colors = {
-      'low': '#10B981',
-      'medium': '#F59E0B',
-      'high': '#EF4444',
-      'critical': '#DC2626'
+      'low': '#15803D',
+      'medium': '#B45309',
+      'high': '#B91C1C',
+      'critical': '#B91C1C'
     };
     return colors[riskLevel] || '#6B7280';
   };
 
   const getAgingColor = (ageRange: string) => {
     const colors = {
-      'current': '#10B981',
-      '1-30_days': '#F59E0B',
-      '31-60_days': '#EF4444',
-      '61-90_days': '#DC2626',
+      'current': '#15803D',
+      '1-30_days': '#B45309',
+      '31-60_days': '#B91C1C',
+      '61-90_days': '#B91C1C',
       'over_90_days': '#991B1B'
     };
     return colors[ageRange] || '#6B7280';
@@ -415,7 +415,7 @@ export const OutstandingManagementScreen = () => {
 
         {partyNodes.length === 0 ? (
           <View style={styles.emptyState}>
-            <Ionicons name="receipt-outline" size={48} color="#9CA3AF" />
+            <Ionicons name="receipt-outline" size={48} color="#6B7280" />
             <Text style={styles.emptyTitle}>No outstanding data</Text>
           </View>
         ) : partyNodes.map(node => {
@@ -449,14 +449,14 @@ export const OutstandingManagementScreen = () => {
                   </View>
                   <View style={styles.partyStatDivider} />
                   <View style={styles.partyStatItem}>
-                    <Text style={[styles.partyStatVal, { color: '#EF4444' }]}>
+                    <Text style={[styles.partyStatVal, { color: '#B91C1C' }]}>
                       {formatCurrency(node.totalOutstanding)}
                     </Text>
                     <Text style={styles.partyStatLab}>DUE</Text>
                   </View>
                   <Ionicons
                     name={isExpanded ? 'chevron-up' : 'chevron-down'}
-                    size={16} color="#9CA3AF"
+                    size={16} color="#6B7280"
                     style={{ marginLeft: 8 }}
                   />
                 </View>
@@ -498,12 +498,12 @@ export const OutstandingManagementScreen = () => {
                           <View style={styles.expandedAmtDivider} />
                           <View style={styles.expandedAmtItem}>
                             <Text style={styles.expandedAmtLab}>PAID</Text>
-                            <Text style={[styles.expandedAmtVal, { color: '#10B981' }]}>{formatCurrency(item.paidAmount)}</Text>
+                            <Text style={[styles.expandedAmtVal, { color: '#15803D' }]}>{formatCurrency(item.paidAmount)}</Text>
                           </View>
                           <View style={styles.expandedAmtDivider} />
                           <View style={styles.expandedAmtItem}>
                             <Text style={styles.expandedAmtLab}>DUE</Text>
-                            <Text style={[styles.expandedAmtVal, { color: '#EF4444' }]}>{formatCurrency(item.outstandingAmount)}</Text>
+                            <Text style={[styles.expandedAmtVal, { color: '#B91C1C' }]}>{formatCurrency(item.outstandingAmount)}</Text>
                           </View>
                         </View>
 
@@ -537,7 +537,7 @@ export const OutstandingManagementScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading outstanding data...</Text>
       </View>
     );
@@ -549,7 +549,7 @@ export const OutstandingManagementScreen = () => {
       <View style={styles.header}>
         <View style={styles.headerTop}>
           <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-            <Ionicons name="arrow-back" size={24} color="#1F2937" />
+            <Ionicons name="arrow-back" size={24} color="#111827" />
             <Text style={styles.backButtonText}>Back</Text>
           </TouchableOpacity>
           <View style={styles.headerCenter}>
@@ -560,7 +560,7 @@ export const OutstandingManagementScreen = () => {
             style={styles.filterButton}
             onPress={() => setShowFilterModal(true)}
           >
-            <Ionicons name="filter" size={24} color="#3B82F6" />
+            <Ionicons name="filter" size={24} color="#B8142F" />
           </TouchableOpacity>
         </View>
       </View>
@@ -571,14 +571,14 @@ export const OutstandingManagementScreen = () => {
           style={[styles.tabItem, activeTab === 'list' && styles.tabItemActive]}
           onPress={() => setActiveTab('list')}
         >
-          <Ionicons name="list-outline" size={18} color={activeTab === 'list' ? '#3B82F6' : '#9CA3AF'} />
+          <Ionicons name="list-outline" size={18} color={activeTab === 'list' ? '#B8142F' : '#6B7280'} />
           <Text style={[styles.tabLabel, activeTab === 'list' && styles.tabLabelActive]}>Outstanding</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.tabItem, activeTab === 'hierarchy' && styles.tabItemActive]}
           onPress={() => setActiveTab('hierarchy')}
         >
-          <Ionicons name="git-network-outline" size={18} color={activeTab === 'hierarchy' ? '#3B82F6' : '#9CA3AF'} />
+          <Ionicons name="git-network-outline" size={18} color={activeTab === 'hierarchy' ? '#B8142F' : '#6B7280'} />
           <Text style={[styles.tabLabel, activeTab === 'hierarchy' && styles.tabLabelActive]}>Hierarchy</Text>
         </TouchableOpacity>
       </View>
@@ -599,28 +599,28 @@ export const OutstandingManagementScreen = () => {
                 title="Total Outstanding"
                 value={formatCurrency(summary.totalOutstanding)}
                 icon="wallet-outline"
-                color="#3B82F6"
+                color="#B8142F"
                 subtitle={`${summary.totalOrders} orders`}
               />
               <StatCard
                 title="Overdue Amount"
                 value={formatCurrency(summary.overdueAmount)}
                 icon="warning-outline"
-                color="#EF4444"
+                color="#B91C1C"
                 subtitle={`${summary.overdueCount} overdue`}
               />
               <StatCard
                 title="Pending Amount"
                 value={formatCurrency(summary.pendingAmount)}
                 icon="time-outline"
-                color="#F59E0B"
+                color="#B45309"
                 subtitle={`${summary.pendingCount} pending`}
               />
               <StatCard
                 title="Avg Days Overdue"
                 value={`${Math.round(summary.averageDaysOverdue)} days`}
                 icon="calendar-outline"
-                color="#8B5CF6"
+                color="#7D0B1E"
                 subtitle="Average delay"
               />
             </View>
@@ -706,7 +706,7 @@ export const OutstandingManagementScreen = () => {
             ))
           ) : (
             <View style={styles.emptyState}>
-              <Ionicons name="receipt-outline" size={48} color="#9CA3AF" />
+              <Ionicons name="receipt-outline" size={48} color="#6B7280" />
               <Text style={styles.emptyTitle}>No Outstanding Records</Text>
               <Text style={styles.emptySubtitle}>No outstanding records found with current filters</Text>
             </View>
@@ -885,7 +885,7 @@ export const OutstandingManagementScreen = () => {
                   </View>
                   <View style={styles.detailsRow}>
                     <Text style={styles.detailsLabel}>Outstanding Amount:</Text>
-                    <Text style={[styles.detailsValue, { color: '#EF4444', fontWeight: 'bold' }]}>
+                    <Text style={[styles.detailsValue, { color: '#B91C1C', fontWeight: 'bold' }]}>
                       {formatCurrency(selectedOutstanding.outstandingAmount)}
                     </Text>
                   </View>
@@ -897,7 +897,7 @@ export const OutstandingManagementScreen = () => {
                   </View>
                   <View style={styles.detailsRow}>
                     <Text style={styles.detailsLabel}>Days Overdue:</Text>
-                    <Text style={[styles.detailsValue, { color: selectedOutstanding.daysOverdue > 0 ? '#EF4444' : '#10B981' }]}>
+                    <Text style={[styles.detailsValue, { color: selectedOutstanding.daysOverdue > 0 ? '#B91C1C' : '#15803D' }]}>
                       {selectedOutstanding.daysOverdue} days
                     </Text>
                   </View>
@@ -946,14 +946,14 @@ export const OutstandingManagementScreen = () => {
                   <Text style={styles.detailsSectionTitle}>Quick Actions</Text>
                   <View style={styles.actionButtons}>
                     <TouchableOpacity
-                      style={[styles.actionButton, { backgroundColor: '#10B981' }]}
+                      style={[styles.actionButton, { backgroundColor: '#15803D' }]}
                       onPress={() => handleUpdateStatus(selectedOutstanding._id, 'paid')}
                     >
                       <Ionicons name="checkmark" size={20} color="white" />
                       <Text style={styles.actionButtonText}>Mark Paid</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                      style={[styles.actionButton, { backgroundColor: '#3B82F6' }]}
+                      style={[styles.actionButton, { backgroundColor: '#B8142F' }]}
                       onPress={() => setShowNoteModal(true)}
                     >
                       <Ionicons name="add" size={20} color="white" />
@@ -1024,44 +1024,44 @@ const styles = StyleSheet.create({
   // Tab Bar
   tabBar: { flexDirection: 'row', backgroundColor: '#fff', borderBottomWidth: 1, borderBottomColor: '#E5E7EB' },
   tabItem: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, paddingVertical: 13, borderBottomWidth: 3, borderBottomColor: 'transparent' },
-  tabItemActive: { borderBottomColor: '#3B82F6' },
-  tabLabel: { fontSize: 14, fontWeight: '600', color: '#9CA3AF' },
-  tabLabelActive: { color: '#3B82F6' },
+  tabItemActive: { borderBottomColor: '#B8142F' },
+  tabLabel: { fontSize: 14, fontWeight: '600', color: '#6B7280' },
+  tabLabelActive: { color: '#B8142F' },
 
   // Hierarchy
-  hierStrip: { flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 18, backgroundColor: '#3B82F6', borderRadius: 14, marginBottom: 16, elevation: 4 },
+  hierStrip: { flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 18, backgroundColor: '#B8142F', borderRadius: 14, marginBottom: 16, elevation: 4 },
   hierStripItem: { alignItems: 'center', flex: 1 },
   hierStripDivider: { borderLeftWidth: 1, borderLeftColor: 'rgba(255,255,255,0.3)' },
   hierStripVal: { color: '#fff', fontSize: 18, fontWeight: 'bold', marginTop: 4 },
-  hierStripLab: { color: '#DBEAFE', fontSize: 10, marginTop: 2, fontWeight: '600', textTransform: 'uppercase' },
+  hierStripLab: { color: '#FFD2D9', fontSize: 10, marginTop: 2, fontWeight: '600', textTransform: 'uppercase' },
 
-  partyCard: { backgroundColor: '#fff', borderRadius: 12, padding: 14, borderWidth: 1, borderColor: '#E5E7EB', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', elevation: 2 },
+  partyCard: { backgroundColor: '#fff', borderRadius: 14, padding: 14, borderWidth: 1, borderColor: '#E5E7EB', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', elevation: 2 },
   partyCardLeft: { flexDirection: 'row', alignItems: 'center', flex: 1, minWidth: 0, marginRight: 8 },
-  partyAvatar: { width: 42, height: 42, borderRadius: 21, backgroundColor: '#3B82F6', justifyContent: 'center', alignItems: 'center', marginRight: 10, flexShrink: 0 },
+  partyAvatar: { width: 42, height: 42, borderRadius: 21, backgroundColor: '#B8142F', justifyContent: 'center', alignItems: 'center', marginRight: 10, flexShrink: 0 },
   partyAvatarText: { color: '#fff', fontSize: 14, fontWeight: 'bold' },
   partyCardName: { fontSize: 14, fontWeight: '700', color: '#111827' },
   partyCardCompany: { fontSize: 11, color: '#6B7280', marginTop: 2 },
   overdueBadge: { backgroundColor: '#FEF2F2', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 5, marginTop: 4, alignSelf: 'flex-start' },
-  overdueBadgeText: { fontSize: 10, color: '#EF4444', fontWeight: '600' },
+  overdueBadgeText: { fontSize: 10, color: '#B91C1C', fontWeight: '600' },
   partyCardRight: { flexDirection: 'row', alignItems: 'center', flexShrink: 0 },
   partyStatItem: { alignItems: 'center', width: 64 },
   partyStatVal: { fontSize: 12, fontWeight: '700', color: '#111827', textAlign: 'center' },
-  partyStatLab: { fontSize: 8, color: '#9CA3AF', marginTop: 2, fontWeight: '600', letterSpacing: 0.4 },
+  partyStatLab: { fontSize: 8, color: '#6B7280', marginTop: 2, fontWeight: '600', letterSpacing: 0.4 },
   partyStatDivider: { width: 1, height: 28, backgroundColor: '#E5E7EB', marginHorizontal: 4 },
 
   expandedItems: { backgroundColor: '#F9FAFB', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: '#E5E7EB', marginTop: 6 },
-  expandedCard: { backgroundColor: '#fff', borderRadius: 8, padding: 12, marginBottom: 8, borderWidth: 1, borderColor: '#E5E7EB' },
+  expandedCard: { backgroundColor: '#fff', borderRadius: 14, padding: 12, marginBottom: 8, borderWidth: 1, borderColor: '#E5E7EB' },
   expandedOrderNum: { fontSize: 13, fontWeight: '700', color: '#111827' },
-  expandedBillDate: { fontSize: 11, color: '#9CA3AF', marginBottom: 8 },
+  expandedBillDate: { fontSize: 11, color: '#6B7280', marginBottom: 8 },
   expandedAmtRow: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#F9FAFB', borderRadius: 8, padding: 10, marginBottom: 8 },
   expandedAmtItem: { flex: 1, alignItems: 'center' },
   expandedAmtDivider: { width: 1, height: 28, backgroundColor: '#E5E7EB' },
-  expandedAmtLab: { fontSize: 9, color: '#9CA3AF', fontWeight: '600', letterSpacing: 0.4, marginBottom: 3 },
+  expandedAmtLab: { fontSize: 9, color: '#6B7280', fontWeight: '600', letterSpacing: 0.4, marginBottom: 3 },
   expandedAmtVal: { fontSize: 13, fontWeight: '700', color: '#111827' },
   expandedFooterRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 8, borderTopWidth: 1, borderTopColor: '#F3F4F6' },
   expandedLabel: { fontSize: 12, color: '#6B7280' },
   expandedTerms: { fontSize: 11, color: '#6B7280', textTransform: 'capitalize' },
-  expandedAmount: { fontSize: 14, fontWeight: '800', color: '#EF4444' },
+  expandedAmount: { fontSize: 14, fontWeight: '800', color: '#B91C1C' },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -1094,14 +1094,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
   },
   backButtonText: {
     marginLeft: 8,
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   headerCenter: {
     flex: 1,
@@ -1110,7 +1110,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   headerSubtitle: {
     fontSize: 14,
@@ -1119,7 +1119,7 @@ const styles = StyleSheet.create({
   },
   filterButton: {
     padding: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: 'rgba(59, 130, 246, 0.1)',
   },
   scrollView: {
@@ -1131,7 +1131,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   summaryGrid: {
@@ -1168,7 +1168,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   statTitle: {
     fontSize: 14,
@@ -1177,7 +1177,7 @@ const styles = StyleSheet.create({
   },
   statSubtitle: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 2,
   },
   section: {
@@ -1210,13 +1210,13 @@ const styles = StyleSheet.create({
   companyCardName: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   companyCardAmount: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#EF4444',
+    color: '#B91C1C',
     marginBottom: 2,
   },
   companyCardOrders: {
@@ -1230,7 +1230,7 @@ const styles = StyleSheet.create({
   },
   companyCardOverdue: {
     fontSize: 10,
-    color: '#EF4444',
+    color: '#B91C1C',
     fontWeight: '500',
   },
   agingGrid: {
@@ -1260,13 +1260,13 @@ const styles = StyleSheet.create({
   agingRange: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   agingCount: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   agingAmount: {
@@ -1295,7 +1295,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -1311,7 +1311,7 @@ const styles = StyleSheet.create({
   partyName: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   partyCompany: {
@@ -1324,7 +1324,7 @@ const styles = StyleSheet.create({
   partyAmount: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#EF4444',
+    color: '#B91C1C',
     marginBottom: 2,
   },
   partyOrders: {
@@ -1354,7 +1354,7 @@ const styles = StyleSheet.create({
   outstandingId: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   companyName: {
@@ -1406,7 +1406,7 @@ const styles = StyleSheet.create({
   outstandingAmount: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#EF4444',
+    color: '#B91C1C',
     marginBottom: 2,
   },
   totalAmount: {
@@ -1439,7 +1439,7 @@ const styles = StyleSheet.create({
   },
   emptySubtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 8,
     textAlign: 'center',
   },
@@ -1477,7 +1477,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   modalContent: {
     flex: 1,
@@ -1489,15 +1489,15 @@ const styles = StyleSheet.create({
   filterLabel: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 12,
   },
   searchInput: {
     backgroundColor: '#F3F4F6',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   filterOptions: {
     flexDirection: 'row',
@@ -1512,7 +1512,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   filterOptionActive: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
   },
   filterOptionText: {
     fontSize: 14,
@@ -1532,13 +1532,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 12,
     paddingHorizontal: 20,
-    borderRadius: 8,
+    borderRadius: 999,
     alignItems: 'center',
     marginHorizontal: 8,
     backgroundColor: '#F3F4F6',
   },
   modalButtonPrimary: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
   },
   modalButtonText: {
     fontSize: 16,
@@ -1554,7 +1554,7 @@ const styles = StyleSheet.create({
   detailsSectionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 12,
   },
   detailsRow: {
@@ -1572,7 +1572,7 @@ const styles = StyleSheet.create({
   },
   detailsValue: {
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
     fontWeight: '500',
   },
   noteItem: {
@@ -1583,7 +1583,7 @@ const styles = StyleSheet.create({
   },
   noteText: {
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   noteMeta: {
@@ -1601,7 +1601,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 16,
-    borderRadius: 8,
+    borderRadius: 999,
     marginHorizontal: 4,
   },
   actionButtonText: {
@@ -1612,10 +1612,10 @@ const styles = StyleSheet.create({
   },
   noteInput: {
     backgroundColor: '#F3F4F6',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
     textAlignVertical: 'top',
     minHeight: 100,
   },

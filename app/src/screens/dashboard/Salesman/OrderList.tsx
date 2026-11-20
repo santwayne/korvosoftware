@@ -88,12 +88,12 @@ const OrderList = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'pending': return '#F59E0B';
-      case 'confirmed': return '#3B82F6';
-      case 'processing': return '#8B5CF6';
+      case 'pending': return '#B45309';
+      case 'confirmed': return '#B8142F';
+      case 'processing': return '#7D0B1E';
       case 'shipped': return '#06B6D4';
-      case 'delivered': return '#10B981';
-      case 'cancelled': return '#EF4444';
+      case 'delivered': return '#15803D';
+      case 'cancelled': return '#B91C1C';
       case 'returned': return '#6B7280';
       default: return '#6B7280';
     }
@@ -114,10 +114,10 @@ const OrderList = () => {
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'low': return '#10B981';
-      case 'medium': return '#F59E0B';
-      case 'high': return '#EF4444';
-      case 'urgent': return '#DC2626';
+      case 'low': return '#15803D';
+      case 'medium': return '#B45309';
+      case 'high': return '#B91C1C';
+      case 'urgent': return '#B91C1C';
       default: return '#6B7280';
     }
   };
@@ -165,7 +165,7 @@ const OrderList = () => {
         <View style={styles.detailRow}>
           <Text style={styles.detailLabel}>Payment:</Text>
           <Text style={[styles.detailValue, { 
-            color: item.paymentStatus === 'paid' ? '#10B981' : '#F59E0B' 
+            color: item.paymentStatus === 'paid' ? '#15803D' : '#B45309' 
           }]}>
             {item.paymentStatus.replace('_', ' ').toUpperCase()}
           </Text>
@@ -210,7 +210,7 @@ const OrderList = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#EF4444" />
+        <ActivityIndicator size="large" color="#B91C1C" />
         <Text style={styles.loadingText}>Loading orders...</Text>
       </View>
     );
@@ -224,14 +224,14 @@ const OrderList = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>My Orders</Text>
         <TouchableOpacity 
           style={styles.createButton}
           onPress={() => navigation.navigate('CreateOrder' as never)}
         >
-          <Ionicons name="add" size={24} color="#EF4444" />
+          <Ionicons name="add" size={24} color="#B91C1C" />
         </TouchableOpacity>
       </View>
 
@@ -266,8 +266,8 @@ const OrderList = () => {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            colors={['#EF4444']}
-            tintColor="#EF4444"
+            colors={['#B91C1C']}
+            tintColor="#B91C1C"
           />
         }
         ListEmptyComponent={renderEmptyState}
@@ -309,7 +309,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   createButton: {
     padding: 8,
@@ -326,11 +326,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     marginRight: 12,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
   },
   activeFilterButton: {
-    backgroundColor: '#EF4444',
+    backgroundColor: '#B91C1C',
   },
   filterButtonText: {
     fontSize: 14,
@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
   orderNumber: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   customerName: {
@@ -427,7 +427,7 @@ const styles = StyleSheet.create({
   totalAmount: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#EF4444',
+    color: '#B91C1C',
   },
   contactInfo: {
     flexDirection: 'row',
@@ -461,10 +461,10 @@ const styles = StyleSheet.create({
   createOrderButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#EF4444',
+    backgroundColor: '#B91C1C',
     paddingHorizontal: 24,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   createOrderButtonText: {
     color: '#fff',

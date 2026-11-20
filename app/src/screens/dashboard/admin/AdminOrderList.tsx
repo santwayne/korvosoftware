@@ -523,15 +523,15 @@ const AdminOrderList = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'draft': return '#F59E0B';
+      case 'draft': return '#B45309';
       case 'pending_approval': return '#F97316';
-      case 'approved': return '#10B981';
-      case 'sent_to_tally': return '#7C3AED';
-      case 'processing': return '#3B82F6';
-      case 'shipped': return '#8B5CF6';
-      case 'delivered': return '#059669';
-      case 'cancelled': return '#EF4444';
-      case 'rejected': return '#DC2626';
+      case 'approved': return '#15803D';
+      case 'sent_to_tally': return '#7D0B1E';
+      case 'processing': return '#B8142F';
+      case 'shipped': return '#7D0B1E';
+      case 'delivered': return '#15803D';
+      case 'cancelled': return '#B91C1C';
+      case 'rejected': return '#B91C1C';
       default: return '#6B7280';
     }
   };
@@ -681,9 +681,9 @@ const AdminOrderList = () => {
               <Ionicons
                 name={order.tallySyncStatus === 'synced' ? 'checkmark-circle' : order.tallySyncStatus === 'failed' ? 'close-circle' : 'time-outline'}
                 size={12}
-                color={order.tallySyncStatus === 'synced' ? '#059669' : order.tallySyncStatus === 'failed' ? '#DC2626' : '#D97706'}
+                color={order.tallySyncStatus === 'synced' ? '#15803D' : order.tallySyncStatus === 'failed' ? '#B91C1C' : '#B45309'}
               />
-              <Text style={[styles.orderStatusText, { color: order.tallySyncStatus === 'synced' ? '#059669' : order.tallySyncStatus === 'failed' ? '#DC2626' : '#D97706' }]}>
+              <Text style={[styles.orderStatusText, { color: order.tallySyncStatus === 'synced' ? '#15803D' : order.tallySyncStatus === 'failed' ? '#B91C1C' : '#B45309' }]}>
                 {order.tallySyncStatus === 'synced' ? 'Tally ✓' : order.tallySyncStatus === 'failed' ? 'Tally ✗' : 'Tally...'}
               </Text>
             </View>
@@ -727,7 +727,7 @@ const AdminOrderList = () => {
     const isSelected = selectedUser?.id === user.id;
     const hasOrders = user.orders && user.orders.length > 0;
     const initials = user.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
-    const avatarColor = level === 0 ? '#3B82F6' : level === 1 ? '#10B981' : '#F59E0B';
+    const avatarColor = level === 0 ? '#B8142F' : level === 1 ? '#15803D' : '#B45309';
 
     const handleCardPress = () => {
       if (hasChildren) {
@@ -924,39 +924,39 @@ const AdminOrderList = () => {
               <View style={styles.detailActionRow}>
                 {canEdit(selectedOrder.status) && (
                   <TouchableOpacity
-                    style={[styles.detailActionBtn, { backgroundColor: '#EFF6FF', borderColor: '#3B82F6' }]}
+                    style={[styles.detailActionBtn, { backgroundColor: '#FBEEEE', borderColor: '#B8142F' }]}
                     onPress={handleEditOrder}
                   >
-                    <Ionicons name="create-outline" size={18} color="#3B82F6" />
-                    <Text style={[styles.detailActionText, { color: '#3B82F6' }]}>Edit Order</Text>
+                    <Ionicons name="create-outline" size={18} color="#B8142F" />
+                    <Text style={[styles.detailActionText, { color: '#B8142F' }]}>Edit Order</Text>
                   </TouchableOpacity>
                 )}
                 {canApprove(selectedOrder.status) && (
                   <TouchableOpacity
-                    style={[styles.detailActionBtn, { backgroundColor: '#F0FDF4', borderColor: '#10B981' }]}
+                    style={[styles.detailActionBtn, { backgroundColor: '#F0FDF4', borderColor: '#15803D' }]}
                     onPress={() => { setShowOrderDetails(false); openApproveModal(); }}
                   >
-                    <Ionicons name="checkmark-circle-outline" size={18} color="#10B981" />
-                    <Text style={[styles.detailActionText, { color: '#10B981' }]}>Approve</Text>
+                    <Ionicons name="checkmark-circle-outline" size={18} color="#15803D" />
+                    <Text style={[styles.detailActionText, { color: '#15803D' }]}>Approve</Text>
                   </TouchableOpacity>
                 )}
                 {canUnapprove(selectedOrder.status) && (
                   <TouchableOpacity
-                    style={[styles.detailActionBtn, { backgroundColor: '#FFF7ED', borderColor: '#F59E0B' }]}
+                    style={[styles.detailActionBtn, { backgroundColor: '#FFF7ED', borderColor: '#B45309' }]}
                     onPress={handleUnapprove}
                   >
-                    <Ionicons name="arrow-undo-outline" size={18} color="#F59E0B" />
-                    <Text style={[styles.detailActionText, { color: '#F59E0B' }]}>Unapprove</Text>
+                    <Ionicons name="arrow-undo-outline" size={18} color="#B45309" />
+                    <Text style={[styles.detailActionText, { color: '#B45309' }]}>Unapprove</Text>
                   </TouchableOpacity>
                 )}
                 {canDelete(selectedOrder.status) && (
                   <TouchableOpacity
-                    style={[styles.detailActionBtn, { backgroundColor: '#FEF2F2', borderColor: '#EF4444' }]}
+                    style={[styles.detailActionBtn, { backgroundColor: '#FEF2F2', borderColor: '#B91C1C' }]}
                     onPress={handleDeleteOrder}
                     disabled={deleting}
                   >
-                    <Ionicons name="trash-outline" size={18} color="#EF4444" />
-                    <Text style={[styles.detailActionText, { color: '#EF4444' }]}>Delete</Text>
+                    <Ionicons name="trash-outline" size={18} color="#B91C1C" />
+                    <Text style={[styles.detailActionText, { color: '#B91C1C' }]}>Delete</Text>
                   </TouchableOpacity>
                 )}
               </View>
@@ -1017,58 +1017,58 @@ const AdminOrderList = () => {
               <Text style={styles.sheetActionTitle}>View Details</Text>
               <Text style={styles.sheetActionSub}>See full order information</Text>
             </View>
-            <Ionicons name="chevron-forward" size={18} color="#9CA3AF" />
+            <Ionicons name="chevron-forward" size={18} color="#6B7280" />
           </TouchableOpacity>
 
           {canEdit(selectedOrder.status) && (
             <TouchableOpacity style={styles.sheetAction} onPress={handleEditOrder}>
-              <View style={[styles.sheetActionIcon, { backgroundColor: '#EFF6FF' }]}>
-                <Ionicons name="create-outline" size={20} color="#3B82F6" />
+              <View style={[styles.sheetActionIcon, { backgroundColor: '#FBEEEE' }]}>
+                <Ionicons name="create-outline" size={20} color="#B8142F" />
               </View>
               <View style={styles.sheetActionInfo}>
                 <Text style={styles.sheetActionTitle}>Edit Order</Text>
                 <Text style={styles.sheetActionSub}>Modify items, quantity or details</Text>
               </View>
-              <Ionicons name="chevron-forward" size={18} color="#9CA3AF" />
+              <Ionicons name="chevron-forward" size={18} color="#6B7280" />
             </TouchableOpacity>
           )}
 
           {canApprove(selectedOrder.status) && (
             <TouchableOpacity style={styles.sheetAction} onPress={openApproveModal}>
               <View style={[styles.sheetActionIcon, { backgroundColor: '#F0FDF4' }]}>
-                <Ionicons name="checkmark-circle-outline" size={20} color="#10B981" />
+                <Ionicons name="checkmark-circle-outline" size={20} color="#15803D" />
               </View>
               <View style={styles.sheetActionInfo}>
-                <Text style={[styles.sheetActionTitle, { color: '#10B981' }]}>Approve Order</Text>
+                <Text style={[styles.sheetActionTitle, { color: '#15803D' }]}>Approve Order</Text>
                 <Text style={styles.sheetActionSub}>Move order to approved status</Text>
               </View>
-              <Ionicons name="chevron-forward" size={18} color="#9CA3AF" />
+              <Ionicons name="chevron-forward" size={18} color="#6B7280" />
             </TouchableOpacity>
           )}
 
           {canUnapprove(selectedOrder.status) && (
             <TouchableOpacity style={styles.sheetAction} onPress={handleUnapprove}>
               <View style={[styles.sheetActionIcon, { backgroundColor: '#FFF7ED' }]}>
-                <Ionicons name="arrow-undo-outline" size={20} color="#F59E0B" />
+                <Ionicons name="arrow-undo-outline" size={20} color="#B45309" />
               </View>
               <View style={styles.sheetActionInfo}>
-                <Text style={[styles.sheetActionTitle, { color: '#F59E0B' }]}>Unapprove Order</Text>
+                <Text style={[styles.sheetActionTitle, { color: '#B45309' }]}>Unapprove Order</Text>
                 <Text style={styles.sheetActionSub}>Return to pending approval</Text>
               </View>
-              <Ionicons name="chevron-forward" size={18} color="#9CA3AF" />
+              <Ionicons name="chevron-forward" size={18} color="#6B7280" />
             </TouchableOpacity>
           )}
 
           {canDelete(selectedOrder.status) && (
             <TouchableOpacity style={styles.sheetAction} onPress={handleDeleteOrder} disabled={deleting}>
               <View style={[styles.sheetActionIcon, { backgroundColor: '#FEF2F2' }]}>
-                <Ionicons name="trash-outline" size={20} color="#EF4444" />
+                <Ionicons name="trash-outline" size={20} color="#B91C1C" />
               </View>
               <View style={styles.sheetActionInfo}>
-                <Text style={[styles.sheetActionTitle, { color: '#EF4444' }]}>Delete Order</Text>
+                <Text style={[styles.sheetActionTitle, { color: '#B91C1C' }]}>Delete Order</Text>
                 <Text style={styles.sheetActionSub}>Permanently remove this draft</Text>
               </View>
-              <Ionicons name="chevron-forward" size={18} color="#9CA3AF" />
+              <Ionicons name="chevron-forward" size={18} color="#6B7280" />
             </TouchableOpacity>
           )}
 
@@ -1097,7 +1097,7 @@ const AdminOrderList = () => {
         <View style={styles.approveOverlay}>
           <View style={styles.approveCard}>
             <View style={styles.approveIconCircle}>
-              <Ionicons name="checkmark-circle" size={44} color="#10B981" />
+              <Ionicons name="checkmark-circle" size={44} color="#15803D" />
             </View>
 
             <Text style={styles.approveTitle}>Approve Order</Text>
@@ -1111,7 +1111,7 @@ const AdminOrderList = () => {
             <TextInput
               style={styles.approveNotes}
               placeholder="Approval notes (optional)"
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
               value={approveNotes}
               onChangeText={setApproveNotes}
               multiline
@@ -1156,7 +1156,7 @@ const AdminOrderList = () => {
         <View style={styles.approveOverlay}>
           <View style={styles.approveCard}>
             <View style={[styles.approveIconCircle, { backgroundColor: '#FEF2F2' }]}>
-              <Ionicons name="trash" size={44} color="#EF4444" />
+              <Ionicons name="trash" size={44} color="#B91C1C" />
             </View>
             <Text style={styles.approveTitle}>Delete Order</Text>
             <Text style={styles.approveSub}>#{selectedOrder.orderNumber}</Text>
@@ -1172,7 +1172,7 @@ const AdminOrderList = () => {
                 <Text style={styles.approveCancelText}>Cancel</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.approveConfirmBtn, { backgroundColor: '#EF4444' }]}
+                style={[styles.approveConfirmBtn, { backgroundColor: '#B91C1C' }]}
                 onPress={confirmDeleteOrder}
                 disabled={deleting}
               >
@@ -1192,7 +1192,7 @@ const AdminOrderList = () => {
     if (myOrdersLoading) {
       return (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#3B82F6" />
+          <ActivityIndicator size="large" color="#B8142F" />
           <Text style={styles.loadingText}>Loading your orders...</Text>
         </View>
       );
@@ -1232,7 +1232,7 @@ const AdminOrderList = () => {
 
           {filteredMyOrders.length === 0 ? (
             <View style={styles.emptyState}>
-              <Ionicons name="document-outline" size={64} color="#9CA3AF" />
+              <Ionicons name="document-outline" size={64} color="#6B7280" />
               <Text style={styles.emptyStateText}>
                 {`No orders in the last ${myOrdersDayFilter === '30' ? '1 month' : myOrdersDayFilter + ' days'}`}
               </Text>
@@ -1249,7 +1249,7 @@ const AdminOrderList = () => {
     if (loading) {
       return (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#3B82F6" />
+          <ActivityIndicator size="large" color="#B8142F" />
           <Text style={styles.loadingText}>Loading orders...</Text>
         </View>
       );
@@ -1291,7 +1291,7 @@ const AdminOrderList = () => {
 
           {filteredHierarchy.length === 0 ? (
             <View style={styles.emptyState}>
-              <Ionicons name="git-network-outline" size={64} color="#9CA3AF" />
+              <Ionicons name="git-network-outline" size={64} color="#6B7280" />
               <Text style={styles.emptyStateText}>
                 {hierDayFilter === 'all' ? 'No orders found' : `No orders in the last ${hierDayFilter === '30' ? '1 month' : hierDayFilter + ' days'}`}
               </Text>
@@ -1326,7 +1326,7 @@ const AdminOrderList = () => {
           <Ionicons
             name="person-circle-outline"
             size={18}
-            color={activeTab === 'myOrders' ? '#3B82F6' : '#9CA3AF'}
+            color={activeTab === 'myOrders' ? '#B8142F' : '#6B7280'}
           />
           <Text style={[styles.tabLabel, activeTab === 'myOrders' && styles.tabLabelActive]}>
             My Orders
@@ -1340,7 +1340,7 @@ const AdminOrderList = () => {
           <Ionicons
             name="git-network-outline"
             size={18}
-            color={activeTab === 'hierarchy' ? '#3B82F6' : '#9CA3AF'}
+            color={activeTab === 'hierarchy' ? '#B8142F' : '#6B7280'}
           />
           <Text style={[styles.tabLabel, activeTab === 'hierarchy' && styles.tabLabelActive]}>
             Hierarchy
@@ -1370,12 +1370,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingVertical: 18,
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     marginHorizontal: 15,
     borderRadius: 14,
     marginTop: 12,
     marginBottom: 16,
-    shadowColor: '#3B82F6',
+    shadowColor: '#B8142F',
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 4
@@ -1392,7 +1392,7 @@ const styles = StyleSheet.create({
     marginTop: 4
   },
   summaryLab: {
-    color: '#DBEAFE',
+    color: '#FFD2D9',
     fontSize: 10,
     marginTop: 2,
     fontWeight: '600',
@@ -1405,7 +1405,7 @@ const styles = StyleSheet.create({
   userNodeContainer: { marginBottom: 12 },
   userCard: {
     backgroundColor: '#fff',
-    borderRadius: 12,
+    borderRadius: 14,
     paddingVertical: 10,
     paddingHorizontal: 10,
     borderWidth: 1,
@@ -1419,13 +1419,13 @@ const styles = StyleSheet.create({
     elevation: 2
   },
   userCardSelected: {
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
     borderWidth: 2,
-    backgroundColor: '#EFF6FF'
+    backgroundColor: '#FBEEEE'
   },
   userCardTopLevel: {
     borderLeftWidth: 4,
-    borderLeftColor: '#3B82F6'
+    borderLeftColor: '#B8142F'
   },
 
   userCardLeft: {
@@ -1499,7 +1499,7 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     fontSize: 7,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 1,
     fontWeight: '600',
     letterSpacing: 0.4,
@@ -1538,7 +1538,7 @@ const styles = StyleSheet.create({
 
   orderCard: {
     backgroundColor: '#fff',
-    borderRadius: 10,
+    borderRadius: 14,
     padding: 14,
     marginBottom: 10,
     borderWidth: 1,
@@ -1560,7 +1560,7 @@ const styles = StyleSheet.create({
   },
   orderDate: {
     fontSize: 11,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 2
   },
   orderStatusBadge: {
@@ -1607,7 +1607,7 @@ const styles = StyleSheet.create({
   },
   orderAmountLabel: {
     fontSize: 10,
-    color: '#9CA3AF',
+    color: '#6B7280',
     fontWeight: '600'
   },
   orderAmountValue: {
@@ -1648,7 +1648,7 @@ const styles = StyleSheet.create({
 
   detailsCard: {
     backgroundColor: '#fff',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginBottom: 12,
     borderWidth: 1,
@@ -1680,7 +1680,7 @@ const styles = StyleSheet.create({
   },
   detailValue: {
     fontSize: 13,
-    color: '#1F2937',
+    color: '#111827',
     flex: 2,
     textAlign: 'right'
   },
@@ -1697,7 +1697,7 @@ const styles = StyleSheet.create({
 
   itemCard: {
     backgroundColor: '#F9FAFB',
-    borderRadius: 8,
+    borderRadius: 14,
     padding: 12,
     marginBottom: 8,
     borderWidth: 1,
@@ -1712,13 +1712,13 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     flex: 1
   },
   itemTotal: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#10B981'
+    color: '#15803D'
   },
   itemCode: {
     fontSize: 12,
@@ -1749,7 +1749,7 @@ const styles = StyleSheet.create({
   totalValue: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#10B981'
+    color: '#15803D'
   },
 
   loadingContainer: {
@@ -1786,7 +1786,7 @@ const styles = StyleSheet.create({
     gap: 6,
     paddingHorizontal: 14,
     paddingVertical: 10,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
   },
   detailActionText: {
@@ -1841,7 +1841,7 @@ const styles = StyleSheet.create({
   },
   sheetAmountLabel: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     fontWeight: '600',
     textTransform: 'uppercase',
   },
@@ -1879,7 +1879,7 @@ const styles = StyleSheet.create({
   },
   sheetActionSub: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 2,
   },
   sheetCancelAction: {
@@ -1891,7 +1891,7 @@ const styles = StyleSheet.create({
   sheetCancelText: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#EF4444',
+    color: '#B91C1C',
     textAlign: 'center',
     flex: 1,
   },
@@ -1906,7 +1906,7 @@ const styles = StyleSheet.create({
   },
   approveCard: {
     backgroundColor: '#fff',
-    borderRadius: 20,
+    borderRadius: 14,
     padding: 24,
     width: '100%',
     maxWidth: 400,
@@ -1959,7 +1959,7 @@ const styles = StyleSheet.create({
   approveCancelBtn: {
     flex: 1,
     paddingVertical: 14,
-    borderRadius: 10,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     alignItems: 'center',
   },
@@ -1971,8 +1971,8 @@ const styles = StyleSheet.create({
   approveConfirmBtn: {
     flex: 1,
     paddingVertical: 14,
-    borderRadius: 10,
-    backgroundColor: '#10B981',
+    borderRadius: 999,
+    backgroundColor: '#15803D',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -2003,8 +2003,8 @@ const styles = StyleSheet.create({
     borderColor: '#E5E7EB',
   },
   dayFilterPillActive: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   dayFilterText: {
     fontSize: 12,
@@ -2033,15 +2033,15 @@ const styles = StyleSheet.create({
     borderBottomColor: 'transparent',
   },
   tabItemActive: {
-    borderBottomColor: '#3B82F6',
+    borderBottomColor: '#B8142F',
   },
   tabLabel: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   tabLabelActive: {
-    color: '#3B82F6',
+    color: '#B8142F',
   },
 });
 

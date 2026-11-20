@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         zIndex: 999,
     },
     fab: {
-        backgroundColor: '#077BC3',
+        backgroundColor: '#A3122A',
         width: 52,
         height: 52,
         borderRadius: 26,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         elevation: 6,
     },
     fabMenu: {
-        backgroundColor: '#077BC3',
+        backgroundColor: '#A3122A',
         padding: 14,
         borderRadius: 12,
         marginBottom: 8,

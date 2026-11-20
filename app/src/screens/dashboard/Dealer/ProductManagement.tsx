@@ -308,7 +308,7 @@ const ProductManagement = () => {
           ]}>
             <Text style={[
               styles.stockText,
-              { color: item.stock.current <= item.stock.minimum ? '#D97706' : '#059669' }
+              { color: item.stock.current <= item.stock.minimum ? '#B45309' : '#15803D' }
             ]}>
               {item.stock.current <= item.stock.minimum ? 'Low Stock' : 'In Stock'}
             </Text>
@@ -323,7 +323,7 @@ const ProductManagement = () => {
           ]}>
             <Text style={[
               styles.statusText,
-              { color: item.isActive ? '#059669' : '#DC2626' }
+              { color: item.isActive ? '#15803D' : '#B91C1C' }
             ]}>
               {item.isActive ? 'Active' : 'Inactive'}
             </Text>
@@ -336,13 +336,13 @@ const ProductManagement = () => {
           style={styles.actionButton}
           onPress={() => handleEditProduct(item)}
         >
-          <Ionicons name="create" size={20} color="#3B82F6" />
+          <Ionicons name="create" size={20} color="#B8142F" />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.actionButton}
           onPress={() => handleDeleteProduct(item)}
         >
-          <Ionicons name="trash" size={20} color="#EF4444" />
+          <Ionicons name="trash" size={20} color="#B91C1C" />
         </TouchableOpacity>
       </View>
     </View>
@@ -351,7 +351,7 @@ const ProductManagement = () => {
   // Render empty state
   const renderEmptyState = () => (
     <View style={styles.emptyState}>
-      <Ionicons name="cube-outline" size={64} color="#9CA3AF" />
+      <Ionicons name="cube-outline" size={64} color="#6B7280" />
       <Text style={styles.emptyTitle}>No Products Found</Text>
       <Text style={styles.emptySubtitle}>
         {searchQuery || selectedCategory !== 'all' 
@@ -402,7 +402,7 @@ const ProductManagement = () => {
             value={searchQuery}
             onChangeText={setSearchQuery}
             placeholder="Search products..."
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
           {searchQuery.length > 0 && (
             <TouchableOpacity onPress={() => setSearchQuery('')}>
@@ -436,12 +436,12 @@ const ProductManagement = () => {
       {/* Products List */}
       {loading ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#8B5CF6" />
+          <ActivityIndicator size="large" color="#7D0B1E" />
           <Text style={styles.loadingText}>Loading products...</Text>
         </View>
       ) : error ? (
         <View style={styles.errorContainer}>
-          <Ionicons name="alert-circle" size={48} color="#EF4444" />
+          <Ionicons name="alert-circle" size={48} color="#B91C1C" />
           <Text style={styles.errorText}>{error}</Text>
           <TouchableOpacity style={styles.retryButton} onPress={fetchProducts}>
             <Text style={styles.retryButtonText}>Retry</Text>
@@ -673,7 +673,7 @@ const ProductManagement = () => {
                   <Ionicons 
                     name={formData.isActive ? "checkbox" : "square-outline"} 
                     size={20} 
-                    color={formData.isActive ? "#8B5CF6" : "#6B7280"} 
+                    color={formData.isActive ? "#7D0B1E" : "#6B7280"} 
                   />
                   <Text style={styles.checkboxLabel}>Active</Text>
                 </TouchableOpacity>
@@ -685,7 +685,7 @@ const ProductManagement = () => {
                   <Ionicons 
                     name={formData.isAvailable ? "checkbox" : "square-outline"} 
                     size={20} 
-                    color={formData.isAvailable ? "#8B5CF6" : "#6B7280"} 
+                    color={formData.isAvailable ? "#7D0B1E" : "#6B7280"} 
                   />
                   <Text style={styles.checkboxLabel}>Available</Text>
                 </TouchableOpacity>
@@ -713,7 +713,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9FAFB',
   },
   header: {
-    backgroundColor: '#8B5CF6',
+    backgroundColor: '#7D0B1E',
     paddingTop: 50,
     paddingBottom: 16,
     paddingHorizontal: 16,
@@ -751,7 +751,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   categoryScroll: {
     marginBottom: 12,
@@ -759,12 +759,12 @@ const styles = StyleSheet.create({
   categoryButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     marginRight: 8,
   },
   categoryButtonSelected: {
-    backgroundColor: '#8B5CF6',
+    backgroundColor: '#7D0B1E',
   },
   categoryButtonText: {
     fontSize: 14,
@@ -792,15 +792,15 @@ const styles = StyleSheet.create({
   errorText: {
     marginTop: 12,
     fontSize: 16,
-    color: '#EF4444',
+    color: '#B91C1C',
     textAlign: 'center',
   },
   retryButton: {
     marginTop: 16,
     paddingHorizontal: 24,
     paddingVertical: 8,
-    backgroundColor: '#8B5CF6',
-    borderRadius: 6,
+    backgroundColor: '#7D0B1E',
+    borderRadius: 999,
   },
   retryButtonText: {
     color: '#fff',
@@ -842,7 +842,7 @@ const styles = StyleSheet.create({
   productName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   productCode: {
@@ -852,7 +852,7 @@ const styles = StyleSheet.create({
   },
   productCategory: {
     fontSize: 12,
-    color: '#8B5CF6',
+    color: '#7D0B1E',
     marginBottom: 8,
   },
   priceContainer: {
@@ -863,7 +863,7 @@ const styles = StyleSheet.create({
   productPrice: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#059669',
+    color: '#15803D',
   },
   productUnit: {
     fontSize: 14,
@@ -922,7 +922,7 @@ const styles = StyleSheet.create({
   },
   emptySubtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
     marginTop: 8,
     lineHeight: 20,
@@ -931,8 +931,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
     paddingHorizontal: 16,
     paddingVertical: 8,
-    backgroundColor: '#8B5CF6',
-    borderRadius: 6,
+    backgroundColor: '#7D0B1E',
+    borderRadius: 999,
   },
   clearFiltersText: {
     color: '#fff',
@@ -968,11 +968,11 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   modalSaveText: {
     fontSize: 16,
-    color: '#8B5CF6',
+    color: '#7D0B1E',
     fontWeight: '600',
   },
   modalContent: {
@@ -985,7 +985,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   inputGroup: {
@@ -1000,10 +1000,10 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
     backgroundColor: '#fff',
   },
   textArea: {

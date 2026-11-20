@@ -84,7 +84,7 @@ const DealerOutstandingScreen = () => {
           <Ionicons
             name="document-text-outline"
             size={20}
-            color={overdue > 0 ? '#EF4444' : '#10B981'}
+            color={overdue > 0 ? '#B91C1C' : '#15803D'}
           />
         </View>
         <View style={styles.billInfo}>
@@ -96,7 +96,7 @@ const DealerOutstandingScreen = () => {
             ₹{amount.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
           </Text>
           <View style={[styles.billBadge, { backgroundColor: overdue > 0 ? '#FEF2F2' : '#F0FDF4' }]}>
-            <Text style={[styles.billBadgeText, { color: overdue > 0 ? '#EF4444' : '#10B981' }]}>
+            <Text style={[styles.billBadgeText, { color: overdue > 0 ? '#B91C1C' : '#15803D' }]}>
               {overdue > 0 ? `${overdue}d overdue` : 'Current'}
             </Text>
           </View>
@@ -115,7 +115,7 @@ const DealerOutstandingScreen = () => {
         </TouchableOpacity>
         <Text style={styles.headerTitle}>My Outstanding</Text>
         <TouchableOpacity onPress={onRefresh} style={styles.refreshBtn}>
-          <Ionicons name="refresh-outline" size={20} color="#3B82F6" />
+          <Ionicons name="refresh-outline" size={20} color="#B8142F" />
         </TouchableOpacity>
       </View>
 
@@ -132,36 +132,36 @@ const DealerOutstandingScreen = () => {
         </View>
         <View style={styles.summaryItem}>
           <Text style={styles.summaryLabel}>Overdue</Text>
-          <Text style={[styles.summaryAmount, { fontSize: 22, color: overdueCount > 0 ? '#EF4444' : '#10B981' }]}>
+          <Text style={[styles.summaryAmount, { fontSize: 22, color: overdueCount > 0 ? '#B91C1C' : '#15803D' }]}>
             {overdueCount}
           </Text>
         </View>
       </View>
 
       <View style={styles.searchWrap}>
-        <Ionicons name="search-outline" size={16} color="#9CA3AF" style={{ marginRight: 8 }} />
+        <Ionicons name="search-outline" size={16} color="#6B7280" style={{ marginRight: 8 }} />
         <TextInput
           style={styles.searchInput}
           placeholder="Search by bill number..."
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#6B7280"
           value={searchQuery}
           onChangeText={setSearchQuery}
         />
         {searchQuery.length > 0 && (
           <TouchableOpacity onPress={() => setSearchQuery('')}>
-            <Ionicons name="close-circle" size={16} color="#9CA3AF" />
+            <Ionicons name="close-circle" size={16} color="#6B7280" />
           </TouchableOpacity>
         )}
       </View>
 
       {loading && !refreshing ? (
         <View style={styles.centerLoad}>
-          <ActivityIndicator size="large" color="#3B82F6" />
+          <ActivityIndicator size="large" color="#B8142F" />
           <Text style={styles.loadingText}>Loading outstanding bills...</Text>
         </View>
       ) : filteredBills.length === 0 ? (
         <View style={styles.emptyWrap}>
-          <Ionicons name="checkmark-circle-outline" size={56} color="#10B981" />
+          <Ionicons name="checkmark-circle-outline" size={56} color="#15803D" />
           <Text style={styles.emptyTitle}>
             {searchQuery ? 'No matching bills' : 'No outstanding bills'}
           </Text>
@@ -176,7 +176,7 @@ const DealerOutstandingScreen = () => {
           renderItem={renderBill}
           contentContainerStyle={styles.listContent}
           showsVerticalScrollIndicator={false}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#3B82F6']} />}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#B8142F']} />}
         />
       )}
     </SafeAreaView>

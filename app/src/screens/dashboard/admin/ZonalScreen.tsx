@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   memberCard: {
     backgroundColor: '#0077b6',
-    borderRadius: 10,
+    borderRadius: 14,
     padding: 12,
     marginBottom: 12,
   },

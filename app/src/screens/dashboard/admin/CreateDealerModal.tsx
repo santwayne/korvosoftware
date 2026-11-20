@@ -313,7 +313,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                 placeholder="Enter Ledger GUID (e.g., LED-COM-001-0001)"
                 value={formData.LedgerGUID}
                 onChangeText={(text) => setFormData({ ...formData, LedgerGUID: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
                 autoCapitalize="none"
                 autoCorrect={false}
               />
@@ -331,7 +331,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                 placeholder="Enter dealer name"
                 value={formData.LedgerName}
                 onChangeText={(text) => setFormData({ ...formData, LedgerName: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -344,7 +344,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                   <View style={styles.formGroup}>
                     <Text style={styles.label}>Assignment (Auto-assigned)</Text>
                     <View style={styles.autoAssignedGroup}>
-                      <Ionicons name="checkmark-circle" size={20} color="#10B981" />
+                      <Ionicons name="checkmark-circle" size={20} color="#15803D" />
                       <Text style={styles.autoAssignedGroupText}>
                         Assigned to you
                       </Text>
@@ -398,7 +398,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                 value={formData.LedgerMobile}
                 onChangeText={(text) => setFormData({ ...formData, LedgerMobile: text })}
                 keyboardType="phone-pad"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -409,7 +409,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                 placeholder="Enter contact person name"
                 value={formData.LedgerContact}
                 onChangeText={(text) => setFormData({ ...formData, LedgerContact: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -422,7 +422,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                 onChangeText={(text) => setFormData({ ...formData, Email: text })}
                 keyboardType="email-address"
                 autoCapitalize="none"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -438,7 +438,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                   onChangeText={(text) => setFormData({ ...formData, password: text })}
                   secureTextEntry={!showPassword}
                   autoCapitalize="none"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
                 <TouchableOpacity
                   onPress={() => setShowPassword(!showPassword)}
@@ -467,7 +467,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                 onChangeText={(text) => setFormData({ ...formData, LedgerGSTIN: text.toUpperCase() })}
                 autoCapitalize="characters"
                 maxLength={15}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
           </View>
@@ -483,7 +483,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                 placeholder="Enter address line 1"
                 value={formData.LedgerAddress1}
                 onChangeText={(text) => setFormData({ ...formData, LedgerAddress1: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -494,7 +494,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                 placeholder="Enter address line 2"
                 value={formData.LedgerAddress2}
                 onChangeText={(text) => setFormData({ ...formData, LedgerAddress2: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -505,7 +505,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                 placeholder="Enter state"
                 value={formData.LedgerState}
                 onChangeText={(text) => setFormData({ ...formData, LedgerState: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
           </View>
@@ -522,7 +522,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                 value={formData.LedgerOpening}
                 onChangeText={(text) => setFormData({ ...formData, LedgerOpening: text })}
                 keyboardType="numeric"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -582,7 +582,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                 onChangeText={(text) => setFormData({ ...formData, Remarks: text })}
                 multiline
                 numberOfLines={3}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
           </View>
@@ -599,7 +599,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                   placeholder={`Enter ${field}`}
                   value={formData[field as keyof typeof formData]}
                   onChangeText={(text) => setFormData({ ...formData, [field]: text })}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             ))}
@@ -645,12 +645,12 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
               placeholder="Search group users..."
               value={groupUserSearchQuery}
               onChangeText={setGroupUserSearchQuery}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
             />
 
             {loadingGroupUsers ? (
               <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#0493D2" />
+                <ActivityIndicator size="large" color="#B8142F" />
               </View>
             ) : (
               <FlatList
@@ -693,7 +693,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
                       )}
                     </View>
                     {formData.groupUserId === item._id && (
-                      <Ionicons name="checkmark-circle" size={24} color="#0493D2" />
+                      <Ionicons name="checkmark-circle" size={24} color="#B8142F" />
                     )}
                   </TouchableOpacity>
                 )}
@@ -918,7 +918,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 14,
     color: '#111827',
@@ -954,7 +954,7 @@ const styles = StyleSheet.create({
   },
   dateSelectorPlaceholder: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   companyInfo: {
     backgroundColor: '#F3F4F6',
@@ -981,7 +981,7 @@ const styles = StyleSheet.create({
   },
   groupSelectorPlaceholder: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   autoAssignedGroup: {
     flexDirection: 'row',
@@ -1010,7 +1010,7 @@ const styles = StyleSheet.create({
   cancelButton: {
     flex: 1,
     padding: 14,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     alignItems: 'center',
@@ -1024,8 +1024,8 @@ const styles = StyleSheet.create({
   createButton: {
     flex: 1,
     padding: 14,
-    borderRadius: 8,
-    backgroundColor: '#0493D2',
+    borderRadius: 999,
+    backgroundColor: '#B8142F',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -1066,7 +1066,7 @@ const styles = StyleSheet.create({
     padding: 12,
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     fontSize: 14,
     color: '#111827',
     backgroundColor: '#FFFFFF',
@@ -1101,7 +1101,7 @@ const styles = StyleSheet.create({
   },
   groupItemGroup: {
     fontSize: 11,
-    color: '#3B82F6',
+    color: '#B8142F',
     marginTop: 4,
     fontWeight: '500',
   },
@@ -1193,7 +1193,7 @@ const datePickerStyles = StyleSheet.create({
     alignItems: 'center',
   },
   pickerItemSelected: {
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     borderRadius: 8,
   },
   pickerItemText: {
@@ -1201,7 +1201,7 @@ const datePickerStyles = StyleSheet.create({
     color: '#374151',
   },
   pickerItemTextSelected: {
-    color: '#0493D2',
+    color: '#B8142F',
     fontWeight: '600',
   },
   footer: {
@@ -1214,7 +1214,7 @@ const datePickerStyles = StyleSheet.create({
   cancelButton: {
     flex: 1,
     padding: 14,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     alignItems: 'center',
@@ -1228,8 +1228,8 @@ const datePickerStyles = StyleSheet.create({
   confirmButton: {
     flex: 1,
     padding: 14,
-    borderRadius: 8,
-    backgroundColor: '#0493D2',
+    borderRadius: 999,
+    backgroundColor: '#B8142F',
     alignItems: 'center',
     justifyContent: 'center',
   },

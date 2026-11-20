@@ -311,7 +311,7 @@ const AdminsListScreen = () => {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <View style={styles.headerCenter}>
           <Text style={styles.headerTitle}>Admins</Text>
@@ -328,13 +328,13 @@ const AdminsListScreen = () => {
       {/* Search Bar */}
       <View style={styles.searchSection}>
         <View style={styles.searchBar}>
-          <Ionicons name="search" size={20} color="#9CA3AF" />
+          <Ionicons name="search" size={20} color="#6B7280" />
           <TextInput
             style={styles.searchInput}
             placeholder="Search admins..."
             value={searchQuery}
             onChangeText={setSearchQuery}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
         </View>
       </View>
@@ -350,15 +350,15 @@ const AdminsListScreen = () => {
             {/* Admin Header */}
             <View style={styles.cardHeader}>
               <View style={styles.adminAvatar}>
-                <Ionicons name="person" size={24} color="#3B82F6" />
+                <Ionicons name="person" size={24} color="#B8142F" />
               </View>
               <View style={styles.adminInfo}>
                 <Text style={styles.adminName}>{admin.name}</Text>
                 <Text style={styles.adminRole}>Company Admin</Text>
               </View>
               <View style={[styles.statusBadge, { backgroundColor: admin.status === 'active' ? '#D1FAE5' : '#FEE2E2' }]}>
-                <View style={[styles.statusDot, { backgroundColor: admin.status === 'active' ? '#10B981' : '#EF4444' }]} />
-                <Text style={[styles.statusText, { color: admin.status === 'active' ? '#059669' : '#DC2626' }]}>
+                <View style={[styles.statusDot, { backgroundColor: admin.status === 'active' ? '#15803D' : '#B91C1C' }]} />
+                <Text style={[styles.statusText, { color: admin.status === 'active' ? '#15803D' : '#B91C1C' }]}>
                   {admin.status}
                 </Text>
               </View>
@@ -367,7 +367,7 @@ const AdminsListScreen = () => {
             {/* Company Info */}
             <View style={styles.companySection}>
               <View style={styles.companyBadge}>
-                <Ionicons name="business" size={14} color="#8B5CF6" />
+                <Ionicons name="business" size={14} color="#7D0B1E" />
                 <Text style={styles.companyText} numberOfLines={2}>
                   {admin.company}
                 </Text>
@@ -392,7 +392,7 @@ const AdminsListScreen = () => {
             {/* Footer */}
             <View style={styles.cardFooter}>
               <View style={styles.footerItem}>
-                <Ionicons name="time-outline" size={14} color="#9CA3AF" />
+                <Ionicons name="time-outline" size={14} color="#6B7280" />
                 <Text style={styles.footerText}>Last login: {admin.lastLogin}</Text>
               </View>
               <Text style={styles.createdText}>Created: {admin.createdAt}</Text>
@@ -404,7 +404,7 @@ const AdminsListScreen = () => {
                 style={styles.editButton}
                 onPress={() => handleEditAdmin(admin)}
               >
-                <Ionicons name="create-outline" size={16} color="#3B82F6" />
+                <Ionicons name="create-outline" size={16} color="#B8142F" />
                 <Text style={styles.editButtonText}>Edit</Text>
               </TouchableOpacity>
             </View>
@@ -441,13 +441,13 @@ const AdminsListScreen = () => {
               <View style={styles.inputGroup}>
                 <Text style={styles.label}>Full Name</Text>
                 <View style={styles.inputContainer}>
-                  <Ionicons name="person-outline" size={20} color="#9CA3AF" />
+                  <Ionicons name="person-outline" size={20} color="#6B7280" />
                   <TextInput
                     style={styles.input}
                     placeholder="Enter full name"
                     value={formData.name}
                     onChangeText={(text) => setFormData({ ...formData, name: text })}
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
               </View>
@@ -455,7 +455,7 @@ const AdminsListScreen = () => {
               <View style={styles.inputGroup}>
                 <Text style={styles.label}>Email</Text>
                 <View style={styles.inputContainer}>
-                  <Ionicons name="mail-outline" size={20} color="#9CA3AF" />
+                  <Ionicons name="mail-outline" size={20} color="#6B7280" />
                   <TextInput
                     style={styles.input}
                     placeholder="admin@company.com"
@@ -463,7 +463,7 @@ const AdminsListScreen = () => {
                     onChangeText={(text) => setFormData({ ...formData, email: text })}
                     keyboardType="email-address"
                     autoCapitalize="none"
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
               </View>
@@ -471,14 +471,14 @@ const AdminsListScreen = () => {
               <View style={styles.inputGroup}>
                 <Text style={styles.label}>Phone</Text>
                 <View style={styles.inputContainer}>
-                  <Ionicons name="call-outline" size={20} color="#9CA3AF" />
+                  <Ionicons name="call-outline" size={20} color="#6B7280" />
                   <TextInput
                     style={styles.input}
                     placeholder="+91 98765 43210"
                     value={formData.phone}
                     onChangeText={(text) => setFormData({ ...formData, phone: text })}
                     keyboardType="phone-pad"
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
               </View>
@@ -486,7 +486,7 @@ const AdminsListScreen = () => {
               <View style={styles.inputGroup}>
                 <Text style={styles.label}>Password *</Text>
                 <View style={styles.inputContainer}>
-                  <Ionicons name="lock-closed-outline" size={20} color="#9CA3AF" />
+                  <Ionicons name="lock-closed-outline" size={20} color="#6B7280" />
                   <TextInput
                     style={styles.input}
                     placeholder="Enter password (min 8 characters)"
@@ -494,13 +494,13 @@ const AdminsListScreen = () => {
                     onChangeText={(text) => setFormData({ ...formData, password: text })}
                     secureTextEntry={!showPassword}
                     autoCapitalize="none"
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                   <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                     <Ionicons 
                       name={showPassword ? "eye-off-outline" : "eye-outline"} 
                       size={20} 
-                      color="#9CA3AF" 
+                      color="#6B7280" 
                     />
                   </TouchableOpacity>
                 </View>
@@ -523,7 +523,7 @@ const AdminsListScreen = () => {
                     return (
                       <View key={companyId} style={styles.selectedCompanyItem}>
                         <View style={styles.selectedCompanyInfo}>
-                          <Ionicons name="business" size={20} color="#3B82F6" />
+                          <Ionicons name="business" size={20} color="#B8142F" />
                           <View style={styles.selectedCompanyDetails}>
                             <Text style={styles.selectedCompanyName} numberOfLines={1} ellipsizeMode="tail">
                               {company.label}
@@ -559,7 +559,7 @@ const AdminsListScreen = () => {
                                 }
                               }}
                             >
-                              <Ionicons name="close-circle" size={24} color="#EF4444" />
+                              <Ionicons name="close-circle" size={24} color="#B91C1C" />
                             </TouchableOpacity>
                           )}
                           {selectedCompanyIds.length === 1 && (
@@ -582,7 +582,7 @@ const AdminsListScreen = () => {
                 }}
               >
                 <View style={styles.dropdownButton}>
-                  <Ionicons name="business-outline" size={20} color="#9CA3AF" />
+                  <Ionicons name="business-outline" size={20} color="#6B7280" />
                   <Text style={[
                     styles.dropdownText,
                     selectedCompanyIds.length === 0 && styles.dropdownPlaceholder
@@ -595,7 +595,7 @@ const AdminsListScreen = () => {
                   <Ionicons 
                     name={showCompanyDropdown ? "chevron-up" : "chevron-down"} 
                     size={20} 
-                    color="#9CA3AF" 
+                    color="#6B7280" 
                   />
                 </View>
               </TouchableOpacity>
@@ -613,13 +613,13 @@ const AdminsListScreen = () => {
                   <View style={styles.dropdownWrapper}>
                     <View style={styles.dropdownPanel}>
                     <View style={styles.dropdownSearchContainer}>
-                      <Ionicons name="search" size={16} color="#9CA3AF" />
+                      <Ionicons name="search" size={16} color="#6B7280" />
                       <TextInput
                         style={styles.dropdownSearchInput}
                         placeholder="Search companies..."
                         value={companySearchQuery}
                         onChangeText={setCompanySearchQuery}
-                        placeholderTextColor="#9CA3AF"
+                        placeholderTextColor="#6B7280"
                       />
                     </View>
                     
@@ -655,7 +655,7 @@ const AdminsListScreen = () => {
                               }}
                             >
                               <View style={styles.dropdownItemContent}>
-                                <Ionicons name="business" size={20} color={isSelected ? "#3B82F6" : "#6B7280"} />
+                                <Ionicons name="business" size={20} color={isSelected ? "#B8142F" : "#6B7280"} />
                                 <View style={styles.dropdownItemDetails}>
                                   <Text style={[
                                     styles.dropdownItemText,
@@ -665,7 +665,7 @@ const AdminsListScreen = () => {
                                   </Text>
                                 </View>
                                 {isSelected && (
-                                  <Ionicons name="checkmark-circle" size={20} color="#3B82F6" />
+                                  <Ionicons name="checkmark-circle" size={20} color="#B8142F" />
                                 )}
                               </View>
                             </TouchableOpacity>
@@ -733,13 +733,13 @@ const AdminsListScreen = () => {
               <View style={styles.inputGroup}>
                 <Text style={styles.label}>Full Name</Text>
                 <View style={styles.inputContainer}>
-                  <Ionicons name="person-outline" size={20} color="#9CA3AF" />
+                  <Ionicons name="person-outline" size={20} color="#6B7280" />
                   <TextInput
                     style={styles.input}
                     placeholder="Enter full name"
                     value={formData.name}
                     onChangeText={(text) => setFormData({ ...formData, name: text })}
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
               </View>
@@ -747,7 +747,7 @@ const AdminsListScreen = () => {
               <View style={styles.inputGroup}>
                 <Text style={styles.label}>Email</Text>
                 <View style={styles.inputContainer}>
-                  <Ionicons name="mail-outline" size={20} color="#9CA3AF" />
+                  <Ionicons name="mail-outline" size={20} color="#6B7280" />
                   <TextInput
                     style={styles.input}
                     placeholder="admin@company.com"
@@ -755,7 +755,7 @@ const AdminsListScreen = () => {
                     onChangeText={(text) => setFormData({ ...formData, email: text })}
                     keyboardType="email-address"
                     autoCapitalize="none"
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
               </View>
@@ -763,14 +763,14 @@ const AdminsListScreen = () => {
               <View style={styles.inputGroup}>
                 <Text style={styles.label}>Phone</Text>
                 <View style={styles.inputContainer}>
-                  <Ionicons name="call-outline" size={20} color="#9CA3AF" />
+                  <Ionicons name="call-outline" size={20} color="#6B7280" />
                   <TextInput
                     style={styles.input}
                     placeholder="+91 98765 43210"
                     value={formData.phone}
                     onChangeText={(text) => setFormData({ ...formData, phone: text })}
                     keyboardType="phone-pad"
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
               </View>
@@ -778,14 +778,14 @@ const AdminsListScreen = () => {
               <View style={styles.inputGroup}>
                 <Text style={styles.label}>New Password (Optional)</Text>
                 <View style={styles.inputContainer}>
-                  <Ionicons name="lock-closed-outline" size={20} color="#9CA3AF" />
+                  <Ionicons name="lock-closed-outline" size={20} color="#6B7280" />
                   <TextInput
                     style={styles.input}
                     placeholder="Leave blank to keep current password"
                     value={formData.password}
                     onChangeText={(text) => setFormData({ ...formData, password: text })}
                     secureTextEntry={!showPassword}
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                   <TouchableOpacity
                     onPress={() => setShowPassword(!showPassword)}
@@ -794,7 +794,7 @@ const AdminsListScreen = () => {
                     <Ionicons
                       name={showPassword ? "eye-outline" : "eye-off-outline"}
                       size={20}
-                      color="#9CA3AF"
+                      color="#6B7280"
                     />
                   </TouchableOpacity>
                 </View>
@@ -816,7 +816,7 @@ const AdminsListScreen = () => {
                       return (
                         <View key={companyId} style={styles.selectedCompanyItem}>
                           <View style={styles.selectedCompanyInfo}>
-                            <Ionicons name="business" size={20} color="#3B82F6" />
+                            <Ionicons name="business" size={20} color="#B8142F" />
                             <View style={styles.selectedCompanyDetails}>
                               <Text style={styles.selectedCompanyName}>
                                 {company.label}
@@ -852,7 +852,7 @@ const AdminsListScreen = () => {
                                   }
                                 }}
                               >
-                                <Ionicons name="close-circle" size={24} color="#EF4444" />
+                                <Ionicons name="close-circle" size={24} color="#B91C1C" />
                               </TouchableOpacity>
                             )}
                             {selectedCompanyIds.length === 1 && (
@@ -875,7 +875,7 @@ const AdminsListScreen = () => {
                   }}
                 >
                   <View style={styles.dropdownButton}>
-                    <Ionicons name="business-outline" size={20} color="#9CA3AF" />
+                    <Ionicons name="business-outline" size={20} color="#6B7280" />
                     <Text style={[
                       styles.dropdownText,
                       selectedCompanyIds.length === 0 && styles.dropdownPlaceholder
@@ -888,7 +888,7 @@ const AdminsListScreen = () => {
                     <Ionicons 
                       name={showCompanyDropdown ? "chevron-up" : "chevron-down"} 
                       size={20} 
-                      color="#9CA3AF" 
+                      color="#6B7280" 
                     />
                   </View>
                 </TouchableOpacity>
@@ -905,13 +905,13 @@ const AdminsListScreen = () => {
                     />
                     <View style={styles.dropdownPanel}>
                       <View style={styles.dropdownSearchContainer}>
-                        <Ionicons name="search" size={16} color="#9CA3AF" />
+                        <Ionicons name="search" size={16} color="#6B7280" />
                         <TextInput
                           style={styles.dropdownSearchInput}
                           placeholder="Search companies..."
                           value={companySearchQuery}
                           onChangeText={setCompanySearchQuery}
-                          placeholderTextColor="#9CA3AF"
+                          placeholderTextColor="#6B7280"
                         />
                       </View>
                       <ScrollView style={styles.dropdownScroll} showsVerticalScrollIndicator>
@@ -946,7 +946,7 @@ const AdminsListScreen = () => {
                                 }}
                               >
                                 <View style={styles.dropdownItemContent}>
-                                  <Ionicons name="business" size={20} color={isSelected ? "#3B82F6" : "#6B7280"} />
+                                  <Ionicons name="business" size={20} color={isSelected ? "#B8142F" : "#6B7280"} />
                                   <View style={styles.dropdownItemDetails}>
                                     <Text style={[
                                       styles.dropdownItemText,
@@ -956,7 +956,7 @@ const AdminsListScreen = () => {
                                     </Text>
                                   </View>
                                   {isSelected && (
-                                    <Ionicons name="checkmark-circle" size={20} color="#3B82F6" />
+                                    <Ionicons name="checkmark-circle" size={20} color="#B8142F" />
                                   )}
                                 </View>
                               </TouchableOpacity>
@@ -1023,7 +1023,7 @@ const styles = StyleSheet.create({
   backButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     justifyContent: 'center',
     alignItems: 'center',
@@ -1035,7 +1035,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   headerSubtitle: {
     fontSize: 12,
@@ -1044,8 +1044,8 @@ const styles = StyleSheet.create({
   addButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    backgroundColor: '#3B82F6',
+    borderRadius: 999,
+    backgroundColor: '#B8142F',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -1068,7 +1068,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
   },
   list: {
     flex: 1,
@@ -1096,7 +1096,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#DBEAFE',
+    backgroundColor: '#FFD2D9',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -1107,7 +1107,7 @@ const styles = StyleSheet.create({
   adminName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   adminRole: {
@@ -1134,7 +1134,7 @@ const styles = StyleSheet.create({
   },
   companySection: {
     flexDirection: 'column',
-    backgroundColor: '#F5F3FF',
+    backgroundColor: '#FFF7F8',
     paddingHorizontal: 12,
     paddingVertical: 10,
     borderRadius: 8,
@@ -1149,7 +1149,7 @@ const styles = StyleSheet.create({
   companyText: {
     fontSize: 13,
     fontWeight: '500',
-    color: '#7C3AED',
+    color: '#7D0B1E',
     marginLeft: 6,
     flex: 1,
     flexWrap: 'wrap',
@@ -1157,7 +1157,7 @@ const styles = StyleSheet.create({
   companyCode: {
     fontSize: 11,
     fontWeight: '600',
-    color: '#8B5CF6',
+    color: '#7D0B1E',
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 8,
     paddingVertical: 4,
@@ -1195,7 +1195,7 @@ const styles = StyleSheet.create({
   },
   createdText: {
     fontSize: 11,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   // Action Buttons
   actionButtons: {
@@ -1211,14 +1211,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 12,
     paddingVertical: 8,
-    backgroundColor: '#EBF4FF',
-    borderRadius: 8,
+    backgroundColor: '#FBEEEE',
+    borderRadius: 999,
     gap: 6,
   },
   editButtonText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#3B82F6',
+    color: '#B8142F',
   },
   submitButtonDisabled: {
     opacity: 0.6,
@@ -1249,7 +1249,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   form: {
     paddingHorizontal: 20,
@@ -1274,7 +1274,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#F9FAFB',
-    borderRadius: 12,
+    borderRadius: 10,
     paddingHorizontal: 16,
     paddingVertical: 14,
     borderWidth: 1,
@@ -1284,7 +1284,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 12,
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
   },
   hintText: {
     fontSize: 12,
@@ -1306,7 +1306,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F3F4F6',
     paddingVertical: 16,
-    borderRadius: 12,
+    borderRadius: 999,
     alignItems: 'center',
   },
   cancelButtonText: {
@@ -1316,9 +1316,9 @@ const styles = StyleSheet.create({
   },
   createButton: {
     flex: 1,
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingVertical: 16,
-    borderRadius: 12,
+    borderRadius: 999,
     alignItems: 'center',
   },
   createButtonText: {
@@ -1337,7 +1337,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9FAFB',
     borderWidth: 1,
     borderColor: '#E5E7EB',
-    borderRadius: 12,
+    borderRadius: 999,
     paddingHorizontal: 16,
     paddingVertical: 14,
     minHeight: 48,
@@ -1345,11 +1345,11 @@ const styles = StyleSheet.create({
   dropdownText: {
     flex: 1,
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
     marginLeft: 12,
   },
   dropdownPlaceholder: {
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   dropdownWrapper: {
     position: 'relative',
@@ -1403,11 +1403,11 @@ const styles = StyleSheet.create({
   },
   dropdownItemText: {
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
     flex: 1,
   },
   dropdownItemTextSelected: {
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '600',
   },
   selectedCompanyInfo: {
@@ -1418,7 +1418,7 @@ const styles = StyleSheet.create({
   },
   selectedCompanyText: {
     fontSize: 12,
-    color: '#10B981',
+    color: '#15803D',
     marginLeft: 6,
     fontWeight: '500',
   },
@@ -1435,7 +1435,7 @@ const styles = StyleSheet.create({
   dropdownSearchInput: {
     flex: 1,
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
     marginLeft: 8,
     paddingVertical: 4,
   },
@@ -1445,7 +1445,7 @@ const styles = StyleSheet.create({
   },
   dropdownEmptyText: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     fontStyle: 'italic',
   },
   // Multi-select company styles
@@ -1492,14 +1492,14 @@ const styles = StyleSheet.create({
   selectedCompanyName: {
     fontSize: 13,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
     flexShrink: 1,
     flexWrap: 'wrap',
   },
   defaultBadge: {
     fontSize: 11,
     fontWeight: '600',
-    color: '#3B82F6',
+    color: '#B8142F',
   },
   selectedCompanyActions: {
     flexDirection: 'row',
@@ -1511,23 +1511,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 5,
     backgroundColor: '#F0F9FF',
-    borderRadius: 6,
+    borderRadius: 999,
     borderWidth: 1,
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
     minWidth: 70,
     maxWidth: 90,
   },
   setDefaultButtonText: {
     fontSize: 10,
     fontWeight: '600',
-    color: '#3B82F6',
+    color: '#B8142F',
   },
   removeCompanyButton: {
     padding: 4,
   },
   cannotRemoveText: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     fontStyle: 'italic',
     marginRight: 8,
   },

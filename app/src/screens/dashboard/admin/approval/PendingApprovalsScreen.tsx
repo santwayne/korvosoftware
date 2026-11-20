@@ -220,29 +220,29 @@ const PendingApprovalsScreen = () => {
   // ── Colour helpers ───────────────────────────────────────────────────────
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'draft': return '#F59E0B';
+      case 'draft': return '#B45309';
       case 'pending_approval': return '#F97316';
-      case 'approved': return '#10B981';
-      case 'rejected': return '#EF4444';
+      case 'approved': return '#15803D';
+      case 'rejected': return '#B91C1C';
       default: return '#6B7280';
     }
   };
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'urgent': return '#EF4444';
-      case 'high': return '#F59E0B';
-      case 'medium': return '#3B82F6';
-      case 'low': return '#10B981';
+      case 'urgent': return '#B91C1C';
+      case 'high': return '#B45309';
+      case 'medium': return '#B8142F';
+      case 'low': return '#15803D';
       default: return '#6B7280';
     }
   };
 
   const getPaymentStatusColor = (status: string) => {
     switch (status) {
-      case 'paid': return '#10B981';
-      case 'partial': return '#F59E0B';
-      case 'pending': return '#EF4444';
+      case 'paid': return '#15803D';
+      case 'partial': return '#B45309';
+      case 'pending': return '#B91C1C';
       case 'refunded': return '#6B7280';
       default: return '#6B7280';
     }
@@ -322,7 +322,7 @@ const PendingApprovalsScreen = () => {
               style={[styles.actionButton, styles.approveButton]}
               onPress={() => { setSelectedOrder(item); setAction('approved'); setShowActionModal(true); }}
             >
-              <Ionicons name={item.status === 'draft' ? 'send' : 'checkmark-circle'} size={16} color="#10B981" />
+              <Ionicons name={item.status === 'draft' ? 'send' : 'checkmark-circle'} size={16} color="#15803D" />
               <Text style={styles.approveButtonText}>{item.status === 'draft' ? 'Approve' : 'Approve'}</Text>
             </TouchableOpacity>
             {item.status !== 'draft' && (
@@ -330,7 +330,7 @@ const PendingApprovalsScreen = () => {
                 style={[styles.actionButton, styles.rejectButton]}
                 onPress={() => { setSelectedOrder(item); setAction('rejected'); setShowActionModal(true); }}
               >
-                <Ionicons name="close-circle" size={16} color="#EF4444" />
+                <Ionicons name="close-circle" size={16} color="#B91C1C" />
                 <Text style={styles.rejectButtonText}>Reject</Text>
               </TouchableOpacity>
             )}
@@ -342,7 +342,7 @@ const PendingApprovalsScreen = () => {
 
   const renderEmptyState = () => (
     <View style={styles.emptyState}>
-      <Ionicons name="checkmark-done-circle-outline" size={64} color="#9CA3AF" />
+      <Ionicons name="checkmark-done-circle-outline" size={64} color="#6B7280" />
       <Text style={styles.emptyStateTitle}>No Pending Approvals</Text>
       <Text style={styles.emptyStateText}>All orders have been processed.</Text>
     </View>
@@ -351,7 +351,7 @@ const PendingApprovalsScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading pending approvals...</Text>
       </View>
     );
@@ -430,7 +430,7 @@ const PendingApprovalsScreen = () => {
               onChangeText={setNotes}
               multiline
               numberOfLines={3}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
             />
             <View style={styles.modalButtons}>
               <TouchableOpacity
@@ -473,7 +473,7 @@ const PendingApprovalsScreen = () => {
               onChangeText={setBulkNotes}
               multiline
               numberOfLines={3}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
             />
             <View style={styles.modalButtons}>
               <TouchableOpacity
@@ -508,10 +508,10 @@ const styles = StyleSheet.create({
   loadingText: { marginTop: 16, fontSize: 16, color: '#6B7280' },
   header: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    paddingHorizontal: 20, paddingTop: 20, paddingBottom: 20, backgroundColor: '#3B82F6',
+    paddingHorizontal: 20, paddingTop: 20, paddingBottom: 20, backgroundColor: '#B8142F',
   },
   backButton: {
-    width: 40, height: 40, borderRadius: 20,
+    width: 40, height: 40, borderRadius: 999,
     backgroundColor: 'rgba(255,255,255,0.2)', justifyContent: 'center', alignItems: 'center',
   },
   headerTitle: { fontSize: 18, fontWeight: 'bold', color: '#fff' },
@@ -520,17 +520,17 @@ const styles = StyleSheet.create({
   selectionBar: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
     paddingHorizontal: 16, paddingVertical: 10,
-    backgroundColor: '#EFF6FF', borderBottomWidth: 1, borderBottomColor: '#BFDBFE',
+    backgroundColor: '#FBEEEE', borderBottomWidth: 1, borderBottomColor: '#FFD2D9',
   },
-  selectAllText: { fontSize: 13, color: '#3B82F6', fontWeight: '600' },
-  selectedCount: { fontSize: 13, color: '#1F2937', fontWeight: '500' },
+  selectAllText: { fontSize: 13, color: '#B8142F', fontWeight: '600' },
+  selectedCount: { fontSize: 13, color: '#111827', fontWeight: '500' },
   bulkButtons: { flexDirection: 'row', gap: 8 },
   bulkBtn: {
     flexDirection: 'row', alignItems: 'center', gap: 4,
-    paddingHorizontal: 10, paddingVertical: 6, borderRadius: 6,
+    paddingHorizontal: 10, paddingVertical: 6, borderRadius: 999,
   },
-  bulkApproveBtn: { backgroundColor: '#10B981' },
-  bulkRejectBtn: { backgroundColor: '#EF4444' },
+  bulkApproveBtn: { backgroundColor: '#15803D' },
+  bulkRejectBtn: { backgroundColor: '#B91C1C' },
   bulkBtnDisabled: { opacity: 0.4 },
   bulkBtnText: { color: '#fff', fontSize: 12, fontWeight: '600' },
 
@@ -542,25 +542,25 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1, shadowRadius: 4, elevation: 3,
   },
   orderCardSelected: {
-    borderWidth: 2, borderColor: '#3B82F6', backgroundColor: '#EFF6FF',
+    borderWidth: 2, borderColor: '#B8142F', backgroundColor: '#FBEEEE',
   },
   checkbox: { paddingRight: 10, paddingTop: 2 },
   checkboxBox: {
     width: 22, height: 22, borderRadius: 4, borderWidth: 2, borderColor: '#D1D5DB',
     backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center',
   },
-  checkboxBoxSelected: { backgroundColor: '#3B82F6', borderColor: '#3B82F6' },
+  checkboxBoxSelected: { backgroundColor: '#B8142F', borderColor: '#B8142F' },
 
   orderHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 },
   orderInfo: { flex: 1 },
-  orderNumber: { fontSize: 16, fontWeight: 'bold', color: '#1F2937', marginBottom: 4 },
+  orderNumber: { fontSize: 16, fontWeight: 'bold', color: '#111827', marginBottom: 4 },
   customerName: { fontSize: 14, color: '#6B7280' },
   orderAmount: { alignItems: 'flex-end' },
-  amountText: { fontSize: 18, fontWeight: 'bold', color: '#059669' },
+  amountText: { fontSize: 18, fontWeight: 'bold', color: '#15803D' },
   orderDetails: { marginBottom: 10 },
   detailRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 },
   detailLabel: { fontSize: 12, color: '#6B7280', fontWeight: '500' },
-  detailValue: { fontSize: 12, color: '#1F2937', flex: 1, textAlign: 'right' },
+  detailValue: { fontSize: 12, color: '#111827', flex: 1, textAlign: 'right' },
   statusRow: { marginBottom: 10 },
   statusContainer: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
   statusBadge: { paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 },
@@ -572,38 +572,38 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   approvalLabel: { fontSize: 12, color: '#6B7280', fontWeight: '500' },
-  approvalValue: { fontSize: 12, color: '#1F2937', fontWeight: '600' },
+  approvalValue: { fontSize: 12, color: '#111827', fontWeight: '600' },
   actionButtons: { flexDirection: 'row', gap: 10 },
   actionButton: {
     flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-    paddingVertical: 10, borderRadius: 8, gap: 6,
+    paddingVertical: 10, borderRadius: 999, gap: 6,
   },
-  approveButton: { backgroundColor: '#D1FAE5', borderWidth: 1, borderColor: '#10B981' },
-  approveButtonText: { color: '#10B981', fontWeight: '600', fontSize: 13 },
-  rejectButton: { backgroundColor: '#FEE2E2', borderWidth: 1, borderColor: '#EF4444' },
-  rejectButtonText: { color: '#EF4444', fontWeight: '600', fontSize: 13 },
+  approveButton: { backgroundColor: '#D1FAE5', borderWidth: 1, borderColor: '#15803D' },
+  approveButtonText: { color: '#15803D', fontWeight: '600', fontSize: 13 },
+  rejectButton: { backgroundColor: '#FEE2E2', borderWidth: 1, borderColor: '#B91C1C' },
+  rejectButtonText: { color: '#B91C1C', fontWeight: '600', fontSize: 13 },
 
   emptyState: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingVertical: 60 },
-  emptyStateTitle: { fontSize: 18, fontWeight: '600', color: '#1F2937', marginTop: 16, marginBottom: 8 },
+  emptyStateTitle: { fontSize: 18, fontWeight: '600', color: '#111827', marginTop: 16, marginBottom: 8 },
   emptyStateText: { fontSize: 14, color: '#6B7280', textAlign: 'center', paddingHorizontal: 40 },
 
   modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
   modalContent: { backgroundColor: '#FFFFFF', borderRadius: 16, padding: 24, width: '90%', maxWidth: 400 },
-  modalTitle: { fontSize: 18, fontWeight: 'bold', color: '#1F2937', marginBottom: 8, textAlign: 'center' },
+  modalTitle: { fontSize: 18, fontWeight: 'bold', color: '#111827', marginBottom: 8, textAlign: 'center' },
   bulkModalSubtitle: { fontSize: 13, color: '#6B7280', marginBottom: 16, textAlign: 'center' },
   orderSummary: { backgroundColor: '#F9FAFB', padding: 12, borderRadius: 8, marginBottom: 16 },
-  orderSummaryTitle: { fontSize: 14, fontWeight: '600', color: '#1F2937', marginBottom: 8 },
+  orderSummaryTitle: { fontSize: 14, fontWeight: '600', color: '#111827', marginBottom: 8 },
   orderSummaryText: { fontSize: 12, color: '#6B7280', marginBottom: 4 },
   notesInput: {
-    borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8,
-    padding: 12, fontSize: 14, color: '#1F2937', marginBottom: 20, textAlignVertical: 'top',
+    borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 10,
+    padding: 12, fontSize: 14, color: '#111827', marginBottom: 20, textAlignVertical: 'top',
   },
   modalButtons: { flexDirection: 'row', gap: 12 },
-  modalButton: { flex: 1, paddingVertical: 12, borderRadius: 8, alignItems: 'center' },
+  modalButton: { flex: 1, paddingVertical: 12, borderRadius: 999, alignItems: 'center' },
   cancelButton: { backgroundColor: '#F3F4F6', borderWidth: 1, borderColor: '#D1D5DB' },
   cancelButtonText: { color: '#6B7280', fontWeight: '600' },
-  confirmApproveButton: { backgroundColor: '#10B981' },
-  confirmRejectButton: { backgroundColor: '#EF4444' },
+  confirmApproveButton: { backgroundColor: '#15803D' },
+  confirmRejectButton: { backgroundColor: '#B91C1C' },
   confirmButtonText: { color: '#FFFFFF', fontWeight: '600' },
 });
 

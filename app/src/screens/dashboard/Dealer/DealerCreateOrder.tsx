@@ -1157,7 +1157,7 @@ const DealerCreateOrder = () => {
     >
       <Text style={styles.dropdownItemText}>{item.name}</Text>
       {item.groupInfo?.groupName ? (
-        <Text style={[styles.dropdownItemMeta, { color: '#10B981', fontWeight: '600', marginTop: 2 }]}>
+        <Text style={[styles.dropdownItemMeta, { color: '#15803D', fontWeight: '600', marginTop: 2 }]}>
           📁 Group: {item.groupInfo.groupName}
         </Text>
       ) : null}
@@ -1293,9 +1293,9 @@ const DealerCreateOrder = () => {
             </Text>
           </View>
           {existingItem ? (
-            <Ionicons name="checkmark-circle" size={22} color="#10B981" />
+            <Ionicons name="checkmark-circle" size={22} color="#15803D" />
           ) : (
-            <Ionicons name="cube-outline" size={22} color="#3B82F6" />
+            <Ionicons name="cube-outline" size={22} color="#B8142F" />
           )}
         </View>
 
@@ -1445,7 +1445,7 @@ const DealerCreateOrder = () => {
         style={styles.removeButton}
         onPress={() => removeItem(item.productId)}
       >
-        <Ionicons name="trash-outline" size={20} color="#EF4444" />
+        <Ionicons name="trash-outline" size={20} color="#B91C1C" />
       </TouchableOpacity>
     </View>
   );
@@ -1483,7 +1483,7 @@ const DealerCreateOrder = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading...</Text>
       </View>
     );
@@ -1560,7 +1560,7 @@ const DealerCreateOrder = () => {
                 style={styles.clearSelectionButton}
                 onPress={() => setSelectedSubDealer(null)}
               >
-                <Ionicons name="close-circle" size={20} color="#EF4444" />
+                <Ionicons name="close-circle" size={20} color="#B91C1C" />
               </TouchableOpacity>
             )}
           </View>
@@ -1589,7 +1589,7 @@ const DealerCreateOrder = () => {
             style={styles.addProductButton}
             onPress={() => setShowProductDropdown(true)}
           >
-            <Ionicons name="add-circle-outline" size={24} color="#3B82F6" />
+            <Ionicons name="add-circle-outline" size={24} color="#B8142F" />
             <Text style={styles.addProductButtonText}>Add Product</Text>
           </TouchableOpacity>
         </View>
@@ -1609,7 +1609,7 @@ const DealerCreateOrder = () => {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Order Items</Text>
             <View style={styles.emptyStateContainer}>
-              <Ionicons name="cube-outline" size={48} color="#9CA3AF" />
+              <Ionicons name="cube-outline" size={48} color="#6B7280" />
               <Text style={styles.emptyStateText}>No products added yet</Text>
               <Text style={styles.emptyStateSubtext}>Tap "Add Product" to start building your order</Text>
             </View>
@@ -1708,7 +1708,7 @@ const DealerCreateOrder = () => {
               placeholder="Specify other payment mode"
               value={customMode}
               onChangeText={setCustomMode}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
             />
           )}
         </View>
@@ -1721,28 +1721,28 @@ const DealerCreateOrder = () => {
             placeholder="Terms of Payment"
             value={termsOfPayment}
             onChangeText={setTermsOfPayment}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
           <TextInput
             style={styles.fieldInput}
             placeholder="Other Reference"
             value={otherReference}
             onChangeText={setOtherReference}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
           <TextInput
             style={styles.fieldInput}
             placeholder="Terms of Delivery 1"
             value={termsOfDelivery1}
             onChangeText={setTermsOfDelivery1}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
           <TextInput
             style={styles.fieldInput}
             placeholder="Terms of Delivery 2"
             value={termsOfDelivery2}
             onChangeText={setTermsOfDelivery2}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
         </View>
 
@@ -1831,7 +1831,7 @@ const DealerCreateOrder = () => {
               placeholder="Search products..."
               value={productSearchQuery}
               onChangeText={setProductSearchQuery}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
               autoCorrect={false}
               clearButtonMode="while-editing"
             />
@@ -1908,7 +1908,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   placeholder: {
     width: 40,
@@ -1923,7 +1923,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 12,
   },
   dropdownButton: {
@@ -1933,14 +1933,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 999,
     paddingHorizontal: 16,
     paddingVertical: 12,
     minHeight: 48,
   },
   dropdownButtonText: {
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
     flex: 1,
   },
   selectionRow: {
@@ -1953,13 +1953,13 @@ const styles = StyleSheet.create({
   },
   clearSelectionButton: {
     padding: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#FEE2E2',
     borderWidth: 1,
     borderColor: '#FCA5A5',
   },
   placeholderText: {
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   disabledButton: {
     backgroundColor: '#F3F4F6',
@@ -1982,7 +1982,7 @@ const styles = StyleSheet.create({
   },
   infoValue: {
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
     flex: 1,
   },
   selectedDealerMeta: {
@@ -1997,7 +1997,7 @@ const styles = StyleSheet.create({
   },
   infoText: {
     fontSize: 12,
-    color: '#059669',
+    color: '#15803D',
     marginTop: 4,
     fontStyle: 'italic',
   },
@@ -2013,7 +2013,7 @@ const styles = StyleSheet.create({
   },
   emptyStateSubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 4,
     textAlign: 'center',
   },
@@ -2022,16 +2022,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
     borderStyle: 'dashed',
-    borderRadius: 8,
+    borderRadius: 999,
     paddingHorizontal: 16,
     paddingVertical: 12,
     minHeight: 48,
   },
   addProductButtonText: {
     fontSize: 16,
-    color: '#3B82F6',
+    color: '#B8142F',
     marginLeft: 8,
     fontWeight: '500',
   },
@@ -2049,7 +2049,7 @@ const styles = StyleSheet.create({
   orderItemName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   orderItemCode: {
@@ -2064,7 +2064,7 @@ const styles = StyleSheet.create({
   },
   orderItemPrice: {
     fontSize: 14,
-    color: '#059669',
+    color: '#15803D',
     fontWeight: '500',
     marginBottom: 4,
   },
@@ -2100,7 +2100,7 @@ const styles = StyleSheet.create({
   orderItemTaxTotal: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#059669',
+    color: '#15803D',
     marginTop: 4,
   },
   orderItemQuantity: {
@@ -2109,12 +2109,12 @@ const styles = StyleSheet.create({
   },
   orderItemQuantityValue: {
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   orderItemTotal: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#059669',
+    color: '#15803D',
   },
   removeButton: {
     padding: 8,
@@ -2145,7 +2145,7 @@ const styles = StyleSheet.create({
   summaryValue: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   fieldLabel: {
     fontSize: 14,
@@ -2157,11 +2157,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     paddingHorizontal: 16,
     paddingVertical: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 12,
   },
   modeOptionsContainer: {
@@ -2173,7 +2173,7 @@ const styles = StyleSheet.create({
   modeOptionButton: {
     paddingHorizontal: 14,
     paddingVertical: 10,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     backgroundColor: '#FFFFFF',
@@ -2194,17 +2194,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     paddingHorizontal: 16,
     paddingVertical: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
     textAlignVertical: 'top',
     minHeight: 80,
   },
   createButton: {
-    backgroundColor: '#3B82F6',
-    borderRadius: 8,
+    backgroundColor: '#B8142F',
+    borderRadius: 999,
     paddingVertical: 16,
     alignItems: 'center',
     marginTop: 24,
@@ -2236,7 +2236,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   searchContainer: {
     flexDirection: 'row',
@@ -2251,7 +2251,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 15,
-    color: '#1F2937',
+    color: '#111827',
     paddingVertical: 6,
   },
   dropdownList: {
@@ -2267,12 +2267,12 @@ const styles = StyleSheet.create({
   bulkAddButton: {
     backgroundColor: '#111827',
     paddingVertical: 12,
-    borderRadius: 10,
+    borderRadius: 999,
     alignItems: 'center',
     justifyContent: 'center',
   },
   bulkAddButtonDisabled: {
-    backgroundColor: '#9CA3AF',
+    backgroundColor: '#6B7280',
   },
   bulkAddButtonText: {
     fontSize: 15,
@@ -2293,7 +2293,7 @@ const styles = StyleSheet.create({
   dropdownItemText: {
     fontSize: 16,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   dropdownItemSubtext: {
@@ -2315,7 +2315,7 @@ const styles = StyleSheet.create({
   },
   productAvailabilityText: {
     fontSize: 13,
-    color: '#047857',
+    color: '#166534',
     marginTop: 6,
   },
   productSelectionControls: {
@@ -2349,20 +2349,20 @@ const styles = StyleSheet.create({
     borderColor: '#D1D5DB',
     paddingVertical: 8,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
     backgroundColor: '#FFFFFF',
   },
   addProductActionButton: {
     flexGrow: 1,
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingVertical: 10,
-    borderRadius: 8,
+    borderRadius: 999,
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 120,
   },
   addProductActionButtonDisabled: {
-    backgroundColor: '#93C5FD',
+    backgroundColor: '#FF8A9B',
   },
   addProductActionButtonText: {
     fontSize: 14,
@@ -2377,27 +2377,27 @@ const styles = StyleSheet.create({
   selectionErrorText: {
     marginTop: 6,
     fontSize: 12,
-    color: '#DC2626',
+    color: '#B91C1C',
   },
   selectionInfoText: {
     marginTop: 6,
     fontSize: 12,
-    color: '#059669',
+    color: '#15803D',
   },
   // Visual indicators for already added products
   addedProductItem: {
     backgroundColor: '#F0FDF4',
-    borderColor: '#10B981',
+    borderColor: '#15803D',
   },
   addedProductText: {
-    color: '#059669',
+    color: '#15803D',
   },
   addedProductSubtext: {
-    color: '#047857',
+    color: '#166534',
   },
   variantAddedText: {
     fontSize: 12,
-    color: '#D97706',
+    color: '#B45309',
     fontWeight: '500',
     marginTop: 2,
   },

@@ -121,15 +121,15 @@ const TargetManagementScreen = () => {
 
   const statusOptions = [
     { key: '', label: 'All Status', color: '#6B7280' },
-    { key: 'active', label: 'Active', color: '#10B981' },
-    { key: 'completed', label: 'Completed', color: '#3B82F6' },
-    { key: 'expired', label: 'Expired', color: '#EF4444' },
-    { key: 'cancelled', label: 'Cancelled', color: '#9CA3AF' },
+    { key: 'active', label: 'Active', color: '#15803D' },
+    { key: 'completed', label: 'Completed', color: '#B8142F' },
+    { key: 'expired', label: 'Expired', color: '#B91C1C' },
+    { key: 'cancelled', label: 'Cancelled', color: '#6B7280' },
   ];
 
   const periodOptions = [
     { key: '', label: 'All Periods', color: '#6B7280' },
-    { key: 'monthly', label: 'Monthly', color: '#3B82F6' },
+    { key: 'monthly', label: 'Monthly', color: '#B8142F' },
   ];
 
 
@@ -298,21 +298,21 @@ const TargetManagementScreen = () => {
 
   const getRoleColor = (role: string) => {
     const colors: { [key: string]: string } = {
-      rsm: '#3B82F6',
-      asm: '#10B981',
-      salesman: '#F59E0B',
-      dealers: '#8B5CF6',
+      rsm: '#B8142F',
+      asm: '#15803D',
+      salesman: '#B45309',
+      dealers: '#7D0B1E',
       distibutors: '#06B6D4',
-      subdealer: '#EF4444',
+      subdealer: '#B91C1C',
     };
     return colors[role] || '#6B7280';
   };
 
   const getAchievementColor = (percentage: number) => {
-    if (percentage >= 100) return '#10B981';
-    if (percentage >= 75) return '#3B82F6';
-    if (percentage >= 50) return '#F59E0B';
-    return '#EF4444';
+    if (percentage >= 100) return '#15803D';
+    if (percentage >= 75) return '#B8142F';
+    if (percentage >= 50) return '#B45309';
+    return '#B91C1C';
   };
 
   const formatCurrency = (amount: number) => {
@@ -442,7 +442,7 @@ const TargetManagementScreen = () => {
                       <Text style={styles.memberRole}>{member.role}</Text>
                     </View>
                     {selectedUser?._id === member._id && (
-                      <Ionicons name="checkmark-circle" size={20} color="#3B82F6" />
+                      <Ionicons name="checkmark-circle" size={20} color="#B8142F" />
                     )}
                   </TouchableOpacity>
                 ))}
@@ -712,7 +712,7 @@ const TargetManagementScreen = () => {
   if (loading && !targetStats) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading targets...</Text>
       </View>
     );
@@ -726,7 +726,7 @@ const TargetManagementScreen = () => {
           style={styles.backBtn}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Target Management</Text>
         <TouchableOpacity
@@ -743,10 +743,10 @@ const TargetManagementScreen = () => {
         <View style={styles.statsSection}>
           <Text style={styles.sectionTitle}>Target Overview</Text>
           <View style={styles.statsGrid}>
-            {renderStatCard('Total Targets', targetStats.totalTargets, 'target', '#3B82F6')}
-            {renderStatCard('Total Amount', formatCurrency(targetStats.totalTargetAmount), 'trending-up', '#10B981')}
-            {renderStatCard('Achieved', formatCurrency(targetStats.totalAchievedAmount), 'checkmark-circle', '#10B981')}
-            {renderStatCard('Avg Achievement', `${targetStats.averageAchievement.toFixed(1)}%`, 'bar-chart', '#F59E0B')}
+            {renderStatCard('Total Targets', targetStats.totalTargets, 'target', '#B8142F')}
+            {renderStatCard('Total Amount', formatCurrency(targetStats.totalTargetAmount), 'trending-up', '#15803D')}
+            {renderStatCard('Achieved', formatCurrency(targetStats.totalAchievedAmount), 'checkmark-circle', '#15803D')}
+            {renderStatCard('Avg Achievement', `${targetStats.averageAchievement.toFixed(1)}%`, 'bar-chart', '#B45309')}
           </View>
         </View>
       )}
@@ -772,7 +772,7 @@ const TargetManagementScreen = () => {
           style={styles.filterBtn}
           onPress={() => setShowFilters(!showFilters)}
         >
-          <Ionicons name="filter" size={20} color="#3B82F6" />
+          <Ionicons name="filter" size={20} color="#B8142F" />
           <Text style={styles.filterText}>Filter</Text>
         </TouchableOpacity>
       </View>
@@ -852,7 +852,7 @@ const TargetManagementScreen = () => {
           keyExtractor={(item) => item._id}
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
-              <Ionicons name="flag-outline" size={48} color="#9CA3AF" />
+              <Ionicons name="flag-outline" size={48} color="#6B7280" />
               <Text style={styles.emptyText}>No targets found</Text>
               <Text style={styles.emptySubtext}>
                 {searchQuery || selectedStatus || selectedPeriod ? 'Try adjusting your search or filters' : 'No targets available'}
@@ -903,13 +903,13 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   createBtn: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingHorizontal: 12,
     paddingVertical: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -925,7 +925,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   statsGrid: {
@@ -964,7 +964,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   statTitle: {
@@ -973,7 +973,7 @@ const styles = StyleSheet.create({
   },
   statSubtitle: {
     fontSize: 10,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 2,
   },
   searchSection: {
@@ -997,22 +997,22 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   filterBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 999,
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderWidth: 1,
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
   },
   filterText: {
     marginLeft: 8,
     fontSize: 16,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '500',
   },
   filtersContainer: {
@@ -1029,7 +1029,7 @@ const styles = StyleSheet.create({
   filterLabel: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
     marginRight: 12,
   },
   filterChip: {
@@ -1057,7 +1057,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     backgroundColor: '#F3F4F6',
-    borderRadius: 8,
+    borderRadius: 999,
   },
   clearFilterText: {
     fontSize: 14,
@@ -1086,12 +1086,12 @@ const styles = StyleSheet.create({
   targetId: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   targetType: {
     fontSize: 12,
-    color: '#3B82F6',
+    color: '#B8142F',
     marginBottom: 2,
   },
   targetPeriod: {
@@ -1136,7 +1136,7 @@ const styles = StyleSheet.create({
   amountValue: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   targetAchieved: {
     marginBottom: 8,
@@ -1149,7 +1149,7 @@ const styles = StyleSheet.create({
   achievedValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#059669',
+    color: '#15803D',
   },
   targetProgress: {
     flexDirection: 'row',
@@ -1196,7 +1196,7 @@ const styles = StyleSheet.create({
   assigneeName: {
     fontSize: 12,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
   },
   assigneeRole: {
     fontSize: 10,
@@ -1212,7 +1212,7 @@ const styles = StyleSheet.create({
   },
   dateValue: {
     fontSize: 10,
-    color: '#1F2937',
+    color: '#111827',
   },
   emptyContainer: {
     alignItems: 'center',
@@ -1227,7 +1227,7 @@ const styles = StyleSheet.create({
   },
   emptySubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
   // Modal styles
@@ -1248,7 +1248,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   closeBtn: {
     padding: 8,
@@ -1269,7 +1269,7 @@ const styles = StyleSheet.create({
   cancelBtn: {
     flex: 1,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#E5E7EB',
     alignItems: 'center',
@@ -1280,7 +1280,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   disabledBtn: {
-    backgroundColor: '#9CA3AF',
+    backgroundColor: '#6B7280',
   },
   disabledBtnText: {
     color: '#6B7280',
@@ -1300,7 +1300,7 @@ const styles = StyleSheet.create({
   formSectionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   formGroup: {
@@ -1309,17 +1309,17 @@ const styles = StyleSheet.create({
   formLabel: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 8,
   },
   formInput: {
     borderWidth: 1,
     borderColor: '#E5E7EB',
-    borderRadius: 8,
+    borderRadius: 10,
     paddingHorizontal: 12,
     paddingVertical: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   textArea: {
     height: 80,
@@ -1331,7 +1331,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#E5E7EB',
-    borderRadius: 8,
+    borderRadius: 10,
     paddingHorizontal: 12,
     paddingVertical: 12,
   },
@@ -1369,15 +1369,15 @@ const styles = StyleSheet.create({
   memberName: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
   },
   memberRole: {
     fontSize: 12,
     color: '#6B7280',
   },
   selectedMemberOption: {
-    borderColor: '#3B82F6',
-    backgroundColor: '#EBF4FF',
+    borderColor: '#B8142F',
+    backgroundColor: '#FBEEEE',
   },
   selectedUserDisplay: {
     marginTop: 12,
@@ -1385,11 +1385,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F9FF',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
   },
   selectedUserLabel: {
     fontSize: 12,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '500',
     marginBottom: 8,
   },
@@ -1411,11 +1411,11 @@ const styles = StyleSheet.create({
   },
   periodLabel: {
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
   },
   selectedPeriodOption: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   selectedPeriodLabel: {
     color: 'white',
@@ -1441,7 +1441,7 @@ const styles = StyleSheet.create({
   detailTargetId: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   detailStatusBadge: {
     paddingHorizontal: 12,
@@ -1455,7 +1455,7 @@ const styles = StyleSheet.create({
   },
   detailTargetType: {
     fontSize: 14,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '500',
   },
   detailSection: {
@@ -1472,7 +1472,7 @@ const styles = StyleSheet.create({
   detailSectionTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   achievementStats: {
@@ -1486,7 +1486,7 @@ const styles = StyleSheet.create({
   achievementStatValue: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   achievementStatLabel: {
@@ -1508,7 +1508,7 @@ const styles = StyleSheet.create({
   detailInfoValue: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
   },
   assigneeCard: {
     flexDirection: 'row',

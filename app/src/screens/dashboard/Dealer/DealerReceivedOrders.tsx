@@ -225,12 +225,12 @@ const DealerReceivedOrders = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'draft': return '#F59E0B';
-      case 'approved': return '#10B981';
-      case 'processing': return '#3B82F6';
-      case 'shipped': return '#8B5CF6';
-      case 'delivered': return '#059669';
-      case 'cancelled': return '#EF4444';
+      case 'draft': return '#B45309';
+      case 'approved': return '#15803D';
+      case 'processing': return '#B8142F';
+      case 'shipped': return '#7D0B1E';
+      case 'delivered': return '#15803D';
+      case 'cancelled': return '#B91C1C';
       default: return '#6B7280';
     }
   };
@@ -551,12 +551,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingVertical: 18,
-    backgroundColor: '#10B981',
+    backgroundColor: '#15803D',
     marginHorizontal: 15,
     borderRadius: 14,
     marginTop: 12,
     marginBottom: 12,
-    shadowColor: '#10B981',
+    shadowColor: '#15803D',
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 4
@@ -585,7 +585,7 @@ const styles = StyleSheet.create({
 
   orderCard: {
     backgroundColor: '#fff',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginBottom: 12,
     borderWidth: 1,
@@ -652,7 +652,7 @@ const styles = StyleSheet.create({
   orderDetailValue: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#1F2937'
+    color: '#111827'
   },
 
   // Modal Styles
@@ -717,7 +717,7 @@ const styles = StyleSheet.create({
   },
   detailValue: {
     fontSize: 13,
-    color: '#1F2937',
+    color: '#111827',
     flex: 2,
     textAlign: 'right'
   },
@@ -734,7 +734,7 @@ const styles = StyleSheet.create({
 
   itemCard: {
     backgroundColor: '#F9FAFB',
-    borderRadius: 8,
+    borderRadius: 14,
     padding: 12,
     marginBottom: 8,
     borderWidth: 1,
@@ -748,7 +748,7 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2
   },
   itemCode: {
@@ -758,7 +758,7 @@ const styles = StyleSheet.create({
   },
   itemPrice: {
     fontSize: 12,
-    color: '#059669'
+    color: '#15803D'
   },
   itemQuantity: {
     alignItems: 'flex-end'
@@ -771,7 +771,7 @@ const styles = StyleSheet.create({
   itemTotal: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#10B981'
+    color: '#15803D'
   },
 
   totalRow: {
@@ -789,7 +789,7 @@ const styles = StyleSheet.create({
   totalValue: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#10B981'
+    color: '#15803D'
   },
 });
 

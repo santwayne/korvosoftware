@@ -24,7 +24,7 @@ export const TargetScreen = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Targets</Text>
         <View style={{ width: 40 }} />
@@ -36,7 +36,7 @@ export const TargetScreen = () => {
           <Text style={styles.statLabel}>Total Target</Text>
         </View>
         <View style={styles.statBox}>
-          <Text style={[styles.statValue, { color: '#10B981' }]}>₹156L</Text>
+          <Text style={[styles.statValue, { color: '#15803D' }]}>₹156L</Text>
           <Text style={styles.statLabel}>Achieved</Text>
         </View>
       </View>
@@ -46,13 +46,13 @@ export const TargetScreen = () => {
           <View key={target.id} style={styles.card}>
             <View style={styles.cardHeader}>
               <View style={styles.iconContainer}>
-                <Ionicons name="flag" size={20} color="#8B5CF6" />
+                <Ionicons name="flag" size={20} color="#7D0B1E" />
               </View>
               <View style={styles.cardInfo}>
                 <Text style={styles.cardName}>{target.zone}</Text>
               </View>
               <Text style={[styles.percentageText, {
-                color: target.percentage >= 90 ? '#10B981' : target.percentage >= 70 ? '#F59E0B' : '#EF4444'
+                color: target.percentage >= 90 ? '#15803D' : target.percentage >= 70 ? '#B45309' : '#B91C1C'
               }]}>{target.percentage}%</Text>
             </View>
             <View style={styles.targetDetails}>
@@ -62,13 +62,13 @@ export const TargetScreen = () => {
               </View>
               <View style={styles.targetRow}>
                 <Text style={styles.targetLabel}>Achieved:</Text>
-                <Text style={[styles.targetValue, { color: '#10B981' }]}>{target.achieved}</Text>
+                <Text style={[styles.targetValue, { color: '#15803D' }]}>{target.achieved}</Text>
               </View>
             </View>
             <View style={styles.progressBarContainer}>
               <View style={[styles.progressBar, { 
                 width: `${target.percentage}%`,
-                backgroundColor: target.percentage >= 90 ? '#10B981' : target.percentage >= 70 ? '#F59E0B' : '#EF4444'
+                backgroundColor: target.percentage >= 90 ? '#15803D' : target.percentage >= 70 ? '#B45309' : '#B91C1C'
               }]} />
             </View>
           </View>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   backButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     justifyContent: 'center',
     alignItems: 'center',
@@ -105,13 +105,13 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   filterButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    backgroundColor: '#EFF6FF',
+    borderRadius: 999,
+    backgroundColor: '#FBEEEE',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
   },
   statsContainer: {
     flexDirection: 'row',
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   statLabel: {
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    backgroundColor: '#DBEAFE',
+    backgroundColor: '#FFD2D9',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
   cardName: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   cardSubtext: {
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   badge: {
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 8,
@@ -229,12 +229,12 @@ const styles = StyleSheet.create({
   badgeText: {
     fontSize: 11,
     fontWeight: '600',
-    color: '#3B82F6',
+    color: '#B8142F',
   },
   balance: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   amountContainer: {
     paddingTop: 12,
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
   amount: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     textAlign: 'right',
   },
   cardDetails: {
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
   detailValue: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   percentageText: {
     fontSize: 16,
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
   targetValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   progressBarContainer: {
     height: 8,
@@ -328,7 +328,7 @@ const styles = StyleSheet.create({
   summaryValue: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   summaryDivider: {
     width: 1,
@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
   monthText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   growthBadge: {
     flexDirection: 'row',
@@ -381,6 +381,6 @@ const styles = StyleSheet.create({
   salesItemValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
 });

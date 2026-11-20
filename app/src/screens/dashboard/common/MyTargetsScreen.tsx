@@ -82,10 +82,10 @@ const MyTargetsScreen = () => {
   };
 
   const getAchievementColor = (percentage: number) => {
-    if (percentage >= 100) return '#10B981'; // Green
-    if (percentage >= 75) return '#F59E0B'; // Yellow
+    if (percentage >= 100) return '#15803D'; // Green
+    if (percentage >= 75) return '#B45309'; // Yellow
     if (percentage >= 50) return '#F97316'; // Orange
-    return '#EF4444'; // Red
+    return '#B91C1C'; // Red
   };
 
   const getAchievementIcon = (percentage: number) => {
@@ -196,10 +196,10 @@ const MyTargetsScreen = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'active': return '#10B981';
-      case 'completed': return '#3B82F6';
-      case 'paused': return '#F59E0B';
-      case 'cancelled': return '#EF4444';
+      case 'active': return '#15803D';
+      case 'completed': return '#B8142F';
+      case 'paused': return '#B45309';
+      case 'cancelled': return '#B91C1C';
       default: return '#6B7280';
     }
   };
@@ -236,7 +236,7 @@ const MyTargetsScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#077BC3" />
+        <ActivityIndicator size="large" color="#A3122A" />
         <Text style={styles.loadingText}>Loading targets...</Text>
       </View>
     );
@@ -247,7 +247,7 @@ const MyTargetsScreen = () => {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>My Targets</Text>
         <TouchableOpacity onPress={fetchTargets}>
-          <Ionicons name="refresh" size={24} color="#077BC3" />
+          <Ionicons name="refresh" size={24} color="#A3122A" />
         </TouchableOpacity>
       </View>
 
@@ -266,7 +266,7 @@ const MyTargetsScreen = () => {
             myTargets.map(target => renderTargetCard(target, false))
           ) : (
             <View style={styles.emptyState}>
-              <Ionicons name="flag" size={48} color="#9CA3AF" />
+              <Ionicons name="flag" size={48} color="#6B7280" />
               <Text style={styles.emptyStateText}>No targets assigned to you</Text>
             </View>
           )}
@@ -325,11 +325,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 8,
     paddingHorizontal: 16,
-    borderRadius: 6,
+    borderRadius: 999,
     alignItems: 'center',
   },
   selectedPeriodButton: {
-    backgroundColor: '#077BC3',
+    backgroundColor: '#A3122A',
   },
   periodButtonText: {
     fontSize: 14,
@@ -456,7 +456,7 @@ const styles = StyleSheet.create({
   },
   assignedDate: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   statusContainer: {
     alignItems: 'flex-end',

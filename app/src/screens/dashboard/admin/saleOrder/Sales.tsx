@@ -88,20 +88,20 @@ const Sales = () => {
       case 'approved':
       case 'confirmed':
       case 'delivered':
-        return <MaterialIcons name="check-box" size={18} color="#10B981" />;
+        return <MaterialIcons name="check-box" size={18} color="#15803D" />;
       case 'cancelled':
       case 'returned':
-        return <MaterialIcons name="cancel" size={18} color="#EF4444" />;
+        return <MaterialIcons name="cancel" size={18} color="#B91C1C" />;
       case 'pending_approval':
       case 'draft':
       case 'pending':
-        return <MaterialIcons name="schedule" size={18} color="#F59E0B" />;
+        return <MaterialIcons name="schedule" size={18} color="#B45309" />;
       case 'sent_to_tally':
       case 'processing':
-        return <MaterialIcons name="settings" size={18} color="#3B82F6" />;
+        return <MaterialIcons name="settings" size={18} color="#B8142F" />;
       case 'dispatched':
       case 'shipped':
-        return <MaterialIcons name="local-shipping" size={18} color="#8B5CF6" />;
+        return <MaterialIcons name="local-shipping" size={18} color="#7D0B1E" />;
       default:
         return <MaterialIcons name="check-box-outline-blank" size={18} color="#6B7280" />;
     }
@@ -112,20 +112,20 @@ const Sales = () => {
       case 'approved':
       case 'confirmed':
       case 'delivered':
-        return '#10B981';
+        return '#15803D';
       case 'cancelled':
       case 'returned':
-        return '#EF4444';
+        return '#B91C1C';
       case 'pending_approval':
       case 'draft':
       case 'pending':
-        return '#F59E0B';
+        return '#B45309';
       case 'sent_to_tally':
       case 'processing':
-        return '#3B82F6';
+        return '#B8142F';
       case 'dispatched':
       case 'shipped':
-        return '#8B5CF6';
+        return '#7D0B1E';
       default:
         return '#6B7280';
     }
@@ -147,10 +147,10 @@ const Sales = () => {
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'urgent': return '#EF4444';
-      case 'high': return '#F59E0B';
-      case 'medium': return '#3B82F6';
-      case 'low': return '#10B981';
+      case 'urgent': return '#B91C1C';
+      case 'high': return '#B45309';
+      case 'medium': return '#B8142F';
+      case 'low': return '#15803D';
       default: return '#6B7280';
     }
   };
@@ -188,7 +188,7 @@ const Sales = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading sales data...</Text>
       </View>
     );
@@ -224,27 +224,27 @@ const Sales = () => {
                 title="Total Orders"
                 value={stats.totalOrders}
                 icon="document-text"
-                color="#3B82F6"
+                color="#B8142F"
                 onPress={() => setFilter('All')}
               />
               <StatCard
                 title="Total Revenue"
                 value={`₹${stats.totalAmount.toLocaleString()}`}
                 icon="trending-up"
-                color="#10B981"
+                color="#15803D"
               />
               <StatCard
                 title="Pending"
                 value={stats.pendingOrders}
                 icon="time"
-                color="#F59E0B"
+                color="#B45309"
                 onPress={() => setFilter('pending')}
               />
               <StatCard
                 title="Delivered"
                 value={stats.deliveredOrders}
                 icon="checkmark-circle"
-                color="#059669"
+                color="#15803D"
                 onPress={() => setFilter('delivered')}
               />
             </View>
@@ -287,7 +287,7 @@ const Sales = () => {
               }}
             >
               <Text style={styles.viewAllText}>View All</Text>
-              <Ionicons name="chevron-forward" size={16} color="#3B82F6" />
+              <Ionicons name="chevron-forward" size={16} color="#B8142F" />
             </TouchableOpacity>
           </View>
 
@@ -326,7 +326,7 @@ const Sales = () => {
             </View>
           ) : (
             <View style={styles.emptyState}>
-              <Ionicons name="document-outline" size={48} color="#9CA3AF" />
+              <Ionicons name="document-outline" size={48} color="#6B7280" />
               <Text style={styles.emptyStateText}>
                 {filter === 'All' ? 'No orders found' : `No ${filter} orders found`}
               </Text>
@@ -361,7 +361,7 @@ const styles = StyleSheet.create({
     color: '#6B7280',
   },
   header: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingTop: 50,
     paddingBottom: 16,
     paddingHorizontal: 20,
@@ -386,7 +386,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   statsGrid: {
@@ -423,7 +423,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   statTitle: {
     fontSize: 12,
@@ -442,14 +442,14 @@ const styles = StyleSheet.create({
   filterButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     borderWidth: 1,
     borderColor: '#D1D5DB',
   },
   activeFilterButton: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   filterButtonText: {
     fontSize: 14,
@@ -476,7 +476,7 @@ const styles = StyleSheet.create({
   },
   viewAllText: {
     fontSize: 14,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '600',
   },
   ordersList: {
@@ -507,7 +507,7 @@ const styles = StyleSheet.create({
   customerName: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   orderNumber: {
@@ -538,7 +538,7 @@ const styles = StyleSheet.create({
   amountText: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#059669',
+    color: '#15803D',
     marginBottom: 2,
   },
   dateText: {

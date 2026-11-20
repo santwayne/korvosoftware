@@ -144,7 +144,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                                 color="#6B7280" 
                             />
                             {isSwitchingCompany && (
-                                <ActivityIndicator size="small" color="#0493D2" style={styles.switchLoader} />
+                                <ActivityIndicator size="small" color="#B8142F" style={styles.switchLoader} />
                             )}
                         </TouchableOpacity>
                     )}
@@ -217,10 +217,10 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                                         </Text>
                                     </View>
                                     {isCurrentCompany && (
-                                        <Ionicons name="checkmark-circle" size={20} color="#10B981" />
+                                        <Ionicons name="checkmark-circle" size={20} color="#15803D" />
                                     )}
                                     {isSwitchingCompany && !isCurrentCompany && (
-                                        <ActivityIndicator size="small" color="#0493D2" />
+                                        <ActivityIndicator size="small" color="#B8142F" />
                                     )}
                                 </TouchableOpacity>
                             );
@@ -247,7 +247,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                             style={[styles.menuDropdownItem, styles.menuDropdownItemLast]}
                             onPress={handleLogout}
                         >
-                            <Ionicons name="log-out-outline" size={20} color="#EF4444" />
+                            <Ionicons name="log-out-outline" size={20} color="#B91C1C" />
                             <Text style={[styles.menuDropdownText, styles.logoutText]}>
                                 Logout
                             </Text>
@@ -266,7 +266,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                 <View style={styles.modalOverlay}>
                     <View style={styles.modalContent}>
                         <View style={styles.modalIcon}>
-                            <Ionicons name="log-out-outline" size={32} color="#EF4444" />
+                            <Ionicons name="log-out-outline" size={32} color="#B91C1C" />
                         </View>
                         <Text style={styles.modalTitle}>Confirm Logout</Text>
                         <Text style={styles.modalMessage}>
@@ -332,7 +332,7 @@ const styles = StyleSheet.create({
         width: 44,
         height: 44,
         borderRadius: 22,
-        backgroundColor: '#0493D2',
+        backgroundColor: '#B8142F',
         justifyContent: 'center',
         alignItems: 'center',
         shadowColor: '#000',
@@ -351,14 +351,14 @@ const styles = StyleSheet.create({
         width: 12,
         height: 12,
         borderRadius: 6,
-        backgroundColor: '#10B981',
+        backgroundColor: '#15803D',
         borderWidth: 2,
         borderColor: '#FFFFFF',
     },
     headerTitle: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#1F2937',
+        color: '#111827',
         maxWidth: 120,
     },
     headerSubtitle: {
@@ -376,7 +376,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#F3F4F6',
-        borderRadius: 8,
+        borderRadius: 999,
         paddingHorizontal: 8,
         paddingVertical: 6,
         maxWidth: 100,
@@ -388,7 +388,7 @@ const styles = StyleSheet.create({
     companyName: {
         fontSize: 10,
         fontWeight: '600',
-        color: '#1F2937',
+        color: '#111827',
     },
     companyCode: {
         fontSize: 8,
@@ -404,14 +404,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F3F4F6',
-        borderRadius: 8,
+        borderRadius: 999,
         position: 'relative',
     },
     notificationBadge: {
         position: 'absolute',
         top: 6,
         right: 6,
-        backgroundColor: '#EF4444',
+        backgroundColor: '#B91C1C',
         borderRadius: 10,
         minWidth: 18,
         height: 18,
@@ -432,7 +432,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F3F4F6',
-        borderRadius: 8,
+        borderRadius: 999,
     },
     companyDropdownContainer: {
         position: 'absolute',
@@ -453,7 +453,7 @@ const styles = StyleSheet.create({
     companyDropdownTitle: {
         fontSize: 14,
         fontWeight: '600',
-        color: '#1F2937',
+        color: '#111827',
         paddingHorizontal: 16,
         paddingVertical: 12,
         textAlign: 'center',
@@ -488,7 +488,7 @@ const styles = StyleSheet.create({
         marginTop: 2,
     },
     currentCompanyText: {
-        color: '#10B981',
+        color: '#15803D',
         fontWeight: '600',
     },
     menuDropdownContainer: {
@@ -528,7 +528,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
     logoutText: {
-        color: '#EF4444',
+        color: '#B91C1C',
     },
     backdrop: {
         position: 'absolute',
@@ -565,7 +565,7 @@ const styles = StyleSheet.create({
     modalTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#1F2937',
+        color: '#111827',
         marginBottom: 8,
     },
     modalMessage: {
@@ -584,7 +584,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F3F4F6',
         paddingVertical: 12,
-        borderRadius: 10,
+        borderRadius: 999,
         alignItems: 'center',
     },
     cancelButtonText: {
@@ -594,9 +594,9 @@ const styles = StyleSheet.create({
     },
     logoutButton: {
         flex: 1,
-        backgroundColor: '#EF4444',
+        backgroundColor: '#B91C1C',
         paddingVertical: 12,
-        borderRadius: 10,
+        borderRadius: 999,
         alignItems: 'center',
     },
     logoutButtonText: {

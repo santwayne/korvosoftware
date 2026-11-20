@@ -83,9 +83,9 @@ const SalesReportScreen = () => {
 
   const getRoleColor = (role: string) => {
     const colors: { [key: string]: string } = {
-      'asm': '#F59E0B',
-      'salesman': '#EF4444',
-      'dealers': '#8B5CF6',
+      'asm': '#B45309',
+      'salesman': '#B91C1C',
+      'dealers': '#7D0B1E',
       'distibutors': '#06B6D4',
       'subdealer': '#84CC16',
     };
@@ -158,7 +158,7 @@ const SalesReportScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading sales report...</Text>
       </View>
     );
@@ -172,11 +172,11 @@ const SalesReportScreen = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Sales Report</Text>
         <TouchableOpacity style={styles.shareButton}>
-          <Ionicons name="share-outline" size={24} color="#3B82F6" />
+          <Ionicons name="share-outline" size={24} color="#B8142F" />
         </TouchableOpacity>
       </View>
 
@@ -220,25 +220,25 @@ const SalesReportScreen = () => {
               'Total Sales',
               `₹${salesData?.totalSales?.toLocaleString() || '0'}`,
               'trending-up',
-              '#10B981'
+              '#15803D'
             )}
             {renderStatCard(
               'Total Orders',
               `${salesData?.totalOrders || 0}`,
               'list',
-              '#3B82F6'
+              '#B8142F'
             )}
             {renderStatCard(
               'Avg Order Value',
               `₹${salesData?.averageOrderValue?.toLocaleString() || '0'}`,
               'calculator',
-              '#F59E0B'
+              '#B45309'
             )}
             {renderStatCard(
               'Conversion Rate',
               '78%',
               'checkmark-circle',
-              '#8B5CF6'
+              '#7D0B1E'
             )}
           </View>
         </View>
@@ -277,7 +277,7 @@ const SalesReportScreen = () => {
                         styles.trendBarFill,
                         {
                           height: `${Math.min((month.sales / Math.max(...salesData.monthlyTrend.map(m => m.sales))) * 100, 100)}%`,
-                          backgroundColor: '#3B82F6'
+                          backgroundColor: '#B8142F'
                         }
                       ]}
                     />
@@ -294,19 +294,19 @@ const SalesReportScreen = () => {
           <Text style={styles.sectionTitle}>Summary</Text>
           <View style={styles.summaryCard}>
             <View style={styles.summaryItem}>
-              <Ionicons name="trending-up" size={20} color="#10B981" />
+              <Ionicons name="trending-up" size={20} color="#15803D" />
               <Text style={styles.summaryText}>
                 Sales increased by 15% compared to last {selectedPeriod}
               </Text>
             </View>
             <View style={styles.summaryItem}>
-              <Ionicons name="people" size={20} color="#3B82F6" />
+              <Ionicons name="people" size={20} color="#B8142F" />
               <Text style={styles.summaryText}>
                 {salesData?.topPerformers?.length || 0} top performers identified
               </Text>
             </View>
             <View style={styles.summaryItem}>
-              <Ionicons name="flag-outline" size={20} color="#F59E0B" />
+              <Ionicons name="flag-outline" size={20} color="#B45309" />
               <Text style={styles.summaryText}>
                 Target achievement: 78% for current period
               </Text>
@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   shareButton: {
     padding: 8,
@@ -367,12 +367,12 @@ const styles = StyleSheet.create({
   periodButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 999,
     marginRight: 8,
     backgroundColor: '#F3F4F6',
   },
   selectedPeriodButton: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
   },
   periodButtonText: {
     fontSize: 14,
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   statsGrid: {
@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
   statCard: {
     width: (width - 60) / 2,
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginBottom: 12,
     borderLeftWidth: 4,
@@ -423,7 +423,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
   },
   performersContainer: {
     backgroundColor: 'white',
@@ -443,7 +443,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -459,7 +459,7 @@ const styles = StyleSheet.create({
   performerName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   performerRole: {
     fontSize: 14,
@@ -472,7 +472,7 @@ const styles = StyleSheet.create({
   performerSales: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#10B981',
+    color: '#15803D',
   },
   performerOrders: {
     fontSize: 12,
@@ -505,7 +505,7 @@ const styles = StyleSheet.create({
   roleName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   roleCount: {
     fontSize: 14,
@@ -522,7 +522,7 @@ const styles = StyleSheet.create({
   roleStatValue: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   roleStatLabel: {
     fontSize: 12,
@@ -567,7 +567,7 @@ const styles = StyleSheet.create({
   },
   summaryCard: {
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     borderWidth: 1,
     borderColor: '#E5E7EB',

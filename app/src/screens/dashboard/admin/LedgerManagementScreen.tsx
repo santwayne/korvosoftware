@@ -194,10 +194,10 @@ const LedgerManagementScreen = () => {
 
   const getAccountTypeColor = (accountType: string) => {
     switch (accountType) {
-      case 'receivable': return '#10B981';
-      case 'payable': return '#F59E0B';
-      case 'advance': return '#3B82F6';
-      case 'deposit': return '#8B5CF6';
+      case 'receivable': return '#15803D';
+      case 'payable': return '#B45309';
+      case 'advance': return '#B8142F';
+      case 'deposit': return '#7D0B1E';
       default: return '#6B7280';
     }
   };
@@ -205,9 +205,9 @@ const LedgerManagementScreen = () => {
   const getBalanceColor = (balance: number, accountType: string) => {
     if (balance === 0) return '#6B7280';
     if (accountType === 'receivable') {
-      return balance > 0 ? '#10B981' : '#EF4444';
+      return balance > 0 ? '#15803D' : '#B91C1C';
     } else {
-      return balance > 0 ? '#EF4444' : '#10B981';
+      return balance > 0 ? '#B91C1C' : '#15803D';
     }
   };
 
@@ -228,7 +228,7 @@ const LedgerManagementScreen = () => {
           <View style={[styles.accountTypeBadge, { backgroundColor: getAccountTypeColor(item.accountType) }]}>
             <Text style={styles.accountTypeText}>{item.accountType}</Text>
           </View>
-          <View style={[styles.statusBadge, { backgroundColor: item.status === 'active' ? '#10B981' : '#6B7280' }]}>
+          <View style={[styles.statusBadge, { backgroundColor: item.status === 'active' ? '#15803D' : '#6B7280' }]}>
             <Text style={styles.statusText}>{item.status}</Text>
           </View>
         </View>
@@ -271,7 +271,7 @@ const LedgerManagementScreen = () => {
 
       <View style={styles.cardFooter}>
         <TouchableOpacity style={styles.viewButton}>
-          <Ionicons name="eye" size={16} color="#077BC3" />
+          <Ionicons name="eye" size={16} color="#A3122A" />
           <Text style={styles.viewButtonText}>View Details</Text>
         </TouchableOpacity>
         <Text style={styles.createdBy}>Created by {item.createdBy.name}</Text>
@@ -293,7 +293,7 @@ const LedgerManagementScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#077BC3" />
+        <ActivityIndicator size="large" color="#A3122A" />
         <Text style={styles.loadingText}>Loading ledgers...</Text>
       </View>
     );
@@ -318,25 +318,25 @@ const LedgerManagementScreen = () => {
               <Text style={styles.summaryLabel}>Total Ledgers</Text>
             </View>
             <View style={styles.summaryCard}>
-              <Text style={[styles.summaryValue, { color: '#10B981' }]}>
+              <Text style={[styles.summaryValue, { color: '#15803D' }]}>
                 ₹{summary.totalReceivable.toLocaleString()}
               </Text>
               <Text style={styles.summaryLabel}>Receivable</Text>
             </View>
             <View style={styles.summaryCard}>
-              <Text style={[styles.summaryValue, { color: '#F59E0B' }]}>
+              <Text style={[styles.summaryValue, { color: '#B45309' }]}>
                 ₹{summary.totalPayable.toLocaleString()}
               </Text>
               <Text style={styles.summaryLabel}>Payable</Text>
             </View>
             <View style={styles.summaryCard}>
-              <Text style={[styles.summaryValue, { color: '#3B82F6' }]}>
+              <Text style={[styles.summaryValue, { color: '#B8142F' }]}>
                 ₹{summary.totalDebitBalance.toLocaleString()}
               </Text>
               <Text style={styles.summaryLabel}>Debit Balance</Text>
             </View>
             <View style={styles.summaryCard}>
-              <Text style={[styles.summaryValue, { color: '#8B5CF6' }]}>
+              <Text style={[styles.summaryValue, { color: '#7D0B1E' }]}>
                 ₹{summary.totalCreditBalance.toLocaleString()}
               </Text>
               <Text style={styles.summaryLabel}>Credit Balance</Text>
@@ -390,7 +390,7 @@ const LedgerManagementScreen = () => {
         contentContainerStyle={styles.ledgersList}
         ListEmptyComponent={
           <View style={styles.emptyState}>
-            <Ionicons name="book" size={48} color="#9CA3AF" />
+            <Ionicons name="book" size={48} color="#6B7280" />
             <Text style={styles.emptyStateText}>No ledgers found</Text>
             <Text style={styles.emptyStateSubtext}>
               {filter === 'all' ? 'No ledgers found' : `No ${filter} ledgers found`}
@@ -417,7 +417,7 @@ const LedgerManagementScreen = () => {
             <View style={styles.formGroup}>
               <Text style={styles.formLabel}>Select Party *</Text>
               {loadingUsers ? (
-                <ActivityIndicator size="small" color="#077BC3" />
+                <ActivityIndicator size="small" color="#A3122A" />
               ) : (
                 <ScrollView style={styles.userList} nestedScrollEnabled>
                   {availableUsers.map((user) => (
@@ -696,7 +696,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9FAFB',
     padding: 16,
     marginHorizontal: 8,
-    borderRadius: 12,
+    borderRadius: 14,
     alignItems: 'center',
     minWidth: 120,
   },
@@ -721,11 +721,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     marginHorizontal: 4,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
   },
   activeFilterButton: {
-    backgroundColor: '#077BC3',
+    backgroundColor: '#A3122A',
   },
   filterButtonText: {
     fontSize: 14,
@@ -754,10 +754,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#077BC3',
+    backgroundColor: '#A3122A',
     margin: 16,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   createButtonText: {
     color: '#fff',
@@ -886,7 +886,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   viewButtonText: {
-    color: '#077BC3',
+    color: '#A3122A',
     fontSize: 14,
     fontWeight: '500',
     marginLeft: 4,
@@ -908,7 +908,7 @@ const styles = StyleSheet.create({
   },
   emptyStateSubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
   modalContainer: {
@@ -944,7 +944,7 @@ const styles = StyleSheet.create({
   formInput: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
     color: '#111827',
@@ -966,7 +966,7 @@ const styles = StyleSheet.create({
   },
   selectedUserItem: {
     backgroundColor: '#EBF8FF',
-    borderColor: '#077BC3',
+    borderColor: '#A3122A',
   },
   userName: {
     fontSize: 16,
@@ -980,7 +980,7 @@ const styles = StyleSheet.create({
   },
   userRole: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 2,
   },
   radioGroup: {
@@ -996,8 +996,8 @@ const styles = StyleSheet.create({
     borderColor: '#D1D5DB',
   },
   selectedRadioOption: {
-    backgroundColor: '#077BC3',
-    borderColor: '#077BC3',
+    backgroundColor: '#A3122A',
+    borderColor: '#A3122A',
   },
   radioText: {
     fontSize: 14,
@@ -1016,7 +1016,7 @@ const styles = StyleSheet.create({
   cancelButton: {
     flex: 1,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     alignItems: 'center',

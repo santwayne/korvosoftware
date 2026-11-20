@@ -169,7 +169,7 @@ const DealersListScreen = () => {
   const getInitials = (name: string) =>
     name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
 
-  const AVATAR_COLORS = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444', '#0EA5E9', '#F97316'];
+  const AVATAR_COLORS = ['#B8142F', '#7D0B1E', '#15803D', '#B45309', '#B91C1C', '#0EA5E9', '#F97316'];
   const getAvatarColor = (name: string) =>
     AVATAR_COLORS[name.charCodeAt(0) % AVATAR_COLORS.length];
 
@@ -193,9 +193,9 @@ const DealersListScreen = () => {
                   <Text style={[styles.badgeText, { color: '#065F46' }]}>Created by Me</Text>
                 </View>
               ) : (
-                <View style={[styles.badge, { backgroundColor: '#DBEAFE' }]}>
-                  <Ionicons name="shield-checkmark-outline" size={10} color="#1E40AF" />
-                  <Text style={[styles.badgeText, { color: '#1E40AF' }]}>Assigned by Admin</Text>
+                <View style={[styles.badge, { backgroundColor: '#FFD2D9' }]}>
+                  <Ionicons name="shield-checkmark-outline" size={10} color="#7D0B1E" />
+                  <Text style={[styles.badgeText, { color: '#7D0B1E' }]}>Assigned by Admin</Text>
                 </View>
               )}
               {!item.isActive && (
@@ -208,10 +208,10 @@ const DealersListScreen = () => {
           {isCreatedByUser && (
             <View style={styles.actionRow}>
               <TouchableOpacity style={styles.editBtn} onPress={() => handleEdit(item)}>
-                <Ionicons name="pencil-outline" size={16} color="#3B82F6" />
+                <Ionicons name="pencil-outline" size={16} color="#B8142F" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.deleteBtn} onPress={() => handleDelete(item)}>
-                <Ionicons name="trash-outline" size={16} color="#EF4444" />
+                <Ionicons name="trash-outline" size={16} color="#B91C1C" />
               </TouchableOpacity>
             </View>
           )}
@@ -225,15 +225,15 @@ const DealersListScreen = () => {
           {item.LedgerMobile && (
             <View style={styles.detailChip}>
               <View style={[styles.detailIcon, { backgroundColor: '#ECFDF5' }]}>
-                <Ionicons name="call-outline" size={13} color="#10B981" />
+                <Ionicons name="call-outline" size={13} color="#15803D" />
               </View>
               <Text style={styles.detailText} numberOfLines={1}>{item.LedgerMobile}</Text>
             </View>
           )}
           {item.Email && (
             <View style={styles.detailChip}>
-              <View style={[styles.detailIcon, { backgroundColor: '#EFF6FF' }]}>
-                <Ionicons name="mail-outline" size={13} color="#3B82F6" />
+              <View style={[styles.detailIcon, { backgroundColor: '#FBEEEE' }]}>
+                <Ionicons name="mail-outline" size={13} color="#B8142F" />
               </View>
               <Text style={styles.detailText} numberOfLines={1}>{item.Email}</Text>
             </View>
@@ -241,7 +241,7 @@ const DealersListScreen = () => {
           {item.LedgerState && (
             <View style={styles.detailChip}>
               <View style={[styles.detailIcon, { backgroundColor: '#FEF3C7' }]}>
-                <Ionicons name="location-outline" size={13} color="#F59E0B" />
+                <Ionicons name="location-outline" size={13} color="#B45309" />
               </View>
               <Text style={styles.detailText} numberOfLines={1}>{item.LedgerState}</Text>
             </View>
@@ -249,7 +249,7 @@ const DealersListScreen = () => {
           {getGroupName(item) && (
             <View style={styles.detailChip}>
               <View style={[styles.detailIcon, { backgroundColor: '#F3E8FF' }]}>
-                <Ionicons name="folder-outline" size={13} color="#8B5CF6" />
+                <Ionicons name="folder-outline" size={13} color="#7D0B1E" />
               </View>
               <Text style={styles.detailText} numberOfLines={1}>{getGroupName(item)}</Text>
             </View>
@@ -263,24 +263,24 @@ const DealersListScreen = () => {
     <>
       {/* Search */}
       <View style={styles.searchBar}>
-        <Ionicons name="search" size={18} color="#9CA3AF" />
+        <Ionicons name="search" size={18} color="#6B7280" />
         <TextInput
           style={styles.searchInput}
           placeholder="Search by name, email, or phone..."
           value={searchText}
           onChangeText={setSearchText}
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#6B7280"
         />
         {searchText.length > 0 && (
           <TouchableOpacity onPress={() => setSearchText('')}>
-            <Ionicons name="close-circle" size={18} color="#9CA3AF" />
+            <Ionicons name="close-circle" size={18} color="#6B7280" />
           </TouchableOpacity>
         )}
       </View>
 
       {/* Info Banner */}
       <View style={styles.infoBanner}>
-        <Ionicons name="information-circle-outline" size={18} color="#2563EB" />
+        <Ionicons name="information-circle-outline" size={18} color="#A3122A" />
         <Text style={styles.infoText}>
           You can see dealers assigned by admin and create your own. You can only edit or delete dealers you created.
         </Text>
@@ -289,22 +289,22 @@ const DealersListScreen = () => {
       {/* Stats Strip */}
       <View style={styles.statsStrip}>
         <View style={styles.statItem}>
-          <View style={[styles.statIconBox, { backgroundColor: '#EFF6FF' }]}>
-            <Ionicons name="storefront-outline" size={20} color="#3B82F6" />
+          <View style={[styles.statIconBox, { backgroundColor: '#FBEEEE' }]}>
+            <Ionicons name="storefront-outline" size={20} color="#B8142F" />
           </View>
           <Text style={styles.statValue}>{filteredDealers.length}</Text>
           <Text style={styles.statLabel}>Total</Text>
         </View>
         <View style={[styles.statItem, styles.statBorder]}>
           <View style={[styles.statIconBox, { backgroundColor: '#ECFDF5' }]}>
-            <Ionicons name="person-outline" size={20} color="#10B981" />
+            <Ionicons name="person-outline" size={20} color="#15803D" />
           </View>
           <Text style={styles.statValue}>{myDealersCount}</Text>
           <Text style={styles.statLabel}>Created by Me</Text>
         </View>
         <View style={[styles.statItem, styles.statBorder]}>
-          <View style={[styles.statIconBox, { backgroundColor: '#EDE9FE' }]}>
-            <Ionicons name="shield-checkmark-outline" size={20} color="#8B5CF6" />
+          <View style={[styles.statIconBox, { backgroundColor: '#FBEEEE' }]}>
+            <Ionicons name="shield-checkmark-outline" size={20} color="#7D0B1E" />
           </View>
           <Text style={styles.statValue}>{assignedCount}</Text>
           <Text style={styles.statLabel}>Assigned</Text>
@@ -337,7 +337,7 @@ const DealersListScreen = () => {
 
       {loading && !refreshing ? (
         <View style={styles.loadingBox}>
-          <ActivityIndicator size="large" color="#2563EB" />
+          <ActivityIndicator size="large" color="#A3122A" />
           <Text style={styles.loadingText}>Loading dealers...</Text>
         </View>
       ) : (
@@ -386,7 +386,7 @@ const DealersListScreen = () => {
         <View style={styles.deleteOverlay}>
           <View style={styles.deleteModal}>
             <View style={styles.deleteIconBox}>
-              <Ionicons name="trash-outline" size={28} color="#EF4444" />
+              <Ionicons name="trash-outline" size={28} color="#B91C1C" />
             </View>
             <Text style={styles.deleteTitle}>
               {deleteTarget?.isActive ? 'Deactivate Dealer' : 'Delete Dealer'}
@@ -424,7 +424,7 @@ const DealersListScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#ecf0fe' },
+  container: { flex: 1, backgroundColor: '#FBEEEE' },
 
   // Header
   header: {
@@ -444,7 +444,7 @@ const styles = StyleSheet.create({
   backBtn: {
     width: 38,
     height: 38,
-    borderRadius: 19,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     justifyContent: 'center',
     alignItems: 'center',
@@ -460,14 +460,14 @@ const styles = StyleSheet.create({
   },
   headerSub: {
     fontSize: 11,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 1,
   },
   addBtn: {
     width: 38,
     height: 38,
-    borderRadius: 19,
-    backgroundColor: '#2563EB',
+    borderRadius: 999,
+    backgroundColor: '#A3122A',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -498,15 +498,15 @@ const styles = StyleSheet.create({
   infoBanner: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     borderRadius: 12,
     padding: 12,
     marginBottom: 14,
     gap: 8,
     borderWidth: 1,
-    borderColor: '#BFDBFE',
+    borderColor: '#FFD2D9',
   },
-  infoText: { flex: 1, fontSize: 12, color: '#1E40AF', lineHeight: 18 },
+  infoText: { flex: 1, fontSize: 12, color: '#7D0B1E', lineHeight: 18 },
 
   // Stats Strip
   statsStrip: {
@@ -533,7 +533,7 @@ const styles = StyleSheet.create({
   statValue: { fontSize: 20, fontWeight: 'bold', color: '#111827' },
   statLabel: { fontSize: 10, color: '#6B7280', fontWeight: '600', textAlign: 'center' },
 
-  listCount: { fontSize: 12, color: '#9CA3AF', marginBottom: 10, fontWeight: '500' },
+  listCount: { fontSize: 12, color: '#6B7280', marginBottom: 10, fontWeight: '500' },
 
   // Dealer Card
   dealerCard: {
@@ -583,15 +583,15 @@ const styles = StyleSheet.create({
   editBtn: {
     width: 32,
     height: 32,
-    borderRadius: 8,
-    backgroundColor: '#EFF6FF',
+    borderRadius: 999,
+    backgroundColor: '#FBEEEE',
     justifyContent: 'center',
     alignItems: 'center',
   },
   deleteBtn: {
     width: 32,
     height: 32,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#FEF2F2',
     justifyContent: 'center',
     alignItems: 'center',
@@ -627,7 +627,7 @@ const styles = StyleSheet.create({
   deleteTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 10,
   },
   deleteMessage: {
@@ -649,7 +649,7 @@ const styles = StyleSheet.create({
   deleteCancelBtn: {
     flex: 1,
     height: 46,
-    borderRadius: 12,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     justifyContent: 'center',
     alignItems: 'center',
@@ -662,8 +662,8 @@ const styles = StyleSheet.create({
   deleteConfirmBtn: {
     flex: 1,
     height: 46,
-    borderRadius: 12,
-    backgroundColor: '#EF4444',
+    borderRadius: 999,
+    backgroundColor: '#B91C1C',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -698,14 +698,14 @@ const styles = StyleSheet.create({
   // Empty State
   emptyBox: { alignItems: 'center', paddingVertical: 60 },
   emptyTitle: { fontSize: 18, fontWeight: '600', color: '#6B7280', marginTop: 16 },
-  emptySub: { fontSize: 13, color: '#9CA3AF', marginTop: 6, textAlign: 'center' },
+  emptySub: { fontSize: 13, color: '#6B7280', marginTop: 6, textAlign: 'center' },
   emptyCreateBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#2563EB',
+    backgroundColor: '#A3122A',
     paddingHorizontal: 24,
     paddingVertical: 12,
-    borderRadius: 10,
+    borderRadius: 999,
     marginTop: 24,
     gap: 8,
   },

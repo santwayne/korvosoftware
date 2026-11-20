@@ -93,7 +93,7 @@ const OTPVerification: React.FC<Props> = ({ navigation, route }) => {
           maxLength={6}
           autoCapitalize="none"
           autoCorrect={false}
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#6B7280"
         />
 
         <Text style={styles.hintText}>
@@ -159,13 +159,13 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginBottom: 32,
     lineHeight: 20,
   },
   emailOrPhone: {
     fontWeight: '600',
-    color: '#077BC3',
+    color: '#A3122A',
   },
   label: {
     fontSize: 14,
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     paddingHorizontal: 16,
     paddingVertical: 16,
     marginBottom: 8,
@@ -188,17 +188,17 @@ const styles = StyleSheet.create({
   },
   hintText: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginBottom: 24,
     textAlign: 'center',
   },
   otpHint: {
     fontWeight: '700',
-    color: '#077BC3',
+    color: '#A3122A',
   },
   verifyButton: {
-    backgroundColor: '#077BC3',
-    borderRadius: 8,
+    backgroundColor: '#A3122A',
+    borderRadius: 999,
     paddingVertical: 16,
     marginBottom: 16,
     marginTop: 8,
@@ -218,16 +218,16 @@ const styles = StyleSheet.create({
   },
   resendText: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   resendButton: {
     fontSize: 14,
-    color: '#077BC3',
+    color: '#A3122A',
     fontWeight: '600',
   },
   timerText: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     fontWeight: '600',
   },
   backButton: {
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   backButtonText: {
-    color: '#077BC3',
+    color: '#A3122A',
     textAlign: 'center',
     fontWeight: '600',
     fontSize: 14,

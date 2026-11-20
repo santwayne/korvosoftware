@@ -142,11 +142,11 @@ const SalesScreen = () => {
 
   const getVchtypeColor = (type: string) => {
     switch ((type || '').toLowerCase()) {
-      case 'sales': return '#10B981';
-      case 'purchase': return '#F59E0B';
-      case 'receipt': return '#3B82F6';
-      case 'payment': return '#EF4444';
-      case 'journal': return '#8B5CF6';
+      case 'sales': return '#15803D';
+      case 'purchase': return '#B45309';
+      case 'receipt': return '#B8142F';
+      case 'payment': return '#B91C1C';
+      case 'journal': return '#7D0B1E';
       default: return '#6B7280';
     }
   };
@@ -222,18 +222,18 @@ const SalesScreen = () => {
 
       {/* Search */}
       <View style={styles.searchRow}>
-        <Ionicons name="search-outline" size={18} color="#9CA3AF" style={styles.searchIcon} />
+        <Ionicons name="search-outline" size={18} color="#6B7280" style={styles.searchIcon} />
         <TextInput
           style={styles.searchInput}
           placeholder="Search invoice or party..."
           value={searchQuery}
           onChangeText={setSearchQuery}
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#6B7280"
           returnKeyType="search"
         />
         {searchQuery ? (
           <TouchableOpacity onPress={() => setSearchQuery('')}>
-            <Ionicons name="close-circle" size={18} color="#9CA3AF" />
+            <Ionicons name="close-circle" size={18} color="#6B7280" />
           </TouchableOpacity>
         ) : null}
       </View>
@@ -241,7 +241,7 @@ const SalesScreen = () => {
       {/* Error */}
       {!!errorMsg && (
         <View style={styles.errorBar}>
-          <Ionicons name="warning-outline" size={16} color="#EF4444" />
+          <Ionicons name="warning-outline" size={16} color="#B91C1C" />
           <Text style={styles.errorText}>{errorMsg}</Text>
         </View>
       )}
@@ -287,7 +287,7 @@ const SalesScreen = () => {
               placeholder="e.g. 2026-04-01"
               value={startDate}
               onChangeText={setStartDate}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
               keyboardType="numbers-and-punctuation"
             />
 
@@ -297,7 +297,7 @@ const SalesScreen = () => {
               placeholder="e.g. 2026-03-31"
               value={endDate}
               onChangeText={setEndDate}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
               keyboardType="numbers-and-punctuation"
             />
 
@@ -360,14 +360,14 @@ const styles = StyleSheet.create({
     gap: 4,
     paddingHorizontal: 10,
     paddingVertical: 6,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#E5E7EB',
     backgroundColor: '#F9FAFB',
   },
   dateBtnActive: {
     borderColor: '#6C5CE7',
-    backgroundColor: '#EDE9FE',
+    backgroundColor: '#FBEEEE',
   },
   dateBtnText: {
     fontSize: 12,
@@ -433,7 +433,7 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: 13,
-    color: '#EF4444',
+    color: '#B91C1C',
     flex: 1,
   },
   centered: {
@@ -469,7 +469,7 @@ const styles = StyleSheet.create({
   },
   emptySubText: {
     fontSize: 13,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
   card: {
@@ -510,7 +510,7 @@ const styles = StyleSheet.create({
   amount: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#059669',
+    color: '#15803D',
     marginBottom: 3,
   },
   date: {
@@ -555,7 +555,7 @@ const styles = StyleSheet.create({
   inputField: {
     borderWidth: 1,
     borderColor: '#E5E7EB',
-    borderRadius: 8,
+    borderRadius: 10,
     paddingHorizontal: 12,
     paddingVertical: Platform.OS === 'ios' ? 10 : 8,
     fontSize: 14,
@@ -570,7 +570,7 @@ const styles = StyleSheet.create({
   clearBtn: {
     flex: 1,
     paddingVertical: 12,
-    borderRadius: 10,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#E5E7EB',
     alignItems: 'center',
@@ -583,7 +583,7 @@ const styles = StyleSheet.create({
   applyBtn: {
     flex: 1,
     paddingVertical: 12,
-    borderRadius: 10,
+    borderRadius: 999,
     backgroundColor: '#6C5CE7',
     alignItems: 'center',
   },
@@ -598,7 +598,7 @@ const styles = StyleSheet.create({
   },
   cancelText: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
 });
 

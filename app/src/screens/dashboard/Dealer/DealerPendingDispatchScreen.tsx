@@ -9,8 +9,8 @@ import { useAuth } from '../../../context/AuthContext';
 import apiService from '../../../services/api';
 
 const STATUS_LABELS: Record<string, { label: string; color: string; bg: string; icon: any }> = {
-  pending: { label: 'Pending', color: '#D97706', bg: '#FFFBEB', icon: 'time-outline' },
-  fully_dispatched: { label: 'Dispatched', color: '#10B981', bg: '#F0FDF4', icon: 'checkmark-circle-outline' },
+  pending: { label: 'Pending', color: '#B45309', bg: '#FFFBEB', icon: 'time-outline' },
+  fully_dispatched: { label: 'Dispatched', color: '#15803D', bg: '#F0FDF4', icon: 'checkmark-circle-outline' },
 };
 
 const DealerPendingDispatchScreen = () => {
@@ -114,7 +114,7 @@ const DealerPendingDispatchScreen = () => {
           <Ionicons
             name={isExpanded ? 'chevron-up' : 'chevron-down'}
             size={16}
-            color="#9CA3AF"
+            color="#6B7280"
             style={{ marginLeft: 8 }}
           />
         </TouchableOpacity>
@@ -140,13 +140,13 @@ const DealerPendingDispatchScreen = () => {
                       <Text style={styles.itemQtyLabel}>{item.unit || 'Ordered'}</Text>
                     </View>
                     <View style={styles.itemQtyCol}>
-                      <Text style={[styles.itemQtyVal, { color: '#10B981' }]}>
+                      <Text style={[styles.itemQtyVal, { color: '#15803D' }]}>
                         {item.dispatchedQty || 0}
                       </Text>
                       <Text style={styles.itemQtyLabel}>Dispatched</Text>
                     </View>
                     <View style={styles.itemQtyCol}>
-                      <Text style={[styles.itemQtyVal, { color: pendingQty > 0 ? '#EF4444' : '#10B981' }]}>
+                      <Text style={[styles.itemQtyVal, { color: pendingQty > 0 ? '#B91C1C' : '#15803D' }]}>
                         {pendingQty}
                       </Text>
                       <Text style={styles.itemQtyLabel}>Pending</Text>
@@ -171,7 +171,7 @@ const DealerPendingDispatchScreen = () => {
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Order Dispatch Status</Text>
         <TouchableOpacity onPress={onRefresh} style={styles.refreshBtn}>
-          <Ionicons name="refresh-outline" size={20} color="#3B82F6" />
+          <Ionicons name="refresh-outline" size={20} color="#B8142F" />
         </TouchableOpacity>
       </View>
 
@@ -185,14 +185,14 @@ const DealerPendingDispatchScreen = () => {
           onPress={() => setStatusFilter(statusFilter === 'pending' ? null : 'pending')}
         >
           <Text style={styles.summaryLabel}>Pending</Text>
-          <Text style={[styles.summaryValue, { color: '#D97706' }]}>{pendingCount}</Text>
+          <Text style={[styles.summaryValue, { color: '#B45309' }]}>{pendingCount}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.summaryItem}
           onPress={() => setStatusFilter(statusFilter === 'fully_dispatched' ? null : 'fully_dispatched')}
         >
           <Text style={styles.summaryLabel}>Dispatched</Text>
-          <Text style={[styles.summaryValue, { color: '#10B981' }]}>{dispatchedCount}</Text>
+          <Text style={[styles.summaryValue, { color: '#15803D' }]}>{dispatchedCount}</Text>
         </TouchableOpacity>
       </View>
 
@@ -201,34 +201,34 @@ const DealerPendingDispatchScreen = () => {
           <Text style={styles.filterBannerText}>
             Showing: {STATUS_LABELS[statusFilter]?.label}
           </Text>
-          <Ionicons name="close-circle" size={16} color="#3B82F6" />
+          <Ionicons name="close-circle" size={16} color="#B8142F" />
         </TouchableOpacity>
       )}
 
       <View style={styles.searchWrap}>
-        <Ionicons name="search-outline" size={16} color="#9CA3AF" style={{ marginRight: 8 }} />
+        <Ionicons name="search-outline" size={16} color="#6B7280" style={{ marginRight: 8 }} />
         <TextInput
           style={styles.searchInput}
           placeholder="Search by order number..."
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#6B7280"
           value={searchQuery}
           onChangeText={setSearchQuery}
         />
         {searchQuery.length > 0 && (
           <TouchableOpacity onPress={() => setSearchQuery('')}>
-            <Ionicons name="close-circle" size={16} color="#9CA3AF" />
+            <Ionicons name="close-circle" size={16} color="#6B7280" />
           </TouchableOpacity>
         )}
       </View>
 
       {loading && !refreshing ? (
         <View style={styles.centerLoad}>
-          <ActivityIndicator size="large" color="#3B82F6" />
+          <ActivityIndicator size="large" color="#B8142F" />
           <Text style={styles.loadingText}>Loading dispatch status...</Text>
         </View>
       ) : filteredOrders.length === 0 ? (
         <View style={styles.emptyWrap}>
-          <Ionicons name="cube-outline" size={56} color="#9CA3AF" />
+          <Ionicons name="cube-outline" size={56} color="#6B7280" />
           <Text style={styles.emptyTitle}>
             {searchQuery || statusFilter ? 'No matching orders' : 'No dispatch records'}
           </Text>
@@ -245,7 +245,7 @@ const DealerPendingDispatchScreen = () => {
           renderItem={renderItem}
           contentContainerStyle={styles.listContent}
           showsVerticalScrollIndicator={false}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#3B82F6']} />}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#B8142F']} />}
         />
       )}
     </SafeAreaView>
@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     marginHorizontal: 16,
     marginTop: 8,
     borderRadius: 8,
@@ -322,7 +322,7 @@ const styles = StyleSheet.create({
   },
   filterBannerText: {
     fontSize: 13,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '600',
   },
   searchWrap: {
@@ -440,7 +440,7 @@ const styles = StyleSheet.create({
   },
   itemHsn: {
     fontSize: 11,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   itemQtyWrap: {
     flexDirection: 'row',
@@ -457,7 +457,7 @@ const styles = StyleSheet.create({
   },
   itemQtyLabel: {
     fontSize: 9,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 1,
     textTransform: 'uppercase',
   },
