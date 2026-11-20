@@ -1,6 +1,6 @@
 # Approval API Guide
 
-Base URL: `https://royalapp.wayneesolutions.com/api/v1`
+Base URL: `https://korvo.wayneesolutions.com/api/v1`
 
 All endpoints require: `Authorization: Bearer <token>`
 
@@ -273,4 +273,4 @@ approved
 | Company | Demo Application Data |
 | companyId | `6a95406c72ce30f394d38fa9` |
 | companyCode | `732081942-7F0CF89A-E6FC-4628-B87E-7E2D6447B3FC` |
-| Swagger | https://royalapp.wayneesolutions.com/api/v1/api-docs |
+| Swagger | https://korvo.wayneesolutions.com/api/v1/api-docs |
