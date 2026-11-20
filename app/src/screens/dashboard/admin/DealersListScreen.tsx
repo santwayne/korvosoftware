@@ -178,16 +178,16 @@ const DealersListScreen = () => {
         <View style={styles.cardHeader}>
           <View style={styles.dealerInfo}>
             <Text style={styles.dealerName}>{item.LedgerName}</Text>
-            <View style={[styles.statusBadge, { backgroundColor: item.isActive ? '#10B981' : '#EF4444' }]}>
+            <View style={[styles.statusBadge, { backgroundColor: item.isActive ? '#15803D' : '#B91C1C' }]}>
               <Text style={styles.statusText}>{item.isActive ? 'Active' : 'Inactive'}</Text>
             </View>
           </View>
           <View style={styles.actions}>
             <TouchableOpacity onPress={() => handleEdit(item)} style={styles.actionButton}>
-              <Ionicons name="pencil" size={18} color="#3B82F6" />
+              <Ionicons name="pencil" size={18} color="#B8142F" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => handleDelete(item)} style={styles.actionButton}>
-              <Ionicons name="trash" size={18} color="#EF4444" />
+              <Ionicons name="trash" size={18} color="#B91C1C" />
             </TouchableOpacity>
           </View>
         </View>
@@ -247,7 +247,7 @@ const DealersListScreen = () => {
       <View style={styles.container}>
         <DashboardHeader showNotifications={true} />
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#0493D2" />
+          <ActivityIndicator size="large" color="#B8142F" />
           <Text style={styles.loadingText}>Loading dealers...</Text>
         </View>
       </View>
@@ -264,7 +264,7 @@ const DealersListScreen = () => {
         </TouchableOpacity>
         <Text style={styles.title}>Dealers Management</Text>
         <TouchableOpacity onPress={() => setShowCreateModal(true)} style={styles.addButton}>
-          <Ionicons name="add-circle" size={28} color="#0493D2" />
+          <Ionicons name="add-circle" size={28} color="#B8142F" />
         </TouchableOpacity>
       </View>
 
@@ -275,7 +275,7 @@ const DealersListScreen = () => {
           placeholder="Search dealers..."
           value={searchText}
           onChangeText={setSearchText}
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#6B7280"
         />
         {searchText.length > 0 && (
           <TouchableOpacity onPress={() => setSearchText('')}>
@@ -313,7 +313,7 @@ const DealersListScreen = () => {
         }
         ListEmptyComponent={
           <View style={styles.emptyContainer}>
-            <Ionicons name="storefront-outline" size={64} color="#9CA3AF" />
+            <Ionicons name="storefront-outline" size={64} color="#6B7280" />
             <Text style={styles.emptyText}>No dealers found</Text>
             <Text style={styles.emptySubtext}>
               {searchText ? 'Try adjusting your search' : 'Create your first dealer'}
@@ -417,14 +417,14 @@ const styles = StyleSheet.create({
   filterButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     backgroundColor: '#FFFFFF',
   },
   filterButtonActive: {
-    backgroundColor: '#0493D2',
-    borderColor: '#0493D2',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   filterButtonText: {
     fontSize: 14,
@@ -506,7 +506,7 @@ const styles = StyleSheet.create({
   },
   emptySubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 4,
   },
 });

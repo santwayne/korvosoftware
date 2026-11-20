@@ -135,12 +135,12 @@ const SalesOrders = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'pending': return '#F59E0B';
-      case 'confirmed': return '#10B981';
-      case 'processing': return '#3B82F6';
-      case 'shipped': return '#8B5CF6';
-      case 'delivered': return '#059669';
-      case 'cancelled': return '#EF4444';
+      case 'pending': return '#B45309';
+      case 'confirmed': return '#15803D';
+      case 'processing': return '#B8142F';
+      case 'shipped': return '#7D0B1E';
+      case 'delivered': return '#15803D';
+      case 'cancelled': return '#B91C1C';
       case 'returned': return '#6B7280';
       default: return '#6B7280';
     }
@@ -148,19 +148,19 @@ const SalesOrders = () => {
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'urgent': return '#EF4444';
-      case 'high': return '#F59E0B';
-      case 'medium': return '#3B82F6';
-      case 'low': return '#10B981';
+      case 'urgent': return '#B91C1C';
+      case 'high': return '#B45309';
+      case 'medium': return '#B8142F';
+      case 'low': return '#15803D';
       default: return '#6B7280';
     }
   };
 
   const getPaymentStatusColor = (status: string) => {
     switch (status) {
-      case 'paid': return '#10B981';
-      case 'partial': return '#F59E0B';
-      case 'pending': return '#EF4444';
+      case 'paid': return '#15803D';
+      case 'partial': return '#B45309';
+      case 'pending': return '#B91C1C';
       case 'refunded': return '#6B7280';
       default: return '#6B7280';
     }
@@ -294,9 +294,9 @@ const SalesOrders = () => {
           disabled={loadingOrderDetails === item._id}
         >
           {loadingOrderDetails === item._id ? (
-            <ActivityIndicator size="small" color="#10B981" />
+            <ActivityIndicator size="small" color="#15803D" />
           ) : (
-            <Ionicons name="eye-outline" size={16} color="#10B981" />
+            <Ionicons name="eye-outline" size={16} color="#15803D" />
           )}
           <Text style={styles.actionButtonText}>
             {loadingOrderDetails === item._id ? 'Loading...' : 'View Details'}
@@ -311,7 +311,7 @@ const SalesOrders = () => {
             setShowStatusModal(true);
           }}
         >
-          <Ionicons name="create-outline" size={16} color="#3B82F6" />
+          <Ionicons name="create-outline" size={16} color="#B8142F" />
           <Text style={styles.actionButtonText}>Update Status</Text>
         </TouchableOpacity>
         
@@ -322,7 +322,7 @@ const SalesOrders = () => {
 
   const renderEmptyState = () => (
     <View style={styles.emptyState}>
-      <Ionicons name="document-outline" size={64} color="#9CA3AF" />
+      <Ionicons name="document-outline" size={64} color="#6B7280" />
       <Text style={styles.emptyStateTitle}>No Orders Found</Text>
       <Text style={styles.emptyStateText}>
         {filter !== 'all' 
@@ -336,7 +336,7 @@ const SalesOrders = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading orders...</Text>
       </View>
     );
@@ -365,7 +365,7 @@ const SalesOrders = () => {
             placeholder="Search orders..."
             value={searchQuery}
             onChangeText={setSearchQuery}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
         </View>
 
@@ -442,7 +442,7 @@ const SalesOrders = () => {
               onChangeText={setStatusNotes}
               multiline
               numberOfLines={3}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
             />
 
             <View style={styles.modalButtons}>
@@ -496,7 +496,7 @@ const styles = StyleSheet.create({
     color: '#6B7280',
   },
   header: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingTop: 50,
     paddingBottom: 16,
     paddingHorizontal: 20,
@@ -534,7 +534,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   filterButtons: {
     flexDirection: 'row',
@@ -544,14 +544,14 @@ const styles = StyleSheet.create({
   filterButton: {
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 16,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     borderWidth: 1,
     borderColor: '#D1D5DB',
   },
   activeFilterButton: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   filterButtonText: {
     fontSize: 12,
@@ -587,7 +587,7 @@ const styles = StyleSheet.create({
   orderNumber: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   customerName: {
@@ -600,7 +600,7 @@ const styles = StyleSheet.create({
   amountText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#059669',
+    color: '#15803D',
   },
   orderDetails: {
     marginBottom: 12,
@@ -617,7 +617,7 @@ const styles = StyleSheet.create({
   },
   detailValue: {
     fontSize: 12,
-    color: '#1F2937',
+    color: '#111827',
   },
   statusRow: {
     marginBottom: 12,
@@ -666,23 +666,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 8,
-    borderRadius: 6,
+    borderRadius: 999,
     gap: 4,
   },
   statusButton: {
-    backgroundColor: '#EBF4FF',
+    backgroundColor: '#FBEEEE',
     borderWidth: 1,
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
   },
   viewButton: {
     backgroundColor: '#F0FDF4',
     borderWidth: 1,
-    borderColor: '#10B981',
+    borderColor: '#15803D',
   },
   deleteButton: {
     backgroundColor: '#FEF2F2',
     borderWidth: 1,
-    borderColor: '#EF4444',
+    borderColor: '#B91C1C',
   },
   actionButtonText: {
     fontSize: 12,
@@ -696,7 +696,7 @@ const styles = StyleSheet.create({
   emptyStateTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginTop: 16,
     marginBottom: 8,
   },
@@ -729,7 +729,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 20,
     textAlign: 'center',
   },
@@ -747,8 +747,8 @@ const styles = StyleSheet.create({
     borderColor: '#E5E7EB',
   },
   selectedStatusOption: {
-    backgroundColor: '#EBF4FF',
-    borderColor: '#3B82F6',
+    backgroundColor: '#FBEEEE',
+    borderColor: '#B8142F',
   },
   statusIndicator: {
     width: 12,
@@ -758,19 +758,19 @@ const styles = StyleSheet.create({
   },
   statusOptionText: {
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   selectedStatusOptionText: {
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '600',
   },
   notesInput: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 20,
     textAlignVertical: 'top',
   },
@@ -781,7 +781,7 @@ const styles = StyleSheet.create({
   modalButton: {
     flex: 1,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     alignItems: 'center',
   },
   cancelButton: {
@@ -795,7 +795,7 @@ const styles = StyleSheet.create({
     color: '#374151',
   },
   updateButton: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
   },
   updateButtonText: {
     fontSize: 16,

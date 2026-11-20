@@ -172,10 +172,10 @@ const styles = StyleSheet.create({
   },
   heading: { fontSize: 22, fontWeight: "bold", paddingBottom: 10 },
   addBtn: {
-    backgroundColor: "#077BC3",
+    backgroundColor: "#A3122A",
     paddingVertical: 8,
     paddingHorizontal: 12,
-    borderRadius: 20,
+    borderRadius: 999,
   },
   addBtnContent: { flexDirection: "row", alignItems: "center" },
   addBtnText: { color: "#fff", fontSize: 14, fontWeight: "600" },
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   input: {
     borderColor: "#ccc",
     borderWidth: 1,
-    borderRadius: 6,
+    borderRadius: 10,
     padding: 10,
     marginBottom: 12,
   },
@@ -237,10 +237,10 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   saveBtn: {
-    backgroundColor: "#077BC3",
+    backgroundColor: "#A3122A",
     paddingVertical: 10,
     paddingHorizontal: 16,
-    borderRadius: 6,
+    borderRadius: 999,
   },
   saveText: {
     color: "#fff",

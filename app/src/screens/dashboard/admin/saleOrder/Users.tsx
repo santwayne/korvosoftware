@@ -913,7 +913,7 @@ const Users = () => {
         {formData.groupId ? (
           <View style={styles.selectedGroupContainer}>
             <View style={styles.selectedGroupInfo}>
-              <Ionicons name="folder" size={20} color="#0493D2" />
+              <Ionicons name="folder" size={20} color="#B8142F" />
               <View style={styles.selectedGroupDetails}>
                 <Text style={styles.selectedGroupName}>
                   {allGroups.find(g => g._id === formData.groupId)?.GroupName || 'Selected Group'}
@@ -927,7 +927,7 @@ const Users = () => {
               style={styles.removeGroupButton}
               onPress={() => setFormData({ ...formData, groupId: '' })}
             >
-              <Ionicons name="close-circle" size={24} color="#EF4444" />
+              <Ionicons name="close-circle" size={24} color="#B91C1C" />
             </TouchableOpacity>
           </View>
         ) : (
@@ -955,13 +955,13 @@ const Users = () => {
         {showGroupSelector && (
           <View style={styles.groupSelectorDropdown}>
             <View style={styles.groupSearchContainer}>
-              <Ionicons name="search" size={16} color="#9CA3AF" />
+              <Ionicons name="search" size={16} color="#6B7280" />
               <TextInput
                 style={styles.groupSearchInput}
                 placeholder="Search groups..."
                 value={groupSearchQuery}
                 onChangeText={setGroupSearchQuery}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
             
@@ -972,7 +972,7 @@ const Users = () => {
             >
               {loadingGroups ? (
                 <View style={styles.groupLoadingContainer}>
-                  <ActivityIndicator size="small" color="#0493D2" />
+                  <ActivityIndicator size="small" color="#B8142F" />
                   <Text style={styles.groupLoadingText}>Loading groups...</Text>
                 </View>
               ) : (() => {
@@ -1002,7 +1002,7 @@ const Users = () => {
                         }}
                       >
                         <View style={styles.groupItemInfo}>
-                          <Ionicons name="folder" size={20} color={isSelected ? "#0493D2" : "#6B7280"} />
+                          <Ionicons name="folder" size={20} color={isSelected ? "#B8142F" : "#6B7280"} />
                           <View style={styles.groupItemDetails}>
                             <Text style={[
                               styles.groupItemName,
@@ -1019,14 +1019,14 @@ const Users = () => {
                           </View>
                         </View>
                         {isSelected && (
-                          <Ionicons name="checkmark-circle" size={20} color="#0493D2" />
+                          <Ionicons name="checkmark-circle" size={20} color="#B8142F" />
                         )}
                       </TouchableOpacity>
                     );
                   })
                 ) : (
                   <View style={styles.groupEmptyState}>
-                    <Ionicons name="folder-outline" size={32} color="#9CA3AF" />
+                    <Ionicons name="folder-outline" size={32} color="#6B7280" />
                     <Text style={styles.groupEmptyText}>No groups found</Text>
                     <Text style={styles.groupEmptySubtext}>
                       {groupSearchQuery ? 'Try adjusting your search' : 'Create groups first'}
@@ -1050,7 +1050,7 @@ const Users = () => {
               return (
                 <View key={dealerId} style={styles.selectedGroupContainer}>
                   <View style={styles.selectedGroupInfo}>
-                    <Ionicons name="business" size={20} color="#0493D2" />
+                    <Ionicons name="business" size={20} color="#B8142F" />
                     <View style={styles.selectedGroupDetails}>
                       <Text style={styles.selectedGroupName}>
                         {dealer.LedgerName}
@@ -1069,7 +1069,7 @@ const Users = () => {
                       });
                     }}
                   >
-                    <Ionicons name="close-circle" size={24} color="#EF4444" />
+                    <Ionicons name="close-circle" size={24} color="#B91C1C" />
                   </TouchableOpacity>
                 </View>
               );
@@ -1104,13 +1104,13 @@ const Users = () => {
         {showDealerSelector && (
           <View style={styles.groupSelectorDropdown}>
             <View style={styles.groupSearchContainer}>
-              <Ionicons name="search" size={16} color="#9CA3AF" />
+              <Ionicons name="search" size={16} color="#6B7280" />
               <TextInput
                 style={styles.groupSearchInput}
                 placeholder="Search dealers..."
                 value={dealerSearchQuery}
                 onChangeText={setDealerSearchQuery}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
             
@@ -1121,7 +1121,7 @@ const Users = () => {
             >
               {loadingDealers ? (
                 <View style={styles.groupLoadingContainer}>
-                  <ActivityIndicator size="small" color="#0493D2" />
+                  <ActivityIndicator size="small" color="#B8142F" />
                   <Text style={styles.groupLoadingText}>Loading dealers...</Text>
                 </View>
               ) : (() => {
@@ -1155,7 +1155,7 @@ const Users = () => {
                         }}
                       >
                         <View style={styles.groupItemInfo}>
-                          <Ionicons name="business" size={20} color={isSelected ? "#0493D2" : "#6B7280"} />
+                          <Ionicons name="business" size={20} color={isSelected ? "#B8142F" : "#6B7280"} />
                           <View style={styles.groupItemDetails}>
                             <Text style={[
                               styles.groupItemName,
@@ -1172,14 +1172,14 @@ const Users = () => {
                           </View>
                         </View>
                         {isSelected && (
-                          <Ionicons name="checkmark-circle" size={20} color="#0493D2" />
+                          <Ionicons name="checkmark-circle" size={20} color="#B8142F" />
                         )}
                       </TouchableOpacity>
                     );
                   })
                 ) : (
                   <View style={styles.groupEmptyState}>
-                    <Ionicons name="business-outline" size={32} color="#9CA3AF" />
+                    <Ionicons name="business-outline" size={32} color="#6B7280" />
                     <Text style={styles.groupEmptyText}>No dealers found</Text>
                     <Text style={styles.groupEmptySubtext}>
                       {dealerSearchQuery ? 'Try adjusting your search' : 'No dealers available'}
@@ -1262,7 +1262,7 @@ const Users = () => {
   const getRoleColor = (role: string) => {
     // All users are group users - use a consistent color
     if (!role || role === 'groupuser' || role === '') {
-      return '#3B82F6'; // Blue for group users
+      return '#B8142F'; // Blue for group users
     }
     // For legacy roles, use gray
     return '#6B7280';
@@ -1297,14 +1297,14 @@ const Users = () => {
                   onPress={() => handleAssignToCompany(item)} 
                   style={styles.actionButton}
                 >
-                  <Ionicons name="business" size={18} color="#F59E0B" />
+                  <Ionicons name="business" size={18} color="#B45309" />
                 </TouchableOpacity>
               )}
               <TouchableOpacity onPress={() => handleEditUser(item)} style={styles.actionButton}>
-                <Ionicons name="pencil" size={18} color="#3B82F6" />
+                <Ionicons name="pencil" size={18} color="#B8142F" />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => handleDeleteUser(item)} style={styles.actionButton}>
-                <Ionicons name="trash" size={18} color="#EF4444" />
+                <Ionicons name="trash" size={18} color="#B91C1C" />
               </TouchableOpacity>
             </View>
           )}
@@ -1323,7 +1323,7 @@ const Users = () => {
             <Ionicons 
               name={hasGroup ? "layers" : "layers-outline"} 
               size={16} 
-              color={hasGroup ? "#10B981" : "#9CA3AF"} 
+              color={hasGroup ? "#15803D" : "#6B7280"} 
             />
             <View style={styles.parentUserContainer}>
               <Text style={[
@@ -1355,7 +1355,7 @@ const Users = () => {
       <View style={styles.mainContainer}>
         <DashboardHeader showNotifications={true} />
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#0493D2" />
+          <ActivityIndicator size="large" color="#B8142F" />
           <Text style={styles.loadingText}>Loading users...</Text>
         </View>
       </View>
@@ -1407,7 +1407,7 @@ const Users = () => {
         {/* Users List */}
         {error ? (
           <View style={styles.errorContainer}>
-            <Ionicons name="alert-circle" size={48} color="#EF4444" />
+            <Ionicons name="alert-circle" size={48} color="#B91C1C" />
             <Text style={styles.errorText}>{error}</Text>
             <TouchableOpacity style={styles.retryButton} onPress={fetchUsers}>
               <Text style={styles.retryButtonText}>Retry</Text>
@@ -1415,7 +1415,7 @@ const Users = () => {
           </View>
         ) : filteredUsers.length === 0 ? (
           <View style={styles.emptyContainer}>
-            <Ionicons name="people" size={48} color="#9CA3AF" />
+            <Ionicons name="people" size={48} color="#6B7280" />
             <Text style={styles.emptyText}>No users found</Text>
             <Text style={styles.emptySubtext}>
               {searchText ? 'Try adjusting your search criteria' : 'Add users to get started'}
@@ -1737,7 +1737,7 @@ const Users = () => {
                               : 'Unknown Company';
                             return (
                               <View key={index} style={styles.currentCompanyItem}>
-                                <Ionicons name="checkmark-circle" size={16} color="#10B981" />
+                                <Ionicons name="checkmark-circle" size={16} color="#15803D" />
                                 <Text style={styles.currentCompanyText}>{companyName}</Text>
                               </View>
                             );
@@ -1748,13 +1748,13 @@ const Users = () => {
                 )}
 
                 <View style={styles.companySearchContainer}>
-                  <Ionicons name="search" size={20} color="#9CA3AF" style={styles.companySearchIcon} />
+                  <Ionicons name="search" size={20} color="#6B7280" style={styles.companySearchIcon} />
                   <TextInput
                     style={styles.companySearchInput}
                     placeholder="Search companies..."
                     value={companySearchQuery}
                     onChangeText={setCompanySearchQuery}
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
 
@@ -1763,7 +1763,7 @@ const Users = () => {
                   company.companyCode.toLowerCase().includes(companySearchQuery.toLowerCase())
                 ).length === 0 ? (
                   <View style={styles.emptyState}>
-                    <Ionicons name="business-outline" size={48} color="#9CA3AF" />
+                    <Ionicons name="business-outline" size={48} color="#6B7280" />
                     <Text style={styles.emptyStateText}>No companies available</Text>
                   </View>
                 ) : (
@@ -1804,7 +1804,7 @@ const Users = () => {
                           </View>
                           {isAlreadyAssigned && (
                             <View style={styles.assignedBadge}>
-                              <Ionicons name="checkmark-circle" size={20} color="#10B981" />
+                              <Ionicons name="checkmark-circle" size={20} color="#15803D" />
                               <Text style={styles.assignedText}>Assigned</Text>
                             </View>
                           )}
@@ -1824,7 +1824,7 @@ const Users = () => {
 
               {assigningToCompany && (
                 <View style={styles.loadingOverlay}>
-                  <ActivityIndicator size="large" color="#3B82F6" />
+                  <ActivityIndicator size="large" color="#B8142F" />
                   <Text style={styles.loadingText}>Assigning user...</Text>
                 </View>
               )}
@@ -1874,7 +1874,7 @@ const Users = () => {
                               : 'Unknown Company';
                             return (
                               <View key={index} style={styles.currentCompanyItem}>
-                                <Ionicons name="checkmark-circle" size={16} color="#10B981" />
+                                <Ionicons name="checkmark-circle" size={16} color="#15803D" />
                                 <Text style={styles.currentCompanyText}>{companyName}</Text>
                               </View>
                             );
@@ -1885,13 +1885,13 @@ const Users = () => {
                 )}
 
                 <View style={styles.companySearchContainer}>
-                  <Ionicons name="search" size={20} color="#9CA3AF" style={styles.companySearchIcon} />
+                  <Ionicons name="search" size={20} color="#6B7280" style={styles.companySearchIcon} />
                   <TextInput
                     style={styles.companySearchInput}
                     placeholder="Search companies..."
                     value={companySearchQuery}
                     onChangeText={setCompanySearchQuery}
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
 
@@ -1900,7 +1900,7 @@ const Users = () => {
                   company.companyCode.toLowerCase().includes(companySearchQuery.toLowerCase())
                 ).length === 0 ? (
                   <View style={styles.emptyState}>
-                    <Ionicons name="business-outline" size={48} color="#9CA3AF" />
+                    <Ionicons name="business-outline" size={48} color="#6B7280" />
                     <Text style={styles.emptyStateText}>No companies available</Text>
                   </View>
                 ) : (
@@ -1941,7 +1941,7 @@ const Users = () => {
                           </View>
                           {isAlreadyAssigned && (
                             <View style={styles.assignedBadge}>
-                              <Ionicons name="checkmark-circle" size={20} color="#10B981" />
+                              <Ionicons name="checkmark-circle" size={20} color="#15803D" />
                               <Text style={styles.assignedText}>Assigned</Text>
                             </View>
                           )}
@@ -1961,7 +1961,7 @@ const Users = () => {
 
               {assigningToCompany && (
                 <View style={styles.loadingOverlay}>
-                  <ActivityIndicator size="large" color="#3B82F6" />
+                  <ActivityIndicator size="large" color="#B8142F" />
                   <Text style={styles.loadingText}>Assigning user...</Text>
                 </View>
               )}
@@ -2006,15 +2006,15 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   addBtn: {
-    backgroundColor: '#0493D2',
+    backgroundColor: '#B8142F',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 8,
+    borderRadius: 999,
     gap: 8,
   },
   addBtnText: {
@@ -2040,7 +2040,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   roleFilters: {
     flexDirection: 'row',
@@ -2055,8 +2055,8 @@ const styles = StyleSheet.create({
     borderColor: '#E5E7EB',
   },
   roleFilterActive: {
-    backgroundColor: '#0493D2',
-    borderColor: '#0493D2',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   roleFilterText: {
     fontSize: 14,
@@ -2067,14 +2067,14 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   infoMessageContainer: {
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     borderRadius: 8,
     padding: 12,
     marginBottom: 16,
   },
   infoMessageText: {
     fontSize: 14,
-    color: '#1E40AF',
+    color: '#7D0B1E',
     textAlign: 'center',
   },
   card: {
@@ -2100,7 +2100,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 8,
   },
   roleBadge: {
@@ -2120,7 +2120,7 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     padding: 8,
-    borderRadius: 6,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
   },
   userDetails: {
@@ -2137,7 +2137,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   noGroupText: {
-    color: '#9CA3AF',
+    color: '#6B7280',
     fontStyle: 'italic',
   },
   groupBadge: {
@@ -2165,15 +2165,15 @@ const styles = StyleSheet.create({
   errorText: {
     marginTop: 16,
     fontSize: 16,
-    color: '#EF4444',
+    color: '#B91C1C',
     textAlign: 'center',
     marginBottom: 16,
   },
   retryButton: {
-    backgroundColor: '#0493D2',
+    backgroundColor: '#B8142F',
     paddingHorizontal: 24,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   retryButtonText: {
     color: '#fff',
@@ -2193,7 +2193,7 @@ const styles = StyleSheet.create({
   },
   emptySubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
   // Web Modal Styles
@@ -2235,7 +2235,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   modalContent: {
     flex: 1,
@@ -2312,7 +2312,7 @@ const styles = StyleSheet.create({
   sidebarTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   sidebarContent: {
     flex: 1,
@@ -2335,7 +2335,7 @@ const styles = StyleSheet.create({
   roleLabel: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 14,
     marginTop: 4,
   },
@@ -2353,8 +2353,8 @@ const styles = StyleSheet.create({
     borderColor: '#E5E7EB',
   },
   roleOptionSelected: {
-    backgroundColor: '#0493D2',
-    borderColor: '#0493D2',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   roleOptionText: {
     fontSize: 14,
@@ -2377,7 +2377,7 @@ const styles = StyleSheet.create({
   cancelBtn: {
     paddingHorizontal: 24,
     paddingVertical: 14,
-    borderRadius: 10,
+    borderRadius: 999,
     minHeight: 50,
     justifyContent: 'center',
   },
@@ -2387,10 +2387,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   saveBtn: {
-    backgroundColor: '#0493D2',
+    backgroundColor: '#B8142F',
     paddingHorizontal: 32,
     paddingVertical: 14,
-    borderRadius: 10,
+    borderRadius: 999,
     minWidth: 140,
     minHeight: 50,
     alignItems: 'center',
@@ -2417,9 +2417,9 @@ const styles = StyleSheet.create({
   infoBox: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     borderLeftWidth: 3,
-    borderLeftColor: '#0493D2',
+    borderLeftColor: '#B8142F',
     padding: 12,
     borderRadius: 8,
     marginBottom: 12,
@@ -2428,7 +2428,7 @@ const styles = StyleSheet.create({
   infoText: {
     flex: 1,
     fontSize: 13,
-    color: '#1E40AF',
+    color: '#7D0B1E',
     lineHeight: 18,
   },
   addressRow: {
@@ -2451,7 +2451,7 @@ const styles = StyleSheet.create({
   parentSelectorButton: {
     borderWidth: 1,
     borderColor: '#E5E7EB',
-    borderRadius: 10,
+    borderRadius: 999,
     paddingHorizontal: 16,
     paddingVertical: 16,
     marginBottom: 14,
@@ -2466,10 +2466,10 @@ const styles = StyleSheet.create({
   parentSelectorText: {
     flex: 1,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   parentSelectorPlaceholder: {
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   selectedParentInfo: {
     flexDirection: 'row',
@@ -2482,7 +2482,7 @@ const styles = StyleSheet.create({
   },
   selectedParentText: {
     fontSize: 12,
-    color: '#059669',
+    color: '#15803D',
     fontWeight: '500',
   },
   parentSelectorDropdown: {
@@ -2511,7 +2511,7 @@ const styles = StyleSheet.create({
   parentSearchInput: {
     flex: 1,
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
   },
   parentListContainer: {
     maxHeight: 400,
@@ -2571,11 +2571,11 @@ const styles = StyleSheet.create({
   parentUserName: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   parentUserNameSelected: {
-    color: '#0493D2',
+    color: '#B8142F',
     fontWeight: '600',
   },
   parentUserDetails: {
@@ -2628,7 +2628,7 @@ const styles = StyleSheet.create({
   },
   parentEmptySubtext: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
   // Selected dealers container styles
@@ -2639,7 +2639,7 @@ const styles = StyleSheet.create({
   selectedDealersHeader: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 8,
   },
   // Assignment type styles
@@ -2655,15 +2655,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 16,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#E5E7EB',
     backgroundColor: '#FFFFFF',
     gap: 8,
   },
   assignmentTypeButtonActive: {
-    backgroundColor: '#0493D2',
-    borderColor: '#0493D2',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   assignmentTypeText: {
     fontSize: 16,
@@ -2681,7 +2681,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9FAFB',
     borderWidth: 1,
     borderColor: '#E5E7EB',
-    borderRadius: 8,
+    borderRadius: 999,
     padding: 12,
     marginTop: 8,
   },
@@ -2694,14 +2694,14 @@ const styles = StyleSheet.create({
   groupSelectorText: {
     flex: 1,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   selectedGroupContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     borderWidth: 1,
-    borderColor: '#BFDBFE',
+    borderColor: '#FFD2D9',
     borderRadius: 8,
     padding: 12,
     marginTop: 8,
@@ -2719,12 +2719,12 @@ const styles = StyleSheet.create({
   selectedGroupName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1E40AF',
+    color: '#7D0B1E',
     marginBottom: 2,
   },
   selectedGroupGUID: {
     fontSize: 12,
-    color: '#3B82F6',
+    color: '#B8142F',
   },
   removeGroupButton: {
     padding: 4,
@@ -2755,7 +2755,7 @@ const styles = StyleSheet.create({
   groupSearchInput: {
     flex: 1,
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
   },
   groupListContainer: {
     maxHeight: 350,
@@ -2793,11 +2793,11 @@ const styles = StyleSheet.create({
   groupItemName: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   groupItemNameSelected: {
-    color: '#0493D2',
+    color: '#B8142F',
     fontWeight: '600',
   },
   groupItemGUID: {
@@ -2807,7 +2807,7 @@ const styles = StyleSheet.create({
   },
   groupItemRemarks: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   groupEmptyState: {
     padding: 24,
@@ -2821,13 +2821,13 @@ const styles = StyleSheet.create({
   },
   groupEmptySubtext: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
   hierarchyInfoBox: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     padding: 12,
     borderRadius: 8,
     marginBottom: 12,
@@ -2836,12 +2836,12 @@ const styles = StyleSheet.create({
   hierarchyInfoText: {
     flex: 1,
     fontSize: 12,
-    color: '#1E40AF',
+    color: '#7D0B1E',
     lineHeight: 16,
   },
   parentUserHierarchy: {
     fontSize: 11,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 4,
     fontStyle: 'italic',
   },
@@ -2869,8 +2869,8 @@ const styles = StyleSheet.create({
     borderColor: '#E5E7EB',
   },
   parentRoleFilterActive: {
-    backgroundColor: '#0493D2',
-    borderColor: '#0493D2',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   parentRoleFilterText: {
     fontSize: 12,
@@ -2914,7 +2914,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9FAFB',
     borderRadius: 8,
     borderLeftWidth: 3,
-    borderLeftColor: '#3B82F6',
+    borderLeftColor: '#B8142F',
   },
   hierarchyChain: {
     flexDirection: 'row',
@@ -2939,7 +2939,7 @@ const styles = StyleSheet.create({
   },
   hierarchyParentName: {
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
     fontWeight: '600',
   },
   hierarchyParentBadge: {
@@ -2973,7 +2973,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   usersListContainer: {
     marginTop: 12,
@@ -3013,7 +3013,7 @@ const styles = StyleSheet.create({
   userItemName: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   userItemDetails: {
@@ -3023,7 +3023,7 @@ const styles = StyleSheet.create({
   },
   userItemGroup: {
     fontSize: 12,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '500',
   },
   userStatusBadge: {
@@ -3061,7 +3061,7 @@ const styles = StyleSheet.create({
   emptyUsersText: {
     marginTop: 12,
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   // Company Assignment Modal Styles
   webModalOverlay: {
@@ -3164,7 +3164,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9FAFB',
   },
   companyItemCurrent: {
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
   },
   companyItemContent: {
     flex: 1,
@@ -3196,12 +3196,12 @@ const styles = StyleSheet.create({
   currentBadge: {
     paddingHorizontal: 8,
     paddingVertical: 4,
-    backgroundColor: '#DBEAFE',
+    backgroundColor: '#FFD2D9',
     borderRadius: 8,
   },
   currentBadgeText: {
     fontSize: 11,
-    color: '#1E40AF',
+    color: '#7D0B1E',
     fontWeight: '600',
   },
   loadingOverlay: {
@@ -3236,7 +3236,7 @@ const styles = StyleSheet.create({
   companySearchInput: {
     flex: 1,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
     padding: 0,
   },
 });

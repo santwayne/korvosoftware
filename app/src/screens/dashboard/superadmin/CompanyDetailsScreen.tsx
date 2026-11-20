@@ -131,7 +131,7 @@ const CompaniesListScreen = ({
           <View style={styles.headerTopRow}>
             <TouchableOpacity style={styles.backButton} onPress={onBack}>
               <View style={styles.backButtonContent}>
-                <ArrowLeft size={20} color="#2563eb" />
+                <ArrowLeft size={20} color="#A3122A" />
                 <Text style={styles.backButtonText}>Back</Text>
               </View>
             </TouchableOpacity>
@@ -141,14 +141,14 @@ const CompaniesListScreen = ({
               activeOpacity={0.85}
             >
               <View style={styles.backButtonContent}>
-                <Plus size={20} color="#2563eb" />
+                <Plus size={20} color="#A3122A" />
                 <Text style={[styles.backButtonText, styles.backButtonTextSecondary]}>Add company</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={styles.headerTitleRow}>
             <View style={styles.iconContainer}>
-              <Building2 size={24} color="#2563eb" />
+              <Building2 size={24} color="#A3122A" />
             </View>
             <View style={styles.headerTextGroup}>
               <Text style={styles.headerTitle}>Companies</Text>
@@ -163,13 +163,13 @@ const CompaniesListScreen = ({
           <View style={styles.headerContent}>
             <TouchableOpacity style={styles.backButton} onPress={onBack}>
               <View style={styles.backButtonContent}>
-                <ArrowLeft size={20} color="#2563eb" />
+                <ArrowLeft size={20} color="#A3122A" />
                 <Text style={styles.backButtonText}>Back</Text>
               </View>
             </TouchableOpacity>
             <View style={styles.headerTitleContainer}>
               <View style={styles.iconContainer}>
-                <Building2 size={24} color="#2563eb" />
+                <Building2 size={24} color="#A3122A" />
               </View>
               <View>
                 <Text style={styles.headerTitle}>Companies</Text>
@@ -193,13 +193,13 @@ const CompaniesListScreen = ({
       {/* Search and Filters */}
       <View style={styles.searchContainer}>
         <View style={styles.searchInputContainer}>
-          <Search size={20} color="#9ca3af" style={styles.searchIcon} />
+          <Search size={20} color="#6B7280" style={styles.searchIcon} />
           <TextInput
             style={styles.searchInput}
             placeholder="Search by company name or code..."
             value={searchQuery}
             onChangeText={setSearchQuery}
-            placeholderTextColor="#9ca3af"
+            placeholderTextColor="#6B7280"
           />
         </View>
         <View style={styles.filterContainer}>
@@ -242,7 +242,7 @@ const CompaniesListScreen = ({
               <View style={styles.cardHeader}>
                 <View style={styles.cardHeaderLeft}>
                   <View style={styles.companyIcon}>
-                    <Building2 size={28} color="#2563eb" />
+                    <Building2 size={28} color="#A3122A" />
                   </View>
                   <View style={styles.companyTextGroup}>
                     <Text style={styles.companyName} numberOfLines={2}>{company.name}</Text>
@@ -275,12 +275,12 @@ const CompaniesListScreen = ({
             {/* Admin Info */}
             <View style={styles.adminInfo}>
               <View style={styles.adminRow}>
-                <Users size={16} color="#9ca3af" />
+                <Users size={16} color="#6B7280" />
                 <Text style={styles.adminLabel}>Admin:</Text>
                 <Text style={styles.adminValue}>{company.admin.name}</Text>
               </View>
               <View style={styles.adminRow}>
-                <Phone size={16} color="#9ca3af" />
+                <Phone size={16} color="#6B7280" />
                 <Text style={styles.adminValue}>{company.phone}</Text>
               </View>
             </View>
@@ -290,11 +290,11 @@ const CompaniesListScreen = ({
               <View style={styles.cardFooter}>
                 <View style={styles.footerRow}>
                   <View style={styles.footerItem}>
-                    <Calendar size={14} color="#9ca3af" />
+                    <Calendar size={14} color="#6B7280" />
                     <Text style={styles.footerTextGray}>Created: {company.createdAt}</Text>
                   </View>
                   <View style={styles.footerItem}>
-                    <Activity size={14} color="#9ca3af" />
+                    <Activity size={14} color="#6B7280" />
                     <Text style={styles.footerTextGray}>
                       Status: {company.status}
                     </Text>
@@ -302,11 +302,11 @@ const CompaniesListScreen = ({
                 </View>
                 <View style={styles.footerRow}>
                   <View style={styles.footerItem}>
-                    <MapPin size={14} color="#9ca3af" />
+                    <MapPin size={14} color="#6B7280" />
                     <Text style={styles.footerTextGray}>{company.city}, {company.state}</Text>
                   </View>
                   <View style={styles.footerItem}>
-                    <Building2 size={14} color="#9ca3af" />
+                    <Building2 size={14} color="#6B7280" />
                     <Text style={styles.footerTextGray}>ID: {company.id}</Text>
                   </View>
                 </View>
@@ -346,7 +346,7 @@ const CompaniesListScreen = ({
 
         {filteredCompanies.length === 0 && (
           <View style={styles.emptyState}>
-            <AlertCircle size={48} color="#9ca3af" />
+            <AlertCircle size={48} color="#6B7280" />
             <Text style={styles.emptyStateTitle}>No companies found</Text>
             <Text style={styles.emptyStateSubtitle}>Try adjusting your search or filters</Text>
           </View>
@@ -390,7 +390,7 @@ const CompanyDetailsScreen = ({
         <View style={styles.headerContent}>
           <TouchableOpacity style={styles.backButton} onPress={onBack}>
             <View style={styles.backButtonContent}>
-              <ArrowLeft size={20} color="#2563eb" />
+              <ArrowLeft size={20} color="#A3122A" />
               <Text style={styles.backButtonText}>Back</Text>
             </View>
           </TouchableOpacity>
@@ -416,7 +416,7 @@ const CompanyDetailsScreen = ({
           company.status === 'active' ? styles.statusBannerActive : styles.statusBannerInactive
         ]}>
           <View style={styles.statusBannerLeft}>
-            <Check size={24} color={company.status === 'active' ? '#16a34a' : '#dc2626'} />
+            <Check size={24} color={company.status === 'active' ? '#16a34a' : '#B91C1C'} />
             <Text style={[
               styles.statusBannerText,
               company.status === 'active' ? styles.statusBannerTextActive : styles.statusBannerTextInactive
@@ -434,7 +434,7 @@ const CompanyDetailsScreen = ({
           {/* Company Basic Information */}
             <View style={styles.infoCard}>
               <View style={styles.cardHeader}>
-                <Building2 size={20} color="#2563eb" />
+                <Building2 size={20} color="#A3122A" />
                 <Text style={styles.infoCardTitle}>Company Information</Text>
               </View>
               
@@ -483,7 +483,7 @@ const CompanyDetailsScreen = ({
                 
                 <View style={styles.infoItem}>
                   <View style={styles.infoItemHeader}>
-                    <CheckCircle size={16} color={company.status === 'active' ? '#16a34a' : '#dc2626'} />
+                    <CheckCircle size={16} color={company.status === 'active' ? '#16a34a' : '#B91C1C'} />
                     <Text style={styles.infoLabel}>Status</Text>
                   </View>
                   <View style={[
@@ -504,7 +504,7 @@ const CompanyDetailsScreen = ({
             {/* Contact Information */}
             <View style={styles.infoCard}>
               <View style={styles.cardHeader}>
-                <Phone size={20} color="#2563eb" />
+                <Phone size={20} color="#A3122A" />
                 <Text style={styles.infoCardTitle}>Contact Information</Text>
               </View>
               
@@ -563,7 +563,7 @@ const CompanyDetailsScreen = ({
             {(company.admins && company.admins.length > 0) || company.admin?.name ? (
               <View style={styles.infoCard}>
                 <View style={styles.cardHeader}>
-                  <UserCheck size={20} color="#2563eb" />
+                  <UserCheck size={20} color="#A3122A" />
                   <Text style={styles.infoCardTitle}>
                     Assigned Admins {company.admins && company.admins.length > 0 ? `(${company.admins.length})` : ''}
                   </Text>
@@ -629,7 +629,7 @@ const CompanyDetailsScreen = ({
             ) : (
               <View style={styles.infoCard}>
                 <View style={styles.cardHeader}>
-                  <UserCheck size={20} color="#9ca3af" />
+                  <UserCheck size={20} color="#6B7280" />
                   <Text style={styles.infoCardTitle}>Assigned Admins</Text>
                 </View>
                 <View style={styles.noAdminsContainer}>
@@ -641,7 +641,7 @@ const CompanyDetailsScreen = ({
             {/* Quick Actions */}
             <View style={styles.infoCard}>
               <View style={styles.cardHeader}>
-                <Settings size={20} color="#2563eb" />
+                <Settings size={20} color="#A3122A" />
                 <Text style={styles.infoCardTitle}>Quick Actions</Text>
               </View>
               
@@ -652,7 +652,7 @@ const CompanyDetailsScreen = ({
                     onEdit(company);
                   }}
                 >
-                  <Edit size={20} color="#2563eb" />
+                  <Edit size={20} color="#A3122A" />
                   <Text style={styles.quickActionText}>Edit Company</Text>
                 </TouchableOpacity>
                 
@@ -662,7 +662,7 @@ const CompanyDetailsScreen = ({
                     setShowActivityModal(true);
                   }}
                 >
-                  <Activity size={20} color="#8b5cf6" />
+                  <Activity size={20} color="#7D0B1E" />
                   <Text style={styles.quickActionText}>Activity Log</Text>
                 </TouchableOpacity>
               </View>
@@ -682,7 +682,7 @@ const CompanyDetailsScreen = ({
             {/* Modal Header */}
             <View style={styles.modalHeader}>
               <View style={styles.modalHeaderLeft}>
-                <Activity size={24} color="#8b5cf6" />
+                <Activity size={24} color="#7D0B1E" />
                 <View>
                   <Text style={styles.modalTitle}>Activity Log</Text>
                   <Text style={styles.modalSubtitle}>{company.name} - Recent Activity</Text>
@@ -719,7 +719,7 @@ const CompanyDetailsScreen = ({
 
                   <View style={styles.activityItem}>
                     <View style={styles.activityIcon}>
-                      <UserCheck size={16} color="#2563eb" />
+                      <UserCheck size={16} color="#A3122A" />
                     </View>
                     <View style={styles.activityContent}>
                       <Text style={styles.activityTitle}>Admin Assigned</Text>
@@ -844,7 +844,7 @@ const CompanyFormScreen = ({
         <View style={styles.headerContent}>
           <TouchableOpacity style={styles.backButton} onPress={onBack}>
             <View style={styles.backButtonContent}>
-              <ArrowLeft size={20} color="#2563eb" />
+              <ArrowLeft size={20} color="#A3122A" />
               <Text style={styles.backButtonText}>Back</Text>
             </View>
           </TouchableOpacity>
@@ -872,7 +872,7 @@ const CompanyFormScreen = ({
               value={formData.name || ''}
               onChangeText={(text) => updateField('name', text)}
               placeholder="Enter company name"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
             <Text style={styles.formLabel}>Company Code *</Text>
             <TextInput
@@ -880,7 +880,7 @@ const CompanyFormScreen = ({
               value={formData.code || ''}
               onChangeText={(text) => updateField('code', text)}
               placeholder="e.g., RP001"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
             <Text style={styles.formLabel}>Street *</Text>
             <TextInput
@@ -888,7 +888,7 @@ const CompanyFormScreen = ({
               value={street}
               onChangeText={setStreet}
               placeholder="House/Street"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
             <Text style={styles.formLabel}>City *</Text>
             <TextInput
@@ -896,7 +896,7 @@ const CompanyFormScreen = ({
               value={formData.city || ''}
               onChangeText={(text) => updateField('city', text)}
               placeholder="City"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
             <Text style={styles.formLabel}>State *</Text>
             <TextInput
@@ -904,7 +904,7 @@ const CompanyFormScreen = ({
               value={formData.state || ''}
               onChangeText={(text) => updateField('state', text)}
               placeholder="State"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
             <Text style={styles.formLabel}>Country *</Text>
             <TextInput
@@ -912,7 +912,7 @@ const CompanyFormScreen = ({
               value={country}
               onChangeText={setCountry}
               placeholder="Country"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
             <Text style={styles.formLabel}>Pincode *</Text>
             <TextInput
@@ -921,7 +921,7 @@ const CompanyFormScreen = ({
               onChangeText={setPincode}
               placeholder="PIN/ZIP"
               keyboardType="numeric"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
             <Text style={styles.formLabel}>Company Mobile *</Text>
             <TextInput
@@ -930,7 +930,7 @@ const CompanyFormScreen = ({
               onChangeText={(text) => updateField('phone', text)}
               placeholder="+91 XXXXX XXXXX"
               keyboardType="phone-pad"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
             <Text style={styles.formLabel}>Company Email *</Text>
             <TextInput
@@ -940,7 +940,7 @@ const CompanyFormScreen = ({
               placeholder="info@company.com"
               autoCapitalize="none"
               keyboardType="email-address"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
           </View>
 
@@ -955,7 +955,7 @@ const CompanyFormScreen = ({
               onChangeText={(text) => updateField('website' as any, text)}
               placeholder="https://example.com"
               autoCapitalize="none"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
           </View>
 
@@ -969,7 +969,7 @@ const CompanyFormScreen = ({
               onChangeText={setMaxUsers}
               placeholder="100"
               keyboardType="numeric"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
             <Text style={styles.formLabel}>GUID *</Text>
             <TextInput
@@ -978,7 +978,7 @@ const CompanyFormScreen = ({
               onChangeText={setGuid}
               placeholder="Unique GUID"
               keyboardType="numeric"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
             <Text style={styles.formLabel}>Tally Serial ID</Text>
             <TextInput
@@ -987,7 +987,7 @@ const CompanyFormScreen = ({
               onChangeText={setTallySerialId}
               placeholder="Enter Tally serial ID"
               autoCapitalize="characters"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#6B7280"
             />
             <Text style={styles.formLabel}>Assign Admins (optional)</Text>
             
@@ -1003,7 +1003,7 @@ const CompanyFormScreen = ({
                   return (
                     <View key={adminId} style={styles.selectedAdminItem}>
                       <View style={styles.selectedAdminInfo}>
-                        <Users size={18} color="#2563eb" />
+                        <Users size={18} color="#A3122A" />
                         <View style={styles.selectedAdminDetails}>
                           <Text style={styles.selectedAdminName} numberOfLines={1} ellipsizeMode="tail">
                             {admin.label}
@@ -1036,7 +1036,7 @@ const CompanyFormScreen = ({
                 activeOpacity={0.9}
               >
                 <View style={styles.dropdownButton}>
-                  <Users size={20} color="#9ca3af" />
+                  <Users size={20} color="#6B7280" />
                   <Text style={[
                     styles.dropdownText,
                     selectedAdminIds.length === 0 && styles.dropdownPlaceholder
@@ -1048,7 +1048,7 @@ const CompanyFormScreen = ({
                   </Text>
                   <ChevronDown 
                     size={20} 
-                    color="#9ca3af" 
+                    color="#6B7280" 
                     style={[
                       styles.dropdownChevron,
                       showAdminDropdown && styles.dropdownChevronRotated
@@ -1069,13 +1069,13 @@ const CompanyFormScreen = ({
                   />
                   <View style={styles.dropdownPopover}>
                     <View style={styles.dropdownSearchContainer}>
-                      <Search size={16} color="#9ca3af" />
+                      <Search size={16} color="#6B7280" />
                       <TextInput
                         style={styles.dropdownSearchInput}
                         placeholder="Search admins..."
                         value={adminSearchQuery}
                         onChangeText={setAdminSearchQuery}
-                        placeholderTextColor="#9ca3af"
+                        placeholderTextColor="#6B7280"
                       />
                     </View>
 
@@ -1107,7 +1107,7 @@ const CompanyFormScreen = ({
                               }}
                             >
                               <View style={styles.dropdownItemContent}>
-                                <Users size={18} color={isSelected ? "#2563eb" : "#9ca3af"} />
+                                <Users size={18} color={isSelected ? "#A3122A" : "#6B7280"} />
                                 <Text
                                   style={[
                                     styles.dropdownItemText,
@@ -1118,7 +1118,7 @@ const CompanyFormScreen = ({
                                   {admin.label}
                                 </Text>
                                 {isSelected && (
-                                  <Check size={18} color="#2563eb" />
+                                  <Check size={18} color="#A3122A" />
                                 )}
                               </View>
                             </TouchableOpacity>
@@ -1670,12 +1670,12 @@ const styles = StyleSheet.create({
   backButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2563eb',
+    color: '#A3122A',
   },
   backButtonTextSecondary: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2563eb',
+    color: '#A3122A',
   },
   headerTopRow: {
     flexDirection: 'row',
@@ -1699,7 +1699,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: 48,
     height: 48,
-    backgroundColor: '#dbeafe',
+    backgroundColor: '#FFD2D9',
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
@@ -1723,10 +1723,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    backgroundColor: '#2563eb',
+    backgroundColor: '#A3122A',
     paddingHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 12,
+    borderRadius: 999,
   },
   addButtonCompact: {
     marginRight: 12,
@@ -1741,14 +1741,14 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   editButton: {
-    backgroundColor: '#2563eb',
+    backgroundColor: '#A3122A',
     padding: 10,
-    borderRadius: 10,
+    borderRadius: 999,
   },
   deleteButton: {
-    backgroundColor: '#dc2626',
+    backgroundColor: '#B91C1C',
     padding: 10,
-    borderRadius: 10,
+    borderRadius: 999,
   },
   searchContainer: {
     padding: 16,
@@ -1757,7 +1757,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderRadius: 12,
+    borderRadius: 10,
     paddingHorizontal: 16,
     marginBottom: 12,
     borderWidth: 1,
@@ -1779,11 +1779,11 @@ const styles = StyleSheet.create({
   filterButton: {
     paddingHorizontal: 20,
     paddingVertical: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#f3f4f6',
   },
   filterButtonActive: {
-    backgroundColor: '#2563eb',
+    backgroundColor: '#A3122A',
   },
   filterButtonText: {
     fontSize: 13,
@@ -1803,7 +1803,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginHorizontal: 16,
     marginBottom: 12,
-    borderRadius: 16,
+    borderRadius: 14,
     borderWidth: 1,
     borderColor: '#e5e7eb',
     overflow: 'hidden',
@@ -1831,7 +1831,7 @@ const styles = StyleSheet.create({
   companyIcon: {
     width: 56,
     height: 56,
-    backgroundColor: '#dbeafe',
+    backgroundColor: '#FFD2D9',
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
@@ -1848,7 +1848,7 @@ const styles = StyleSheet.create({
   },
   companyGuid: {
     fontSize: 12,
-    color: '#9ca3af',
+    color: '#6B7280',
     marginTop: 2,
   },
   statusBadge: {
@@ -1876,7 +1876,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#16a34a',
   },
   statusDotInactive: {
-    backgroundColor: '#dc2626',
+    backgroundColor: '#B91C1C',
   },
   statusText: {
     fontSize: 11,
@@ -2000,7 +2000,7 @@ const styles = StyleSheet.create({
   },
   footerTextGray: {
     fontSize: 11,
-    color: '#9ca3af',
+    color: '#6B7280',
   },
   emptyState: {
     alignItems: 'center',
@@ -2014,7 +2014,7 @@ const styles = StyleSheet.create({
   },
   emptyStateSubtitle: {
     fontSize: 13,
-    color: '#9ca3af',
+    color: '#6B7280',
     marginTop: 8,
   },
   statusBanner: {
@@ -2053,7 +2053,7 @@ const styles = StyleSheet.create({
   },
   deactivateText: {
     fontSize: 13,
-    color: '#dc2626',
+    color: '#B91C1C',
     fontWeight: '500',
   },
   statsGrid: {
@@ -2065,7 +2065,7 @@ const styles = StyleSheet.create({
   },
   statCard: {
     backgroundColor: '#fff',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     alignItems: 'center',
     width: '48%',
@@ -2106,7 +2106,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tabActive: {
-    backgroundColor: '#2563eb',
+    backgroundColor: '#A3122A',
   },
   tabText: {
     fontSize: 13,
@@ -2122,7 +2122,7 @@ const styles = StyleSheet.create({
   },
   infoCard: {
     backgroundColor: '#fff',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginBottom: 16,
   },
@@ -2169,13 +2169,13 @@ const styles = StyleSheet.create({
     color: '#6b7280',
   },
   viewAllButton: {
-    backgroundColor: '#eff6ff',
+    backgroundColor: '#FBEEEE',
     padding: 12,
-    borderRadius: 12,
+    borderRadius: 999,
     alignItems: 'center',
   },
   viewAllButtonText: {
-    color: '#2563eb',
+    color: '#A3122A',
     fontSize: 14,
     fontWeight: '600',
   },
@@ -2220,7 +2220,7 @@ const styles = StyleSheet.create({
   formInput: {
     borderWidth: 1,
     borderColor: '#e5e7eb',
-    borderRadius: 12,
+    borderRadius: 10,
     paddingHorizontal: 16,
     paddingVertical: 12,
     fontSize: 14,
@@ -2245,13 +2245,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   radioSelected: {
-    borderColor: '#2563eb',
+    borderColor: '#A3122A',
   },
   radioDot: {
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: '#2563eb',
+    backgroundColor: '#A3122A',
   },
   radioLabel: {
     fontSize: 14,
@@ -2269,7 +2269,7 @@ const styles = StyleSheet.create({
   cancelButton: {
     flex: 1,
     paddingVertical: 14,
-    borderRadius: 12,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#d1d5db',
     alignItems: 'center',
@@ -2286,8 +2286,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 8,
     paddingVertical: 14,
-    borderRadius: 12,
-    backgroundColor: '#2563eb',
+    borderRadius: 999,
+    backgroundColor: '#A3122A',
   },
   submitButtonText: {
     fontSize: 15,
@@ -2295,7 +2295,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   submitButtonDisabled: {
-    backgroundColor: '#9ca3af',
+    backgroundColor: '#6B7280',
     opacity: 0.6,
   },
   // Dropdown styles
@@ -2323,7 +2323,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#e5e7eb',
-    borderRadius: 12,
+    borderRadius: 999,
     paddingHorizontal: 16,
     paddingVertical: 12,
     minHeight: 48,
@@ -2335,7 +2335,7 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   dropdownPlaceholder: {
-    color: '#9ca3af',
+    color: '#6B7280',
   },
   dropdownChevron: {
     transform: [{ rotate: '90deg' }],
@@ -2424,16 +2424,16 @@ const styles = StyleSheet.create({
   selectedAdminName: {
     fontSize: 13,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
     flexShrink: 1,
   },
   removeAdminButton: {
     paddingHorizontal: 8,
     paddingVertical: 5,
     backgroundColor: '#FEE2E2',
-    borderRadius: 6,
+    borderRadius: 999,
     borderWidth: 1,
-    borderColor: '#EF4444',
+    borderColor: '#B91C1C',
     flexShrink: 0,
     minWidth: 60,
     maxWidth: 80,
@@ -2441,7 +2441,7 @@ const styles = StyleSheet.create({
   removeAdminButtonText: {
     fontSize: 10,
     fontWeight: '600',
-    color: '#DC2626',
+    color: '#B91C1C',
   },
   dropdownItem: {
     paddingHorizontal: 16,
@@ -2450,7 +2450,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#f3f4f6',
   },
   dropdownItemSelected: {
-    backgroundColor: '#eff6ff',
+    backgroundColor: '#FBEEEE',
   },
   dropdownItemContent: {
     flexDirection: 'row',
@@ -2466,7 +2466,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   dropdownItemTextSelected: {
-    color: '#2563eb',
+    color: '#A3122A',
     fontWeight: '600',
   },
   dropdownEmptyState: {
@@ -2475,7 +2475,7 @@ const styles = StyleSheet.create({
   },
   dropdownEmptyText: {
     fontSize: 14,
-    color: '#9ca3af',
+    color: '#6B7280',
     fontStyle: 'italic',
   },
   selectedAdminText: {
@@ -2562,14 +2562,14 @@ const styles = StyleSheet.create({
   },
   infoSubValue: {
     fontSize: 12,
-    color: '#9ca3af',
+    color: '#6B7280',
     marginTop: 2,
   },
   adminCard: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#f9fafb',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
   },
   adminInfoContainer: {
@@ -2590,7 +2590,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   defaultAdminBadge: {
-    backgroundColor: '#DBEAFE',
+    backgroundColor: '#FFD2D9',
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 4,
@@ -2598,7 +2598,7 @@ const styles = StyleSheet.create({
   defaultAdminBadgeText: {
     fontSize: 10,
     fontWeight: '600',
-    color: '#2563eb',
+    color: '#A3122A',
   },
   noAdminsContainer: {
     padding: 20,
@@ -2608,14 +2608,14 @@ const styles = StyleSheet.create({
   },
   noAdminsText: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     fontStyle: 'italic',
   },
   adminAvatar: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#2563eb',
+    backgroundColor: '#A3122A',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -2639,7 +2639,7 @@ const styles = StyleSheet.create({
   },
   adminPhone: {
     fontSize: 12,
-    color: '#9ca3af',
+    color: '#6B7280',
   },
   adminStatus: {
     flexDirection: 'row',
@@ -2670,7 +2670,7 @@ const styles = StyleSheet.create({
   },
   statSubValue: {
     fontSize: 12,
-    color: '#9ca3af',
+    color: '#6B7280',
     marginTop: 4,
   },
   quickActionsGrid: {
@@ -2681,7 +2681,7 @@ const styles = StyleSheet.create({
   quickActionButton: {
     width: '48%',
     backgroundColor: '#f9fafb',
-    borderRadius: 12,
+    borderRadius: 999,
     padding: 16,
     marginBottom: 12,
     alignItems: 'center',
@@ -2737,7 +2737,7 @@ const styles = StyleSheet.create({
   closeButton: {
     width: 36,
     height: 36,
-    borderRadius: 18,
+    borderRadius: 999,
     backgroundColor: '#f3f4f6',
     justifyContent: 'center',
     alignItems: 'center',
@@ -2770,8 +2770,8 @@ const styles = StyleSheet.create({
     borderColor: '#e5e7eb',
   },
   filterChipActive: {
-    backgroundColor: '#2563eb',
-    borderColor: '#2563eb',
+    backgroundColor: '#A3122A',
+    borderColor: '#A3122A',
   },
   filterChipText: {
     fontSize: 14,
@@ -2797,8 +2797,8 @@ const styles = StyleSheet.create({
     borderColor: '#e5e7eb',
   },
   statusFilterActive: {
-    backgroundColor: '#2563eb',
-    borderColor: '#2563eb',
+    backgroundColor: '#A3122A',
+    borderColor: '#A3122A',
   },
   statusFilterText: {
     fontSize: 14,
@@ -2835,7 +2835,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#2563eb',
+    backgroundColor: '#A3122A',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -2897,7 +2897,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#16a34a',
   },
   userStatusDotInactive: {
-    backgroundColor: '#dc2626',
+    backgroundColor: '#B91C1C',
   },
   userStatusText: {
     fontSize: 12,
@@ -2923,7 +2923,7 @@ const styles = StyleSheet.create({
   },
   userFooterText: {
     fontSize: 12,
-    color: '#9ca3af',
+    color: '#6B7280',
     marginLeft: 6,
   },
   loadingContainer: {
@@ -2950,7 +2950,7 @@ const styles = StyleSheet.create({
   },
   reportCard: {
     backgroundColor: '#f9fafb',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     borderWidth: 1,
     borderColor: '#e5e7eb',
@@ -2975,7 +2975,7 @@ const styles = StyleSheet.create({
   },
   comingSoonCard: {
     backgroundColor: '#f9fafb',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 24,
     borderWidth: 1,
     borderColor: '#e5e7eb',
@@ -2990,7 +2990,7 @@ const styles = StyleSheet.create({
   },
   comingSoonText: {
     fontSize: 14,
-    color: '#9ca3af',
+    color: '#6B7280',
     textAlign: 'center',
     lineHeight: 20,
   },
@@ -3000,7 +3000,7 @@ const styles = StyleSheet.create({
   },
   activityCard: {
     backgroundColor: '#f9fafb',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     borderWidth: 1,
     borderColor: '#e5e7eb',
@@ -3038,7 +3038,7 @@ const styles = StyleSheet.create({
   },
   activityTime: {
     fontSize: 12,
-    color: '#9ca3af',
+    color: '#6B7280',
   },
   cardActionsContainer: {
     flexDirection: 'row',
@@ -3060,17 +3060,17 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   activateButton: {
-    backgroundColor: '#10b981',
+    backgroundColor: '#15803D',
     borderRightWidth: 0.5,
     borderRightColor: '#f9fafb',
   },
   deactivateButton: {
-    backgroundColor: '#f59e0b',
+    backgroundColor: '#B45309',
     borderRightWidth: 0.5,
     borderRightColor: '#f9fafb',
   },
   deleteButtonList: {
-    backgroundColor: '#ef4444',
+    backgroundColor: '#B91C1C',
   },
 });
 

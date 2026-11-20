@@ -168,12 +168,12 @@ const OrderList = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'draft': return '#6B7280';
-      case 'pending_approval': return '#F59E0B';
-      case 'approved': return '#10B981';
-      case 'sent_to_tally': return '#8B5CF6';
+      case 'pending_approval': return '#B45309';
+      case 'approved': return '#15803D';
+      case 'sent_to_tally': return '#7D0B1E';
       case 'dispatched': return '#06B6D4';
-      case 'delivered': return '#059669';
-      case 'cancelled': return '#EF4444';
+      case 'delivered': return '#15803D';
+      case 'cancelled': return '#B91C1C';
       case 'returned': return '#6B7280';
       default: return '#6B7280';
     }
@@ -195,10 +195,10 @@ const OrderList = () => {
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'low': return '#10B981';
-      case 'medium': return '#F59E0B';
-      case 'high': return '#EF4444';
-      case 'urgent': return '#DC2626';
+      case 'low': return '#15803D';
+      case 'medium': return '#B45309';
+      case 'high': return '#B91C1C';
+      case 'urgent': return '#B91C1C';
       default: return '#6B7280';
     }
   };
@@ -250,7 +250,7 @@ const OrderList = () => {
         <View style={styles.detailRow}>
           <Text style={styles.detailLabel}>Payment:</Text>
           <Text style={[styles.detailValue, { 
-            color: item.paymentStatus === 'paid' ? '#10B981' : '#F59E0B' 
+            color: item.paymentStatus === 'paid' ? '#15803D' : '#B45309' 
           }]}>
             {item.paymentStatus.replace('_', ' ').toUpperCase()}
           </Text>
@@ -290,7 +290,7 @@ const OrderList = () => {
 
       {/* Click indicator */}
       <View style={styles.clickIndicator}>
-        <Ionicons name="chevron-forward" size={16} color="#9CA3AF" />
+        <Ionicons name="chevron-forward" size={16} color="#6B7280" />
         <Text style={styles.clickIndicatorText}>Tap to view details</Text>
       </View>
     </TouchableOpacity>
@@ -319,7 +319,7 @@ const OrderList = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#8B5CF6" />
+        <ActivityIndicator size="large" color="#7D0B1E" />
         <Text style={styles.loadingText}>Loading orders...</Text>
       </View>
     );
@@ -333,14 +333,14 @@ const OrderList = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>My Orders</Text>
         <TouchableOpacity 
           style={styles.createButton}
           onPress={() => navigation.navigate('CreateOrder' as never)}
         >
-          <Ionicons name="add" size={24} color="#8B5CF6" />
+          <Ionicons name="add" size={24} color="#7D0B1E" />
         </TouchableOpacity>
       </View>
 
@@ -376,8 +376,8 @@ const OrderList = () => {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            colors={['#8B5CF6']}
-            tintColor="#8B5CF6"
+            colors={['#7D0B1E']}
+            tintColor="#7D0B1E"
           />
         }
         ListEmptyComponent={renderEmptyState}
@@ -427,7 +427,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   createButton: {
     padding: 8,
@@ -444,11 +444,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     marginRight: 12,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
   },
   activeFilterButton: {
-    backgroundColor: '#8B5CF6',
+    backgroundColor: '#7D0B1E',
   },
   filterButtonText: {
     fontSize: 14,
@@ -485,7 +485,7 @@ const styles = StyleSheet.create({
   orderNumber: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   customerName: {
@@ -545,7 +545,7 @@ const styles = StyleSheet.create({
   totalAmount: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#8B5CF6',
+    color: '#7D0B1E',
   },
   contactInfo: {
     flexDirection: 'row',
@@ -568,10 +568,10 @@ const styles = StyleSheet.create({
   submitButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 6,
+    borderRadius: 999,
     gap: 6,
   },
   submitButtonText: {
@@ -601,10 +601,10 @@ const styles = StyleSheet.create({
   createOrderButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#8B5CF6',
+    backgroundColor: '#7D0B1E',
     paddingHorizontal: 24,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   createOrderButtonText: {
     color: '#fff',
@@ -623,7 +623,7 @@ const styles = StyleSheet.create({
   },
   clickIndicatorText: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginLeft: 4,
     fontStyle: 'italic',
   },

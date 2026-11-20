@@ -368,7 +368,7 @@ const TeamManagement = () => {
               )}
               <View style={[
                 styles.statusBadge,
-                { backgroundColor: item.isActive ? '#10B981' : '#EF4444' }
+                { backgroundColor: item.isActive ? '#15803D' : '#B91C1C' }
               ]}>
                 <Text style={styles.statusText}>{item.isActive ? 'Active' : 'Inactive'}</Text>
               </View>
@@ -382,7 +382,7 @@ const TeamManagement = () => {
                 openEditModal(item);
               }}
             >
-              <Ionicons name="pencil" size={18} color="#3B82F6" />
+              <Ionicons name="pencil" size={18} color="#B8142F" />
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.actionButton}
@@ -391,7 +391,7 @@ const TeamManagement = () => {
                 handleDeactivateSubDealer(item);
               }}
             >
-              <Ionicons name="trash" size={18} color="#EF4444" />
+              <Ionicons name="trash" size={18} color="#B91C1C" />
             </TouchableOpacity>
           </View>
         </View>
@@ -448,7 +448,7 @@ const TeamManagement = () => {
   // Render empty state
   const renderEmptyState = () => (
     <View style={styles.emptyState}>
-      <Ionicons name="people-outline" size={64} color="#9CA3AF" />
+      <Ionicons name="people-outline" size={64} color="#6B7280" />
       <Text style={styles.emptyTitle}>No Sub-Dealers Found</Text>
       <Text style={styles.emptySubtitle}>
         {searchQuery 
@@ -496,7 +496,7 @@ const TeamManagement = () => {
             value={searchQuery}
             onChangeText={setSearchQuery}
             placeholder="Search sub-dealers..."
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
           {searchQuery.length > 0 && (
             <TouchableOpacity onPress={() => setSearchQuery('')}>
@@ -548,12 +548,12 @@ const TeamManagement = () => {
       {/* Sub-Dealers List */}
       {loading ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#8B5CF6" />
+          <ActivityIndicator size="large" color="#7D0B1E" />
           <Text style={styles.loadingText}>Loading sub-dealers...</Text>
         </View>
       ) : error ? (
         <View style={styles.errorContainer}>
-          <Ionicons name="alert-circle" size={48} color="#EF4444" />
+          <Ionicons name="alert-circle" size={48} color="#B91C1C" />
           <Text style={styles.errorText}>{error}</Text>
           <TouchableOpacity style={styles.retryButton} onPress={fetchSubDealers}>
             <Text style={styles.retryButtonText}>Retry</Text>
@@ -611,7 +611,7 @@ const TeamManagement = () => {
                   value={formData.SDName}
                   onChangeText={(text) => setFormData({...formData, SDName: text})}
                   placeholder="Enter subdealer name"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -661,7 +661,7 @@ const TeamManagement = () => {
                   value={formData.SDAddress1}
                   onChangeText={(text) => setFormData({...formData, SDAddress1: text})}
                   placeholder="Enter address line 1"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -672,7 +672,7 @@ const TeamManagement = () => {
                   value={formData.SDAddress2}
                   onChangeText={(text) => setFormData({...formData, SDAddress2: text})}
                   placeholder="Enter address line 2"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -683,7 +683,7 @@ const TeamManagement = () => {
                   value={formData.SDAddress3}
                   onChangeText={(text) => setFormData({...formData, SDAddress3: text})}
                   placeholder="Enter address line 3"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -694,7 +694,7 @@ const TeamManagement = () => {
                   value={formData.SDState}
                   onChangeText={(text) => setFormData({...formData, SDState: text})}
                   placeholder="Enter state"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -705,7 +705,7 @@ const TeamManagement = () => {
                   value={formData.SDCountry}
                   onChangeText={(text) => setFormData({...formData, SDCountry: text})}
                   placeholder="Enter country"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -717,7 +717,7 @@ const TeamManagement = () => {
                   onChangeText={(text) => setFormData({...formData, SDPincode: text})}
                   placeholder="Enter pincode"
                   keyboardType="numeric"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -733,7 +733,7 @@ const TeamManagement = () => {
                   value={formData.SDContactPerson}
                   onChangeText={(text) => setFormData({...formData, SDContactPerson: text})}
                   placeholder="Enter contact person name"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -745,7 +745,7 @@ const TeamManagement = () => {
                   onChangeText={(text) => setFormData({...formData, SDMobileNo: text})}
                   placeholder="Enter mobile number"
                   keyboardType="phone-pad"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -758,7 +758,7 @@ const TeamManagement = () => {
                   placeholder="Enter email address"
                   keyboardType="email-address"
                   autoCapitalize="none"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -774,7 +774,7 @@ const TeamManagement = () => {
                   value={formData.SDGSTNType}
                   onChangeText={(text) => setFormData({...formData, SDGSTNType: text})}
                   placeholder="Enter GSTN type"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -787,7 +787,7 @@ const TeamManagement = () => {
                   placeholder="Enter GSTN number"
                   autoCapitalize="characters"
                   maxLength={15}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -824,7 +824,7 @@ const TeamManagement = () => {
                   value={formData.SDName}
                   onChangeText={(text) => setFormData({...formData, SDName: text})}
                   placeholder="Enter subdealer name"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -874,7 +874,7 @@ const TeamManagement = () => {
                   value={formData.SDAddress1}
                   onChangeText={(text) => setFormData({...formData, SDAddress1: text})}
                   placeholder="Enter address line 1"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -885,7 +885,7 @@ const TeamManagement = () => {
                   value={formData.SDAddress2}
                   onChangeText={(text) => setFormData({...formData, SDAddress2: text})}
                   placeholder="Enter address line 2"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -896,7 +896,7 @@ const TeamManagement = () => {
                   value={formData.SDAddress3}
                   onChangeText={(text) => setFormData({...formData, SDAddress3: text})}
                   placeholder="Enter address line 3"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -907,7 +907,7 @@ const TeamManagement = () => {
                   value={formData.SDState}
                   onChangeText={(text) => setFormData({...formData, SDState: text})}
                   placeholder="Enter state"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -918,7 +918,7 @@ const TeamManagement = () => {
                   value={formData.SDCountry}
                   onChangeText={(text) => setFormData({...formData, SDCountry: text})}
                   placeholder="Enter country"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -930,7 +930,7 @@ const TeamManagement = () => {
                   onChangeText={(text) => setFormData({...formData, SDPincode: text})}
                   placeholder="Enter pincode"
                   keyboardType="numeric"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -946,7 +946,7 @@ const TeamManagement = () => {
                   value={formData.SDContactPerson}
                   onChangeText={(text) => setFormData({...formData, SDContactPerson: text})}
                   placeholder="Enter contact person name"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -958,7 +958,7 @@ const TeamManagement = () => {
                   onChangeText={(text) => setFormData({...formData, SDMobileNo: text})}
                   placeholder="Enter mobile number"
                   keyboardType="phone-pad"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -971,7 +971,7 @@ const TeamManagement = () => {
                   placeholder="Enter email address"
                   keyboardType="email-address"
                   autoCapitalize="none"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -987,7 +987,7 @@ const TeamManagement = () => {
                   value={formData.SDGSTNType}
                   onChangeText={(text) => setFormData({...formData, SDGSTNType: text})}
                   placeholder="Enter GSTN type"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               
@@ -1000,7 +1000,7 @@ const TeamManagement = () => {
                   placeholder="Enter GSTN number"
                   autoCapitalize="characters"
                   maxLength={15}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -1069,7 +1069,7 @@ const TeamManagement = () => {
                     ]}>
                       <Text style={[
                         styles.statusText,
-                        { color: selectedSubDealer.isActive ? '#059669' : '#DC2626' }
+                        { color: selectedSubDealer.isActive ? '#15803D' : '#B91C1C' }
                       ]}>
                         {selectedSubDealer.isActive ? 'Active' : 'Inactive'}
                       </Text>
@@ -1229,7 +1229,7 @@ const TeamManagement = () => {
         <View style={styles.deleteModalOverlay}>
           <View style={styles.deleteModalContainer}>
             <View style={styles.deleteModalHeader}>
-              <Ionicons name="warning" size={48} color="#EF4444" />
+              <Ionicons name="warning" size={48} color="#B91C1C" />
               <Text style={styles.deleteModalTitle}>Deactivate Sub-Dealer</Text>
             </View>
             
@@ -1278,7 +1278,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9FAFB',
   },
   header: {
-    backgroundColor: '#8B5CF6',
+    backgroundColor: '#7D0B1E',
     paddingTop: 50,
     paddingBottom: 16,
     paddingHorizontal: 16,
@@ -1316,7 +1316,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   sortContainer: {
     flexDirection: 'row',
@@ -1332,14 +1332,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 4,
     marginRight: 8,
-    borderRadius: 4,
+    borderRadius: 999,
   },
   sortButtonText: {
     fontSize: 14,
     color: '#6B7280',
   },
   sortButtonSelected: {
-    color: '#8B5CF6',
+    color: '#7D0B1E',
     fontWeight: '600',
   },
   sortOrderButton: {
@@ -1365,15 +1365,15 @@ const styles = StyleSheet.create({
   errorText: {
     marginTop: 12,
     fontSize: 16,
-    color: '#EF4444',
+    color: '#B91C1C',
     textAlign: 'center',
   },
   retryButton: {
     marginTop: 16,
     paddingHorizontal: 24,
     paddingVertical: 8,
-    backgroundColor: '#8B5CF6',
-    borderRadius: 6,
+    backgroundColor: '#7D0B1E',
+    borderRadius: 999,
   },
   retryButtonText: {
     color: '#fff',
@@ -1447,7 +1447,7 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     padding: 8,
-    borderRadius: 6,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
   },
   subdealerDetails: {
@@ -1475,7 +1475,7 @@ const styles = StyleSheet.create({
   },
   emptySubtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
     marginTop: 8,
     lineHeight: 20,
@@ -1484,8 +1484,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
     paddingHorizontal: 16,
     paddingVertical: 8,
-    backgroundColor: '#8B5CF6',
-    borderRadius: 6,
+    backgroundColor: '#7D0B1E',
+    borderRadius: 999,
   },
   clearFiltersText: {
     color: '#fff',
@@ -1521,11 +1521,11 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   modalSaveText: {
     fontSize: 16,
-    color: '#8B5CF6',
+    color: '#7D0B1E',
     fontWeight: '600',
   },
   modalContent: {
@@ -1548,7 +1548,7 @@ const styles = StyleSheet.create({
   formInput: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
     backgroundColor: '#fff',
@@ -1568,7 +1568,7 @@ const styles = StyleSheet.create({
   },
   clickIndicatorText: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginLeft: 4,
     fontStyle: 'italic',
   },
@@ -1578,7 +1578,7 @@ const styles = StyleSheet.create({
   detailsSectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 12,
     paddingBottom: 8,
     borderBottomWidth: 1,
@@ -1600,7 +1600,7 @@ const styles = StyleSheet.create({
   },
   detailsValue: {
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
     flex: 2,
     textAlign: 'right',
   },
@@ -1625,7 +1625,7 @@ const styles = StyleSheet.create({
   deleteModalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginTop: 12,
   },
   deleteModalContent: {
@@ -1651,7 +1651,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     alignItems: 'center',
@@ -1665,8 +1665,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    borderRadius: 8,
-    backgroundColor: '#EF4444',
+    borderRadius: 999,
+    backgroundColor: '#B91C1C',
     alignItems: 'center',
   },
   deleteModalConfirmText: {
@@ -1690,15 +1690,15 @@ const styles = StyleSheet.create({
   typeButton: {
     flex: 1,
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     backgroundColor: '#FFFFFF',
     alignItems: 'center',
   },
   typeButtonActive: {
-    backgroundColor: '#8B5CF6',
-    borderColor: '#8B5CF6',
+    backgroundColor: '#7D0B1E',
+    borderColor: '#7D0B1E',
   },
   typeButtonText: {
     fontSize: 14,

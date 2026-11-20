@@ -299,7 +299,7 @@ const ProfileScreen = () => {
       
       {loading ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#2563eb" />
+          <ActivityIndicator size="large" color="#A3122A" />
           <Text style={styles.loadingText}>Loading profile...</Text>
         </View>
       ) : (
@@ -351,7 +351,7 @@ const MainProfileView = ({
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Profile</Text>
         <TouchableOpacity onPress={onEdit} style={styles.editIconButton}>
-          <Edit2 size={20} color="#2563eb" />
+          <Edit2 size={20} color="#A3122A" />
         </TouchableOpacity>
       </View>
 
@@ -360,7 +360,7 @@ const MainProfileView = ({
           <View style={styles.avatarContainer}>
             {uploadingImage ? (
               <View style={styles.avatarLoading}>
-                <ActivityIndicator size="large" color="#2563eb" />
+                <ActivityIndicator size="large" color="#A3122A" />
               </View>
             ) : (
               <Image source={{ uri: profile.avatar }} style={styles.avatar} />
@@ -380,7 +380,7 @@ const MainProfileView = ({
           <Text style={styles.profileName}>{profile.name}</Text>
           <Text style={styles.profileRole}>{profile.role}</Text>
           <View style={styles.profileBadge}>
-            <Building2 size={14} color="#2563eb" />
+            <Building2 size={14} color="#A3122A" />
             <Text style={styles.profileCompany}>{profile.company}</Text>
           </View>
         </View>
@@ -433,7 +433,7 @@ const MainProfileView = ({
         </View>
 
         <TouchableOpacity style={styles.logoutButton} onPress={onLogout}>
-          <LogOut size={20} color="#dc2626" />
+          <LogOut size={20} color="#B91C1C" />
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
 
@@ -523,7 +523,7 @@ const EditProfileView = ({ profile, onBack, onSave, onImagePick, uploadingImage 
           <View style={styles.editAvatarContainer}>
             {uploadingImage ? (
               <View style={[styles.editAvatar, styles.avatarLoading]}>
-                <ActivityIndicator size="large" color="#2563eb" />
+                <ActivityIndicator size="large" color="#A3122A" />
               </View>
             ) : (
               <Image source={{ uri: profile.avatar }} style={styles.editAvatar} />
@@ -552,13 +552,13 @@ const EditProfileView = ({ profile, onBack, onSave, onImagePick, uploadingImage 
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Full Name *</Text>
               <View style={styles.inputContainer}>
-                <User size={20} color="#9ca3af" />
+                <User size={20} color="#6B7280" />
                 <TextInput
                   style={styles.textInput}
                   placeholder="Enter your full name"
                   value={formData.name}
                   onChangeText={(text) => setFormData({ ...formData, name: text })}
-                  placeholderTextColor="#9ca3af"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -566,7 +566,7 @@ const EditProfileView = ({ profile, onBack, onSave, onImagePick, uploadingImage 
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Email Address *</Text>
               <View style={styles.inputContainer}>
-                <Mail size={20} color="#9ca3af" />
+                <Mail size={20} color="#6B7280" />
                 <TextInput
                   style={styles.textInput}
                   placeholder="Enter your email"
@@ -574,7 +574,7 @@ const EditProfileView = ({ profile, onBack, onSave, onImagePick, uploadingImage 
                   onChangeText={(text) => setFormData({ ...formData, email: text })}
                   keyboardType="email-address"
                   autoCapitalize="none"
-                  placeholderTextColor="#9ca3af"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -582,14 +582,14 @@ const EditProfileView = ({ profile, onBack, onSave, onImagePick, uploadingImage 
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Phone Number *</Text>
               <View style={styles.inputContainer}>
-                <Phone size={20} color="#9ca3af" />
+                <Phone size={20} color="#6B7280" />
                 <TextInput
                   style={styles.textInput}
                   placeholder="Enter your phone number"
                   value={formData.phone}
                   onChangeText={(text) => setFormData({ ...formData, phone: text })}
                   keyboardType="phone-pad"
-                  placeholderTextColor="#9ca3af"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -603,13 +603,13 @@ const EditProfileView = ({ profile, onBack, onSave, onImagePick, uploadingImage 
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Address</Text>
               <View style={styles.inputContainer}>
-                <MapPin size={20} color="#9ca3af" />
+                <MapPin size={20} color="#6B7280" />
                 <TextInput
                   style={styles.textInput}
                   placeholder="Enter your address"
                   value={formData.address}
                   onChangeText={(text) => setFormData({ ...formData, address: text })}
-                  placeholderTextColor="#9ca3af"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -618,13 +618,13 @@ const EditProfileView = ({ profile, onBack, onSave, onImagePick, uploadingImage 
               <View style={[styles.inputGroup, styles.inputGroupHalf]}>
                 <Text style={styles.inputLabel}>City</Text>
                 <View style={styles.inputContainer}>
-                  <MapPin size={20} color="#9ca3af" />
+                  <MapPin size={20} color="#6B7280" />
                   <TextInput
                     style={styles.textInput}
                     placeholder="City"
                     value={formData.city}
                     onChangeText={(text) => setFormData({ ...formData, city: text })}
-                    placeholderTextColor="#9ca3af"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
               </View>
@@ -632,13 +632,13 @@ const EditProfileView = ({ profile, onBack, onSave, onImagePick, uploadingImage 
               <View style={[styles.inputGroup, styles.inputGroupHalf]}>
                 <Text style={styles.inputLabel}>State</Text>
                 <View style={styles.inputContainer}>
-                  <MapPin size={20} color="#9ca3af" />
+                  <MapPin size={20} color="#6B7280" />
                   <TextInput
                     style={styles.textInput}
                     placeholder="State"
                     value={formData.state}
                     onChangeText={(text) => setFormData({ ...formData, state: text })}
-                    placeholderTextColor="#9ca3af"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
               </View>
@@ -647,14 +647,14 @@ const EditProfileView = ({ profile, onBack, onSave, onImagePick, uploadingImage 
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Pincode</Text>
               <View style={styles.inputContainer}>
-                <MapPin size={20} color="#9ca3af" />
+                <MapPin size={20} color="#6B7280" />
                 <TextInput
                   style={styles.textInput}
                   placeholder="Enter pincode"
                   value={formData.pincode}
                   onChangeText={(text) => setFormData({ ...formData, pincode: text })}
                   keyboardType="numeric"
-                  placeholderTextColor="#9ca3af"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -672,7 +672,7 @@ const EditProfileView = ({ profile, onBack, onSave, onImagePick, uploadingImage 
 const InfoRow = ({ icon: Icon, label, value, isLast = false }: any) => (
   <View style={[styles.infoRow, isLast && styles.infoRowLast]}>
     <View style={styles.infoLeft}>
-      <Icon size={16} color="#9ca3af" />
+      <Icon size={16} color="#6B7280" />
       <Text style={styles.infoLabel}>{label}</Text>
     </View>
     <Text style={styles.infoValue}>{value}</Text>
@@ -683,14 +683,14 @@ const MenuButton = ({ icon: Icon, title, subtitle, onPress, isLast = false }: an
   <TouchableOpacity style={[styles.menuItem, isLast && styles.menuItemLast]} onPress={onPress}>
     <View style={styles.menuLeft}>
       <View style={styles.menuIcon}>
-        <Icon size={20} color="#2563eb" />
+        <Icon size={20} color="#A3122A" />
       </View>
       <View>
         <Text style={styles.menuTitle}>{title}</Text>
         <Text style={styles.menuSubtitle}>{subtitle}</Text>
       </View>
     </View>
-    <ChevronRight size={20} color="#9ca3af" />
+    <ChevronRight size={20} color="#6B7280" />
   </TouchableOpacity>
 );
 
@@ -723,10 +723,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     bottom: 0,
-    backgroundColor: '#2563eb',
+    backgroundColor: '#A3122A',
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: 999,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 3,
@@ -738,12 +738,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    backgroundColor: '#eff6ff',
+    backgroundColor: '#FBEEEE',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 20,
   },
-  profileCompany: { fontSize: 13, color: '#2563eb', fontWeight: '600' },
+  profileCompany: { fontSize: 13, color: '#A3122A', fontWeight: '600' },
   statsContainer: {
     flexDirection: 'row',
     backgroundColor: '#fff',
@@ -792,7 +792,7 @@ const styles = StyleSheet.create({
   menuIcon: {
     width: 40,
     height: 40,
-    backgroundColor: '#eff6ff',
+    backgroundColor: '#FBEEEE',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -809,25 +809,25 @@ const styles = StyleSheet.create({
     marginTop: 12,
     marginBottom: 20,
     paddingVertical: 16,
-    borderRadius: 12,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#fee2e2',
   },
-  logoutText: { fontSize: 15, fontWeight: '600', color: '#dc2626' },
+  logoutText: { fontSize: 15, fontWeight: '600', color: '#B91C1C' },
   footer: { alignItems: 'center', paddingBottom: 32 },
-  footerText: { fontSize: 12, color: '#9ca3af' },
+  footerText: { fontSize: 12, color: '#6B7280' },
   
   // Edit Profile Styles
   backButton: {
     padding: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#f3f4f6',
   },
   saveButton: {
-    backgroundColor: '#2563eb',
+    backgroundColor: '#A3122A',
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   saveButtonDisabled: {
     opacity: 0.6,
@@ -858,10 +858,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     bottom: 0,
-    backgroundColor: '#2563eb',
+    backgroundColor: '#A3122A',
     width: 28,
     height: 28,
-    borderRadius: 14,
+    borderRadius: 999,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
@@ -915,7 +915,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#f9fafb',
-    borderRadius: 8,
+    borderRadius: 10,
     paddingHorizontal: 12,
     paddingVertical: 12,
     borderWidth: 1,

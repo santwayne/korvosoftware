@@ -270,7 +270,7 @@ const OrderManagement = () => {
             placeholder="Search customers..."
             value={searchQuery}
             onChangeText={setSearchQuery}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
 
           <FlatList
@@ -333,7 +333,7 @@ const OrderManagement = () => {
                   <Text style={styles.productPrice}>₹{item.price} / {item.unit}</Text>
                   <Text style={styles.productStock}>Stock: {item.stock.current}</Text>
                 </View>
-                <Ionicons name="add-circle" size={24} color="#3B82F6" />
+                <Ionicons name="add-circle" size={24} color="#B8142F" />
               </TouchableOpacity>
             )}
             style={styles.productList}
@@ -395,14 +395,14 @@ const OrderManagement = () => {
                       style={styles.quantityButton}
                       onPress={() => updateItemQuantity(item.productId, item.quantity - 1)}
                     >
-                      <Ionicons name="remove" size={16} color="#EF4444" />
+                      <Ionicons name="remove" size={16} color="#B91C1C" />
                     </TouchableOpacity>
                     <Text style={styles.quantityText}>{item.quantity}</Text>
                     <TouchableOpacity
                       style={styles.quantityButton}
                       onPress={() => updateItemQuantity(item.productId, item.quantity + 1)}
                     >
-                      <Ionicons name="add" size={16} color="#10B981" />
+                      <Ionicons name="add" size={16} color="#15803D" />
                     </TouchableOpacity>
                   </View>
                   <Text style={styles.itemTotal}>₹{item.totalPrice.toLocaleString()}</Text>
@@ -411,7 +411,7 @@ const OrderManagement = () => {
             </View>
           ) : (
             <View style={styles.emptyItems}>
-              <Ionicons name="basket-outline" size={48} color="#9CA3AF" />
+              <Ionicons name="basket-outline" size={48} color="#6B7280" />
               <Text style={styles.emptyItemsText}>No items added yet</Text>
             </View>
           )}
@@ -428,7 +428,7 @@ const OrderManagement = () => {
               placeholder="YYYY-MM-DD"
               value={deliveryDate}
               onChangeText={setDeliveryDate}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
             />
           </View>
 
@@ -487,7 +487,7 @@ const OrderManagement = () => {
               onChangeText={setNotes}
               multiline
               numberOfLines={3}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
             />
           </View>
         </View>
@@ -563,7 +563,7 @@ const OrderManagement = () => {
         }
         ListEmptyComponent={() => (
           <View style={styles.emptyState}>
-            <Ionicons name="document-outline" size={64} color="#9CA3AF" />
+            <Ionicons name="document-outline" size={64} color="#6B7280" />
             <Text style={styles.emptyStateText}>No orders found</Text>
           </View>
         )}
@@ -573,12 +573,12 @@ const OrderManagement = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'pending': return '#F59E0B';
-      case 'confirmed': return '#10B981';
-      case 'processing': return '#3B82F6';
-      case 'shipped': return '#8B5CF6';
-      case 'delivered': return '#059669';
-      case 'cancelled': return '#EF4444';
+      case 'pending': return '#B45309';
+      case 'confirmed': return '#15803D';
+      case 'processing': return '#B8142F';
+      case 'shipped': return '#7D0B1E';
+      case 'delivered': return '#15803D';
+      case 'cancelled': return '#B91C1C';
       default: return '#6B7280';
     }
   };
@@ -586,7 +586,7 @@ const OrderManagement = () => {
   if (loading && !refreshing) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading...</Text>
       </View>
     );
@@ -612,7 +612,7 @@ const OrderManagement = () => {
           style={[styles.tab, activeTab === 'create' && styles.activeTab]}
           onPress={() => setActiveTab('create')}
         >
-          <Ionicons name="add-circle" size={20} color={activeTab === 'create' ? '#3B82F6' : '#6B7280'} />
+          <Ionicons name="add-circle" size={20} color={activeTab === 'create' ? '#B8142F' : '#6B7280'} />
           <Text style={[styles.tabText, activeTab === 'create' && styles.activeTabText]}>
             Create Order
           </Text>
@@ -621,7 +621,7 @@ const OrderManagement = () => {
           style={[styles.tab, activeTab === 'list' && styles.activeTab]}
           onPress={() => setActiveTab('list')}
         >
-          <Ionicons name="list" size={20} color={activeTab === 'list' ? '#3B82F6' : '#6B7280'} />
+          <Ionicons name="list" size={20} color={activeTab === 'list' ? '#B8142F' : '#6B7280'} />
           <Text style={[styles.tabText, activeTab === 'list' && styles.activeTabText]}>
             Orders List
           </Text>
@@ -655,7 +655,7 @@ const styles = StyleSheet.create({
     color: '#6B7280',
   },
   header: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingTop: 50,
     paddingBottom: 16,
     paddingHorizontal: 20,
@@ -687,7 +687,7 @@ const styles = StyleSheet.create({
   },
   activeTab: {
     borderBottomWidth: 2,
-    borderBottomColor: '#3B82F6',
+    borderBottomColor: '#B8142F',
   },
   tabText: {
     fontSize: 16,
@@ -695,7 +695,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   activeTabText: {
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '600',
   },
   tabContent: {
@@ -715,7 +715,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   sectionHeader: {
@@ -740,7 +740,7 @@ const styles = StyleSheet.create({
   selectedCustomerName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   selectedCustomerEmail: {
     fontSize: 14,
@@ -749,15 +749,15 @@ const styles = StyleSheet.create({
   },
   placeholderText: {
     fontSize: 16,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   addButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingHorizontal: 12,
     paddingVertical: 8,
-    borderRadius: 6,
+    borderRadius: 999,
     gap: 4,
   },
   addButtonText: {
@@ -783,7 +783,7 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   itemCode: {
     fontSize: 12,
@@ -792,7 +792,7 @@ const styles = StyleSheet.create({
   },
   itemPrice: {
     fontSize: 14,
-    color: '#059669',
+    color: '#15803D',
     marginTop: 2,
   },
   itemControls: {
@@ -804,7 +804,7 @@ const styles = StyleSheet.create({
   quantityButton: {
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     alignItems: 'center',
     justifyContent: 'center',
@@ -812,14 +812,14 @@ const styles = StyleSheet.create({
   quantityText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     minWidth: 24,
     textAlign: 'center',
   },
   itemTotal: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   emptyItems: {
     alignItems: 'center',
@@ -842,10 +842,10 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
     backgroundColor: '#fff',
   },
   textArea: {
@@ -860,15 +860,15 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 8,
     paddingHorizontal: 12,
-    borderRadius: 6,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     backgroundColor: '#F9FAFB',
     alignItems: 'center',
   },
   activePriorityButton: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   priorityButtonText: {
     fontSize: 12,
@@ -886,14 +886,14 @@ const styles = StyleSheet.create({
   paymentButton: {
     paddingVertical: 8,
     paddingHorizontal: 12,
-    borderRadius: 6,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     backgroundColor: '#F9FAFB',
   },
   activePaymentButton: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   paymentButtonText: {
     fontSize: 12,
@@ -906,7 +906,7 @@ const styles = StyleSheet.create({
   summaryCard: {
     backgroundColor: '#F9FAFB',
     padding: 16,
-    borderRadius: 8,
+    borderRadius: 14,
     borderWidth: 1,
     borderColor: '#E5E7EB',
   },
@@ -921,7 +921,7 @@ const styles = StyleSheet.create({
   },
   summaryValue: {
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
     fontWeight: '500',
   },
   finalRow: {
@@ -933,25 +933,25 @@ const styles = StyleSheet.create({
   finalLabel: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   finalValue: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#059669',
+    color: '#15803D',
   },
   createButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     margin: 16,
     paddingVertical: 16,
-    borderRadius: 8,
+    borderRadius: 999,
     gap: 8,
   },
   disabledButton: {
-    backgroundColor: '#9CA3AF',
+    backgroundColor: '#6B7280',
   },
   createButtonText: {
     color: '#fff',
@@ -981,7 +981,7 @@ const styles = StyleSheet.create({
   orderNumber: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   statusBadge: {
     paddingHorizontal: 8,
@@ -1001,12 +1001,12 @@ const styles = StyleSheet.create({
   orderAmount: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#059669',
+    color: '#15803D',
     marginBottom: 4,
   },
   orderDate: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   emptyState: {
     alignItems: 'center',
@@ -1043,16 +1043,16 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   searchInput: {
     margin: 20,
     padding: 12,
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   customerList: {
     maxHeight: 400,
@@ -1071,7 +1071,7 @@ const styles = StyleSheet.create({
   modalCustomerName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   modalCustomerEmail: {
     fontSize: 14,
@@ -1080,7 +1080,7 @@ const styles = StyleSheet.create({
   },
   modalCustomerRole: {
     fontSize: 12,
-    color: '#3B82F6',
+    color: '#B8142F',
     marginTop: 2,
   },
   productList: {
@@ -1100,7 +1100,7 @@ const styles = StyleSheet.create({
   productName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   productCode: {
     fontSize: 12,
@@ -1109,12 +1109,12 @@ const styles = StyleSheet.create({
   },
   productPrice: {
     fontSize: 14,
-    color: '#059669',
+    color: '#15803D',
     marginTop: 2,
   },
   productStock: {
     fontSize: 12,
-    color: '#F59E0B',
+    color: '#B45309',
     marginTop: 2,
   },
 });

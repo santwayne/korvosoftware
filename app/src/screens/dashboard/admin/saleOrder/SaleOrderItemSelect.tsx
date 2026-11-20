@@ -48,7 +48,7 @@ const SaleOrderItemSelect = ({ navigation, route }: any) => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#077BC3',
+    backgroundColor: '#A3122A',
     paddingVertical: 16,
     alignItems: "center",
   },

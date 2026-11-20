@@ -463,11 +463,11 @@ const Groups = () => {
 
   const getRoleColor = (role: string) => {
     const colors: { [key: string]: string } = {
-      'zonal': '#3B82F6',
-      'rsm': '#10B981',
-      'asm': '#F59E0B',
-      'salesman': '#EF4444',
-      'dealers': '#8B5CF6',
+      'zonal': '#B8142F',
+      'rsm': '#15803D',
+      'asm': '#B45309',
+      'salesman': '#B91C1C',
+      'dealers': '#7D0B1E',
       'subdealer': '#06B6D4',
       'distibutors': '#84CC16',
     };
@@ -521,7 +521,7 @@ const Groups = () => {
       <View style={styles.mainContainer}>
         <DashboardHeader showNotifications={true} />
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#0493D2" />
+          <ActivityIndicator size="large" color="#B8142F" />
           <Text style={styles.loadingText}>Loading groups...</Text>
         </View>
       </View>
@@ -544,7 +544,7 @@ const Groups = () => {
           {/* Header Section */}
           <View style={styles.headerSection}>
             <TouchableOpacity onPress={handleBackToGroups} style={styles.backButton}>
-              <Ionicons name="arrow-back" size={24} color="#1F2937" />
+              <Ionicons name="arrow-back" size={24} color="#111827" />
               <Text style={styles.backButtonText}>Back to Groups</Text>
             </TouchableOpacity>
             <View style={styles.groupHeaderInfo}>
@@ -566,12 +566,12 @@ const Groups = () => {
           {/* Users List */}
           {loadingUsers ? (
             <View style={styles.loadingContainer}>
-              <ActivityIndicator size="large" color="#0493D2" />
+              <ActivityIndicator size="large" color="#B8142F" />
               <Text style={styles.loadingText}>Loading members...</Text>
             </View>
           ) : error ? (
             <View style={styles.errorContainer}>
-              <Ionicons name="alert-circle" size={48} color="#EF4444" />
+              <Ionicons name="alert-circle" size={48} color="#B91C1C" />
               <Text style={styles.errorText}>{error}</Text>
               <TouchableOpacity style={styles.retryButton} onPress={() => fetchUsersByGroup(selectedGroup._id)}>
                 <Text style={styles.retryButtonText}>Retry</Text>
@@ -579,7 +579,7 @@ const Groups = () => {
             </View>
           ) : filteredUsers.length === 0 ? (
             <View style={styles.emptyContainer}>
-              <Ionicons name="people-outline" size={48} color="#9CA3AF" />
+              <Ionicons name="people-outline" size={48} color="#6B7280" />
               <Text style={styles.emptyText}>No members found in this group</Text>
             </View>
           ) : (
@@ -602,17 +602,17 @@ const Groups = () => {
                           </View>
                         )}
                         {isSubDealer && (
-                          <View style={[styles.roleBadge, { backgroundColor: '#F59E0B' }]}>
+                          <View style={[styles.roleBadge, { backgroundColor: '#B45309' }]}>
                             <Text style={styles.roleText}>{member.SDType || 'Sub Dealer'}</Text>
                           </View>
                         )}
                         {isDealer && (
-                          <View style={[styles.roleBadge, { backgroundColor: '#8B5CF6' }]}>
+                          <View style={[styles.roleBadge, { backgroundColor: '#7D0B1E' }]}>
                             <Text style={styles.roleText}>Dealer</Text>
                           </View>
                         )}
                         <View style={[styles.typeBadge, { 
-                          backgroundColor: isUser ? '#3B82F6' : isSubDealer ? '#F59E0B' : '#8B5CF6' 
+                          backgroundColor: isUser ? '#B8142F' : isSubDealer ? '#B45309' : '#7D0B1E' 
                         }]}>
                           <Text style={styles.typeBadgeText}>
                             {isUser ? 'User' : isSubDealer ? 'SubDealer' : 'Dealer'}
@@ -680,8 +680,8 @@ const Groups = () => {
                         </View>
                       )}
                       <View style={styles.detailRow}>
-                        <Ionicons name="checkmark-circle" size={16} color={member.isActive ? "#10B981" : "#EF4444"} />
-                        <Text style={[styles.detailText, { color: member.isActive ? "#10B981" : "#EF4444" }]}>
+                        <Ionicons name="checkmark-circle" size={16} color={member.isActive ? "#15803D" : "#B91C1C"} />
+                        <Text style={[styles.detailText, { color: member.isActive ? "#15803D" : "#B91C1C" }]}>
                           {member.isActive ? 'Active' : 'Inactive'}
                         </Text>
                       </View>
@@ -733,14 +733,14 @@ const Groups = () => {
             placeholder="Search groups..."
             value={searchText}
             onChangeText={setSearchText}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
         </View>
 
         {/* Groups List */}
         {error ? (
           <View style={styles.errorContainer}>
-            <Ionicons name="alert-circle" size={48} color="#EF4444" />
+            <Ionicons name="alert-circle" size={48} color="#B91C1C" />
             <Text style={styles.errorText}>{error}</Text>
             <TouchableOpacity style={styles.retryButton} onPress={() => fetchGroups()}>
               <Text style={styles.retryButtonText}>Retry</Text>
@@ -748,7 +748,7 @@ const Groups = () => {
           </View>
         ) : filteredGroups.length === 0 ? (
           <View style={styles.emptyContainer}>
-            <Ionicons name="folder-outline" size={48} color="#9CA3AF" />
+            <Ionicons name="folder-outline" size={48} color="#6B7280" />
             <Text style={styles.emptyText}>No groups found</Text>
             <Text style={styles.emptySubtext}>
               {searchText ? 'Try adjusting your search criteria' : 'Groups will appear here once created'}
@@ -776,20 +776,20 @@ const Groups = () => {
                         <View style={styles.groupNameRow}>
                           {hierarchyLevel > 0 && (
                             <View style={styles.hierarchyIndicator}>
-                              <Ionicons name="return-down-forward" size={16} color="#9CA3AF" />
+                              <Ionicons name="return-down-forward" size={16} color="#6B7280" />
                             </View>
                           )}
                           <Ionicons 
                             name={hierarchyLevel === 0 ? "folder" : "folder-outline"} 
                             size={20} 
-                            color={hierarchyLevel === 0 ? "#0493D2" : "#6B7280"}
+                            color={hierarchyLevel === 0 ? "#B8142F" : "#6B7280"}
                             style={{ marginRight: 8 }}
                           />
                           <View style={styles.groupNameContainer}>
                             <Text style={styles.groupName}>{group.GroupName}</Text>
                             {hierarchyLevel > 0 && parentGroup && (
                               <View style={styles.parentGroupBadge}>
-                                <Ionicons name="arrow-up" size={12} color="#0493D2" />
+                                <Ionicons name="arrow-up" size={12} color="#B8142F" />
                                 <Text style={styles.parentGroupBadgeText}>
                                   Parent: {parentGroup.GroupName}
                                 </Text>
@@ -829,16 +829,16 @@ const Groups = () => {
                       )}
                       {hierarchyLevel > 0 && (
                         <View style={styles.groupDetailRow}>
-                          <Ionicons name="layers" size={16} color="#0493D2" />
-                          <Text style={[styles.groupDetailText, { color: '#0493D2' }]}>
+                          <Ionicons name="layers" size={16} color="#B8142F" />
+                          <Text style={[styles.groupDetailText, { color: '#B8142F' }]}>
                             Level {hierarchyLevel} {hierarchyLevel === 1 ? 'child' : 'levels'} deep
                           </Text>
                         </View>
                       )}
                       {hierarchyLevel === 0 && (
                         <View style={styles.groupDetailRow}>
-                          <Ionicons name="star" size={16} color="#F59E0B" />
-                          <Text style={[styles.groupDetailText, { color: '#F59E0B' }]}>
+                          <Ionicons name="star" size={16} color="#B45309" />
+                          <Text style={[styles.groupDetailText, { color: '#B45309' }]}>
                             Root Group
                           </Text>
                         </View>
@@ -851,13 +851,13 @@ const Groups = () => {
                     style={styles.actionButton}
                     onPress={() => handleEditGroup(group)}
                   >
-                    <Ionicons name="create-outline" size={18} color="#0493D2" />
+                    <Ionicons name="create-outline" size={18} color="#B8142F" />
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={[styles.actionButton, styles.deleteButton]}
                     onPress={() => handleDeleteGroup(group)}
                   >
-                    <Ionicons name="trash-outline" size={18} color="#EF4444" />
+                    <Ionicons name="trash-outline" size={18} color="#B91C1C" />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -893,7 +893,7 @@ const Groups = () => {
                     placeholder="Enter Group GUID (e.g., GRP001)"
                     value={formData.GroupGUID}
                     onChangeText={(text) => setFormData({ ...formData, GroupGUID: text })}
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
               )}
@@ -905,7 +905,7 @@ const Groups = () => {
                   placeholder="Enter group name"
                   value={formData.GroupName}
                   onChangeText={(text) => setFormData({ ...formData, GroupName: text })}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -915,7 +915,7 @@ const Groups = () => {
                 {formData.GroupParent ? (
                   <View style={styles.selectedParentContainer}>
                     <View style={styles.selectedParentInfo}>
-                      <Ionicons name="folder" size={20} color="#0493D2" />
+                      <Ionicons name="folder" size={20} color="#B8142F" />
                       <View style={styles.selectedParentDetails}>
                         <Text style={styles.selectedParentName}>
                           {groups.find(g => g.GroupGUID === formData.GroupParent)?.GroupName || formData.GroupParent}
@@ -927,7 +927,7 @@ const Groups = () => {
                       style={styles.removeParentButton}
                       onPress={handleRemoveParentGroup}
                     >
-                      <Ionicons name="close-circle" size={24} color="#EF4444" />
+                      <Ionicons name="close-circle" size={24} color="#B91C1C" />
                     </TouchableOpacity>
                   </View>
                 ) : (
@@ -951,7 +951,7 @@ const Groups = () => {
                   onChangeText={(text) => setFormData({ ...formData, Remarks: text })}
                   multiline
                   numberOfLines={3}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -962,7 +962,7 @@ const Groups = () => {
                   placeholder="Enter Other1"
                   value={formData.other1}
                   onChangeText={(text) => setFormData({ ...formData, other1: text })}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -973,7 +973,7 @@ const Groups = () => {
                   placeholder="Enter Other2"
                   value={formData.other2}
                   onChangeText={(text) => setFormData({ ...formData, other2: text })}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -984,7 +984,7 @@ const Groups = () => {
                   placeholder="Enter Other3"
                   value={formData.other3}
                   onChangeText={(text) => setFormData({ ...formData, other3: text })}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -995,7 +995,7 @@ const Groups = () => {
                   placeholder="Enter Other4"
                   value={formData.other4}
                   onChangeText={(text) => setFormData({ ...formData, other4: text })}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -1005,7 +1005,7 @@ const Groups = () => {
                   <Switch
                     value={formData.isActive}
                     onValueChange={(value) => setFormData({ ...formData, isActive: value })}
-                    trackColor={{ false: '#D1D5DB', true: '#0493D2' }}
+                    trackColor={{ false: '#D1D5DB', true: '#B8142F' }}
                     thumbColor="#fff"
                   />
                 </View>
@@ -1061,7 +1061,7 @@ const Groups = () => {
                     placeholder="Enter Group GUID (e.g., GRP001)"
                     value={formData.GroupGUID}
                     onChangeText={(text) => setFormData({ ...formData, GroupGUID: text })}
-                    placeholderTextColor="#9CA3AF"
+                    placeholderTextColor="#6B7280"
                   />
                 </View>
               )}
@@ -1073,7 +1073,7 @@ const Groups = () => {
                   placeholder="Enter group name"
                   value={formData.GroupName}
                   onChangeText={(text) => setFormData({ ...formData, GroupName: text })}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -1083,7 +1083,7 @@ const Groups = () => {
                 {formData.GroupParent ? (
                   <View style={styles.selectedParentContainer}>
                     <View style={styles.selectedParentInfo}>
-                      <Ionicons name="folder" size={20} color="#0493D2" />
+                      <Ionicons name="folder" size={20} color="#B8142F" />
                       <View style={styles.selectedParentDetails}>
                         <Text style={styles.selectedParentName}>
                           {groups.find(g => g.GroupGUID === formData.GroupParent)?.GroupName || formData.GroupParent}
@@ -1095,7 +1095,7 @@ const Groups = () => {
                       style={styles.removeParentButton}
                       onPress={handleRemoveParentGroup}
                     >
-                      <Ionicons name="close-circle" size={24} color="#EF4444" />
+                      <Ionicons name="close-circle" size={24} color="#B91C1C" />
                     </TouchableOpacity>
                   </View>
                 ) : (
@@ -1119,7 +1119,7 @@ const Groups = () => {
                   onChangeText={(text) => setFormData({ ...formData, Remarks: text })}
                   multiline
                   numberOfLines={3}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -1130,7 +1130,7 @@ const Groups = () => {
                   placeholder="Enter Other1"
                   value={formData.other1}
                   onChangeText={(text) => setFormData({ ...formData, other1: text })}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -1141,7 +1141,7 @@ const Groups = () => {
                   placeholder="Enter Other2"
                   value={formData.other2}
                   onChangeText={(text) => setFormData({ ...formData, other2: text })}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -1152,7 +1152,7 @@ const Groups = () => {
                   placeholder="Enter Other3"
                   value={formData.other3}
                   onChangeText={(text) => setFormData({ ...formData, other3: text })}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -1163,7 +1163,7 @@ const Groups = () => {
                   placeholder="Enter Other4"
                   value={formData.other4}
                   onChangeText={(text) => setFormData({ ...formData, other4: text })}
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
 
@@ -1173,7 +1173,7 @@ const Groups = () => {
                   <Switch
                     value={formData.isActive}
                     onValueChange={(value) => setFormData({ ...formData, isActive: value })}
-                    trackColor={{ false: '#D1D5DB', true: '#0493D2' }}
+                    trackColor={{ false: '#D1D5DB', true: '#B8142F' }}
                     thumbColor="#fff"
                   />
                 </View>
@@ -1226,7 +1226,7 @@ const Groups = () => {
                 placeholder="Search groups..."
                 value={parentGroupSearch}
                 onChangeText={setParentGroupSearch}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -1234,12 +1234,12 @@ const Groups = () => {
 
             {loading ? (
               <View style={styles.emptyParentContainer}>
-                <ActivityIndicator size="large" color="#0493D2" />
+                <ActivityIndicator size="large" color="#B8142F" />
                 <Text style={styles.emptyParentText}>Loading groups...</Text>
               </View>
             ) : filteredParentGroups.length === 0 ? (
               <View style={styles.emptyParentContainer}>
-                <Ionicons name="folder-outline" size={48} color="#9CA3AF" />
+                <Ionicons name="folder-outline" size={48} color="#6B7280" />
                 <Text style={styles.emptyParentText}>No groups available</Text>
                 <Text style={styles.emptyParentSubtext}>
                   {parentGroupSearch 
@@ -1251,7 +1251,7 @@ const Groups = () => {
                         : `No groups available (Total: ${groups.length})`}
                 </Text>
                 {__DEV__ && (
-                  <Text style={[styles.emptyParentSubtext, { marginTop: 8, fontSize: 10, color: '#EF4444' }]}>
+                  <Text style={[styles.emptyParentSubtext, { marginTop: 8, fontSize: 10, color: '#B91C1C' }]}>
                     Debug: groups={groups.length}, filtered={filteredParentGroups.length}, editing={editingGroup?._id || 'none'}
                   </Text>
                 )}
@@ -1277,12 +1277,12 @@ const Groups = () => {
                     >
                       <View style={styles.parentGroupItemContent}>
                         {hierarchyLevel > 0 && (
-                          <Ionicons name="return-down-forward" size={16} color="#9CA3AF" style={{ marginRight: 8 }} />
+                          <Ionicons name="return-down-forward" size={16} color="#6B7280" style={{ marginRight: 8 }} />
                         )}
                         <Ionicons 
                           name={hierarchyLevel === 0 ? "folder" : "folder-outline"} 
                           size={24} 
-                          color={hierarchyLevel === 0 ? "#0493D2" : "#6B7280"} 
+                          color={hierarchyLevel === 0 ? "#B8142F" : "#6B7280"} 
                         />
                         <View style={styles.parentGroupItemInfo}>
                           <View style={styles.parentGroupItemHeader}>
@@ -1309,7 +1309,7 @@ const Groups = () => {
                 contentContainerStyle={styles.parentGroupListContent}
                 ListEmptyComponent={() => (
                   <View style={styles.emptyParentContainer}>
-                    <Ionicons name="folder-outline" size={48} color="#9CA3AF" />
+                    <Ionicons name="folder-outline" size={48} color="#6B7280" />
                     <Text style={styles.emptyParentText}>No groups available</Text>
                     <Text style={styles.emptyParentSubtext}>
                       {parentGroupSearch 
@@ -1361,7 +1361,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   subheading: {
@@ -1377,7 +1377,7 @@ const styles = StyleSheet.create({
   backButtonText: {
     marginLeft: 8,
     fontSize: 16,
-    color: '#0493D2',
+    color: '#B8142F',
     fontWeight: '600',
   },
   groupHeaderInfo: {
@@ -1396,11 +1396,11 @@ const styles = StyleSheet.create({
   },
   groupDetailSubText: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     fontWeight: '400',
   },
   remarksContainer: {
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     padding: 12,
     borderRadius: 8,
     marginBottom: 20,
@@ -1408,12 +1408,12 @@ const styles = StyleSheet.create({
   remarksLabel: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#1E40AF',
+    color: '#7D0B1E',
     marginBottom: 4,
   },
   remarksText: {
     fontSize: 14,
-    color: '#1E40AF',
+    color: '#7D0B1E',
   },
   searchContainer: {
     flexDirection: 'row',
@@ -1430,7 +1430,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   groupsListContainer: {
     gap: 12,
@@ -1457,7 +1457,7 @@ const styles = StyleSheet.create({
   groupName: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   groupCardDetails: {
@@ -1499,7 +1499,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 8,
   },
   roleBadge: {
@@ -1561,15 +1561,15 @@ const styles = StyleSheet.create({
   errorText: {
     marginTop: 16,
     fontSize: 16,
-    color: '#EF4444',
+    color: '#B91C1C',
     textAlign: 'center',
     marginBottom: 16,
   },
   retryButton: {
-    backgroundColor: '#0493D2',
+    backgroundColor: '#B8142F',
     paddingHorizontal: 24,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   retryButtonText: {
     color: '#fff',
@@ -1589,7 +1589,7 @@ const styles = StyleSheet.create({
   },
   emptySubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
   headerRow: {
@@ -1600,10 +1600,10 @@ const styles = StyleSheet.create({
   createButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0493D2',
+    backgroundColor: '#B8142F',
     paddingHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 8,
+    borderRadius: 999,
     gap: 6,
   },
   createButtonText: {
@@ -1633,7 +1633,7 @@ const styles = StyleSheet.create({
   parentGroupBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 12,
@@ -1642,7 +1642,7 @@ const styles = StyleSheet.create({
   },
   parentGroupBadgeText: {
     fontSize: 11,
-    color: '#0493D2',
+    color: '#B8142F',
     fontWeight: '600',
   },
   inactiveBadge: {
@@ -1652,7 +1652,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   inactiveBadgeText: {
-    color: '#DC2626',
+    color: '#B91C1C',
     fontSize: 10,
     fontWeight: '600',
   },
@@ -1670,7 +1670,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     gap: 6,
   },
@@ -1701,7 +1701,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   modalBody: {
     padding: 20,
@@ -1719,10 +1719,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9FAFB',
     borderWidth: 1,
     borderColor: '#E5E7EB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   textArea: {
     minHeight: 80,
@@ -1743,7 +1743,7 @@ const styles = StyleSheet.create({
   modalButton: {
     flex: 1,
     paddingVertical: 14,
-    borderRadius: 8,
+    borderRadius: 999,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -1756,7 +1756,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   submitButton: {
-    backgroundColor: '#0493D2',
+    backgroundColor: '#B8142F',
   },
   submitButtonText: {
     color: '#fff',
@@ -1775,7 +1775,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9FAFB',
     borderWidth: 1,
     borderColor: '#E5E7EB',
-    borderRadius: 8,
+    borderRadius: 999,
     padding: 12,
     gap: 8,
   },
@@ -1787,9 +1787,9 @@ const styles = StyleSheet.create({
   selectedParentContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     borderWidth: 1,
-    borderColor: '#BFDBFE',
+    borderColor: '#FFD2D9',
     borderRadius: 8,
     padding: 12,
     gap: 12,
@@ -1806,12 +1806,12 @@ const styles = StyleSheet.create({
   selectedParentName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1E40AF',
+    color: '#7D0B1E',
     marginBottom: 2,
   },
   selectedParentGUID: {
     fontSize: 12,
-    color: '#3B82F6',
+    color: '#B8142F',
   },
   removeParentButton: {
     padding: 4,
@@ -1840,7 +1840,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   parentGroupList: {
     flex: 1,
@@ -1876,14 +1876,14 @@ const styles = StyleSheet.create({
   },
   parentGroupItemParent: {
     fontSize: 11,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginLeft: 8,
     fontStyle: 'italic',
   },
   parentGroupItemName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   parentGroupItemGUID: {
@@ -1893,7 +1893,7 @@ const styles = StyleSheet.create({
   },
   parentGroupItemRemarks: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   emptyParentContainer: {
     alignItems: 'center',
@@ -1908,7 +1908,7 @@ const styles = StyleSheet.create({
   },
   emptyParentSubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
 });

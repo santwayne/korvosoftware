@@ -24,7 +24,7 @@ export const PendingOrdersScreen = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Pending Orders</Text>
         <View style={{ width: 40 }} />
@@ -46,17 +46,17 @@ export const PendingOrdersScreen = () => {
           <View key={order.id} style={styles.card}>
             <View style={styles.cardHeader}>
               <View style={styles.iconContainer}>
-                <Ionicons name="cube-outline" size={20} color="#F59E0B" />
+                <Ionicons name="cube-outline" size={20} color="#B45309" />
               </View>
               <View style={styles.cardInfo}>
                 <Text style={styles.cardName}>{order.id}</Text>
                 <Text style={styles.cardSubtext}>{order.customer}</Text>
               </View>
               <View style={[styles.statusBadge, {
-                backgroundColor: order.status === 'pending' ? '#FEF3C7' : '#DBEAFE'
+                backgroundColor: order.status === 'pending' ? '#FEF3C7' : '#FFD2D9'
               }]}>
                 <Text style={[styles.statusBadgeText, {
-                  color: order.status === 'pending' ? '#D97706' : '#2563EB'
+                  color: order.status === 'pending' ? '#B45309' : '#A3122A'
                 }]}>{order.status}</Text>
               </View>
             </View>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   backButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     justifyContent: 'center',
     alignItems: 'center',
@@ -108,13 +108,13 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   filterButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    backgroundColor: '#EFF6FF',
+    borderRadius: 999,
+    backgroundColor: '#FBEEEE',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
   },
   statsContainer: {
     flexDirection: 'row',
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   statLabel: {
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    backgroundColor: '#DBEAFE',
+    backgroundColor: '#FFD2D9',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
   cardName: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   cardSubtext: {
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   badge: {
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 8,
@@ -232,12 +232,12 @@ const styles = StyleSheet.create({
   badgeText: {
     fontSize: 11,
     fontWeight: '600',
-    color: '#3B82F6',
+    color: '#B8142F',
   },
   balance: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   amountContainer: {
     paddingTop: 12,
@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
   amount: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     textAlign: 'right',
   },
   cardDetails: {
@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
   detailValue: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   percentageText: {
     fontSize: 16,
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
   targetValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   progressBarContainer: {
     height: 8,
@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
   summaryValue: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   summaryDivider: {
     width: 1,
@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
   monthText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   growthBadge: {
     flexDirection: 'row',
@@ -384,6 +384,6 @@ const styles = StyleSheet.create({
   salesItemValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
 });

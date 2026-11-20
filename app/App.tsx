@@ -37,7 +37,7 @@ function  AppContent() {
     <SafeAreaProvider>
       <StatusBar
         barStyle="light-content"
-        backgroundColor="#077BC3"
+        backgroundColor="#A3122A"
         translucent={false}
       />
       

@@ -652,7 +652,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12, paddingVertical: 8,
   },
   sortBtn: {
-    backgroundColor: '#2A4A7F', borderRadius: 10,
+    backgroundColor: '#2A4A7F', borderRadius: 999,
     padding: 10, alignItems: 'center', justifyContent: 'center',
   },
   datePillLabel: { color: '#BEE3F8', fontSize: 10, fontWeight: '700', letterSpacing: 0.5 },

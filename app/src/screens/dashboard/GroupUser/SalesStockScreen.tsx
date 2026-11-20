@@ -89,13 +89,13 @@ const SalesSummaryScreen = () => {
   const getStatusStyle = (status: string) => {
     switch (status) {
       case 'Top Seller':
-        return { bg: '#D1FAE5', text: '#059669', icon: 'trophy' };
+        return { bg: '#D1FAE5', text: '#15803D', icon: 'trophy' };
       case 'Slow Mover':
-        return { bg: '#FEF3C7', text: '#D97706', icon: 'alert-circle' };
+        return { bg: '#FEF3C7', text: '#B45309', icon: 'alert-circle' };
       case 'Good':
-        return { bg: '#DBEAFE', text: '#2563EB', icon: 'checkmark-circle' };
+        return { bg: '#FFD2D9', text: '#A3122A', icon: 'checkmark-circle' };
       default:
-        return { bg: '#D1FAE5', text: '#10B981', icon: 'checkmark-circle' };
+        return { bg: '#D1FAE5', text: '#15803D', icon: 'checkmark-circle' };
     }
   };
 
@@ -166,11 +166,11 @@ const SalesSummaryScreen = () => {
           </View>
           <View style={[
             styles.transactionStatusBadge,
-            { backgroundColor: item.status === 'Completed' ? '#D1FAE5' : '#DBEAFE' }
+            { backgroundColor: item.status === 'Completed' ? '#D1FAE5' : '#FFD2D9' }
           ]}>
             <Text style={[
               styles.transactionStatusText,
-              { color: item.status === 'Completed' ? '#059669' : '#2563EB' }
+              { color: item.status === 'Completed' ? '#15803D' : '#A3122A' }
             ]}>
               {item.status || 'Completed'}
             </Text>
@@ -181,7 +181,7 @@ const SalesSummaryScreen = () => {
 
         {isAllTransactions && (
           <View style={styles.transactionStockInfo}>
-            <Ionicons name="cube-outline" size={14} color="#3B82F6" />
+            <Ionicons name="cube-outline" size={14} color="#B8142F" />
             <View style={{ flex: 1 }}>
               <Text style={styles.transactionStockName}>{item.stockName || 'Unknown'}</Text>
               <Text style={styles.transactionStockSku}>SKU: {item.sku || 'N/A'}</Text>
@@ -215,14 +215,14 @@ const SalesSummaryScreen = () => {
           <View style={styles.transactionFooterDivider} />
           <View style={styles.transactionFooterItem}>
             <Text style={styles.transactionFooterLabel}>Rate</Text>
-            <Text style={[styles.transactionFooterValue, { color: '#3B82F6' }]}>
+            <Text style={[styles.transactionFooterValue, { color: '#B8142F' }]}>
               ₹ {(item.rate || 0).toLocaleString('en-IN')}
             </Text>
           </View>
           <View style={styles.transactionFooterDivider} />
           <View style={styles.transactionFooterItem}>
             <Text style={styles.transactionFooterLabel}>Amount</Text>
-            <Text style={[styles.transactionFooterValue, { color: '#10B981' }]}>
+            <Text style={[styles.transactionFooterValue, { color: '#15803D' }]}>
               {formatCurrency(item.amount || 0)}
             </Text>
           </View>
@@ -253,7 +253,7 @@ const SalesSummaryScreen = () => {
                 style={styles.viewAllButton}
                 onPress={openAllTransactions}
               >
-                <Ionicons name="grid-outline" size={18} color="#0088CC" />
+                <Ionicons name="grid-outline" size={18} color="#B8142F" />
                 <Text style={styles.viewAllButtonText}>View All</Text>
               </TouchableOpacity>
             )}
@@ -267,11 +267,11 @@ const SalesSummaryScreen = () => {
               </View>
               <View style={styles.modalStatBox}>
                 <Text style={styles.modalStatLabel}>Total Quantity</Text>
-                <Text style={[styles.modalStatValue, { color: '#3B82F6' }]}>{totalQty}</Text>
+                <Text style={[styles.modalStatValue, { color: '#B8142F' }]}>{totalQty}</Text>
               </View>
               <View style={styles.modalStatBox}>
                 <Text style={styles.modalStatLabel}>Total Amount</Text>
-                <Text style={[styles.modalStatValue, { color: '#10B981' }]}>{formatCurrency(totalAmt)}</Text>
+                <Text style={[styles.modalStatValue, { color: '#15803D' }]}>{formatCurrency(totalAmt)}</Text>
               </View>
             </View>
           </View>
@@ -326,7 +326,7 @@ const SalesSummaryScreen = () => {
 
           <View style={[styles.statBox, styles.borderLeft]}>
             <Text style={styles.statLabel}>AVG RATE</Text>
-            <Text style={[styles.statValue, { color: '#3B82F6' }]}>
+            <Text style={[styles.statValue, { color: '#B8142F' }]}>
               {formatCurrency(item.averageRate || 0)}
             </Text>
             <Text style={styles.statUnit}>per unit</Text>
@@ -334,7 +334,7 @@ const SalesSummaryScreen = () => {
 
           <View style={[styles.statBox, styles.borderLeft]}>
             <Text style={styles.statLabel}>TOTAL AMOUNT</Text>
-            <Text style={[styles.statValue, { color: '#10B981' }]}>
+            <Text style={[styles.statValue, { color: '#15803D' }]}>
               {formatCurrency(item.totalAmount || 0)}
             </Text>
             <Text style={styles.statUnit}>revenue</Text>
@@ -359,11 +359,11 @@ const SalesSummaryScreen = () => {
             <Ionicons 
               name={item.trend === 'up' ? "trending-up" : "trending-down"} 
               size={18} 
-              color={item.trend === 'up' ? "#10B981" : "#EF4444"} 
+              color={item.trend === 'up' ? "#15803D" : "#B91C1C"} 
             />
             <Text style={[
               styles.trendText,
-              { color: item.trend === 'up' ? "#10B981" : "#EF4444" }
+              { color: item.trend === 'up' ? "#15803D" : "#B91C1C" }
             ]}>
               {item.trend === 'up' ? 'Trending Up' : 'Trending Down'}
             </Text>
@@ -374,7 +374,7 @@ const SalesSummaryScreen = () => {
             onPress={() => openTransactionDetails(item)}
           >
             <Text style={styles.viewDetailsText}>VIEW DETAILS</Text>
-            <Ionicons name="chevron-forward" size={14} color="#0088CC" />
+            <Ionicons name="chevron-forward" size={14} color="#B8142F" />
           </TouchableOpacity>
         </View>
       </View>
@@ -393,24 +393,24 @@ const SalesSummaryScreen = () => {
           style={styles.headerButton}
           onPress={openAllTransactions}
         >
-          <Ionicons name="receipt-outline" size={20} color="#0088CC" />
+          <Ionicons name="receipt-outline" size={20} color="#B8142F" />
           <Text style={styles.headerButtonText}>All Transactions</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.searchSection}>
         <View style={styles.searchBar}>
-          <Ionicons name="search" size={18} color="#9CA3AF" />
+          <Ionicons name="search" size={18} color="#6B7280" />
           <TextInput 
             placeholder="Search stock or SKU..." 
             style={styles.searchInput}
             value={searchQuery}
             onChangeText={setSearchQuery}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
           {searchQuery.length > 0 && (
             <TouchableOpacity onPress={() => setSearchQuery('')}>
-              <Ionicons name="close-circle" size={18} color="#9CA3AF" />
+              <Ionicons name="close-circle" size={18} color="#6B7280" />
             </TouchableOpacity>
           )}
         </View>
@@ -455,7 +455,7 @@ const SalesSummaryScreen = () => {
 
       {loading ? (
         <View style={styles.loadingBox}>
-          <ActivityIndicator size="large" color="#10B981" />
+          <ActivityIndicator size="large" color="#15803D" />
           <Text style={styles.loadingText}>Loading sales data...</Text>
         </View>
       ) : (
@@ -491,13 +491,13 @@ const styles = StyleSheet.create({
   headerButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     paddingHorizontal: 12,
     paddingVertical: 8,
-    borderRadius: 10,
+    borderRadius: 999,
     gap: 6
   },
-  headerButtonText: { fontSize: 13, fontWeight: '600', color: '#0088CC' },
+  headerButtonText: { fontSize: 13, fontWeight: '600', color: '#B8142F' },
   
   searchSection: { paddingHorizontal: 15, paddingVertical: 12, backgroundColor: '#fff' },
   searchBar: { 
@@ -513,7 +513,7 @@ const styles = StyleSheet.create({
   summaryStrip: { 
     flexDirection: 'row', 
     paddingVertical: 18, 
-    backgroundColor: '#10B981',
+    backgroundColor: '#15803D',
     marginHorizontal: 15,
     borderRadius: 14,
     marginTop: 12
@@ -530,7 +530,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#F3F4F6'
   },
-  filterPillActive: { backgroundColor: '#10B981' },
+  filterPillActive: { backgroundColor: '#15803D' },
   filterPillText: { fontSize: 12, fontWeight: '600', color: '#6B7280' },
   filterPillTextActive: { color: '#fff' },
 
@@ -546,8 +546,8 @@ const styles = StyleSheet.create({
   },
 
   cardHeader: { flexDirection: 'row', padding: 16, alignItems: 'flex-start', gap: 12 },
-  stockName: { fontSize: 16, fontWeight: 'bold', color: '#1F2937' },
-  skuText: { fontSize: 12, color: '#9CA3AF', marginTop: 4 },
+  stockName: { fontSize: 16, fontWeight: 'bold', color: '#111827' },
+  skuText: { fontSize: 12, color: '#6B7280', marginTop: 4 },
   categoryBadge: {
     backgroundColor: '#F3F4F6',
     paddingHorizontal: 8,
@@ -571,9 +571,9 @@ const styles = StyleSheet.create({
   statsGrid: { flexDirection: 'row', backgroundColor: '#F9FAFB', borderTopWidth: 1, borderColor: '#E5E7EB' },
   statBox: { flex: 1, padding: 14, alignItems: 'center' },
   borderLeft: { borderLeftWidth: 1, borderColor: '#E5E7EB' },
-  statLabel: { fontSize: 9, color: '#9CA3AF', fontWeight: 'bold', marginBottom: 6 },
-  statValue: { fontSize: 18, fontWeight: '800', color: '#1F2937' },
-  statUnit: { fontSize: 10, color: '#9CA3AF', marginTop: 4, fontWeight: '500' },
+  statLabel: { fontSize: 9, color: '#6B7280', fontWeight: 'bold', marginBottom: 6 },
+  statValue: { fontSize: 18, fontWeight: '800', color: '#111827' },
+  statUnit: { fontSize: 10, color: '#6B7280', marginTop: 4, fontWeight: '500' },
 
   bottomRow: {
     paddingHorizontal: 16,
@@ -596,7 +596,7 @@ const styles = StyleSheet.create({
   trendIndicator: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   trendText: { fontSize: 13, fontWeight: '600' },
   viewDetailsBtn: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  viewDetailsText: { color: '#0088CC', fontSize: 12, fontWeight: 'bold' },
+  viewDetailsText: { color: '#B8142F', fontSize: 12, fontWeight: 'bold' },
 
   // Modal Styles
   modalContainer: { flex: 1, backgroundColor: '#F8F9FA' },
@@ -614,13 +614,13 @@ const styles = StyleSheet.create({
   viewAllButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     paddingHorizontal: 10,
     paddingVertical: 6,
-    borderRadius: 8,
+    borderRadius: 999,
     gap: 4
   },
-  viewAllButtonText: { fontSize: 12, fontWeight: '600', color: '#0088CC' },
+  viewAllButtonText: { fontSize: 12, fontWeight: '600', color: '#B8142F' },
   
   modalProductCard: {
     backgroundColor: '#fff',
@@ -632,14 +632,14 @@ const styles = StyleSheet.create({
   },
   modalStatsRow: { flexDirection: 'row', gap: 12 },
   modalStatBox: { flex: 1, alignItems: 'center' },
-  modalStatLabel: { fontSize: 10, color: '#9CA3AF', fontWeight: '600', marginBottom: 6 },
-  modalStatValue: { fontSize: 18, fontWeight: '800', color: '#1F2937' },
+  modalStatLabel: { fontSize: 10, color: '#6B7280', fontWeight: '600', marginBottom: 6 },
+  modalStatValue: { fontSize: 18, fontWeight: '800', color: '#111827' },
   
   modalListContent: { padding: 15, paddingBottom: 50 },
   
   transactionCard: {
     backgroundColor: '#fff',
-    borderRadius: 12,
+    borderRadius: 14,
     marginBottom: 12,
     borderWidth: 1,
     borderColor: '#E5E7EB'
@@ -650,8 +650,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 14
   },
-  transactionInvoice: { fontSize: 15, fontWeight: 'bold', color: '#1F2937' },
-  transactionDate: { fontSize: 12, color: '#9CA3AF', marginTop: 2 },
+  transactionInvoice: { fontSize: 15, fontWeight: 'bold', color: '#111827' },
+  transactionDate: { fontSize: 12, color: '#6B7280', marginTop: 2 },
   transactionStatusBadge: {
     paddingHorizontal: 8,
     paddingVertical: 5,
@@ -670,22 +670,22 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#E5E7EB'
   },
-  transactionStockName: { fontSize: 14, fontWeight: '600', color: '#1F2937' },
+  transactionStockName: { fontSize: 14, fontWeight: '600', color: '#111827' },
   transactionStockSku: { fontSize: 11, color: '#6B7280', marginTop: 2 },
   
   transactionDetails: { padding: 14, gap: 8 },
   transactionDetailRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   transactionDetailLabel: { fontSize: 12, color: '#6B7280', fontWeight: '600', minWidth: 80 },
-  transactionDetailValue: { fontSize: 13, color: '#1F2937', fontWeight: '600', flex: 1 },
+  transactionDetailValue: { fontSize: 13, color: '#111827', fontWeight: '600', flex: 1 },
   
   transactionFooter: { flexDirection: 'row', backgroundColor: '#F9FAFB', borderTopWidth: 1, borderTopColor: '#E5E7EB' },
   transactionFooterItem: { flex: 1, padding: 12, alignItems: 'center' },
   transactionFooterDivider: { width: 1, backgroundColor: '#E5E7EB' },
-  transactionFooterLabel: { fontSize: 10, color: '#9CA3AF', fontWeight: '600', marginBottom: 4 },
-  transactionFooterValue: { fontSize: 14, fontWeight: 'bold', color: '#1F2937' },
+  transactionFooterLabel: { fontSize: 10, color: '#6B7280', fontWeight: '600', marginBottom: 4 },
+  transactionFooterValue: { fontSize: 14, fontWeight: 'bold', color: '#111827' },
 
   emptyState: { alignItems: 'center', justifyContent: 'center', paddingVertical: 60 },
-  emptyStateText: { fontSize: 14, color: '#9CA3AF', marginTop: 12, fontWeight: '500' }
+  emptyStateText: { fontSize: 14, color: '#6B7280', marginTop: 12, fontWeight: '500' }
 });
 
 export default SalesSummaryScreen;

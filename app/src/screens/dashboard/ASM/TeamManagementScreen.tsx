@@ -45,8 +45,8 @@ const TeamManagementScreen = () => {
 
   const roles = [
     { key: 'all', label: 'All Roles', color: '#6B7280' },
-    { key: 'salesman', label: 'Salesman', color: '#EF4444' },
-    { key: 'dealers', label: 'Dealers', color: '#8B5CF6' },
+    { key: 'salesman', label: 'Salesman', color: '#B91C1C' },
+    { key: 'dealers', label: 'Dealers', color: '#7D0B1E' },
     { key: 'distibutors', label: 'Distributors', color: '#06B6D4' },
     { key: 'subdealer', label: 'Sub-dealers', color: '#84CC16' },
   ];
@@ -78,8 +78,8 @@ const TeamManagementScreen = () => {
 
   const getRoleColor = (role: string) => {
     const colors: { [key: string]: string } = {
-      'salesman': '#EF4444',
-      'dealers': '#8B5CF6',
+      'salesman': '#B91C1C',
+      'dealers': '#7D0B1E',
       'distibutors': '#06B6D4',
       'subdealer': '#84CC16',
     };
@@ -131,7 +131,7 @@ const TeamManagementScreen = () => {
         <View style={styles.memberStatus}>
           <View style={[
             styles.statusDot,
-            { backgroundColor: member.isActive ? '#10B981' : '#6B7280' }
+            { backgroundColor: member.isActive ? '#15803D' : '#6B7280' }
           ]} />
           <Text style={styles.statusText}>
             {member.isActive ? 'Active' : 'Inactive'}
@@ -174,7 +174,7 @@ const TeamManagementScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#F59E0B" />
+        <ActivityIndicator size="large" color="#B45309" />
         <Text style={styles.loadingText}>Loading team members...</Text>
       </View>
     );
@@ -188,14 +188,14 @@ const TeamManagementScreen = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Team Management</Text>
         <TouchableOpacity
           style={styles.filterButton}
           onPress={() => setShowFilterModal(true)}
         >
-          <Ionicons name="filter" size={24} color="#F59E0B" />
+          <Ionicons name="filter" size={24} color="#B45309" />
         </TouchableOpacity>
       </View>
 
@@ -207,7 +207,7 @@ const TeamManagementScreen = () => {
           placeholder="Search team members..."
           value={searchQuery}
           onChangeText={setSearchQuery}
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#6B7280"
         />
       </View>
 
@@ -242,7 +242,7 @@ const TeamManagementScreen = () => {
           filteredMembers.map(renderMemberCard)
         ) : (
           <View style={styles.emptyContainer}>
-            <Ionicons name="people-outline" size={64} color="#9CA3AF" />
+            <Ionicons name="people-outline" size={64} color="#6B7280" />
             <Text style={styles.emptyTitle}>No team members found</Text>
             <Text style={styles.emptySubtitle}>
               {searchQuery ? 'Try adjusting your search criteria' : 'No team members available'}
@@ -287,7 +287,7 @@ const TeamManagementScreen = () => {
                   {role.label}
                 </Text>
                 {selectedRole === role.key && (
-                  <Ionicons name="checkmark" size={20} color="#F59E0B" />
+                  <Ionicons name="checkmark" size={20} color="#B45309" />
                 )}
               </TouchableOpacity>
             ))}
@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   filterButton: {
     padding: 8,
@@ -353,7 +353,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   statsContainer: {
     flexDirection: 'row',
@@ -363,7 +363,7 @@ const styles = StyleSheet.create({
   statCard: {
     flex: 1,
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginHorizontal: 4,
     alignItems: 'center',
@@ -373,7 +373,7 @@ const styles = StyleSheet.create({
   statNumber: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
   },
   statLabel: {
     fontSize: 12,
@@ -386,7 +386,7 @@ const styles = StyleSheet.create({
   },
   memberCard: {
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginBottom: 12,
     borderWidth: 1,
@@ -416,7 +416,7 @@ const styles = StyleSheet.create({
   memberName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   memberRole: {
     fontSize: 14,
@@ -425,12 +425,12 @@ const styles = StyleSheet.create({
   },
   memberEmail: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 2,
   },
   memberPhone: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 1,
   },
   memberStatus: {
@@ -460,7 +460,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   statLabel: {
     fontSize: 12,
@@ -491,7 +491,7 @@ const styles = StyleSheet.create({
   },
   emptySubtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 8,
     textAlign: 'center',
   },
@@ -518,7 +518,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   roleOption: {
     flexDirection: 'row',
@@ -538,11 +538,11 @@ const styles = StyleSheet.create({
   roleLabel: {
     flex: 1,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   selectedRoleLabel: {
     fontWeight: '600',
-    color: '#F59E0B',
+    color: '#B45309',
   },
 });
 

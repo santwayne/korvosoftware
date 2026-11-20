@@ -108,15 +108,15 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
         return <CheckCircle size={20} color="#16a34a" />;
       case 'cancelled':
       case 'returned':
-        return <AlertCircle size={20} color="#dc2626" />;
+        return <AlertCircle size={20} color="#B91C1C" />;
       case 'pending':
       case 'pending_approval':
-        return <Clock size={20} color="#f59e0b" />;
+        return <Clock size={20} color="#B45309" />;
       case 'processing':
       case 'dispatched':
-        return <Truck size={20} color="#3b82f6" />;
+        return <Truck size={20} color="#B8142F" />;
       case 'sent_to_tally':
-        return <FileText size={20} color="#7c3aed" />;
+        return <FileText size={20} color="#7D0B1E" />;
       default:
         return <Package size={20} color="#6b7280" />;
     }
@@ -129,15 +129,15 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
         return '#16a34a';
       case 'cancelled':
       case 'returned':
-        return '#dc2626';
+        return '#B91C1C';
       case 'pending':
       case 'pending_approval':
-        return '#f59e0b';
+        return '#B45309';
       case 'processing':
       case 'dispatched':
-        return '#3b82f6';
+        return '#B8142F';
       case 'sent_to_tally':
-        return '#7c3aed';
+        return '#7D0B1E';
       default:
         return '#6b7280';
     }
@@ -145,9 +145,9 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'urgent': return '#dc2626';
-      case 'high': return '#f59e0b';
-      case 'medium': return '#3b82f6';
+      case 'urgent': return '#B91C1C';
+      case 'high': return '#B45309';
+      case 'medium': return '#B8142F';
       case 'low': return '#16a34a';
       default: return '#6b7280';
     }
@@ -156,8 +156,8 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
   const getPaymentStatusColor = (status: string) => {
     switch (status) {
       case 'paid': return '#16a34a';
-      case 'partial': return '#f59e0b';
-      case 'pending': return '#dc2626';
+      case 'partial': return '#B45309';
+      case 'pending': return '#B91C1C';
       case 'refunded': return '#6b7280';
       default: return '#6b7280';
     }
@@ -211,7 +211,7 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
           {/* Header */}
           <View style={styles.header}>
             <View style={styles.headerLeft}>
-              <Package size={24} color="#2563eb" />
+              <Package size={24} color="#A3122A" />
               <View>
                 <Text style={styles.headerTitle}>Order Details</Text>
                 <Text style={styles.headerSubtitle}>{order.orderNumber}</Text>
@@ -486,14 +486,14 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
                     style={styles.actionButton}
                     onPress={() => handleStatusUpdate('sent_to_tally')}
                   >
-                    <FileText size={20} color="#7c3aed" />
+                    <FileText size={20} color="#7D0B1E" />
                     <Text style={styles.actionButtonText}>Send to Tally</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={styles.actionButton}
                     onPress={() => handleStatusUpdate('dispatched')}
                   >
-                    <Truck size={20} color="#3b82f6" />
+                    <Truck size={20} color="#B8142F" />
                     <Text style={styles.actionButtonText}>Mark as Dispatched</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -555,7 +555,7 @@ const styles = StyleSheet.create({
   closeButton: {
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: 999,
     backgroundColor: '#f3f4f6',
     justifyContent: 'center',
     alignItems: 'center',
@@ -575,7 +575,7 @@ const styles = StyleSheet.create({
   },
   infoCard: {
     backgroundColor: '#f9fafb',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     borderWidth: 1,
     borderColor: '#e5e7eb',
@@ -634,7 +634,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#2563eb',
+    backgroundColor: '#A3122A',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -683,7 +683,7 @@ const styles = StyleSheet.create({
   },
   productsCard: {
     backgroundColor: '#f9fafb',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     borderWidth: 1,
     borderColor: '#e5e7eb',
@@ -718,7 +718,7 @@ const styles = StyleSheet.create({
   productTotal: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#059669',
+    color: '#15803D',
   },
   productDetails: {
     flexDirection: 'row',
@@ -740,7 +740,7 @@ const styles = StyleSheet.create({
   },
   summaryCard: {
     backgroundColor: '#f9fafb',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     borderWidth: 1,
     borderColor: '#e5e7eb',
@@ -773,7 +773,7 @@ const styles = StyleSheet.create({
   },
   summaryTotalValue: {
     fontSize: 16,
-    color: '#059669',
+    color: '#15803D',
     fontWeight: '700',
   },
   paymentBadge: {
@@ -807,7 +807,7 @@ const styles = StyleSheet.create({
   },
   actionsCard: {
     backgroundColor: '#f9fafb',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     borderWidth: 1,
     borderColor: '#e5e7eb',
@@ -816,7 +816,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderRadius: 8,
+    borderRadius: 999,
     padding: 12,
     marginBottom: 8,
     borderWidth: 1,

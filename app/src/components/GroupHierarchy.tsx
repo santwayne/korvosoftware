@@ -355,7 +355,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
   };
 
   const getLevelColor = (level: number): string => {
-    const colors = ['#3B82F6', '#10B981', '#8B5CF6', '#F97316', '#EF4444'];
+    const colors = ['#B8142F', '#15803D', '#7D0B1E', '#F97316', '#B91C1C'];
     return colors[level] || colors[colors.length - 1];
   };
 
@@ -400,11 +400,11 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
           {/* Stats row */}
           <View style={styles.statsRow}>
             <View style={styles.statChip}>
-              <Ionicons name="people-outline" size={13} color="#3B82F6" />
+              <Ionicons name="people-outline" size={13} color="#B8142F" />
               <Text style={styles.statChipText}>{usersCount} Users</Text>
             </View>
             <View style={styles.statChip}>
-              <Ionicons name="storefront-outline" size={13} color="#10B981" />
+              <Ionicons name="storefront-outline" size={13} color="#15803D" />
               <Text style={styles.statChipText}>{dealersCount} Dealers</Text>
             </View>
             {hasChildren && (
@@ -420,11 +420,11 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
             <View style={styles.actionRow}>
               {usersCount > 0 && (
                 <TouchableOpacity
-                  style={[styles.actionBtn, { backgroundColor: '#EFF6FF', borderColor: '#BFDBFE' }]}
+                  style={[styles.actionBtn, { backgroundColor: '#FBEEEE', borderColor: '#FFD2D9' }]}
                   onPress={() => openGroupDetail(group, 'users')}
                 >
-                  <Ionicons name="people" size={14} color="#3B82F6" />
-                  <Text style={[styles.actionBtnText, { color: '#2563EB' }]}>Users ({usersCount})</Text>
+                  <Ionicons name="people" size={14} color="#B8142F" />
+                  <Text style={[styles.actionBtnText, { color: '#A3122A' }]}>Users ({usersCount})</Text>
                 </TouchableOpacity>
               )}
               {dealersCount > 0 && (
@@ -432,8 +432,8 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
                   style={[styles.actionBtn, { backgroundColor: '#F0FDF4', borderColor: '#BBF7D0' }]}
                   onPress={() => openGroupDetail(group, 'dealers')}
                 >
-                  <Ionicons name="storefront" size={14} color="#10B981" />
-                  <Text style={[styles.actionBtnText, { color: '#059669' }]}>Dealers ({dealersCount})</Text>
+                  <Ionicons name="storefront" size={14} color="#15803D" />
+                  <Text style={[styles.actionBtnText, { color: '#15803D' }]}>Dealers ({dealersCount})</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -473,7 +473,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
                   onPress={() => setViewMode('dealers')}
                   style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}
                 >
-                  <Ionicons name="arrow-back" size={18} color="#3B82F6" />
+                  <Ionicons name="arrow-back" size={18} color="#B8142F" />
                   <Text style={styles.backBtnText}>Back to Dealers</Text>
                 </TouchableOpacity>
                 <Text style={styles.modalTitle}>Vouchers</Text>
@@ -490,12 +490,12 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
 
             {loadingVouchers ? (
               <View style={styles.centered}>
-                <ActivityIndicator size="large" color="#3B82F6" />
+                <ActivityIndicator size="large" color="#B8142F" />
                 <Text style={styles.loadingText}>Loading vouchers...</Text>
               </View>
             ) : vouchers.length === 0 ? (
               <View style={styles.centered}>
-                <Ionicons name="receipt-outline" size={64} color="#9CA3AF" />
+                <Ionicons name="receipt-outline" size={64} color="#6B7280" />
                 <Text style={styles.emptyTitle}>No vouchers found</Text>
                 <Text style={styles.emptySubtext}>This dealer has no vouchers yet</Text>
               </View>
@@ -507,7 +507,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
                   <View style={styles.voucherCard}>
                     <View style={styles.voucherHeader}>
                       <View style={styles.voucherTypeContainer}>
-                        <Ionicons name="document-text" size={16} color="#3B82F6" />
+                        <Ionicons name="document-text" size={16} color="#B8142F" />
                         <Text style={styles.voucherType}>{item.vchtype}</Text>
                       </View>
                       <Text style={styles.voucherAmount}>{formatAmount(item.vchamount)}</Text>
@@ -564,7 +564,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
                   onPress={() => setViewMode('vouchers')}
                   style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}
                 >
-                  <Ionicons name="arrow-back" size={18} color="#3B82F6" />
+                  <Ionicons name="arrow-back" size={18} color="#B8142F" />
                   <Text style={styles.backBtnText}>Back to Vouchers</Text>
                 </TouchableOpacity>
                 <Text style={styles.modalTitle}>Voucher Details</Text>
@@ -587,7 +587,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
               </View>
               <View style={styles.voucherBasicRow}>
                 <Text style={styles.voucherBasicLabel}>Amount:</Text>
-                <Text style={[styles.voucherBasicValue, { fontWeight: '700', color: '#10B981' }]}>
+                <Text style={[styles.voucherBasicValue, { fontWeight: '700', color: '#15803D' }]}>
                   {formatAmount(selectedVoucher.vchamount)}
                 </Text>
               </View>
@@ -602,7 +602,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
                 <Ionicons 
                   name="book-outline" 
                   size={18} 
-                  color={selectedTab === 'ledger' ? '#3B82F6' : '#6B7280'} 
+                  color={selectedTab === 'ledger' ? '#B8142F' : '#6B7280'} 
                 />
                 <Text style={[styles.tabText, selectedTab === 'ledger' && styles.activeTabText]}>
                   Ledger Entries
@@ -621,7 +621,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
                 <Ionicons 
                   name="cube-outline" 
                   size={18} 
-                  color={selectedTab === 'inventory' ? '#3B82F6' : '#6B7280'} 
+                  color={selectedTab === 'inventory' ? '#B8142F' : '#6B7280'} 
                 />
                 <Text style={[styles.tabText, selectedTab === 'inventory' && styles.activeTabText]}>
                   Inventory Entries
@@ -640,7 +640,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
                 <>
                   {loadingLedgerEntries ? (
                     <View style={styles.centered}>
-                      <ActivityIndicator size="large" color="#3B82F6" />
+                      <ActivityIndicator size="large" color="#B8142F" />
                       <Text style={styles.loadingText}>Loading ledger entries...</Text>
                     </View>
                   ) : ledgerEntries.length === 0 ? (
@@ -657,16 +657,16 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
                             <Text style={[
                               styles.entryType,
                               { 
-                                color: entry.ledgeramount >= 0 ? '#10B981' : '#EF4444',
+                                color: entry.ledgeramount >= 0 ? '#15803D' : '#B91C1C',
                                 backgroundColor: entry.ledgeramount >= 0 ? '#ECFDF5' : '#FEF2F2',
-                                borderColor: entry.ledgeramount >= 0 ? '#10B981' : '#EF4444'
+                                borderColor: entry.ledgeramount >= 0 ? '#15803D' : '#B91C1C'
                               }
                             ]}>
                               {entry.ledgeramount >= 0 ? 'Credit' : 'Debit'}
                             </Text>
                             <Text style={[
                               styles.entryAmount,
-                              { color: entry.ledgeramount >= 0 ? '#10B981' : '#EF4444' }
+                              { color: entry.ledgeramount >= 0 ? '#15803D' : '#B91C1C' }
                             ]}>
                               {formatAmount(Math.abs(entry.ledgeramount))}
                             </Text>
@@ -724,7 +724,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
                 <>
                   {loadingInventoryEntries ? (
                     <View style={styles.centered}>
-                      <ActivityIndicator size="large" color="#3B82F6" />
+                      <ActivityIndicator size="large" color="#B8142F" />
                       <Text style={styles.loadingText}>Loading inventory entries...</Text>
                     </View>
                   ) : inventoryEntries.length === 0 ? (
@@ -839,35 +839,35 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
           {/* Dealer card */}
           <View style={styles.memberCard}>
             <View style={[styles.memberAvatar, styles.memberAvatarDealer]}>
-              <Ionicons name="storefront" size={20} color="#10B981" />
+              <Ionicons name="storefront" size={20} color="#15803D" />
             </View>
             <View style={styles.memberInfo}>
               <Text style={styles.memberName}>{item.name}</Text>
               {!!item.mobile && (
                 <View style={styles.memberDetailRow}>
-                  <Ionicons name="call-outline" size={12} color="#9CA3AF" />
+                  <Ionicons name="call-outline" size={12} color="#6B7280" />
                   <Text style={styles.memberDetailText}>{item.mobile}</Text>
                 </View>
               )}
               {!!item.email && (
                 <View style={styles.memberDetailRow}>
-                  <Ionicons name="mail-outline" size={12} color="#9CA3AF" />
+                  <Ionicons name="mail-outline" size={12} color="#6B7280" />
                   <Text style={styles.memberDetailText}>{item.email}</Text>
                 </View>
               )}
               <View style={styles.dealerBtnRow}>
                 {!!item.LedgerGUID && (
                   <TouchableOpacity style={styles.outlineBtn} onPress={() => fetchDealerVouchers(item)}>
-                    <Ionicons name="receipt-outline" size={13} color="#3B82F6" />
-                    <Text style={[styles.outlineBtnText, { color: '#3B82F6' }]}>Vouchers</Text>
+                    <Ionicons name="receipt-outline" size={13} color="#B8142F" />
+                    <Text style={[styles.outlineBtnText, { color: '#B8142F' }]}>Vouchers</Text>
                   </TouchableOpacity>
                 )}
                 <TouchableOpacity
-                  style={[styles.outlineBtn, { borderColor: isExpanded ? '#8B5CF6' : '#C4B5FD', backgroundColor: isExpanded ? '#F5F3FF' : '#F8FAFF' }]}
+                  style={[styles.outlineBtn, { borderColor: isExpanded ? '#7D0B1E' : '#C4B5FD', backgroundColor: isExpanded ? '#FFF7F8' : '#F8FAFF' }]}
                   onPress={() => toggleDealerSubDealers(item)}
                 >
-                  <Ionicons name={isExpanded ? 'chevron-up' : 'people-outline'} size={13} color="#8B5CF6" />
-                  <Text style={[styles.outlineBtnText, { color: '#8B5CF6' }]}>
+                  <Ionicons name={isExpanded ? 'chevron-up' : 'people-outline'} size={13} color="#7D0B1E" />
+                  <Text style={[styles.outlineBtnText, { color: '#7D0B1E' }]}>
                     {isLoading ? 'Loading...' : isExpanded ? 'Hide Sub Dealers' : 'Sub Dealers'}
                   </Text>
                 </TouchableOpacity>
@@ -884,7 +884,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
               </View>
               {isLoading ? (
                 <View style={styles.subDealerLoading}>
-                  <ActivityIndicator size="small" color="#8B5CF6" />
+                  <ActivityIndicator size="small" color="#7D0B1E" />
                   <Text style={styles.subDealerLoadingText}>Loading...</Text>
                 </View>
               ) : subDealers.length === 0 ? (
@@ -896,7 +896,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
                   <View key={sd._id} style={styles.subDealerCard}>
                     <View style={styles.subDealerLine} />
                     <View style={[styles.memberAvatar, styles.memberAvatarSubDealer, { width: 34, height: 34, borderRadius: 17 }]}>
-                      <Ionicons name="person-outline" size={16} color="#8B5CF6" />
+                      <Ionicons name="person-outline" size={16} color="#7D0B1E" />
                     </View>
                     <View style={styles.memberInfo}>
                       <Text style={styles.subDealerName}>{sd.SDName || sd.name || 'N/A'}</Text>
@@ -959,19 +959,19 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
               renderItem={({ item }) => (
                 <View style={styles.memberCard}>
                   <View style={[styles.memberAvatar, styles.memberAvatarUser]}>
-                    <Ionicons name="person" size={20} color="#3B82F6" />
+                    <Ionicons name="person" size={20} color="#B8142F" />
                   </View>
                   <View style={styles.memberInfo}>
                     <Text style={styles.memberName}>{item.name}</Text>
                     {!!item.mobile && (
                       <View style={styles.memberDetailRow}>
-                        <Ionicons name="call-outline" size={12} color="#9CA3AF" />
+                        <Ionicons name="call-outline" size={12} color="#6B7280" />
                         <Text style={styles.memberDetailText}>{item.mobile}</Text>
                       </View>
                     )}
                     {!!item.email && (
                       <View style={styles.memberDetailRow}>
-                        <Ionicons name="mail-outline" size={12} color="#9CA3AF" />
+                        <Ionicons name="mail-outline" size={12} color="#6B7280" />
                         <Text style={styles.memberDetailText}>{item.email}</Text>
                       </View>
                     )}
@@ -998,7 +998,7 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.centered}>
-          <ActivityIndicator size="large" color="#3B82F6" />
+          <ActivityIndicator size="large" color="#B8142F" />
           <Text style={styles.loadingText}>Loading group hierarchy...</Text>
         </View>
       </SafeAreaView>
@@ -1062,7 +1062,7 @@ const styles = StyleSheet.create({
   centered: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 },
   loadingText: { marginTop: 12, fontSize: 14, color: '#6B7280' },
   emptyTitle: { marginTop: 14, fontSize: 16, fontWeight: '600', color: '#374151' },
-  emptySubtext: { marginTop: 6, fontSize: 13, color: '#9CA3AF', textAlign: 'center' },
+  emptySubtext: { marginTop: 6, fontSize: 13, color: '#6B7280', textAlign: 'center' },
   scrollView: { flex: 1 },
   scrollContent: { padding: 14, paddingBottom: 32 },
 
@@ -1086,7 +1086,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 12,
     borderLeftWidth: 4,
-    borderLeftColor: '#3B82F6',
+    borderLeftColor: '#B8142F',
     paddingHorizontal: 14,
     paddingTop: 12,
     paddingBottom: 10,
@@ -1149,7 +1149,7 @@ const styles = StyleSheet.create({
     gap: 5,
     paddingHorizontal: 12,
     paddingVertical: 7,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
   },
   actionBtnText: { fontSize: 12, fontWeight: '600' },
@@ -1177,7 +1177,7 @@ const styles = StyleSheet.create({
   modalTitle: { fontSize: 17, fontWeight: '700', color: '#111827' },
   modalSubtitle: { fontSize: 12, color: '#6B7280', marginTop: 2 },
   backBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 2 },
-  backBtnText: { fontSize: 13, color: '#3B82F6', fontWeight: '500' },
+  backBtnText: { fontSize: 13, color: '#B8142F', fontWeight: '500' },
 
   // ── Members list (users / dealers / sub dealers) ───────────────────────────
   memberList: { padding: 14, paddingBottom: 32 },
@@ -1202,24 +1202,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 12,
   },
-  memberAvatarUser: { backgroundColor: '#EFF6FF' },
+  memberAvatarUser: { backgroundColor: '#FBEEEE' },
   memberAvatarDealer: { backgroundColor: '#F0FDF4' },
-  memberAvatarSubDealer: { backgroundColor: '#F5F3FF' },
+  memberAvatarSubDealer: { backgroundColor: '#FFF7F8' },
   memberInfo: { flex: 1 },
   memberName: { fontSize: 15, fontWeight: '600', color: '#111827', marginBottom: 5 },
   memberDetailRow: { flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 3 },
   memberDetailText: { fontSize: 13, color: '#6B7280' },
   rolePill: {
     alignSelf: 'flex-start',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     borderRadius: 20,
     paddingHorizontal: 10,
     paddingVertical: 3,
     marginTop: 6,
     borderWidth: 1,
-    borderColor: '#BFDBFE',
+    borderColor: '#FFD2D9',
   },
-  rolePillText: { fontSize: 11, fontWeight: '600', color: '#3B82F6', textTransform: 'capitalize' },
+  rolePillText: { fontSize: 11, fontWeight: '600', color: '#B8142F', textTransform: 'capitalize' },
   dealerBtnRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 10 },
   outlineBtn: {
     flexDirection: 'row',
@@ -1227,9 +1227,9 @@ const styles = StyleSheet.create({
     gap: 5,
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
-    borderColor: '#BFDBFE',
+    borderColor: '#FFD2D9',
     backgroundColor: '#F8FAFF',
   },
   outlineBtnText: { fontSize: 12, fontWeight: '600' },
@@ -1258,7 +1258,7 @@ const styles = StyleSheet.create({
   subDealerSectionTitle: {
     fontSize: 11,
     fontWeight: '700',
-    color: '#8B5CF6',
+    color: '#7D0B1E',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
@@ -1266,11 +1266,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     backgroundColor: '#FAFAFA',
-    borderRadius: 10,
+    borderRadius: 14,
     padding: 10,
     marginBottom: 6,
     borderWidth: 1,
-    borderColor: '#EDE9FE',
+    borderColor: '#FBEEEE',
   },
   subDealerLine: {
     width: 12,
@@ -1280,11 +1280,11 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   subDealerName: { fontSize: 14, fontWeight: '600', color: '#4C1D95', marginBottom: 3 },
-  subDealerDetail: { fontSize: 12, color: '#7C3AED' },
+  subDealerDetail: { fontSize: 12, color: '#7D0B1E' },
   subDealerLoading: { flexDirection: 'row', alignItems: 'center', gap: 8, padding: 10 },
-  subDealerLoadingText: { fontSize: 13, color: '#8B5CF6' },
+  subDealerLoadingText: { fontSize: 13, color: '#7D0B1E' },
   subDealerEmpty: { padding: 12 },
-  subDealerEmptyText: { fontSize: 13, color: '#A78BFA', fontStyle: 'italic' },
+  subDealerEmptyText: { fontSize: 13, color: '#FF8A9B', fontStyle: 'italic' },
 
   // ── Vouchers ──────────────────────────────────────────────────────────────
   voucherCard: {
@@ -1312,7 +1312,7 @@ const styles = StyleSheet.create({
   voucherTypeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 8,
@@ -1321,13 +1321,13 @@ const styles = StyleSheet.create({
   voucherType: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#3B82F6',
+    color: '#B8142F',
     textTransform: 'uppercase',
   },
   voucherAmount: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#10B981',
+    color: '#15803D',
   },
   voucherBody: {
     gap: 8,
@@ -1344,7 +1344,7 @@ const styles = StyleSheet.create({
   },
   voucherValue: {
     fontSize: 12,
-    color: '#1F2937',
+    color: '#111827',
     fontWeight: '600',
     flex: 1,
   },
@@ -1352,9 +1352,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingVertical: 10,
-    borderRadius: 10,
+    borderRadius: 999,
     marginTop: 12,
     gap: 6,
   },
@@ -1384,11 +1384,11 @@ const styles = StyleSheet.create({
   voucherDetailSectionTitle: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 12,
     paddingBottom: 8,
     borderBottomWidth: 2,
-    borderBottomColor: '#3B82F6',
+    borderBottomColor: '#B8142F',
   },
   voucherDetailRow: {
     flexDirection: 'row',
@@ -1406,7 +1406,7 @@ const styles = StyleSheet.create({
   },
   voucherDetailValue: {
     fontSize: 13,
-    color: '#1F2937',
+    color: '#111827',
     fontWeight: '600',
     flex: 1,
     textAlign: 'right',
@@ -1420,7 +1420,7 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     borderLeftWidth: 3,
-    borderLeftColor: '#3B82F6',
+    borderLeftColor: '#B8142F',
   },
   voucherBasicInfo: {
     flexDirection: 'row',
@@ -1442,7 +1442,7 @@ const styles = StyleSheet.create({
   },
   voucherBasicValue: {
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
     fontWeight: '700',
   },
   tabsContainer: {
@@ -1463,7 +1463,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'transparent',
   },
   activeTab: {
-    borderBottomColor: '#3B82F6',
+    borderBottomColor: '#B8142F',
   },
   tabText: {
     fontSize: 13,
@@ -1471,11 +1471,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   activeTabText: {
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '700',
   },
   tabBadge: {
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     borderRadius: 10,
     paddingHorizontal: 6,
     paddingVertical: 2,
@@ -1484,7 +1484,7 @@ const styles = StyleSheet.create({
   },
   tabBadgeText: {
     fontSize: 10,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '700',
   },
   tabContent: {
@@ -1517,7 +1517,7 @@ const styles = StyleSheet.create({
   entryNumber: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
   },
   entryAmountContainer: {
     flexDirection: 'row',
@@ -1537,7 +1537,7 @@ const styles = StyleSheet.create({
   entryAmount: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#10B981',
+    color: '#15803D',
   },
   entryRow: {
     flexDirection: 'row',
@@ -1553,7 +1553,7 @@ const styles = StyleSheet.create({
   },
   entryValue: {
     fontSize: 12,
-    color: '#1F2937',
+    color: '#111827',
     fontWeight: '600',
     flex: 1,
     textAlign: 'right',
@@ -1566,7 +1566,7 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 12,
     fontWeight: '500',
   },

@@ -82,7 +82,7 @@ const SaleOrderEntry = ({ navigation, route }: any) => {
                     <Text style={{ marginTop: 4 }}>Address: Loream Ipsum</Text>
 
                     {/* Highlighted Message */}
-                    <View style={{ marginTop: 12, backgroundColor: "#077BC3", padding: 2 }}>
+                    <View style={{ marginTop: 12, backgroundColor: "#A3122A", padding: 2 }}>
                         <Text style={{ color: "#fff", fontWeight: "bold" }}>Credit Limit Exceed</Text>
                     </View>
 
@@ -105,7 +105,7 @@ const SaleOrderEntry = ({ navigation, route }: any) => {
                                 })
                             }
                             style={{
-                                backgroundColor: "#077BC3",
+                                backgroundColor: "#A3122A",
                                 paddingVertical: 12,
                                 paddingHorizontal: 20,
                             }}
@@ -159,7 +159,7 @@ const SaleOrderEntry = ({ navigation, route }: any) => {
                         flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        backgroundColor: "#077BC3",
+                        backgroundColor: "#A3122A",
                         paddingHorizontal: 20,
                         paddingVertical: 12,
                         margin: 10,

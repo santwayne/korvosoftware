@@ -254,7 +254,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 placeholder="Enter subdealer name"
                 value={formData.SDName}
                 onChangeText={(text) => setFormData({ ...formData, SDName: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -320,7 +320,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 placeholder="Enter address line 1"
                 value={formData.SDAddress1}
                 onChangeText={(text) => setFormData({ ...formData, SDAddress1: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -331,7 +331,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 placeholder="Enter address line 2"
                 value={formData.SDAddress2}
                 onChangeText={(text) => setFormData({ ...formData, SDAddress2: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -342,7 +342,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 placeholder="Enter address line 3"
                 value={formData.SDAddress3}
                 onChangeText={(text) => setFormData({ ...formData, SDAddress3: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -353,7 +353,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 placeholder="Enter state"
                 value={formData.SDState}
                 onChangeText={(text) => setFormData({ ...formData, SDState: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -364,7 +364,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 placeholder="Enter country"
                 value={formData.SDCountry}
                 onChangeText={(text) => setFormData({ ...formData, SDCountry: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -376,7 +376,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 value={formData.SDPincode}
                 onChangeText={(text) => setFormData({ ...formData, SDPincode: text })}
                 keyboardType="numeric"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
           </View>
@@ -392,7 +392,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 placeholder="Enter contact person name"
                 value={formData.SDContactPerson}
                 onChangeText={(text) => setFormData({ ...formData, SDContactPerson: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -404,7 +404,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 value={formData.SDMobileNo}
                 onChangeText={(text) => setFormData({ ...formData, SDMobileNo: text })}
                 keyboardType="phone-pad"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -417,7 +417,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 onChangeText={(text) => setFormData({ ...formData, SDEmail: text })}
                 keyboardType="email-address"
                 autoCapitalize="none"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
           </View>
@@ -433,7 +433,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 placeholder="Enter GSTN type"
                 value={formData.SDGSTNType}
                 onChangeText={(text) => setFormData({ ...formData, SDGSTNType: text })}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -446,7 +446,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                 onChangeText={(text) => setFormData({ ...formData, SDGSTNNumber: text.toUpperCase() })}
                 autoCapitalize="characters"
                 maxLength={15}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
           </View>
@@ -510,12 +510,12 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
               placeholder="Search dealers..."
               value={dealerSearchQuery}
               onChangeText={setDealerSearchQuery}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
             />
 
             {loadingDealers ? (
               <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#0493D2" />
+                <ActivityIndicator size="large" color="#B8142F" />
               </View>
             ) : (
               <FlatList
@@ -541,7 +541,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
                       )}
                     </View>
                     {formData.dealerId === item._id && (
-                      <Ionicons name="checkmark-circle" size={24} color="#0493D2" />
+                      <Ionicons name="checkmark-circle" size={24} color="#B8142F" />
                     )}
                   </TouchableOpacity>
                 )}
@@ -603,7 +603,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 14,
     color: '#111827',
@@ -616,15 +616,15 @@ const styles = StyleSheet.create({
   typeButton: {
     flex: 1,
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     backgroundColor: '#FFFFFF',
     alignItems: 'center',
   },
   typeButtonActive: {
-    backgroundColor: '#0493D2',
-    borderColor: '#0493D2',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   typeButtonText: {
     fontSize: 14,
@@ -650,7 +650,7 @@ const styles = StyleSheet.create({
   },
   groupSelectorPlaceholder: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   companyInfo: {
     backgroundColor: '#F3F4F6',
@@ -680,7 +680,7 @@ const styles = StyleSheet.create({
   cancelButton: {
     flex: 1,
     padding: 14,
-    borderRadius: 8,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     alignItems: 'center',
@@ -694,8 +694,8 @@ const styles = StyleSheet.create({
   createButton: {
     flex: 1,
     padding: 14,
-    borderRadius: 8,
-    backgroundColor: '#0493D2',
+    borderRadius: 999,
+    backgroundColor: '#B8142F',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -736,7 +736,7 @@ const styles = StyleSheet.create({
     padding: 12,
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     fontSize: 14,
     color: '#111827',
     backgroundColor: '#FFFFFF',

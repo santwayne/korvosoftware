@@ -105,7 +105,7 @@ export const SalesReportScreen = () => {
   };
 
   const getGrowthColor = (growth: number) => {
-    return growth >= 0 ? '#10B981' : '#EF4444';
+    return growth >= 0 ? '#15803D' : '#B91C1C';
   };
 
   const getGrowthIcon = (growth: number) => {
@@ -155,7 +155,7 @@ export const SalesReportScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading sales report...</Text>
       </View>
     );
@@ -166,7 +166,7 @@ export const SalesReportScreen = () => {
       {/* Enhanced Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <View style={styles.headerCenter}>
           <Text style={styles.headerTitle}>Sales Report</Text>
@@ -177,19 +177,19 @@ export const SalesReportScreen = () => {
             style={styles.actionButton} 
             onPress={handleShareReport}
           >
-            <Ionicons name="share-outline" size={20} color="#3B82F6" />
+            <Ionicons name="share-outline" size={20} color="#B8142F" />
           </TouchableOpacity>
           <TouchableOpacity 
             style={styles.actionButton} 
             onPress={handleExportReport}
           >
-            <Ionicons name="download-outline" size={20} color="#3B82F6" />
+            <Ionicons name="download-outline" size={20} color="#B8142F" />
           </TouchableOpacity>
           <TouchableOpacity 
             style={styles.filterButton}
             onPress={() => setShowFilterModal(true)}
           >
-            <Ionicons name="filter" size={20} color="#3B82F6" />
+            <Ionicons name="filter" size={20} color="#B8142F" />
           </TouchableOpacity>
         </View>
       </View>
@@ -210,21 +210,21 @@ export const SalesReportScreen = () => {
           <View style={styles.summaryGrid}>
             <View style={styles.summaryItem}>
               <View style={styles.summaryIconContainer}>
-                <Ionicons name="trending-up" size={24} color="#10B981" />
+                <Ionicons name="trending-up" size={24} color="#15803D" />
               </View>
               <Text style={styles.summaryValue}>{formatCurrency(totalSales)}</Text>
               <Text style={styles.summaryLabel}>Total Sales</Text>
             </View>
             <View style={styles.summaryItem}>
               <View style={styles.summaryIconContainer}>
-                <Ionicons name="cube-outline" size={24} color="#3B82F6" />
+                <Ionicons name="cube-outline" size={24} color="#B8142F" />
               </View>
               <Text style={styles.summaryValue}>{totalOrders.toLocaleString()}</Text>
               <Text style={styles.summaryLabel}>Total Orders</Text>
             </View>
             <View style={styles.summaryItem}>
               <View style={styles.summaryIconContainer}>
-                <Ionicons name="analytics" size={24} color="#8B5CF6" />
+                <Ionicons name="analytics" size={24} color="#7D0B1E" />
               </View>
               <Text style={[styles.summaryValue, { color: getGrowthColor(avgGrowth) }]}>
                 {formatGrowth(avgGrowth)}
@@ -233,7 +233,7 @@ export const SalesReportScreen = () => {
             </View>
             <View style={styles.summaryItem}>
               <View style={styles.summaryIconContainer}>
-                <Ionicons name="business" size={24} color="#F59E0B" />
+                <Ionicons name="business" size={24} color="#B45309" />
               </View>
               <Text style={styles.summaryValue}>{summary?.totalCompanies || 0}</Text>
               <Text style={styles.summaryLabel}>Companies</Text>
@@ -247,7 +247,7 @@ export const SalesReportScreen = () => {
             <Text style={styles.sectionTitle}>Company Performance</Text>
             <TouchableOpacity style={styles.viewAllButton}>
               <Text style={styles.viewAllText}>View All</Text>
-              <Ionicons name="chevron-forward" size={16} color="#3B82F6" />
+              <Ionicons name="chevron-forward" size={16} color="#B8142F" />
             </TouchableOpacity>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.companyScroll}>
@@ -271,7 +271,7 @@ export const SalesReportScreen = () => {
                   </View>
                 </View>
                 <View style={styles.companyTrend}>
-                  <Ionicons name="trending-up" size={16} color="#10B981" />
+                  <Ionicons name="trending-up" size={16} color="#15803D" />
                   <Text style={styles.trendText}>+12.5% vs last period</Text>
                 </View>
               </View>
@@ -306,7 +306,7 @@ export const SalesReportScreen = () => {
               <View style={styles.monthMetrics}>
                 <View style={styles.monthMetric}>
                   <View style={styles.metricIcon}>
-                    <Ionicons name="trending-up" size={18} color="#3B82F6" />
+                    <Ionicons name="trending-up" size={18} color="#B8142F" />
                   </View>
                   <View style={styles.metricContent}>
                     <Text style={styles.metricLabel}>Sales</Text>
@@ -319,7 +319,7 @@ export const SalesReportScreen = () => {
                 
                 <View style={styles.monthMetric}>
                   <View style={styles.metricIcon}>
-                    <Ionicons name="cart-outline" size={18} color="#10B981" />
+                    <Ionicons name="cart-outline" size={18} color="#15803D" />
                   </View>
                   <View style={styles.metricContent}>
                     <Text style={styles.metricLabel}>Orders</Text>
@@ -338,7 +338,7 @@ export const SalesReportScreen = () => {
                     styles.progressFill, 
                     { 
                       width: `${Math.min(100, monthlyData.length > 0 ? (item.sales / Math.max(...monthlyData.map((d: any) => d.sales))) * 100 : 0)}%`,
-                      backgroundColor: item.growth >= 0 ? '#10B981' : '#EF4444'
+                      backgroundColor: item.growth >= 0 ? '#15803D' : '#B91C1C'
                     }
                   ]} />
                 </View>
@@ -355,7 +355,7 @@ export const SalesReportScreen = () => {
           <Text style={styles.sectionTitle}>Quick Insights</Text>
           <View style={styles.insightsGrid}>
             <View style={styles.insightCard}>
-              <Ionicons name="trophy" size={24} color="#F59E0B" />
+              <Ionicons name="trophy" size={24} color="#B45309" />
               <Text style={styles.insightTitle}>Best Month</Text>
               <Text style={styles.insightValue}>{insights?.bestMonth || 'N/A'}</Text>
               <Text style={styles.insightSubtext}>
@@ -363,13 +363,13 @@ export const SalesReportScreen = () => {
               </Text>
             </View>
             <View style={styles.insightCard}>
-              <Ionicons name="trending-up" size={24} color="#10B981" />
+              <Ionicons name="trending-up" size={24} color="#15803D" />
               <Text style={styles.insightTitle}>Growth Rate</Text>
               <Text style={styles.insightValue}>{formatGrowth(avgGrowth)}</Text>
               <Text style={styles.insightSubtext}>Average monthly</Text>
             </View>
             <View style={styles.insightCard}>
-              <Ionicons name="business" size={24} color="#3B82F6" />
+              <Ionicons name="business" size={24} color="#B8142F" />
               <Text style={styles.insightTitle}>Top Company</Text>
               <Text style={styles.insightValue}>{insights?.topCompany || 'N/A'}</Text>
               <Text style={styles.insightSubtext}>
@@ -377,7 +377,7 @@ export const SalesReportScreen = () => {
               </Text>
             </View>
             <View style={styles.insightCard}>
-              <Ionicons name="calendar" size={24} color="#8B5CF6" />
+              <Ionicons name="calendar" size={24} color="#7D0B1E" />
               <Text style={styles.insightTitle}>Peak Season</Text>
               <Text style={styles.insightValue}>{insights?.peakSeason || 'N/A'}</Text>
               <Text style={styles.insightSubtext}>Best performing quarter</Text>
@@ -508,7 +508,7 @@ const styles = StyleSheet.create({
   backButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     justifyContent: 'center',
     alignItems: 'center',
@@ -520,7 +520,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   headerSubtitle: {
     fontSize: 12,
@@ -535,16 +535,16 @@ const styles = StyleSheet.create({
   actionButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    backgroundColor: '#EFF6FF',
+    borderRadius: 999,
+    backgroundColor: '#FBEEEE',
     justifyContent: 'center',
     alignItems: 'center',
   },
   filterButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    backgroundColor: '#EFF6FF',
+    borderRadius: 999,
+    backgroundColor: '#FBEEEE',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -565,7 +565,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   viewAllButton: {
     flexDirection: 'row',
@@ -575,7 +575,7 @@ const styles = StyleSheet.create({
   },
   viewAllText: {
     fontSize: 14,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '600',
     marginRight: 4,
   },
@@ -598,7 +598,7 @@ const styles = StyleSheet.create({
   summaryTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   summaryPeriod: {
@@ -627,7 +627,7 @@ const styles = StyleSheet.create({
   summaryValue: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   summaryLabel: {
@@ -661,7 +661,7 @@ const styles = StyleSheet.create({
   companyName: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     flex: 1,
   },
   companyStatus: {
@@ -672,12 +672,12 @@ const styles = StyleSheet.create({
     width: 6,
     height: 6,
     borderRadius: 3,
-    backgroundColor: '#10B981',
+    backgroundColor: '#15803D',
     marginRight: 4,
   },
   statusText: {
     fontSize: 10,
-    color: '#10B981',
+    color: '#15803D',
     fontWeight: '500',
   },
   companyMetrics: {
@@ -691,7 +691,7 @@ const styles = StyleSheet.create({
   companyMetricValue: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   companyMetricLabel: {
@@ -705,7 +705,7 @@ const styles = StyleSheet.create({
   },
   trendText: {
     fontSize: 10,
-    color: '#10B981',
+    color: '#15803D',
     marginLeft: 4,
     fontWeight: '500',
   },
@@ -734,7 +734,7 @@ const styles = StyleSheet.create({
   monthText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginRight: 8,
   },
   monthYear: {
@@ -786,12 +786,12 @@ const styles = StyleSheet.create({
   metricValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   metricSubtext: {
     fontSize: 10,
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   // Progress Bar
   progressContainer: {
@@ -842,13 +842,13 @@ const styles = StyleSheet.create({
   insightValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
     textAlign: 'center',
   },
   insightSubtext: {
     fontSize: 10,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
   // Filter Modal
@@ -875,7 +875,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   filterSection: {
     marginBottom: 24,
@@ -883,7 +883,7 @@ const styles = StyleSheet.create({
   filterLabel: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 12,
   },
   filterOptions: {
@@ -900,8 +900,8 @@ const styles = StyleSheet.create({
     borderColor: '#E5E7EB',
   },
   filterOptionActive: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   filterOptionText: {
     fontSize: 12,
@@ -915,8 +915,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   modalButton: {
-    backgroundColor: '#3B82F6',
-    borderRadius: 12,
+    backgroundColor: '#B8142F',
+    borderRadius: 999,
     paddingVertical: 16,
     alignItems: 'center',
   },

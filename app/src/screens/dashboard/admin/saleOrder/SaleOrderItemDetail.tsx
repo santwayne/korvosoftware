@@ -64,7 +64,7 @@ const SaleOrderItemDetail = ({ route, navigation }: any) => {
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: "#077BC3",
+        backgroundColor: "#A3122A",
         paddingVertical: 16,
         alignItems: "center",
         justifyContent: "center",
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         padding: 10,
         marginBottom: 16,
-        borderRadius: 6,
+        borderRadius: 10,
     },
     fab: {
         position: "absolute",

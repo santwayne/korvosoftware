@@ -144,10 +144,10 @@ export default function RewardsScreen() {
       </View>
 
       {loading ? (
-        <View style={styles.center}><ActivityIndicator size="large" color="#2563EB" /></View>
+        <View style={styles.center}><ActivityIndicator size="large" color="#A3122A" /></View>
       ) : problem ? (
         <View style={styles.center}>
-          <Ionicons name="gift-outline" size={48} color="#9CA3AF" />
+          <Ionicons name="gift-outline" size={48} color="#6B7280" />
           <Text style={styles.problem}>{problem}</Text>
           <TouchableOpacity style={styles.retry} onPress={() => { setLoading(true); load().catch((e) => setProblem(e.message)).finally(() => setLoading(false)); }}>
             <Text style={styles.retryText}>Try again</Text>
@@ -198,7 +198,7 @@ export default function RewardsScreen() {
                 <Text style={styles.entryNote}>{e.note || e.type}</Text>
                 <Text style={styles.muted}>{fmtDate(e.created_at)}</Text>
               </View>
-              <Text style={[styles.entryPts, { color: e.points >= 0 ? '#059669' : '#DC2626' }]}>
+              <Text style={[styles.entryPts, { color: e.points >= 0 ? '#15803D' : '#B91C1C' }]}>
                 {e.points >= 0 ? '+' : ''}{e.points.toLocaleString('en-IN')}
               </Text>
             </View>
@@ -216,24 +216,24 @@ const styles = StyleSheet.create({
   headerTitle: { fontSize: 18, fontWeight: '700', color: '#111827' },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 32 },
   problem: { marginTop: 12, textAlign: 'center', color: '#4B5563', fontSize: 15, lineHeight: 22 },
-  retry: { marginTop: 16, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 8, backgroundColor: '#2563EB' },
+  retry: { marginTop: 16, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 8, backgroundColor: '#A3122A' },
   retryText: { color: '#fff', fontWeight: '600' },
   wallet: { backgroundColor: '#1E3A8A', borderRadius: 16, padding: 20 },
-  walletLabel: { color: '#BFDBFE', fontSize: 13, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.5 },
+  walletLabel: { color: '#FFD2D9', fontSize: 13, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.5 },
   walletPoints: { color: '#fff', fontSize: 32, fontWeight: '800', marginTop: 6 },
-  walletRupees: { color: '#DBEAFE', fontSize: 16, marginTop: 2 },
+  walletRupees: { color: '#FFD2D9', fontSize: 16, marginTop: 2 },
   walletHeld: { color: '#FDE68A', fontSize: 12, marginTop: 8 },
   section: { fontSize: 16, fontWeight: '700', color: '#111827', marginTop: 24, marginBottom: 10 },
-  card: { backgroundColor: '#fff', borderRadius: 12, padding: 14, marginBottom: 10, borderWidth: 1, borderColor: '#E5E7EB' },
+  card: { backgroundColor: '#fff', borderRadius: 14, padding: 14, marginBottom: 10, borderWidth: 1, borderColor: '#E5E7EB' },
   rowBetween: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   cardTitle: { fontSize: 15, fontWeight: '600', color: '#111827', flex: 1, marginRight: 8 },
   cardText: { fontSize: 13, color: '#374151', marginTop: 8 },
-  earned: { fontSize: 12, color: '#059669', marginTop: 4, fontWeight: '600' },
+  earned: { fontSize: 12, color: '#15803D', marginTop: 4, fontWeight: '600' },
   bar: { height: 8, backgroundColor: '#E5E7EB', borderRadius: 4, marginTop: 10, overflow: 'hidden' },
-  barFill: { height: 8, backgroundColor: '#F59E0B', borderRadius: 4 },
+  barFill: { height: 8, backgroundColor: '#B45309', borderRadius: 4 },
   muted: { fontSize: 12, color: '#6B7280' },
-  input: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 10, fontSize: 15, marginBottom: 10, color: '#111827' },
-  primary: { backgroundColor: '#2563EB', borderRadius: 8, paddingVertical: 12, alignItems: 'center', marginTop: 4 },
+  input: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 10, fontSize: 15, marginBottom: 10, color: '#111827' },
+  primary: { backgroundColor: '#A3122A', borderRadius: 8, paddingVertical: 12, alignItems: 'center', marginTop: 4 },
   primaryText: { color: '#fff', fontWeight: '700', fontSize: 15 },
   entry: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', padding: 12, borderRadius: 10, marginBottom: 8, borderWidth: 1, borderColor: '#F3F4F6' },
   entryNote: { fontSize: 14, color: '#111827', marginBottom: 2 },

@@ -6,8 +6,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 const STATUS_COLOR: Record<string, string> = {
-  pending: '#F59E0B',
-  fully_dispatched: '#10B981',
+  pending: '#B45309',
+  fully_dispatched: '#15803D',
 };
 
 const STATUS_LABEL: Record<string, string> = {
@@ -67,7 +67,7 @@ const PendingOrderDetailScreen = () => {
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>Party</Text>
           <View style={styles.row}>
-            <Ionicons name="person-circle-outline" size={18} color="#077BC3" />
+            <Ionicons name="person-circle-outline" size={18} color="#A3122A" />
             <Text style={styles.rowText}>{order.partyName || '—'}</Text>
           </View>
         </View>
@@ -82,12 +82,12 @@ const PendingOrderDetailScreen = () => {
             </View>
             <View style={styles.summaryDivider} />
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryVal, { color: '#10B981' }]}>{totalDispatched}</Text>
+              <Text style={[styles.summaryVal, { color: '#15803D' }]}>{totalDispatched}</Text>
               <Text style={styles.summaryLab}>Dispatched</Text>
             </View>
             <View style={styles.summaryDivider} />
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryVal, { color: '#F59E0B' }]}>{totalPending}</Text>
+              <Text style={[styles.summaryVal, { color: '#B45309' }]}>{totalPending}</Text>
               <Text style={styles.summaryLab}>Pending</Text>
             </View>
           </View>
@@ -104,7 +104,7 @@ const PendingOrderDetailScreen = () => {
             <View key={idx} style={[styles.itemRow, idx < items.length - 1 && styles.itemBorder]}>
               {/* Item name + unit/rate */}
               <View style={styles.itemHeader}>
-                <View style={[styles.itemIndex, { backgroundColor: '#077BC3' }]}>
+                <View style={[styles.itemIndex, { backgroundColor: '#A3122A' }]}>
                   <Text style={styles.itemIndexText}>{idx + 1}</Text>
                 </View>
                 <View style={{ flex: 1 }}>
@@ -128,12 +128,12 @@ const PendingOrderDetailScreen = () => {
                 </View>
                 <View style={styles.qtyDivider} />
                 <View style={styles.qtyItem}>
-                  <Text style={[styles.qtyVal, { color: '#10B981' }]}>{item.dispatchedQty ?? '—'}</Text>
+                  <Text style={[styles.qtyVal, { color: '#15803D' }]}>{item.dispatchedQty ?? '—'}</Text>
                   <Text style={styles.qtyLab}>Dispatched</Text>
                 </View>
                 <View style={styles.qtyDivider} />
                 <View style={styles.qtyItem}>
-                  <Text style={[styles.qtyVal, { color: '#F59E0B' }]}>{item.pendingQty ?? '—'}</Text>
+                  <Text style={[styles.qtyVal, { color: '#B45309' }]}>{item.pendingQty ?? '—'}</Text>
                   <Text style={styles.qtyLab}>Pending</Text>
                 </View>
               </View>
@@ -169,11 +169,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1, borderBottomColor: '#E5E7EB', gap: 12,
   },
   backBtn: {
-    width: 38, height: 38, borderRadius: 10,
+    width: 38, height: 38, borderRadius: 999,
     backgroundColor: '#F3F4F6', justifyContent: 'center', alignItems: 'center',
   },
   headerTitle: { fontSize: 18, fontWeight: 'bold', color: '#111827' },
-  headerSub: { fontSize: 12, color: '#9CA3AF', marginTop: 2 },
+  headerSub: { fontSize: 12, color: '#6B7280', marginTop: 2 },
   statusBadge: { paddingHorizontal: 10, paddingVertical: 6, borderRadius: 8 },
   statusText: { fontSize: 11, fontWeight: 'bold' },
 
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     marginBottom: 14, borderWidth: 1, borderColor: '#E5E7EB', elevation: 2,
   },
   sectionTitle: {
-    fontSize: 11, fontWeight: '700', color: '#9CA3AF',
+    fontSize: 11, fontWeight: '700', color: '#6B7280',
     textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 12,
   },
 
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   summaryItem: { flex: 1, alignItems: 'center' },
   summaryDivider: { width: 1, height: 38, backgroundColor: '#E5E7EB' },
   summaryVal: { fontSize: 24, fontWeight: 'bold', color: '#111827' },
-  summaryLab: { fontSize: 11, color: '#9CA3AF', marginTop: 3 },
+  summaryLab: { fontSize: 11, color: '#6B7280', marginTop: 3 },
 
   amtRow: {
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   },
   itemIndexText: { color: '#fff', fontSize: 11, fontWeight: 'bold' },
   itemName: { fontSize: 14, fontWeight: '600', color: '#111827', marginBottom: 2 },
-  itemMeta: { fontSize: 12, color: '#9CA3AF' },
+  itemMeta: { fontSize: 12, color: '#6B7280' },
   itemAmt: { fontSize: 14, fontWeight: '700', color: '#374151' },
 
   qtyGrid: {
@@ -224,13 +224,13 @@ const styles = StyleSheet.create({
   qtyItem: { flex: 1, alignItems: 'center' },
   qtyDivider: { width: 1, height: 32, backgroundColor: '#E5E7EB' },
   qtyVal: { fontSize: 18, fontWeight: 'bold', color: '#111827' },
-  qtyLab: { fontSize: 10, color: '#9CA3AF', marginTop: 3, fontWeight: '600' },
+  qtyLab: { fontSize: 10, color: '#6B7280', marginTop: 3, fontWeight: '600' },
 
   metaRow: {
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
     paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: '#F3F4F6',
   },
-  metaLabel: { fontSize: 13, color: '#9CA3AF' },
+  metaLabel: { fontSize: 13, color: '#6B7280' },
   metaVal: { fontSize: 13, fontWeight: '600', color: '#374151', flex: 1, textAlign: 'right', marginLeft: 12 },
 });
 

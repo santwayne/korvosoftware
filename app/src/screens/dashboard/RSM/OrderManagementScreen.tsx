@@ -46,10 +46,10 @@ const OrderManagementScreen = () => {
 
   const statuses = [
     { key: 'all', label: 'All Orders', color: '#6B7280' },
-    { key: 'pending', label: 'Pending', color: '#F59E0B' },
-    { key: 'approved', label: 'Approved', color: '#10B981' },
-    { key: 'rejected', label: 'Rejected', color: '#EF4444' },
-    { key: 'completed', label: 'Completed', color: '#3B82F6' },
+    { key: 'pending', label: 'Pending', color: '#B45309' },
+    { key: 'approved', label: 'Approved', color: '#15803D' },
+    { key: 'rejected', label: 'Rejected', color: '#B91C1C' },
+    { key: 'completed', label: 'Completed', color: '#B8142F' },
   ];
 
   const fetchOrders = async () => {
@@ -79,10 +79,10 @@ const OrderManagementScreen = () => {
 
   const getStatusColor = (status: string) => {
     const colors: { [key: string]: string } = {
-      'pending': '#F59E0B',
-      'approved': '#10B981',
-      'rejected': '#EF4444',
-      'completed': '#3B82F6',
+      'pending': '#B45309',
+      'approved': '#15803D',
+      'rejected': '#B91C1C',
+      'completed': '#B8142F',
     };
     return colors[status] || '#6B7280';
   };
@@ -110,9 +110,9 @@ const OrderManagementScreen = () => {
 
   const getRoleColor = (role: string) => {
     const colors: { [key: string]: string } = {
-      'asm': '#F59E0B',
-      'salesman': '#EF4444',
-      'dealers': '#8B5CF6',
+      'asm': '#B45309',
+      'salesman': '#B91C1C',
+      'dealers': '#7D0B1E',
       'distibutors': '#06B6D4',
       'subdealer': '#84CC16',
     };
@@ -185,17 +185,17 @@ const OrderManagementScreen = () => {
 
       <View style={styles.orderActions}>
         <TouchableOpacity style={styles.actionButton}>
-          <Ionicons name="eye-outline" size={16} color="#3B82F6" />
+          <Ionicons name="eye-outline" size={16} color="#B8142F" />
           <Text style={styles.actionText}>View Details</Text>
         </TouchableOpacity>
         {order.status === 'pending' && (
           <>
             <TouchableOpacity style={[styles.actionButton, styles.approveButton]}>
-              <Ionicons name="checkmark-outline" size={16} color="#10B981" />
+              <Ionicons name="checkmark-outline" size={16} color="#15803D" />
               <Text style={[styles.actionText, styles.approveText]}>Approve</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.actionButton, styles.rejectButton]}>
-              <Ionicons name="close-outline" size={16} color="#EF4444" />
+              <Ionicons name="close-outline" size={16} color="#B91C1C" />
               <Text style={[styles.actionText, styles.rejectText]}>Reject</Text>
             </TouchableOpacity>
           </>
@@ -207,7 +207,7 @@ const OrderManagementScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading orders...</Text>
       </View>
     );
@@ -221,14 +221,14 @@ const OrderManagementScreen = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Order Management</Text>
         <TouchableOpacity
           style={styles.filterButton}
           onPress={() => setShowFilterModal(true)}
         >
-          <Ionicons name="filter" size={24} color="#3B82F6" />
+          <Ionicons name="filter" size={24} color="#B8142F" />
         </TouchableOpacity>
       </View>
 
@@ -240,7 +240,7 @@ const OrderManagementScreen = () => {
           placeholder="Search orders..."
           value={searchQuery}
           onChangeText={setSearchQuery}
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#6B7280"
         />
       </View>
 
@@ -281,7 +281,7 @@ const OrderManagementScreen = () => {
           filteredOrders.map(renderOrderCard)
         ) : (
           <View style={styles.emptyContainer}>
-            <Ionicons name="list-outline" size={64} color="#9CA3AF" />
+            <Ionicons name="list-outline" size={64} color="#6B7280" />
             <Text style={styles.emptyTitle}>No orders found</Text>
             <Text style={styles.emptySubtitle}>
               {searchQuery ? 'Try adjusting your search criteria' : 'No orders available'}
@@ -326,7 +326,7 @@ const OrderManagementScreen = () => {
                   {status.label}
                 </Text>
                 {selectedStatus === status.key && (
-                  <Ionicons name="checkmark" size={20} color="#3B82F6" />
+                  <Ionicons name="checkmark" size={20} color="#B8142F" />
                 )}
               </TouchableOpacity>
             ))}
@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   filterButton: {
     padding: 8,
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   statsContainer: {
     flexDirection: 'row',
@@ -402,7 +402,7 @@ const styles = StyleSheet.create({
   statCard: {
     flex: 1,
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginHorizontal: 4,
     alignItems: 'center',
@@ -412,7 +412,7 @@ const styles = StyleSheet.create({
   statNumber: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
   },
   statLabel: {
     fontSize: 12,
@@ -425,7 +425,7 @@ const styles = StyleSheet.create({
   },
   orderCard: {
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     marginBottom: 12,
     borderWidth: 1,
@@ -443,7 +443,7 @@ const styles = StyleSheet.create({
   orderNumber: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   orderCreator: {
     fontSize: 14,
@@ -479,7 +479,7 @@ const styles = StyleSheet.create({
   amountValue: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#10B981',
+    color: '#15803D',
     marginTop: 2,
   },
   orderTime: {
@@ -500,7 +500,7 @@ const styles = StyleSheet.create({
   itemsTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 8,
   },
   itemRow: {
@@ -516,13 +516,13 @@ const styles = StyleSheet.create({
   },
   itemQuantity: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginHorizontal: 8,
   },
   itemPrice: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   moreItems: {
     fontSize: 12,
@@ -542,7 +542,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 12,
     paddingVertical: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
   },
   actionText: {
@@ -554,13 +554,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0FDF4',
   },
   approveText: {
-    color: '#10B981',
+    color: '#15803D',
   },
   rejectButton: {
     backgroundColor: '#FEF2F2',
   },
   rejectText: {
-    color: '#EF4444',
+    color: '#B91C1C',
   },
   emptyContainer: {
     flex: 1,
@@ -576,7 +576,7 @@ const styles = StyleSheet.create({
   },
   emptySubtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 8,
     textAlign: 'center',
   },
@@ -603,7 +603,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   statusOption: {
     flexDirection: 'row',
@@ -623,11 +623,11 @@ const styles = StyleSheet.create({
   statusLabel: {
     flex: 1,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   selectedStatusLabel: {
     fontWeight: '600',
-    color: '#3B82F6',
+    color: '#B8142F',
   },
 });
 

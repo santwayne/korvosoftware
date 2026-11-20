@@ -93,7 +93,7 @@ const SuperAdminDashboard = () => {
             value: typeof totalCompanies === 'number' ? String(totalCompanies) : '--',
             icon: 'business',
             iconType: 'Ionicons',
-            color: '#3B82F6',
+            color: '#B8142F',
             change: '',
         },
         {
@@ -101,7 +101,7 @@ const SuperAdminDashboard = () => {
             value: typeof totalAdmins === 'number' ? String(totalAdmins) : '--',
             icon: 'people',
             iconType: 'Ionicons',
-            color: '#10B981',
+            color: '#15803D',
             change: '',
         },
     ];
@@ -161,7 +161,7 @@ const SuperAdminDashboard = () => {
         name: string,
         type: 'Ionicons' | 'MaterialCommunityIcons' | 'AntDesign' | 'FontAwesome5',
         size = 24,
-        color = '#486CD6'
+        color = '#B8142F'
     ) => {
         switch (type) {
             case 'Ionicons':
@@ -208,14 +208,14 @@ const SuperAdminDashboard = () => {
         >
             <View style={styles.companyHeader}>
                 <View style={styles.companyIconContainer}>
-                    <Ionicons name="business" size={20} color="#3B82F6" />
+                    <Ionicons name="business" size={20} color="#B8142F" />
                 </View>
                 <View style={styles.companyInfo}>
                     <Text style={styles.companyName}>{item.name}</Text>
                     <Text style={styles.companyId}>ID: {item.id}</Text>
                 </View>
                 <View style={styles.statusBadge}>
-                    <Ionicons name="checkmark-circle" size={12} color="#10B981" />
+                    <Ionicons name="checkmark-circle" size={12} color="#15803D" />
                     <Text style={styles.statusText}>Active</Text>
                 </View>
             </View>
@@ -234,17 +234,17 @@ const SuperAdminDashboard = () => {
                 {/* Enhanced Metrics Row */}
                 <View style={styles.metricsRow}>
                     <View style={styles.metric}>
-                        <Ionicons name="trending-up" size={16} color="#10B981" />
+                        <Ionicons name="trending-up" size={16} color="#15803D" />
                         <Text style={styles.metricValue}>{item.sales}</Text>
                         <Text style={styles.metricLabel}>Sales</Text>
                     </View>
                     <View style={styles.metric}>
-                        <Ionicons name="cube-outline" size={16} color="#F59E0B" />
+                        <Ionicons name="cube-outline" size={16} color="#B45309" />
                         <Text style={styles.metricValue}>{item.orders}</Text>
                         <Text style={styles.metricLabel}>Orders</Text>
                     </View>
                     <View style={styles.metric}>
-                        <Ionicons name="people-outline" size={16} color="#3B82F6" />
+                        <Ionicons name="people-outline" size={16} color="#B8142F" />
                         <Text style={styles.metricValue}>{item.users}</Text>
                         <Text style={styles.metricLabel}>Users</Text>
                     </View>
@@ -253,17 +253,17 @@ const SuperAdminDashboard = () => {
                 {/* Additional Metrics Row */}
                 <View style={styles.metricsRow}>
                     <View style={styles.metric}>
-                        <Ionicons name="alert-circle-outline" size={16} color="#EF4444" />
+                        <Ionicons name="alert-circle-outline" size={16} color="#B91C1C" />
                         <Text style={styles.metricValue}>{Math.floor(item.orders * 0.2)}</Text>
                         <Text style={styles.metricLabel}>Pending</Text>
                     </View>
                     <View style={styles.metric}>
-                        <Ionicons name="checkmark-circle-outline" size={16} color="#10B981" />
+                        <Ionicons name="checkmark-circle-outline" size={16} color="#15803D" />
                         <Text style={styles.metricValue}>{Math.floor(item.orders * 0.8)}</Text>
                         <Text style={styles.metricLabel}>Completed</Text>
                     </View>
                     <View style={styles.metric}>
-                        <Ionicons name="person-outline" size={16} color="#8B5CF6" />
+                        <Ionicons name="person-outline" size={16} color="#7D0B1E" />
                         <Text style={styles.metricValue}>{Math.floor(item.users * 0.7)}/{item.users}</Text>
                         <Text style={styles.metricLabel}>Active</Text>
                     </View>
@@ -283,7 +283,7 @@ const SuperAdminDashboard = () => {
                                     (Math.floor(item.users * 0.7) / Math.max(1, item.users)) * 50 +
                                     (Math.floor(item.orders * 0.8) / Math.max(1, item.orders)) * 50
                                 ))}%`,
-                                backgroundColor: item.orders > 0 ? '#10B981' : '#6B7280'
+                                backgroundColor: item.orders > 0 ? '#15803D' : '#6B7280'
                             }
                         ]} />
                     </View>
@@ -296,7 +296,7 @@ const SuperAdminDashboard = () => {
                 </View>
 
                 <View style={styles.syncInfo}>
-                    <MaterialCommunityIcons name="database-sync" size={14} color="#8B5CF6" />
+                    <MaterialCommunityIcons name="database-sync" size={14} color="#7D0B1E" />
                     <Text style={styles.syncText}>Last sync: {item.lastSync}</Text>
                 </View>
             </View>
@@ -311,11 +311,11 @@ const SuperAdminDashboard = () => {
         >
             <View style={styles.menuItemLeft}>
                 <View style={styles.menuIconContainer}>
-                    {renderIcon(item.icon, item.iconType, 20, '#486CD6')}
+                    {renderIcon(item.icon, item.iconType, 20, '#B8142F')}
                 </View>
                 <Text style={styles.menuLabel}>{item.label}</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
+            <Ionicons name="chevron-forward" size={20} color="#6B7280" />
         </TouchableOpacity>
     );
 
@@ -385,7 +385,7 @@ const SuperAdminDashboard = () => {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-        backgroundColor: '#ecf0fe',
+        backgroundColor: '#FBEEEE',
     },
     scroll: {
         flex: 1,
@@ -434,12 +434,12 @@ const styles = StyleSheet.create({
     changeText: {
         fontSize: 9,
         fontWeight: '600',
-        color: '#059669',
+        color: '#15803D',
     },
     statValue: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#1F2937',
+        color: '#111827',
         marginBottom: 4,
     },
     statLabel: {
@@ -447,14 +447,14 @@ const styles = StyleSheet.create({
         color: '#6B7280',
     },
     primaryButton: {
-        backgroundColor: '#3B82F6',
+        backgroundColor: '#B8142F',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 14,
         borderRadius: 12,
         marginBottom: 12,
-        shadowColor: '#3B82F6',
+        shadowColor: '#B8142F',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 8,
@@ -467,13 +467,13 @@ const styles = StyleSheet.create({
         marginLeft: 8,
     },
     secondaryButton: {
-        backgroundColor: '#8B5CF6',
+        backgroundColor: '#7D0B1E',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 14,
         borderRadius: 12,
-        shadowColor: '#8B5CF6',
+        shadowColor: '#7D0B1E',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 8,
@@ -494,7 +494,7 @@ const styles = StyleSheet.create({
     sectionTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#1F2937',
+        color: '#111827',
         marginBottom: 12,
     },
     sectionCount: {
@@ -527,7 +527,7 @@ const styles = StyleSheet.create({
     menuIconContainer: {
         width: 36,
         height: 36,
-        backgroundColor: '#EFF6FF',
+        backgroundColor: '#FBEEEE',
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -558,7 +558,7 @@ const styles = StyleSheet.create({
     companyIconContainer: {
         width: 40,
         height: 40,
-        backgroundColor: '#DBEAFE',
+        backgroundColor: '#FFD2D9',
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -570,11 +570,11 @@ const styles = StyleSheet.create({
     companyName: {
         fontSize: 14,
         fontWeight: '600',
-        color: '#1F2937',
+        color: '#111827',
     },
     companyId: {
         fontSize: 11,
-        color: '#9CA3AF',
+        color: '#6B7280',
     },
     statusBadge: {
         flexDirection: 'row',
@@ -587,7 +587,7 @@ const styles = StyleSheet.create({
     statusText: {
         fontSize: 10,
         fontWeight: '600',
-        color: '#059669',
+        color: '#15803D',
         marginLeft: 4,
     },
     companyDetails: {
@@ -623,7 +623,7 @@ const styles = StyleSheet.create({
     metricValue: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#1F2937',
+        color: '#111827',
         marginTop: 4,
     },
     metricLabel: {
@@ -635,14 +635,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#F5F3FF',
+        backgroundColor: '#FFF7F8',
         paddingVertical: 8,
         paddingHorizontal: 12,
         borderRadius: 8,
     },
     syncText: {
         fontSize: 11,
-        color: '#7C3AED',
+        color: '#7D0B1E',
         marginLeft: 6,
     },
     performanceContainer: {

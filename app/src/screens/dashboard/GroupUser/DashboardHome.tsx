@@ -35,15 +35,15 @@ const actionCards = [
     label: 'Create Order',
     icon: 'add-circle-outline',
     iconType: 'Ionicons',
-    color: '#3B82F6',
-    bgColor: '#EFF6FF',
+    color: '#B8142F',
+    bgColor: '#FBEEEE',
     screen: 'AdminCreateOrder',
   },
   {
     label: 'My Orders',
     icon: 'clipboard-outline',
     iconType: 'Ionicons',
-    color: '#10B981',
+    color: '#15803D',
     bgColor: '#ECFDF5',
     screen: 'AdminOrderList',
   },
@@ -51,7 +51,7 @@ const actionCards = [
     label: 'My Dealers',
     icon: 'storefront-outline',
     iconType: 'Ionicons',
-    color: '#8B5CF6',
+    color: '#7D0B1E',
     bgColor: '#F3E8FF',
     screen: 'DealersListScreen',
   },
@@ -59,7 +59,7 @@ const actionCards = [
     label: 'Pending Orders',
     icon: 'time-outline',
     iconType: 'Ionicons',
-    color: '#F59E0B',
+    color: '#B45309',
     bgColor: '#FEF3C7',
     screen: 'PendingOrdersScreen',
   },
@@ -67,7 +67,7 @@ const actionCards = [
     label: 'Ledger Report',
     icon: 'book-outline',
     iconType: 'Ionicons',
-    color: '#EF4444',
+    color: '#B91C1C',
     bgColor: '#FEF2F2',
     screen: 'LedgerReportScreen',
   },
@@ -212,7 +212,7 @@ const DashboardHome = () => {
             <View style={styles.sectionCard}>
               <View style={styles.companyRow}>
                 <View style={styles.companyIconBox}>
-                  <Ionicons name="business" size={24} color="#0493D2" />
+                  <Ionicons name="business" size={24} color="#B8142F" />
                 </View>
                 <View style={styles.companyInfo}>
                   <Text style={styles.companyName}>{user.defaultCompany.companyName}</Text>
@@ -223,10 +223,10 @@ const DashboardHome = () => {
               <View style={styles.statsRow}>
                 <View style={styles.statItem}>
                   <View style={[styles.statIconBox, { backgroundColor: '#ECFDF5' }]}>
-                    <Ionicons name="storefront-outline" size={20} color="#10B981" />
+                    <Ionicons name="storefront-outline" size={20} color="#15803D" />
                   </View>
                   {loadingDealers ? (
-                    <ActivityIndicator size="small" color="#10B981" style={{ marginTop: 6 }} />
+                    <ActivityIndicator size="small" color="#15803D" style={{ marginTop: 6 }} />
                   ) : (
                     <Text style={styles.statValue}>{dealers.length}</Text>
                   )}
@@ -280,14 +280,14 @@ const DashboardHome = () => {
             >
               <View style={styles.listRowLeft}>
                 <View style={[styles.listIconBox, { backgroundColor: '#F3E8FF' }]}>
-                  <Ionicons name="storefront-outline" size={22} color="#8B5CF6" />
+                  <Ionicons name="storefront-outline" size={22} color="#7D0B1E" />
                 </View>
                 <View>
                   <Text style={styles.listTitle}>Dealers</Text>
                   <Text style={styles.listSubtitle}>Manage all dealers</Text>
                 </View>
               </View>
-              <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
+              <Ionicons name="chevron-forward" size={20} color="#6B7280" />
             </TouchableOpacity>
           </View>
         </View>
@@ -334,7 +334,7 @@ const DashboardHome = () => {
                       {cName}
                     </Text>
                   </View>
-                  {isActive && <Ionicons name="checkmark-circle" size={18} color="#486CD6" />}
+                  {isActive && <Ionicons name="checkmark-circle" size={18} color="#B8142F" />}
                 </TouchableOpacity>
               );
             })}
@@ -345,7 +345,7 @@ const DashboardHome = () => {
       {/* Switching overlay */}
       {switchingCompany && (
         <View style={styles.switchingOverlay}>
-          <ActivityIndicator size="large" color="#486CD6" />
+          <ActivityIndicator size="large" color="#B8142F" />
           <Text style={styles.switchingText}>Switching company...</Text>
         </View>
       )}
@@ -356,7 +356,7 @@ const DashboardHome = () => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: '#ecf0fe',
+    backgroundColor: '#FBEEEE',
   },
   // Header
   header: {
@@ -384,10 +384,10 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#486CD6',
+    backgroundColor: '#B8142F',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#486CD6',
+    shadowColor: '#B8142F',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.3,
     shadowRadius: 6,
@@ -401,7 +401,7 @@ const styles = StyleSheet.create({
   headerName: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
   },
   headerCompany: {
     fontSize: 12,
@@ -412,7 +412,7 @@ const styles = StyleSheet.create({
   logoutBtn: {
     width: 38,
     height: 38,
-    borderRadius: 19,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     justifyContent: 'center',
     alignItems: 'center',
@@ -456,7 +456,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
   },
   dropdownItemActive: {
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
   },
   dropdownItemLeft: {
     flexDirection: 'row',
@@ -472,7 +472,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   dropdownDotActive: {
-    backgroundColor: '#486CD6',
+    backgroundColor: '#B8142F',
   },
   dropdownItemText: {
     fontSize: 14,
@@ -481,7 +481,7 @@ const styles = StyleSheet.create({
   },
   dropdownItemTextActive: {
     fontWeight: '600',
-    color: '#1D4ED8',
+    color: '#8F0E24',
   },
   switchingOverlay: {
     position: 'absolute',
@@ -493,7 +493,7 @@ const styles = StyleSheet.create({
   },
   switchingText: {
     fontSize: 15,
-    color: '#486CD6',
+    color: '#B8142F',
     fontWeight: '500',
   },
   // Scroll
@@ -534,7 +534,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 14,
@@ -545,7 +545,7 @@ const styles = StyleSheet.create({
   companyName: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 3,
   },
   companyCode: {
@@ -575,7 +575,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 3,
   },
   statLabel: {
@@ -604,7 +604,7 @@ const styles = StyleSheet.create({
   cardIconBox: {
     width: 58,
     height: 58,
-    borderRadius: 16,
+    borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
@@ -612,7 +612,7 @@ const styles = StyleSheet.create({
   cardLabel: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     textAlign: 'center',
   },
   // Dealer List Rows

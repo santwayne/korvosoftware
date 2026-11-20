@@ -242,7 +242,7 @@ const TargetAssignmentScreen = () => {
         <Ionicons
           name={isSelected ? 'checkmark-circle' : 'ellipse-outline'}
           size={24}
-          color={isSelected ? '#10B981' : '#9CA3AF'}
+          color={isSelected ? '#15803D' : '#6B7280'}
         />
       </TouchableOpacity>
     );
@@ -264,7 +264,7 @@ const TargetAssignmentScreen = () => {
           style={styles.removeButton}
           onPress={() => removeTarget(index)}
         >
-          <Ionicons name="close-circle" size={24} color="#EF4444" />
+          <Ionicons name="close-circle" size={24} color="#B91C1C" />
         </TouchableOpacity>
       </View>
     );
@@ -273,7 +273,7 @@ const TargetAssignmentScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#077BC3" />
+        <ActivityIndicator size="large" color="#A3122A" />
         <Text style={styles.loadingText}>Loading users...</Text>
       </View>
     );
@@ -501,13 +501,13 @@ const styles = StyleSheet.create({
   assignButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#10B981',
+    backgroundColor: '#15803D',
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   disabledButton: {
-    backgroundColor: '#9CA3AF',
+    backgroundColor: '#6B7280',
   },
   assignButtonText: {
     color: '#fff',
@@ -529,7 +529,7 @@ const styles = StyleSheet.create({
   selectedUserChip: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#077BC3',
+    backgroundColor: '#A3122A',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 16,
@@ -555,7 +555,7 @@ const styles = StyleSheet.create({
     borderColor: '#E5E7EB',
   },
   selectedUserItem: {
-    borderColor: '#10B981',
+    borderColor: '#15803D',
     backgroundColor: '#F0FDF4',
   },
   userInfo: {
@@ -573,7 +573,7 @@ const styles = StyleSheet.create({
   },
   userRole: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 2,
   },
   modalContainer: {
@@ -622,7 +622,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
     backgroundColor: '#fff',
@@ -645,7 +645,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   selectedUserOption: {
-    borderColor: '#077BC3',
+    borderColor: '#A3122A',
     backgroundColor: '#EBF8FF',
   },
   userOptionText: {
@@ -653,16 +653,16 @@ const styles = StyleSheet.create({
     color: '#374151',
   },
   selectedUserOptionText: {
-    color: '#077BC3',
+    color: '#A3122A',
     fontWeight: '500',
   },
   addTargetButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#077BC3',
+    backgroundColor: '#A3122A',
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     marginTop: 8,
   },
   addTargetButtonText: {
@@ -701,7 +701,7 @@ const styles = StyleSheet.create({
   targetAmount: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#10B981',
+    color: '#15803D',
     marginTop: 2,
   },
   targetPeriod: {
@@ -722,9 +722,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#10B981',
+    backgroundColor: '#15803D',
     padding: 16,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   submitButtonText: {
     color: '#fff',

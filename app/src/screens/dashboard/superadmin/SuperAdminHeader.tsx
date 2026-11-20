@@ -156,7 +156,7 @@ const SuperAdminHeader: React.FC<SuperAdminHeaderProps> = ({
                             style={[styles.menuDropdownItem, styles.menuDropdownItemLast]}
                             onPress={handleLogout}
                         >
-                            <Ionicons name="log-out-outline" size={20} color="#EF4444" />
+                            <Ionicons name="log-out-outline" size={20} color="#B91C1C" />
                             <Text style={[styles.menuDropdownText, styles.logoutText]}>
                                 Logout
                             </Text>
@@ -175,7 +175,7 @@ const SuperAdminHeader: React.FC<SuperAdminHeaderProps> = ({
                 <View style={styles.modalOverlay}>
                     <View style={styles.modalContent}>
                         <View style={styles.modalIcon}>
-                            <Ionicons name="log-out-outline" size={32} color="#EF4444" />
+                            <Ionicons name="log-out-outline" size={32} color="#B91C1C" />
                         </View>
                         <Text style={styles.modalTitle}>Confirm Logout</Text>
                         <Text style={styles.modalMessage}>
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
         width: 48,
         height: 48,
         borderRadius: 24,
-        backgroundColor: '#3B82F6',
+        backgroundColor: '#B8142F',
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 12,
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#1F2937',
+        color: '#111827',
     },
     headerTitleCompact: {
         fontSize: 18,
@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F3F4F6',
-        borderRadius: 8,
+        borderRadius: 999,
     },
     menuButtonCompact: {
         width: 36,
@@ -348,7 +348,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
     logoutText: {
-        color: '#EF4444',
+        color: '#B91C1C',
     },
     backdrop: {
         position: 'absolute',
@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
     modalTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#1F2937',
+        color: '#111827',
         marginBottom: 8,
     },
     modalMessage: {
@@ -404,7 +404,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F3F4F6',
         paddingVertical: 12,
-        borderRadius: 10,
+        borderRadius: 999,
         alignItems: 'center',
     },
     cancelButtonText: {
@@ -414,9 +414,9 @@ const styles = StyleSheet.create({
     },
     logoutButton: {
         flex: 1,
-        backgroundColor: '#EF4444',
+        backgroundColor: '#B91C1C',
         paddingVertical: 12,
-        borderRadius: 10,
+        borderRadius: 999,
         alignItems: 'center',
     },
     logoutButtonText: {

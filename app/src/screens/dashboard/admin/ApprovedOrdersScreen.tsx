@@ -210,9 +210,9 @@ const ApprovedOrdersScreen = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'approved': return '#10B981';
-      case 'sent_to_tally': return '#3B82F6';
-      case 'pending_approval': return '#F59E0B';
+      case 'approved': return '#15803D';
+      case 'sent_to_tally': return '#B8142F';
+      case 'pending_approval': return '#B45309';
       case 'draft': return '#6B7280';
       default: return '#6B7280';
     }
@@ -220,9 +220,9 @@ const ApprovedOrdersScreen = () => {
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'high': return '#EF4444';
-      case 'medium': return '#F59E0B';
-      case 'low': return '#10B981';
+      case 'high': return '#B91C1C';
+      case 'medium': return '#B45309';
+      case 'low': return '#15803D';
       default: return '#6B7280';
     }
   };
@@ -305,9 +305,9 @@ const ApprovedOrdersScreen = () => {
           disabled={loadingOrderDetails === item._id}
         >
           {loadingOrderDetails === item._id ? (
-            <ActivityIndicator size="small" color="#077BC3" />
+            <ActivityIndicator size="small" color="#A3122A" />
           ) : (
-            <Ionicons name="eye" size={16} color="#077BC3" />
+            <Ionicons name="eye" size={16} color="#A3122A" />
           )}
           <Text style={styles.viewButtonText}>
             {loadingOrderDetails === item._id ? 'Loading...' : 'View Details'}
@@ -315,11 +315,11 @@ const ApprovedOrdersScreen = () => {
         </TouchableOpacity>
         {item.status === 'approved' && (
           <TouchableOpacity
-            style={[styles.viewButton, { marginLeft: 8, borderColor: '#F59E0B' }]}
+            style={[styles.viewButton, { marginLeft: 8, borderColor: '#B45309' }]}
             onPress={() => handleUnapprove(item._id)}
           >
-            <Ionicons name="arrow-undo" size={16} color="#F59E0B" />
-            <Text style={[styles.viewButtonText, { color: '#F59E0B' }]}>Unapprove</Text>
+            <Ionicons name="arrow-undo" size={16} color="#B45309" />
+            <Text style={[styles.viewButtonText, { color: '#B45309' }]}>Unapprove</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -340,7 +340,7 @@ const ApprovedOrdersScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#077BC3" />
+        <ActivityIndicator size="large" color="#A3122A" />
         <Text style={styles.loadingText}>Loading approved orders...</Text>
       </View>
     );
@@ -407,7 +407,7 @@ const ApprovedOrdersScreen = () => {
         contentContainerStyle={styles.ordersList}
         ListEmptyComponent={
           <View style={styles.emptyState}>
-            <Ionicons name="document-text" size={48} color="#9CA3AF" />
+            <Ionicons name="document-text" size={48} color="#6B7280" />
             <Text style={styles.emptyStateText}>No approved orders found</Text>
             <Text style={styles.emptyStateSubtext}>
               {filter === 'all' ? 'No orders found' : `No ${filter} orders found`}
@@ -474,7 +474,7 @@ const styles = StyleSheet.create({
   summaryCard: {
     flex: 1,
     backgroundColor: '#F9FAFB',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     alignItems: 'center',
   },
@@ -501,12 +501,12 @@ const styles = StyleSheet.create({
   filterButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 999,
     marginRight: 8,
     backgroundColor: '#F3F4F6',
   },
   activeFilterButton: {
-    backgroundColor: '#077BC3',
+    backgroundColor: '#A3122A',
   },
   filterButtonText: {
     fontSize: 14,
@@ -606,7 +606,7 @@ const styles = StyleSheet.create({
   amountValue: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#10B981',
+    color: '#15803D',
   },
   detailsRow: {
     flexDirection: 'row',
@@ -655,13 +655,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 8,
     paddingHorizontal: 12,
-    borderRadius: 8,
-    backgroundColor: '#EFF6FF',
+    borderRadius: 999,
+    backgroundColor: '#FBEEEE',
     gap: 4,
   },
   viewButtonText: {
     fontSize: 12,
-    color: '#077BC3',
+    color: '#A3122A',
     fontWeight: '500',
   },
   emptyState: {
@@ -676,7 +676,7 @@ const styles = StyleSheet.create({
   },
   emptyStateSubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 8,
     textAlign: 'center',
   },
@@ -744,7 +744,7 @@ const styles = StyleSheet.create({
   itemPrice: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#10B981',
+    color: '#15803D',
   },
   itemDetails: {
     flexDirection: 'row',

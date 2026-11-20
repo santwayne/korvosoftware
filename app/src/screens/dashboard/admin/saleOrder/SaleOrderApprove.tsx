@@ -69,17 +69,17 @@ const SaleOrderApprove = ({ navigation, route }: any) => {
 
   const getStatusColor = (s: string) => {
     switch (s) {
-      case 'approved': return '#10B981';
-      case 'pending_approval': return '#F59E0B';
+      case 'approved': return '#15803D';
+      case 'pending_approval': return '#B45309';
       case 'draft': return '#6B7280';
-      case 'cancelled': return '#EF4444';
+      case 'cancelled': return '#B91C1C';
       default: return '#6B7280';
     }
   };
 
   if (loading) return (
     <View style={styles.center}>
-      <ActivityIndicator size="large" color="#3B82F6" />
+      <ActivityIndicator size="large" color="#B8142F" />
       <Text style={styles.loadingText}>Loading order...</Text>
     </View>
   );
@@ -177,7 +177,7 @@ const SaleOrderApprove = ({ navigation, route }: any) => {
             <TextInput
               style={styles.notesInput}
               placeholder="Add notes for approval/rejection..."
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
               value={notes}
               onChangeText={setNotes}
               multiline
@@ -234,9 +234,9 @@ const styles = StyleSheet.create({
   content: { padding: 16, paddingBottom: 100 },
   center: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 },
   loadingText: { marginTop: 12, color: '#6B7280', fontSize: 15 },
-  errorText: { color: '#EF4444', fontSize: 16, marginBottom: 16 },
+  errorText: { color: '#B91C1C', fontSize: 16, marginBottom: 16 },
   header: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingTop: 50,
     paddingBottom: 16,
     paddingHorizontal: 20,
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-  orderNumber: { fontSize: 14, fontWeight: 'bold', color: '#1F2937', marginBottom: 8 },
+  orderNumber: { fontSize: 14, fontWeight: 'bold', color: '#111827', marginBottom: 8 },
   statusBadge: {
     alignSelf: 'flex-start',
     paddingHorizontal: 10,
@@ -267,24 +267,24 @@ const styles = StyleSheet.create({
   },
   statusText: { fontSize: 11, fontWeight: 'bold', color: '#fff' },
   meta: { fontSize: 13, color: '#4B5563', marginBottom: 4 },
-  sectionTitle: { fontSize: 15, fontWeight: '600', color: '#1F2937', marginBottom: 10 },
+  sectionTitle: { fontSize: 15, fontWeight: '600', color: '#111827', marginBottom: 10 },
   amountRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 },
   amountLabel: { fontSize: 14, color: '#6B7280' },
-  amountValue: { fontSize: 14, fontWeight: 'bold', color: '#059669' },
+  amountValue: { fontSize: 14, fontWeight: 'bold', color: '#15803D' },
   itemRow: { paddingVertical: 6, borderBottomWidth: 1, borderBottomColor: '#F3F4F6' },
-  itemName: { fontSize: 13, fontWeight: '500', color: '#1F2937' },
+  itemName: { fontSize: 13, fontWeight: '500', color: '#111827' },
   itemQty: { fontSize: 12, color: '#6B7280', marginTop: 2 },
   historyRow: { paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: '#F3F4F6' },
-  historyAction: { fontSize: 12, fontWeight: 'bold', color: '#3B82F6' },
+  historyAction: { fontSize: 12, fontWeight: 'bold', color: '#B8142F' },
   historyMeta: { fontSize: 12, color: '#6B7280', marginTop: 2 },
   historyNotes: { fontSize: 12, color: '#4B5563', marginTop: 2, fontStyle: 'italic' },
   notesInput: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
     minHeight: 80,
     textAlignVertical: 'top',
   },
@@ -302,18 +302,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 14,
-    borderRadius: 10,
+    borderRadius: 999,
     gap: 8,
   },
-  approveBtn: { backgroundColor: '#10B981' },
-  rejectBtn: { backgroundColor: '#EF4444' },
+  approveBtn: { backgroundColor: '#15803D' },
+  rejectBtn: { backgroundColor: '#B91C1C' },
   actionBtnText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
   alreadyProcessed: { flex: 1, textAlign: 'center', color: '#6B7280', fontSize: 14 },
   backBtn: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingHorizontal: 24,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   backBtnText: { color: '#fff', fontSize: 15, fontWeight: '600' },
 });

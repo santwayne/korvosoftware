@@ -122,7 +122,7 @@ const DashboardHome = () => {
     fetchData();
   }, [isAuthenticated, user?.defaultCompany, getCompanyData]);
 
-  const renderIcon = (name: string, type: IconType, size = 24, color = '#486CD6') => {
+  const renderIcon = (name: string, type: IconType, size = 24, color = '#B8142F') => {
     switch (type) {
       case 'Ionicons':
         return <Ionicons name={name as any} size={size} color={color} />;
@@ -185,7 +185,7 @@ const DashboardHome = () => {
       <View style={styles.mainContainer}>
         <DashboardHeader showNotifications={true} />
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#0493D2" />
+          <ActivityIndicator size="large" color="#B8142F" />
           <Text style={styles.loadingText}>Loading company data...</Text>
         </View>
       </View>
@@ -203,7 +203,7 @@ const DashboardHome = () => {
           <Ionicons 
             name={isNoCompaniesError ? "business-outline" : "alert-circle-outline"} 
             size={48} 
-            color={isNoCompaniesError ? "#F59E0B" : "#EF4444"} 
+            color={isNoCompaniesError ? "#B45309" : "#B91C1C"} 
           />
           <Text style={styles.errorText}>{error}</Text>
           {isNoCompaniesError ? (
@@ -245,7 +245,7 @@ const DashboardHome = () => {
             <View style={styles.sectionCard}>
               <View style={styles.companyHeader}>
                 <View style={styles.companyIcon}>
-                  <Ionicons name="business" size={24} color="#0493D2" />
+                  <Ionicons name="business" size={24} color="#B8142F" />
                 </View>
                 <View style={styles.companyDetails}>
                   <Text style={styles.companyName}>{companyData.company?.companyName}</Text>
@@ -286,14 +286,14 @@ const DashboardHome = () => {
               onPress={() => navigateToScreen('Users')}
             >
               <Text style={styles.viewAllText}>View All</Text>
-              <Ionicons name="arrow-forward" size={16} color="#0493D2" />
+              <Ionicons name="arrow-forward" size={16} color="#B8142F" />
             </TouchableOpacity>
           </View>
           <View style={styles.sectionCard}>
             <View style={styles.usersStatsContainer}>
               <View style={styles.userStatItem}>
                 <View style={styles.userStatIcon}>
-                  <Ionicons name="people" size={24} color="#3B82F6" />
+                  <Ionicons name="people" size={24} color="#B8142F" />
                 </View>
                 <View style={styles.userStatInfo}>
                   <Text style={styles.userStatValue}>{companyData?.statistics?.totalMembers || companyData?.statistics?.totalUsers || 0}</Text>
@@ -305,7 +305,7 @@ const DashboardHome = () => {
               </View>
               <View style={styles.userStatItem}>
                 <View style={styles.userStatIcon}>
-                  <Ionicons name="business" size={24} color="#10B981" />
+                  <Ionicons name="business" size={24} color="#15803D" />
                 </View>
                 <View style={styles.userStatInfo}>
                   <Text style={styles.userStatValue}>{companyData?.statistics?.maxUsersAllowed || 0}</Text>
@@ -314,7 +314,7 @@ const DashboardHome = () => {
               </View>
               <View style={styles.userStatItem}>
                 <View style={styles.userStatIcon}>
-                  <Ionicons name="trending-up" size={24} color="#F59E0B" />
+                  <Ionicons name="trending-up" size={24} color="#B45309" />
                 </View>
                 <View style={styles.userStatInfo}>
                   <Text style={styles.userStatValue}>{companyData?.statistics?.usagePercentage || 0}%</Text>
@@ -338,14 +338,14 @@ const DashboardHome = () => {
             >
               <View style={styles.dealerCardContent}>
                 <View style={styles.dealerIconContainer}>
-                  {renderIcon(dealerMenuItem.icon, dealerMenuItem.iconType, 28, '#8B5CF6')}
+                  {renderIcon(dealerMenuItem.icon, dealerMenuItem.iconType, 28, '#7D0B1E')}
                 </View>
                 <View style={styles.dealerCardText}>
                   <Text style={styles.dealerCardTitle}>Dealers</Text>
                   <Text style={styles.dealerCardSubtitle}>Manage all dealers</Text>
                 </View>
               </View>
-              <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
+              <Ionicons name="chevron-forward" size={20} color="#6B7280" />
             </TouchableOpacity>
             
             <TouchableOpacity
@@ -355,14 +355,14 @@ const DashboardHome = () => {
             >
               <View style={styles.dealerCardContent}>
                 <View style={[styles.dealerIconContainer, { backgroundColor: '#FEF3C7' }]}>
-                  {renderIcon('people-outline', 'Ionicons', 28, '#F59E0B')}
+                  {renderIcon('people-outline', 'Ionicons', 28, '#B45309')}
                 </View>
                 <View style={styles.dealerCardText}>
                   <Text style={styles.dealerCardTitle}>Subdealers</Text>
                   <Text style={styles.dealerCardSubtitle}>Manage all subdealers</Text>
                 </View>
               </View>
-              <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
+              <Ionicons name="chevron-forward" size={20} color="#6B7280" />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -379,7 +379,7 @@ const DashboardHome = () => {
                   <Text style={styles.dealerCardSubtitle}>Schemes, payouts, today's AI plan</Text>
                 </View>
               </View>
-              <Ionicons name="open-outline" size={20} color="#9CA3AF" />
+              <Ionicons name="open-outline" size={20} color="#6B7280" />
             </TouchableOpacity>
           </View>
         </View>
@@ -399,7 +399,7 @@ const DashboardHome = () => {
                 </View>
                 <Text style={styles.menuLabel}>{item.label}</Text>
               </View>
-              <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
+              <Ionicons name="chevron-forward" size={20} color="#6B7280" />
             </TouchableOpacity>
           ))}
         </View>
@@ -434,13 +434,13 @@ const DashboardHome = () => {
 
             {/* Legend */}
             <View style={styles.chartLegend}>
-              <View style={[styles.legendItem, { backgroundColor: '#10B981' }]}>
+              <View style={[styles.legendItem, { backgroundColor: '#15803D' }]}>
                 <View style={[styles.legendColor, { backgroundColor: '#fff' }]} />
                 <Text style={styles.legendText}>
                   Safe Stocks {stockData?.percentages?.safe || 0}%
                 </Text>
               </View>
-              <View style={[styles.legendItem, { backgroundColor: '#3B82F6' }]}>
+              <View style={[styles.legendItem, { backgroundColor: '#B8142F' }]}>
                 <View style={[styles.legendColor, { backgroundColor: '#fff' }]} />
                 <Text style={styles.legendText}>
                   Pending Stocks {stockData?.percentages?.pending || 0}%
@@ -468,7 +468,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scroll: {
-    backgroundColor: '#ecf0fe',
+    backgroundColor: '#FBEEEE',
   },
   container: {
     paddingBottom: 100,
@@ -477,7 +477,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ecf0fe',
+    backgroundColor: '#FBEEEE',
   },
   loadingText: {
     marginTop: 16,
@@ -488,13 +488,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ecf0fe',
+    backgroundColor: '#FBEEEE',
     paddingHorizontal: 20,
   },
   errorText: {
     marginTop: 16,
     fontSize: 16,
-    color: '#EF4444',
+    color: '#B91C1C',
     textAlign: 'center',
     marginBottom: 12,
   },
@@ -506,10 +506,10 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   retryButton: {
-    backgroundColor: '#0493D2',
+    backgroundColor: '#B8142F',
     paddingHorizontal: 24,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   retryButtonText: {
     color: '#FFFFFF',
@@ -530,7 +530,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -541,7 +541,7 @@ const styles = StyleSheet.create({
   companyName: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   companyCode: {
@@ -561,7 +561,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   statLabel: {
@@ -586,7 +586,7 @@ const styles = StyleSheet.create({
   },
   viewAllText: {
     fontSize: 14,
-    color: '#0493D2',
+    color: '#B8142F',
     fontWeight: '600',
   },
   usersStatsContainer: {
@@ -613,7 +613,7 @@ const styles = StyleSheet.create({
   userStatValue: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   userStatLabel: {
@@ -623,7 +623,7 @@ const styles = StyleSheet.create({
   },
   userStatSubLabel: {
     fontSize: 10,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
     marginTop: 2,
   },
@@ -635,7 +635,7 @@ const styles = StyleSheet.create({
   roleStatsTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 12,
   },
   roleStatsList: {
@@ -675,7 +675,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: '#0493D2',
+    backgroundColor: '#B8142F',
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
@@ -694,7 +694,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 10,
-    backgroundColor: '#10B981',
+    backgroundColor: '#15803D',
     borderWidth: 3,
     borderColor: '#fff',
   },
@@ -733,7 +733,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 12,
     textAlign: 'left',
     paddingLeft: 6
@@ -753,8 +753,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 6,
     borderWidth: 2,
-    borderColor: '#486CD6',
-    shadowColor: '#486CD6',
+    borderColor: '#B8142F',
+    shadowColor: '#B8142F',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -781,7 +781,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 16,
     backgroundColor: '#F9FAFB',
-    borderRadius: 12,
+    borderRadius: 14,
     borderWidth: 1,
     borderColor: '#E5E7EB',
   },
@@ -842,7 +842,7 @@ const styles = StyleSheet.create({
   menuIconContainer: {
     width: 36,
     height: 36,
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -872,7 +872,7 @@ const styles = StyleSheet.create({
   chartTitle: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   chartContainer: {
@@ -899,14 +899,14 @@ const styles = StyleSheet.create({
   },
   barSafe: {
     width: 12,
-    backgroundColor: '#10B981',
+    backgroundColor: '#15803D',
     marginRight: 2,
     borderRadius: 2,
     minHeight: 4,
   },
   barPending: {
     width: 12,
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     borderRadius: 2,
     minHeight: 4,
   },
@@ -960,7 +960,7 @@ const styles = StyleSheet.create({
   fabIcon: {
     width: 40,
     height: 40,
-    backgroundColor: '#EFF6FF',
+    backgroundColor: '#FBEEEE',
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -979,7 +979,7 @@ const styles = StyleSheet.create({
   recentUsersTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 12,
   },
   recentUserItem: {
@@ -1010,7 +1010,7 @@ const styles = StyleSheet.create({
   recentUserName: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
   },
   recentUserRole: {
     fontSize: 12,

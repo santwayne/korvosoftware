@@ -580,7 +580,7 @@ const toTrimmed = (value: string) => {
               <View
                 style={[
               styles.statusBadge,
-                  { backgroundColor: item.isActive ? '#10B981' : '#EF4444' },
+                  { backgroundColor: item.isActive ? '#15803D' : '#B91C1C' },
                 ]}
               >
               <Text style={styles.statusText}>
@@ -596,7 +596,7 @@ const toTrimmed = (value: string) => {
           style={[styles.actionButton, styles.editButton]}
           onPress={() => openEditModal(item)}
         >
-          <Ionicons name="create-outline" size={16} color="#3B82F6" />
+          <Ionicons name="create-outline" size={16} color="#B8142F" />
           <Text style={styles.actionButtonText}>Edit</Text>
         </TouchableOpacity>
         
@@ -604,7 +604,7 @@ const toTrimmed = (value: string) => {
           style={[styles.actionButton, styles.deleteButton]}
           onPress={() => handleDeleteProduct(item)}
         >
-          <Ionicons name="trash-outline" size={16} color="#EF4444" />
+          <Ionicons name="trash-outline" size={16} color="#B91C1C" />
           <Text style={styles.actionButtonText}>Delete</Text>
         </TouchableOpacity>
       </View>
@@ -673,7 +673,7 @@ const toTrimmed = (value: string) => {
                 value={formData.productCode}
               onChangeText={(text) => updateFormValue('productCode', text)}
                 placeholder="Enter product code"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -689,7 +689,7 @@ const toTrimmed = (value: string) => {
                 }
               }}
                 placeholder="Enter product name"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -700,7 +700,7 @@ const toTrimmed = (value: string) => {
               value={formData.name}
               onChangeText={(text) => updateFormValue('name', text)}
               placeholder="Optional internal reference name"
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#6B7280"
             />
           </View>
 
@@ -713,7 +713,7 @@ const toTrimmed = (value: string) => {
                 placeholder="Enter product description"
                 multiline
                 numberOfLines={3}
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -725,7 +725,7 @@ const toTrimmed = (value: string) => {
                 value={formData.partNo}
                 onChangeText={(text) => updateFormValue('partNo', text)}
                 placeholder="Enter part number"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
             <View style={[styles.inputGroup, { flex: 1, marginLeft: 8 }]}>
@@ -735,7 +735,7 @@ const toTrimmed = (value: string) => {
                 value={formData.itemAlias}
                 onChangeText={(text) => updateFormValue('itemAlias', text)}
                 placeholder="Enter alias"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
           </View>
@@ -750,7 +750,7 @@ const toTrimmed = (value: string) => {
                   value={formData.category}
                 onChangeText={(text) => updateFormValue('category', text)}
                   placeholder="Enter category"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               <View style={[styles.inputGroup, { flex: 1, marginLeft: 8 }]}>
@@ -760,7 +760,7 @@ const toTrimmed = (value: string) => {
                   value={formData.subCategory}
                 onChangeText={(text) => updateFormValue('subCategory', text)}
                   placeholder="Enter sub category"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -773,7 +773,7 @@ const toTrimmed = (value: string) => {
                 value={formData.brand}
                 onChangeText={(text) => updateFormValue('brand', text)}
                 placeholder="Enter brand"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
             <View style={[styles.inputGroup, { flex: 1, marginLeft: 8 }]}>
@@ -783,7 +783,7 @@ const toTrimmed = (value: string) => {
                 value={formData.parent}
                 onChangeText={(text) => updateFormValue('parent', text)}
                 placeholder="Enter parent"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
             </View>
@@ -798,7 +798,7 @@ const toTrimmed = (value: string) => {
                 value={formData.baseUnits}
                 onChangeText={(text) => updateFormValue('baseUnits', text)}
                 placeholder="e.g. pcs, ltr"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               <View style={[styles.inputGroup, { flex: 1, marginLeft: 8 }]}>
@@ -808,7 +808,7 @@ const toTrimmed = (value: string) => {
                 value={formData.additionalUnits}
                 onChangeText={(text) => updateFormValue('additionalUnits', text)}
                 placeholder="Optional"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -822,7 +822,7 @@ const toTrimmed = (value: string) => {
                 onChangeText={(text) => updateFormValue('stdPurcRate', text)}
                   placeholder="0.00"
                   keyboardType="numeric"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               <View style={[styles.inputGroup, { flex: 1, marginLeft: 8 }]}>
@@ -833,7 +833,7 @@ const toTrimmed = (value: string) => {
                 onChangeText={(text) => updateFormValue('stdSaleRate', text)}
                   placeholder="0.00"
                   keyboardType="numeric"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             </View>
@@ -846,7 +846,7 @@ const toTrimmed = (value: string) => {
                 onChangeText={(text) => updateFormValue('price', text)}
                 placeholder="0.00"
                 keyboardType="numeric"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -861,7 +861,7 @@ const toTrimmed = (value: string) => {
                 onChangeText={(text) => updateFormValue('gstRate', text)}
                 placeholder="18"
                   keyboardType="numeric"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
               <View style={[styles.inputGroup, { flex: 1, marginLeft: 8 }]}>
@@ -872,7 +872,7 @@ const toTrimmed = (value: string) => {
                 onChangeText={(text) => updateFormValue('itemGstPer', text)}
                 placeholder="18"
                 keyboardType="numeric"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
           </View>
@@ -885,7 +885,7 @@ const toTrimmed = (value: string) => {
                 value={formData.itemHsn}
                 onChangeText={(text) => updateFormValue('itemHsn', text)}
                 placeholder="Enter HSN"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
             <View style={[styles.inputGroup, { flex: 1, marginLeft: 8 }]}>
@@ -895,7 +895,7 @@ const toTrimmed = (value: string) => {
                 value={formData.itemHsnDesc}
                 onChangeText={(text) => updateFormValue('itemHsnDesc', text)}
                 placeholder="Enter description"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
           </View>
@@ -911,7 +911,7 @@ const toTrimmed = (value: string) => {
                 onChangeText={(text) => updateFormValue('openingBalance', text)}
                   placeholder="0"
                   keyboardType="numeric"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#6B7280"
                 />
               </View>
             <View style={[styles.inputGroup, { flex: 1, marginLeft: 8 }]}>
@@ -922,7 +922,7 @@ const toTrimmed = (value: string) => {
                 onChangeText={(text) => updateFormValue('itemOpRate', text)}
                 placeholder="0.00"
                 keyboardType="numeric"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
             </View>
@@ -936,7 +936,7 @@ const toTrimmed = (value: string) => {
               value={formData.companyCode}
               onChangeText={(text) => updateFormValue('companyCode', text)}
               placeholder="Optional company code"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
 
@@ -968,7 +968,7 @@ const toTrimmed = (value: string) => {
                 value={formData[field]}
                 onChangeText={(text) => updateFormValue(field, text)}
                 placeholder="Enter value"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#6B7280"
               />
             </View>
           ))}
@@ -1001,7 +1001,7 @@ const toTrimmed = (value: string) => {
               openEditModal(selectedProduct!);
             }}
           >
-            <Ionicons name="create-outline" size={24} color="#3B82F6" />
+            <Ionicons name="create-outline" size={24} color="#B8142F" />
           </TouchableOpacity>
         </View>
 
@@ -1131,8 +1131,8 @@ const toTrimmed = (value: string) => {
                       styles.detailsBadgeText,
                         {
                           color: selectedProduct.isActive
-                            ? '#059669'
-                            : '#DC2626',
+                            ? '#15803D'
+                            : '#B91C1C',
                         },
                       ]}
                     >
@@ -1176,7 +1176,7 @@ const toTrimmed = (value: string) => {
   if (loading && !refreshing) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading products...</Text>
       </View>
     );
@@ -1212,7 +1212,7 @@ const toTrimmed = (value: string) => {
             placeholder="Search products..."
             value={searchQuery}
             onChangeText={setSearchQuery}
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
         </View>
 
@@ -1265,7 +1265,7 @@ const toTrimmed = (value: string) => {
         }
         ListEmptyComponent={() => (
           <View style={styles.emptyState}>
-            <Ionicons name="cube-outline" size={64} color="#9CA3AF" />
+            <Ionicons name="cube-outline" size={64} color="#6B7280" />
             <Text style={styles.emptyStateTitle}>No Products Found</Text>
             <Text style={styles.emptyStateText}>
               No products found matching your criteria
@@ -1300,7 +1300,7 @@ const styles = StyleSheet.create({
     color: '#6B7280',
   },
   header: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingTop: 50,
     paddingBottom: 16,
     paddingHorizontal: 20,
@@ -1338,7 +1338,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 8,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   filterButtons: {
     flexDirection: 'row',
@@ -1348,14 +1348,14 @@ const styles = StyleSheet.create({
   filterButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     borderWidth: 1,
     borderColor: '#D1D5DB',
   },
   activeFilterButton: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
+    backgroundColor: '#B8142F',
+    borderColor: '#B8142F',
   },
   filterButtonText: {
     fontSize: 14,
@@ -1371,15 +1371,15 @@ const styles = StyleSheet.create({
   categoryButton: {
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 16,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     borderWidth: 1,
     borderColor: '#D1D5DB',
     marginRight: 8,
   },
   activeCategoryButton: {
-    backgroundColor: '#10B981',
-    borderColor: '#10B981',
+    backgroundColor: '#15803D',
+    borderColor: '#15803D',
   },
   categoryButtonText: {
     fontSize: 12,
@@ -1415,7 +1415,7 @@ const styles = StyleSheet.create({
   productName: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   productCode: {
@@ -1425,7 +1425,7 @@ const styles = StyleSheet.create({
   },
   productCategory: {
     fontSize: 12,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '500',
   },
   productPrice: {
@@ -1434,7 +1434,7 @@ const styles = StyleSheet.create({
   priceText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#059669',
+    color: '#15803D',
   },
   unitText: {
     fontSize: 12,
@@ -1456,7 +1456,7 @@ const styles = StyleSheet.create({
   },
   detailValue: {
     fontSize: 12,
-    color: '#1F2937',
+    color: '#111827',
   },
   statusBadge: {
     paddingHorizontal: 8,
@@ -1478,18 +1478,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 8,
-    borderRadius: 6,
+    borderRadius: 999,
     gap: 4,
   },
   editButton: {
-    backgroundColor: '#EBF4FF',
+    backgroundColor: '#FBEEEE',
     borderWidth: 1,
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
   },
   deleteButton: {
     backgroundColor: '#FEF2F2',
     borderWidth: 1,
-    borderColor: '#EF4444',
+    borderColor: '#B91C1C',
   },
   actionButtonText: {
     fontSize: 12,
@@ -1503,7 +1503,7 @@ const styles = StyleSheet.create({
   emptyStateTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginTop: 16,
     marginBottom: 8,
   },
@@ -1544,17 +1544,17 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     textAlign: 'center',
     flex: 1,
   },
   modalSaveText: {
     fontSize: 16,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '600',
   },
   disabledText: {
-    color: '#9CA3AF',
+    color: '#6B7280',
   },
   modalContent: {
     flex: 1,
@@ -1584,7 +1584,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
     backgroundColor: '#fff',
     minHeight: 48, // Better touch target
   },
@@ -1607,7 +1607,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#1F2937',
+    color: '#111827',
     marginTop: 16,
     marginBottom: 12,
   },
@@ -1619,7 +1619,7 @@ const styles = StyleSheet.create({
   modalButton: {
     flex: 1,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     alignItems: 'center',
   },
   cancelButton: {
@@ -1633,7 +1633,7 @@ const styles = StyleSheet.create({
     color: '#374151',
   },
   saveButton: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
   },
   saveButtonText: {
     fontSize: 16,
@@ -1668,7 +1668,7 @@ const styles = StyleSheet.create({
   detailsSectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#E5E7EB',
@@ -1691,7 +1691,7 @@ const styles = StyleSheet.create({
   detailsValue: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#1F2937',
+    color: '#111827',
     flex: 2,
     textAlign: 'right',
   },

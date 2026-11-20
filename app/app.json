@@ -10,14 +10,14 @@
     "splash": {
       "image": "./assets/splash-logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#077BC3"
+      "backgroundColor": "#A3122A"
     },
     "ios": {
       "supportsTablet": true,
       "splash": {
         "image": "./assets/splash-logo.png",
         "resizeMode": "contain",
-        "backgroundColor": "#077BC3"
+        "backgroundColor": "#A3122A"
       }
     },
     "android": {
@@ -29,7 +29,7 @@
       "splash": {
         "image": "./assets/splash-logo.png",
         "resizeMode": "contain",
-        "backgroundColor": "#077BC3"
+        "backgroundColor": "#A3122A"
       },
       "runtimeVersion": {
         "policy": "appVersion"

@@ -231,14 +231,14 @@ const RSMOrderList = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'draft': return '#F59E0B';
+      case 'draft': return '#B45309';
       case 'pending_approval': return '#F97316';
-      case 'approved': return '#10B981';
-      case 'processing': return '#3B82F6';
-      case 'shipped': return '#8B5CF6';
-      case 'delivered': return '#059669';
-      case 'cancelled': return '#EF4444';
-      case 'rejected': return '#DC2626';
+      case 'approved': return '#15803D';
+      case 'processing': return '#B8142F';
+      case 'shipped': return '#7D0B1E';
+      case 'delivered': return '#15803D';
+      case 'cancelled': return '#B91C1C';
+      case 'rejected': return '#B91C1C';
       default: return '#6B7280';
     }
   };
@@ -471,7 +471,7 @@ const RSMOrderList = () => {
                   style={[styles.actionButton, styles.editButton]}
                   onPress={() => handleEditOrder(selectedOrder)}
                 >
-                  <Ionicons name="create-outline" size={20} color="#3B82F6" />
+                  <Ionicons name="create-outline" size={20} color="#B8142F" />
                   <Text style={styles.actionButtonText}>Edit</Text>
                 </TouchableOpacity>
                 
@@ -479,7 +479,7 @@ const RSMOrderList = () => {
                   style={[styles.actionButton, styles.approveButton]}
                   onPress={() => handleApproveOrder(selectedOrder._id)}
                 >
-                  <Ionicons name="send-outline" size={20} color="#10B981" />
+                  <Ionicons name="send-outline" size={20} color="#15803D" />
                   <Text style={styles.actionButtonText}>Submit for Approval</Text>
                 </TouchableOpacity>
               </>
@@ -498,7 +498,7 @@ const RSMOrderList = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading orders...</Text>
       </View>
     );
@@ -518,7 +518,7 @@ const RSMOrderList = () => {
           style={styles.createButton}
           onPress={() => navigation.navigate('RSMCreateOrder' as never)}
         >
-          <Ionicons name="add" size={24} color="#3B82F6" />
+          <Ionicons name="add" size={24} color="#B8142F" />
         </TouchableOpacity>
       </View>
 
@@ -560,7 +560,7 @@ const RSMOrderList = () => {
         }
         ListEmptyComponent={
           <View style={styles.emptyState}>
-            <Ionicons name="document-outline" size={64} color="#9CA3AF" />
+            <Ionicons name="document-outline" size={64} color="#6B7280" />
             <Text style={styles.emptyStateTitle}>No Orders Found</Text>
             <Text style={styles.emptyStateSubtitle}>
               {filter === 'all' 
@@ -616,7 +616,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   createButton: {
     padding: 8,
@@ -635,7 +635,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F4F6',
   },
   activeFilterTab: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
   },
   filterTabText: {
     fontSize: 14,
@@ -679,7 +679,7 @@ const styles = StyleSheet.create({
   orderNumber: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   customerName: {
@@ -724,7 +724,7 @@ const styles = StyleSheet.create({
   orderDetailValue: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
   },
   emptyState: {
     flex: 1,
@@ -746,10 +746,10 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   emptyStateButton: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#B8142F',
     paddingHorizontal: 24,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   emptyStateButtonText: {
     fontSize: 14,
@@ -777,7 +777,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   placeholder: {
     width: 40,
@@ -797,7 +797,7 @@ const styles = StyleSheet.create({
   detailsSectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#E5E7EB',
@@ -820,7 +820,7 @@ const styles = StyleSheet.create({
   detailsValue: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#1F2937',
+    color: '#111827',
     flex: 2,
     textAlign: 'right',
   },
@@ -837,7 +837,7 @@ const styles = StyleSheet.create({
   totalAmount: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#059669',
+    color: '#15803D',
   },
   itemRow: {
     flexDirection: 'row',
@@ -853,7 +853,7 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   itemCode: {
@@ -863,7 +863,7 @@ const styles = StyleSheet.create({
   },
   itemPrice: {
     fontSize: 12,
-    color: '#059669',
+    color: '#15803D',
   },
   itemQuantity: {
     alignItems: 'flex-end',
@@ -876,7 +876,7 @@ const styles = StyleSheet.create({
   itemTotal: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   modalActions: {
     flexDirection: 'row',
@@ -892,18 +892,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     gap: 8,
   },
   editButton: {
-    backgroundColor: '#EBF4FF',
+    backgroundColor: '#FBEEEE',
     borderWidth: 1,
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
   },
   approveButton: {
     backgroundColor: '#ECFDF5',
     borderWidth: 1,
-    borderColor: '#10B981',
+    borderColor: '#15803D',
   },
   actionButtonText: {
     fontSize: 14,

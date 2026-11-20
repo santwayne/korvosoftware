@@ -225,20 +225,20 @@ const OutstandingManagementScreen = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'pending': return '#F59E0B';
-      case 'overdue': return '#EF4444';
-      case 'partially_paid': return '#3B82F6';
-      case 'paid': return '#10B981';
+      case 'pending': return '#B45309';
+      case 'overdue': return '#B91C1C';
+      case 'partially_paid': return '#B8142F';
+      case 'paid': return '#15803D';
       default: return '#6B7280';
     }
   };
 
   const getRiskColor = (riskLevel: string) => {
     switch (riskLevel) {
-      case 'low': return '#10B981';
-      case 'medium': return '#F59E0B';
-      case 'high': return '#EF4444';
-      case 'critical': return '#DC2626';
+      case 'low': return '#15803D';
+      case 'medium': return '#B45309';
+      case 'high': return '#B91C1C';
+      case 'critical': return '#B91C1C';
       default: return '#6B7280';
     }
   };
@@ -277,7 +277,7 @@ const OutstandingManagementScreen = () => {
           </View>
           <View style={styles.detailItem}>
             <Text style={styles.detailLabel}>Days Overdue:</Text>
-            <Text style={[styles.detailValue, { color: item.daysOverdue > 0 ? '#EF4444' : '#10B981' }]}>
+            <Text style={[styles.detailValue, { color: item.daysOverdue > 0 ? '#B91C1C' : '#15803D' }]}>
               {item.daysOverdue}
             </Text>
           </View>
@@ -296,14 +296,14 @@ const OutstandingManagementScreen = () => {
           style={styles.actionButton}
           onPress={() => handleAssign(item)}
         >
-          <Ionicons name="person-add" size={16} color="#077BC3" />
+          <Ionicons name="person-add" size={16} color="#A3122A" />
           <Text style={styles.actionButtonText}>Assign</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.actionButton}
           onPress={() => handleAddNote(item)}
         >
-          <Ionicons name="add-circle" size={16} color="#10B981" />
+          <Ionicons name="add-circle" size={16} color="#15803D" />
           <Text style={styles.actionButtonText}>Add Note</Text>
         </TouchableOpacity>
       </View>
@@ -328,7 +328,7 @@ const OutstandingManagementScreen = () => {
     if (hierarchyLoading) {
       return (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#077BC3" />
+          <ActivityIndicator size="large" color="#A3122A" />
           <Text style={styles.loadingText}>Loading hierarchy...</Text>
         </View>
       );
@@ -374,7 +374,7 @@ const OutstandingManagementScreen = () => {
 
         {hierarchyParties.length === 0 ? (
           <View style={styles.emptyState}>
-            <Ionicons name="document-text" size={48} color="#9CA3AF" />
+            <Ionicons name="document-text" size={48} color="#6B7280" />
             <Text style={styles.emptyStateText}>No outstanding data</Text>
           </View>
         ) : hierarchyParties.map(node => {
@@ -408,7 +408,7 @@ const OutstandingManagementScreen = () => {
                   </View>
                   <View style={styles.partyStatDivider} />
                   <View style={styles.partyStatItem}>
-                    <Text style={[styles.partyStatVal, { color: '#EF4444' }]}>
+                    <Text style={[styles.partyStatVal, { color: '#B91C1C' }]}>
                       ₹{node.totalOutstanding >= 100000
                         ? `${(node.totalOutstanding / 100000).toFixed(1)}L`
                         : node.totalOutstanding >= 1000
@@ -420,7 +420,7 @@ const OutstandingManagementScreen = () => {
                   <Ionicons
                     name={isExpanded ? 'chevron-up' : 'chevron-down'}
                     size={16}
-                    color="#9CA3AF"
+                    color="#6B7280"
                     style={{ marginLeft: 8 }}
                   />
                 </View>
@@ -464,7 +464,7 @@ const OutstandingManagementScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#077BC3" />
+        <ActivityIndicator size="large" color="#A3122A" />
         <Text style={styles.loadingText}>Loading outstanding data...</Text>
       </View>
     );
@@ -486,14 +486,14 @@ const OutstandingManagementScreen = () => {
           style={[styles.tabItem, activeTab === 'list' && styles.tabItemActive]}
           onPress={() => setActiveTab('list')}
         >
-          <Ionicons name="list-outline" size={18} color={activeTab === 'list' ? '#077BC3' : '#9CA3AF'} />
+          <Ionicons name="list-outline" size={18} color={activeTab === 'list' ? '#A3122A' : '#6B7280'} />
           <Text style={[styles.tabLabel, activeTab === 'list' && styles.tabLabelActive]}>Outstanding</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.tabItem, activeTab === 'hierarchy' && styles.tabItemActive]}
           onPress={() => setActiveTab('hierarchy')}
         >
-          <Ionicons name="git-network-outline" size={18} color={activeTab === 'hierarchy' ? '#077BC3' : '#9CA3AF'} />
+          <Ionicons name="git-network-outline" size={18} color={activeTab === 'hierarchy' ? '#A3122A' : '#6B7280'} />
           <Text style={[styles.tabLabel, activeTab === 'hierarchy' && styles.tabLabelActive]}>Hierarchy</Text>
         </TouchableOpacity>
       </View>
@@ -550,7 +550,7 @@ const OutstandingManagementScreen = () => {
             contentContainerStyle={styles.outstandingList}
             ListEmptyComponent={
               <View style={styles.emptyState}>
-                <Ionicons name="document-text" size={48} color="#9CA3AF" />
+                <Ionicons name="document-text" size={48} color="#6B7280" />
                 <Text style={styles.emptyStateText}>No outstanding found</Text>
                 <Text style={styles.emptyStateSubtext}>
                   {filter === 'all' ? 'No outstanding records found' : `No ${filter} outstanding found`}
@@ -608,7 +608,7 @@ const OutstandingManagementScreen = () => {
                 </View>
                 <View style={styles.detailRow}>
                   <Text style={styles.detailLabel}>Outstanding:</Text>
-                  <Text style={[styles.detailValue, { color: '#EF4444', fontWeight: 'bold' }]}>
+                  <Text style={[styles.detailValue, { color: '#B91C1C', fontWeight: 'bold' }]}>
                     ₹{selectedOutstanding.outstandingAmount.toLocaleString()}
                   </Text>
                 </View>
@@ -630,7 +630,7 @@ const OutstandingManagementScreen = () => {
                 </View>
                 <View style={styles.detailRow}>
                   <Text style={styles.detailLabel}>Days Overdue:</Text>
-                  <Text style={[styles.detailValue, { color: selectedOutstanding.daysOverdue > 0 ? '#EF4444' : '#10B981' }]}>
+                  <Text style={[styles.detailValue, { color: selectedOutstanding.daysOverdue > 0 ? '#B91C1C' : '#15803D' }]}>
                     {selectedOutstanding.daysOverdue}
                   </Text>
                 </View>
@@ -775,37 +775,37 @@ const styles = StyleSheet.create({
   // Tab Bar
   tabBar: { flexDirection: 'row', backgroundColor: '#fff', borderBottomWidth: 1, borderBottomColor: '#E5E7EB' },
   tabItem: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, paddingVertical: 13, borderBottomWidth: 3, borderBottomColor: 'transparent' },
-  tabItemActive: { borderBottomColor: '#077BC3' },
-  tabLabel: { fontSize: 14, fontWeight: '600', color: '#9CA3AF' },
-  tabLabelActive: { color: '#077BC3' },
+  tabItemActive: { borderBottomColor: '#A3122A' },
+  tabLabel: { fontSize: 14, fontWeight: '600', color: '#6B7280' },
+  tabLabelActive: { color: '#A3122A' },
 
   // Hierarchy
-  hierStrip: { flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 18, backgroundColor: '#077BC3', marginHorizontal: 0, borderRadius: 14, marginBottom: 16, elevation: 4 },
+  hierStrip: { flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 18, backgroundColor: '#A3122A', marginHorizontal: 0, borderRadius: 14, marginBottom: 16, elevation: 4 },
   hierStripItem: { alignItems: 'center', flex: 1 },
   hierStripDivider: { borderLeftWidth: 1, borderLeftColor: 'rgba(255,255,255,0.3)' },
   hierStripVal: { color: '#fff', fontSize: 20, fontWeight: 'bold', marginTop: 4 },
-  hierStripLab: { color: '#DBEAFE', fontSize: 10, marginTop: 2, fontWeight: '600', textTransform: 'uppercase' },
+  hierStripLab: { color: '#FFD2D9', fontSize: 10, marginTop: 2, fontWeight: '600', textTransform: 'uppercase' },
 
-  partyCard: { backgroundColor: '#fff', borderRadius: 12, padding: 14, borderWidth: 1, borderColor: '#E5E7EB', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', elevation: 2 },
+  partyCard: { backgroundColor: '#fff', borderRadius: 14, padding: 14, borderWidth: 1, borderColor: '#E5E7EB', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', elevation: 2 },
   partyCardLeft: { flexDirection: 'row', alignItems: 'center', flex: 1, minWidth: 0, marginRight: 8 },
-  partyAvatar: { width: 42, height: 42, borderRadius: 21, backgroundColor: '#077BC3', justifyContent: 'center', alignItems: 'center', marginRight: 10, flexShrink: 0 },
+  partyAvatar: { width: 42, height: 42, borderRadius: 21, backgroundColor: '#A3122A', justifyContent: 'center', alignItems: 'center', marginRight: 10, flexShrink: 0 },
   partyAvatarText: { color: '#fff', fontSize: 14, fontWeight: 'bold' },
   partyCardName: { fontSize: 14, fontWeight: '700', color: '#111827' },
   partyCardType: { fontSize: 11, color: '#6B7280', marginTop: 2, textTransform: 'capitalize' },
   overdueBadge: { backgroundColor: '#FEF2F2', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 5, marginTop: 4, alignSelf: 'flex-start' },
-  overdueBadgeText: { fontSize: 10, color: '#EF4444', fontWeight: '600' },
+  overdueBadgeText: { fontSize: 10, color: '#B91C1C', fontWeight: '600' },
   partyCardRight: { flexDirection: 'row', alignItems: 'center', flexShrink: 0 },
   partyStatItem: { alignItems: 'center', width: 72 },
   partyStatVal: { fontSize: 13, fontWeight: '700', color: '#111827', textAlign: 'center' },
-  partyStatLab: { fontSize: 8, color: '#9CA3AF', marginTop: 2, fontWeight: '600', letterSpacing: 0.4 },
+  partyStatLab: { fontSize: 8, color: '#6B7280', marginTop: 2, fontWeight: '600', letterSpacing: 0.4 },
   partyStatDivider: { width: 1, height: 28, backgroundColor: '#E5E7EB', marginHorizontal: 4 },
 
   expandedItems: { backgroundColor: '#F9FAFB', borderRadius: 10, padding: 10, borderWidth: 1, borderColor: '#E5E7EB', marginTop: 6 },
-  expandedCard: { backgroundColor: '#fff', borderRadius: 8, padding: 12, marginBottom: 8, borderWidth: 1, borderColor: '#E5E7EB' },
+  expandedCard: { backgroundColor: '#fff', borderRadius: 14, padding: 12, marginBottom: 8, borderWidth: 1, borderColor: '#E5E7EB' },
   expandedOrderNum: { fontSize: 13, fontWeight: '700', color: '#111827' },
   expandedLabel: { fontSize: 12, color: '#6B7280' },
-  expandedAmount: { fontSize: 14, fontWeight: '800', color: '#EF4444' },
-  expandedOverdue: { fontSize: 11, color: '#EF4444', marginTop: 4 },
+  expandedAmount: { fontSize: 14, fontWeight: '800', color: '#B91C1C' },
+  expandedOverdue: { fontSize: 11, color: '#B91C1C', marginTop: 4 },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -844,7 +844,7 @@ const styles = StyleSheet.create({
   summaryCard: {
     flex: 1,
     backgroundColor: '#F9FAFB',
-    borderRadius: 12,
+    borderRadius: 14,
     padding: 16,
     alignItems: 'center',
   },
@@ -871,12 +871,12 @@ const styles = StyleSheet.create({
   filterButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 999,
     marginRight: 8,
     backgroundColor: '#F3F4F6',
   },
   activeFilterButton: {
-    backgroundColor: '#077BC3',
+    backgroundColor: '#A3122A',
   },
   filterButtonText: {
     fontSize: 14,
@@ -976,7 +976,7 @@ const styles = StyleSheet.create({
   amountValue: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#EF4444',
+    color: '#B91C1C',
   },
   detailsRow: {
     flexDirection: 'row',
@@ -1008,7 +1008,7 @@ const styles = StyleSheet.create({
   assignedValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#077BC3',
+    color: '#A3122A',
   },
   cardActions: {
     flexDirection: 'row',
@@ -1021,7 +1021,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 8,
     paddingHorizontal: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     gap: 4,
   },
@@ -1042,7 +1042,7 @@ const styles = StyleSheet.create({
   },
   emptyStateSubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 8,
     textAlign: 'center',
   },
@@ -1117,7 +1117,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
     color: '#111827',
@@ -1136,7 +1136,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   selectedUserOption: {
-    backgroundColor: '#077BC3',
+    backgroundColor: '#A3122A',
   },
   userOptionText: {
     fontSize: 14,
@@ -1156,7 +1156,7 @@ const styles = StyleSheet.create({
   cancelButton: {
     flex: 1,
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     alignItems: 'center',
   },
@@ -1171,8 +1171,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 12,
-    borderRadius: 8,
-    backgroundColor: '#077BC3',
+    borderRadius: 999,
+    backgroundColor: '#A3122A',
     gap: 8,
   },
   assignButtonText: {
@@ -1186,8 +1186,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 12,
-    borderRadius: 8,
-    backgroundColor: '#10B981',
+    borderRadius: 999,
+    backgroundColor: '#15803D',
     gap: 8,
   },
   addNoteButtonText: {

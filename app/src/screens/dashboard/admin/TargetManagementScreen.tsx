@@ -164,19 +164,19 @@ const TargetManagementScreen = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'active': return '#10B981';
-      case 'achieved': return '#059669';
-      case 'pending': return '#F59E0B';
-      case 'failed': return '#EF4444';
+      case 'active': return '#15803D';
+      case 'achieved': return '#15803D';
+      case 'pending': return '#B45309';
+      case 'failed': return '#B91C1C';
       default: return '#6B7280';
     }
   };
 
   const getAchievementColor = (percentage: number) => {
-    if (percentage >= 100) return '#10B981';
-    if (percentage >= 75) return '#F59E0B';
+    if (percentage >= 100) return '#15803D';
+    if (percentage >= 75) return '#B45309';
     if (percentage >= 50) return '#F97316';
-    return '#EF4444';
+    return '#B91C1C';
   };
 
   const renderTargetItem = ({ item }: { item: Target }) => (
@@ -191,7 +191,7 @@ const TargetManagementScreen = () => {
             style={styles.editButton}
             onPress={() => handleEditTarget(item)}
           >
-            <Ionicons name="pencil" size={16} color="#077BC3" />
+            <Ionicons name="pencil" size={16} color="#A3122A" />
           </TouchableOpacity>
         </View>
       </View>
@@ -265,7 +265,7 @@ const TargetManagementScreen = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#077BC3" />
+        <ActivityIndicator size="large" color="#A3122A" />
         <Text style={styles.loadingText}>Loading targets...</Text>
       </View>
     );
@@ -319,7 +319,7 @@ const TargetManagementScreen = () => {
         contentContainerStyle={styles.targetsList}
         ListEmptyComponent={
           <View style={styles.emptyState}>
-            <Ionicons name="flag" size={48} color="#9CA3AF" />
+            <Ionicons name="flag" size={48} color="#6B7280" />
             <Text style={styles.emptyStateText}>No targets found</Text>
             <Text style={styles.emptyStateSubtext}>
               {filter === 'all' ? 'No targets have been assigned yet' : `No ${filter} targets found`}
@@ -477,12 +477,12 @@ const styles = StyleSheet.create({
   filterButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 999,
     marginRight: 8,
     backgroundColor: '#F3F4F6',
   },
   activeFilterButton: {
-    backgroundColor: '#077BC3',
+    backgroundColor: '#A3122A',
   },
   filterButtonText: {
     fontSize: 14,
@@ -511,12 +511,12 @@ const styles = StyleSheet.create({
   sortButton: {
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 16,
+    borderRadius: 999,
     marginRight: 8,
     backgroundColor: '#F3F4F6',
   },
   activeSortButton: {
-    backgroundColor: '#10B981',
+    backgroundColor: '#15803D',
   },
   sortButtonText: {
     fontSize: 12,
@@ -564,7 +564,7 @@ const styles = StyleSheet.create({
   },
   editButton: {
     padding: 8,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
   },
   targetDetails: {
@@ -624,7 +624,7 @@ const styles = StyleSheet.create({
   },
   emptyStateSubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 8,
     textAlign: 'center',
   },
@@ -666,7 +666,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     padding: 12,
     fontSize: 16,
     color: '#111827',
@@ -689,8 +689,8 @@ const styles = StyleSheet.create({
     borderColor: '#D1D5DB',
   },
   selectedStatusOption: {
-    backgroundColor: '#077BC3',
-    borderColor: '#077BC3',
+    backgroundColor: '#A3122A',
+    borderColor: '#A3122A',
   },
   statusOptionText: {
     fontSize: 14,
@@ -711,7 +711,7 @@ const styles = StyleSheet.create({
   cancelButton: {
     flex: 1,
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 999,
     backgroundColor: '#F3F4F6',
     alignItems: 'center',
   },
@@ -726,8 +726,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 12,
-    borderRadius: 8,
-    backgroundColor: '#10B981',
+    borderRadius: 999,
+    backgroundColor: '#15803D',
     gap: 8,
   },
   updateButtonText: {
@@ -736,7 +736,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   disabledButton: {
-    backgroundColor: '#9CA3AF',
+    backgroundColor: '#6B7280',
   },
 });
 

@@ -77,7 +77,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
             placeholder="Enter your password"
             secureTextEntry={!showPassword}
             autoCapitalize="none"
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#6B7280"
           />
           <TouchableOpacity
             onPress={() => setShowPassword(!showPassword)}
@@ -86,7 +86,7 @@ const SignIn: React.FC<Props> = ({ navigation }) => {
             <Ionicons
               name={showPassword ? "eye-off-outline" : "eye-outline"}
               size={20}
-              color="#9CA3AF"
+              color="#6B7280"
             />
           </TouchableOpacity>
         </View>
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginBottom: 32,
   },
   label: {
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 8,
+    borderRadius: 10,
     paddingHorizontal: 16,
     paddingVertical: 16,
     marginBottom: 16,
@@ -185,13 +185,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   forgotPassword: {
-    color: '#077BC3',
+    color: '#A3122A',
     fontSize: 14,
     fontWeight: '600',
   },
   signInButton: {
-    backgroundColor: '#077BC3',
-    borderRadius: 8,
+    backgroundColor: '#A3122A',
+    borderRadius: 999,
     paddingVertical: 12,
     marginBottom: 16,
     marginTop: 40
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: '#000000',
-    borderRadius: 8,
+    borderRadius: 999,
     paddingVertical: 12,
     marginBottom: 16,
   },
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   },
   facebookButtonText: {
     marginLeft: 8,
-    color: '#077BC3',
+    color: '#A3122A',
     fontSize: 16,
     fontWeight: '700',
   },
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   errorText: {
-    color: '#DC2626',
+    color: '#B91C1C',
     fontSize: 14,
     textAlign: 'center',
     fontWeight: '500',

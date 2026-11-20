@@ -129,20 +129,20 @@ const OrderManagementScreen = () => {
 
   const statusOptions = [
     { key: '', label: 'All Status', color: '#6B7280' },
-    { key: 'draft', label: 'Draft', color: '#9CA3AF' },
-    { key: 'pending', label: 'Pending', color: '#F59E0B' },
-    { key: 'confirmed', label: 'Confirmed', color: '#3B82F6' },
-    { key: 'processing', label: 'Processing', color: '#8B5CF6' },
+    { key: 'draft', label: 'Draft', color: '#6B7280' },
+    { key: 'pending', label: 'Pending', color: '#B45309' },
+    { key: 'confirmed', label: 'Confirmed', color: '#B8142F' },
+    { key: 'processing', label: 'Processing', color: '#7D0B1E' },
     { key: 'shipped', label: 'Shipped', color: '#06B6D4' },
-    { key: 'delivered', label: 'Delivered', color: '#10B981' },
-    { key: 'cancelled', label: 'Cancelled', color: '#EF4444' },
+    { key: 'delivered', label: 'Delivered', color: '#15803D' },
+    { key: 'cancelled', label: 'Cancelled', color: '#B91C1C' },
   ];
 
   const priorityOptions = [
     { key: '', label: 'All Priority', color: '#6B7280' },
-    { key: 'low', label: 'Low', color: '#10B981' },
-    { key: 'medium', label: 'Medium', color: '#F59E0B' },
-    { key: 'high', label: 'High', color: '#EF4444' },
+    { key: 'low', label: 'Low', color: '#15803D' },
+    { key: 'medium', label: 'Medium', color: '#B45309' },
+    { key: 'high', label: 'High', color: '#B91C1C' },
   ];
 
   const fetchOrders = async (page = 1, reset = false) => {
@@ -308,12 +308,12 @@ const OrderManagementScreen = () => {
 
   const getRoleColor = (role: string) => {
     const colors: { [key: string]: string } = {
-      rsm: '#3B82F6',
-      asm: '#10B981',
-      salesman: '#F59E0B',
-      dealers: '#8B5CF6',
+      rsm: '#B8142F',
+      asm: '#15803D',
+      salesman: '#B45309',
+      dealers: '#7D0B1E',
       distibutors: '#06B6D4',
-      subdealer: '#EF4444',
+      subdealer: '#B91C1C',
     };
     return colors[role] || '#6B7280';
   };
@@ -404,13 +404,13 @@ const OrderManagementScreen = () => {
         >
           {loadingOrderDetails === item._id ? (
             <>
-              <ActivityIndicator size="small" color="#3B82F6" />
+              <ActivityIndicator size="small" color="#B8142F" />
               <Text style={styles.viewDetailsText}>Loading...</Text>
             </>
           ) : (
             <>
               <Text style={styles.viewDetailsText}>View Details</Text>
-              <Ionicons name="chevron-forward" size={16} color="#3B82F6" />
+              <Ionicons name="chevron-forward" size={16} color="#B8142F" />
             </>
           )}
         </TouchableOpacity>
@@ -423,7 +423,7 @@ const OrderManagementScreen = () => {
   if (loading && orders.length === 0) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#3B82F6" />
+        <ActivityIndicator size="large" color="#B8142F" />
         <Text style={styles.loadingText}>Loading orders...</Text>
       </View>
     );
@@ -437,7 +437,7 @@ const OrderManagementScreen = () => {
           style={styles.backBtn}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#1F2937" />
+          <Ionicons name="arrow-back" size={24} color="#111827" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Order Management</Text>
         <View style={styles.headerRight} />
@@ -447,10 +447,10 @@ const OrderManagementScreen = () => {
       <View style={styles.statsSection}>
         <Text style={styles.sectionTitle}>Order Overview</Text>
         <View style={styles.statsGrid}>
-          {renderStatCard('Total Orders', orderStats.totalOrders, 'list', '#3B82F6')}
-          {renderStatCard('Total Amount', formatCurrency(orderStats.totalAmount), 'trending-up', '#10B981')}
-          {renderStatCard('Pending', orderStats.pendingOrders, 'time', '#F59E0B')}
-          {renderStatCard('Delivered', orderStats.deliveredOrders, 'checkmark-circle', '#10B981')}
+          {renderStatCard('Total Orders', orderStats.totalOrders, 'list', '#B8142F')}
+          {renderStatCard('Total Amount', formatCurrency(orderStats.totalAmount), 'trending-up', '#15803D')}
+          {renderStatCard('Pending', orderStats.pendingOrders, 'time', '#B45309')}
+          {renderStatCard('Delivered', orderStats.deliveredOrders, 'checkmark-circle', '#15803D')}
         </View>
       </View>
 
@@ -475,7 +475,7 @@ const OrderManagementScreen = () => {
           style={styles.filterBtn}
           onPress={() => setShowFilters(!showFilters)}
         >
-          <Ionicons name="filter" size={20} color="#3B82F6" />
+          <Ionicons name="filter" size={20} color="#B8142F" />
           <Text style={styles.filterText}>Filter</Text>
         </TouchableOpacity>
       </View>
@@ -557,7 +557,7 @@ const OrderManagementScreen = () => {
           onEndReachedThreshold={0.1}
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
-              <Ionicons name="document-outline" size={48} color="#9CA3AF" />
+              <Ionicons name="document-outline" size={48} color="#6B7280" />
               <Text style={styles.emptyText}>No orders found</Text>
               <Text style={styles.emptySubtext}>
                 {searchQuery || selectedStatus || selectedPriority ? 'Try adjusting your search or filters' : 'No orders available'}
@@ -567,7 +567,7 @@ const OrderManagementScreen = () => {
           ListFooterComponent={
             loading && orders.length > 0 ? (
               <View style={styles.loadingMore}>
-                <ActivityIndicator size="small" color="#3B82F6" />
+                <ActivityIndicator size="small" color="#B8142F" />
                 <Text style={styles.loadingMoreText}>Loading more...</Text>
               </View>
             ) : null
@@ -624,7 +624,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
   },
   headerRight: {
     width: 40,
@@ -635,7 +635,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 16,
   },
   statsGrid: {
@@ -674,7 +674,7 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 2,
   },
   statTitle: {
@@ -683,7 +683,7 @@ const styles = StyleSheet.create({
   },
   statSubtitle: {
     fontSize: 10,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 2,
   },
   searchSection: {
@@ -707,22 +707,22 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 12,
     fontSize: 16,
-    color: '#1F2937',
+    color: '#111827',
   },
   filterBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderRadius: 12,
+    borderRadius: 999,
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderWidth: 1,
-    borderColor: '#3B82F6',
+    borderColor: '#B8142F',
   },
   filterText: {
     marginLeft: 8,
     fontSize: 16,
-    color: '#3B82F6',
+    color: '#B8142F',
     fontWeight: '500',
   },
   filtersContainer: {
@@ -739,7 +739,7 @@ const styles = StyleSheet.create({
   filterLabel: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
     marginRight: 12,
   },
   filterChip: {
@@ -767,7 +767,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     backgroundColor: '#F3F4F6',
-    borderRadius: 8,
+    borderRadius: 999,
   },
   clearFilterText: {
     fontSize: 14,
@@ -796,7 +796,7 @@ const styles = StyleSheet.create({
   orderNumber: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1F2937',
+    color: '#111827',
     marginBottom: 4,
   },
   customerName: {
@@ -848,7 +848,7 @@ const styles = StyleSheet.create({
   amountValue: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#059669',
+    color: '#15803D',
   },
   orderDate: {
     flex: 1,
@@ -861,7 +861,7 @@ const styles = StyleSheet.create({
   },
   dateValue: {
     fontSize: 14,
-    color: '#1F2937',
+    color: '#111827',
   },
   orderCreator: {
     flex: 1,
@@ -892,7 +892,7 @@ const styles = StyleSheet.create({
   creatorName: {
     fontSize: 12,
     fontWeight: '500',
-    color: '#1F2937',
+    color: '#111827',
   },
   creatorRole: {
     fontSize: 10,
@@ -918,7 +918,7 @@ const styles = StyleSheet.create({
   },
   viewDetailsText: {
     fontSize: 14,
-    color: '#3B82F6',
+    color: '#B8142F',
     marginRight: 4,
   },
   emptyContainer: {
@@ -934,7 +934,7 @@ const styles = StyleSheet.create({
   },
   emptySubtext: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#6B7280',
     textAlign: 'center',
   },
   loadingMore: {
