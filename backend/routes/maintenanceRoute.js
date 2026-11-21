@@ -1,14 +1,15 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import { authorizeRoles } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 /**
  * @desc    Drop unique indexes from ledgerEntries and inventoryEntries collections
  * @route   POST /api/v1/maintenance/drop-unique-indexes
- * @access  Public (for migration purposes)
+ * @access  Super admin only (it changes database indexes)
  */
-router.post('/drop-unique-indexes', async (req, res) => {
+router.post('/drop-unique-indexes', authorizeRoles(['superadmin']), async (req, res) => {
   try {
     const db = mongoose.connection.db;
     const results = {
