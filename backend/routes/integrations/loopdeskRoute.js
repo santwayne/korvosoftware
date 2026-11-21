@@ -72,19 +72,18 @@ async function companyContact(b, hubId) {
 }
 
 /**
- * The owner admin. Their own Korvo admin login if the email already has one
- * (linked to this company too — never an error, bug B7); otherwise a new admin
- * with a random password (Loopdesk signs them in; a password can be set later).
+ * The owner admin. Always a Korvo login made by Loopdesk for this company:
+ * an existing Korvo admin with the same email is never linked, because
+ * Loopdesk SSO would then hand the bundle client that admin's whole session
+ * (all their other companies). The owner's email is used for the new login
+ * only if nobody in Korvo has it yet; otherwise a placeholder is used.
+ * New owners get a random password (Loopdesk signs them in).
  */
 async function ownerAdmin(company, b, hubId) {
   const email = String(b.owner?.email || '').trim().toLowerCase();
   const link = { companyId: company._id, role: 'admin', isActive: true, assignedAt: new Date() };
 
   let user = company.hub?.ownerUserId ? await User.findById(company.hub.ownerUserId) : null;
-  if (!user && email) {
-    const existing = await User.findOne({ email });
-    if (existing && existing.role === 'admin') user = existing;
-  }
   if (user) {
     if (!user.companies.some((c) => String(c.companyId) === String(company._id))) {
       user.companies.push(link);
