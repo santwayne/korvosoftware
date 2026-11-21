@@ -9,6 +9,7 @@ import { useFonts, Poppins_400Regular, Poppins_600SemiBold } from '@expo-google-
 import * as SplashScreen from 'expo-splash-screen';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
+import { consumeLoopdeskSso } from './src/utils/loopdeskSso';
 
 // Keep splash screen visible while loading fonts
 SplashScreen.preventAutoHideAsync();
@@ -52,6 +53,15 @@ function  AppContent() {
 }
 
 export default function App() {
+  // Loopdesk single sign-on must finish before AuthProvider reads the saved session.
+  const [ssoDone, setSsoDone] = React.useState(false);
+  React.useEffect(() => {
+    consumeLoopdeskSso()
+      .then((err) => { if (err) console.warn(err); })
+      .finally(() => setSsoDone(true));
+  }, []);
+  if (!ssoDone) return null;
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

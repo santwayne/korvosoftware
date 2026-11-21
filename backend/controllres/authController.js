@@ -116,62 +116,8 @@ export const universalLogin = async (req, res) => {
 
     // Handle User model login
     if (userWithPassword && !isLedgerUser) {
-      // Get user data with populated fields (without password)
-      const user = await User.findOne(userQuery)
-        .select('-password')
-        .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails')
-        .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails')
-        .populate('hierarchy.parentUserId', 'name email role mobile')
-        .populate('createdBy', 'name email');
-
-      // Update last login
-      await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
-
-      // Generate token
-      const token = jwt.sign(
-        { userId: user._id, role: user.role },
-        process.env.JWT_SECRET || "your_jwt_secret",
-        { expiresIn: "7d" }
-      );
-
-      // Get role-specific data
-      const roleSpecificData = await getRoleSpecificData(user);
-
-      // Filter out inactive companies and companies with deleted/inactive companyId
-      const activeCompanies = user.companies.filter(company => {
-        // Skip if company assignment itself is inactive
-        if (company.isActive === false) return false;
-        
-        // Skip if the companyId reference doesn't exist (deleted company)
-        if (!company.companyId) return false;
-        
-        // Skip if the company itself is inactive
-        if (company.companyId.isActive === false) return false;
-        
-        return true;
-      });
-
-      return res.json({
-        success: true,
-        message: 'Login successful',
-        data: {
-          user: {
-            _id: user._id,
-            email: user.email,
-            name: user.name,
-            mobile: user.mobile,
-            role: user.role,
-            defaultCompany: user.defaultCompany,
-            companies: activeCompanies, // Only return active companies
-            groups: user.groups, // Include groups for group users
-            hierarchy: user.hierarchy,
-            createdBy: user.createdBy,
-            lastLogin: user.lastLogin
-          },
-          roleSpecificData,
-          token
-        }
-      });
+      const data = await userSession(userWithPassword._id);
+      return res.json({ success: true, message: 'Login successful', data });
     }
 
     // Handle Ledger model login (for dealers)
@@ -606,4 +552,50 @@ async function getSubDealerData(user) {
     console.error('Error getting sub dealer data:', error);
     return { error: 'Failed to load sub dealer data' };
   }
+}
+
+/**
+ * The session a signed-in user gets: token, user (active companies only) and
+ * role data. Used by the password login and by Loopdesk single sign-on
+ * (routes/integrations/loopdeskRoute.js), so both answer the same shape.
+ */
+export async function userSession(userId) {
+  const user = await User.findById(userId)
+    .select('-password')
+    .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails')
+    .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails isActive')
+    .populate('hierarchy.parentUserId', 'name email role mobile')
+    .populate('createdBy', 'name email');
+
+  await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
+
+  const token = jwt.sign(
+    { userId: user._id, role: user.role },
+    process.env.JWT_SECRET || "your_jwt_secret",
+    { expiresIn: "7d" }
+  );
+
+  const roleSpecificData = await getRoleSpecificData(user);
+
+  // Only active assignments to companies that still exist and are active.
+  const activeCompanies = user.companies.filter((company) =>
+    company.isActive !== false && company.companyId && company.companyId.isActive !== false);
+
+  return {
+    user: {
+      _id: user._id,
+      email: user.email,
+      name: user.name,
+      mobile: user.mobile,
+      role: user.role,
+      defaultCompany: user.defaultCompany,
+      companies: activeCompanies,
+      groups: user.groups,
+      hierarchy: user.hierarchy,
+      createdBy: user.createdBy,
+      lastLogin: user.lastLogin
+    },
+    roleSpecificData,
+    token
+  };
 }

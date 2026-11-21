@@ -1013,6 +1013,21 @@ class ApiService {
     }
   }
 
+  /**
+   * Loopdesk single sign-on (web): swap the one-time hub token for a Korvo
+   * session and keep it like a normal login. See utils/loopdeskSso.ts.
+   */
+  async loginWithLoopdesk(hubToken: string): Promise<boolean> {
+    const response = await this.axiosInstance.post('/hub/loopdesk/sso', { token: hubToken });
+    const data = response.data;
+    if (!data?.success || !data.data?.token) return false;
+    this.token = data.data.token;
+    this.axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
+    await AsyncStorage.setItem('authToken', data.data.token);
+    await AsyncStorage.setItem('userData', JSON.stringify(data.data.user));
+    return true;
+  }
+
   async getStoredToken(): Promise<string | null> {
     try {
       return await AsyncStorage.getItem('authToken');
