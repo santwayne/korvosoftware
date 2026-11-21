@@ -28,7 +28,7 @@ These still say "royal". Renaming them would break the live app or the integrati
 | What | Why it stays |
 |---|---|
 | `app/app.json` → `slug: royaltally`, `android.package: com.santkaur.royalsoftware`, EAS `projectId` | Changing them makes a new app on the Play Store and unlinks the EAS project |
-| `API_BASE_URL=https://royalapp.wayneesolutions.com/api/v1` | The live server; change it only after a new domain is set up |
+| `API_BASE_URL=https://korvo.wayneesolutions.com/api/v1` | The live Korvo server (since 19 Nov 2026; the old royalapp server is retired). Set in `app/.env.production` and as the fallback in `app/src/config/env.ts` |
 | MongoDB database names in scripts (`royalapp`, `royalsoftware`) | Existing data lives there |
 | Loyvexa endpoint `/api/connect/royal` | It is Loyvexa's adapter name; it must match the Loyvexa side |
 | Demo seed data brands ("Royal Paints") | Sample data only |

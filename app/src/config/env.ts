@@ -15,7 +15,9 @@ console.log('🔍 ENV Loaded:', {
 });
 
 export const ENV = {
-  API_BASE_URL: API_BASE_URL || 'http://192.168.1.16:5000/api/v1',
+  // No .env in the build (EAS skips git-ignored files) → the live Korvo server,
+  // never a LAN address. Local dev still overrides this through .env.
+  API_BASE_URL: API_BASE_URL || 'https://korvo.wayneesolutions.com/api/v1',
   API_TIMEOUT: API_TIMEOUT || '10000',
   APP_NAME: APP_NAME || 'Korvo',
   APP_VERSION: APP_VERSION || '1.0.0',
