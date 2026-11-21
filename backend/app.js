@@ -25,6 +25,7 @@ import tallyRoute from './routes/tally/tallyRoute.js'
 import maintenanceRoute from './routes/maintenanceRoute.js'
 import priceListRoute from './routes/priceListRoute.js'
 import { externalOrders, rewards, admin as loyvexaAdmin, hub as hubRoute } from './routes/integrations/loyvexaRoute.js'
+import { loopdesk as loopdeskHubRoute } from './routes/integrations/loopdeskRoute.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -89,6 +90,7 @@ app.get('/api/v1/health', (req, res) => {
   app.use('/api/v1/orders/external', externalOrders)
   app.use('/api/v1/rewards', rewards)
   app.use('/api/v1/integrations/loyvexa', loyvexaAdmin)
+  app.use('/api/v1/hub/loopdesk', loopdeskHubRoute)
   app.use('/api/v1/hub', hubRoute)
   app.use('/api/v1/orders', orderRoute)
   app.use('/api/v1/approvals', approvalRoute)

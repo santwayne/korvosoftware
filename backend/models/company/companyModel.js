@@ -119,6 +119,13 @@ const companySchema = new mongoose.Schema({
         }
     }]
     ,
+    // Loopdesk bundle client: the hub made this company (and its owner admin)
+    // and opens Korvo for the owner without a password. See routes/integrations/loopdeskRoute.js.
+    hub: {
+        businessId: { type: String, trim: true, index: true, sparse: true },
+        ownerUserId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        pausedAt: Date
+    },
     // Bundle B (Korvo + Loyvexa): the brand's Loyvexa loyalty account.
     // Set up from Loyvexa (POST /api/v1/hub/provision) or by an admin
     // (PUT /api/v1/integrations/loyvexa). See services/loyvexa.js.
