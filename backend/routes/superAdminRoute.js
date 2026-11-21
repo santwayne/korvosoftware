@@ -17,6 +17,7 @@ import {
   addSuperAdminCollectionNote
 } from '../controllres/superAdminController.js'
 import { authorizeRoles, requireAuth } from '../middleware/authMiddleware.js'
+import User from '../models/user/userModel.js'
 import {
   createCompany,
   deleteCompany,
@@ -71,7 +72,17 @@ const superAdminRoute = express.Router()
  *       400:
  *         description: Super admin already exists
  */
-superAdminRoute.post('/create', createSuperAdmin)
+// Only the very first super admin can be made without logging in (fresh
+// install). After that, only a logged-in super admin can add another one.
+const firstOrSuperAdmin = async (req, res, next) => {
+  try {
+    if (!(await User.exists({ role: 'superadmin' }))) return next()
+  } catch (e) {
+    return res.status(500).json({ success: false, message: 'Server error' })
+  }
+  return authorizeRoles(['superadmin'])(req, res, next)
+}
+superAdminRoute.post('/create', firstOrSuperAdmin, createSuperAdmin)
 
 /**
  * @swagger
