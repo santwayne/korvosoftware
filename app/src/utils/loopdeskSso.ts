@@ -17,8 +17,25 @@ export async function consumeLoopdeskSso(): Promise<string | null> {
   window.history.replaceState(null, '', '/');
   try {
     const ok = await apiService.loginWithLoopdesk(token);
+    if (ok) markLoopdeskSession(true);
     return ok ? null : 'Could not open Korvo from Loopdesk. Please sign in.';
   } catch (e: any) {
     return e?.response?.data?.message || 'Could not open Korvo from Loopdesk. Please sign in.';
   }
+}
+
+/** Where Loopdesk AI lives. Set EXPO_PUBLIC_LOOPDESK_HUB_URL per server. */
+export const LOOPDESK_HUB_URL = (process.env.EXPO_PUBLIC_LOOPDESK_HUB_URL || 'https://app.loopdeskai.wayneesolutions.com').replace(/\/$/, '');
+
+const FLAG = 'loopdesk_session';
+
+/** Remember that this browser session came from Loopdesk, so the Loopdesk top bar shows. */
+export function markLoopdeskSession(on: boolean) {
+  if (Platform.OS !== 'web' || typeof window === 'undefined') return;
+  try { on ? window.localStorage.setItem(FLAG, '1') : window.localStorage.removeItem(FLAG); } catch { /* storage blocked */ }
+}
+
+export function isLoopdeskSession(): boolean {
+  if (Platform.OS !== 'web' || typeof window === 'undefined') return false;
+  try { return window.localStorage.getItem(FLAG) === '1'; } catch { return false; }
 }

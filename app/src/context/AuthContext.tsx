@@ -5,6 +5,7 @@ import { loginUser, logoutUser, checkAuthStatus, clearError, updateUser } from '
 import { persistor } from '../store';
 import { apiService } from '../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { markLoopdeskSession } from '../utils/loopdeskSso';
 
 interface AuthContextType {
   user: any;
@@ -134,6 +135,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, [dispatch]);
 
   const login = async (emailOrMobile: string, password: string): Promise<void> => {
+    markLoopdeskSession(false); // a password login is not a Loopdesk session
     try {
       const result = await dispatch(loginUser({ emailOrMobile, password }));
       if (loginUser.rejected.match(result)) {
@@ -151,6 +153,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const logout = async (): Promise<void> => {
+    markLoopdeskSession(false);
     try {
       // Clear local storage first
       await apiService.logout();
