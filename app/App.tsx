@@ -10,12 +10,13 @@ import * as SplashScreen from 'expo-splash-screen';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { consumeLoopdeskSso } from './src/utils/loopdeskSso';
+import { LoopdeskBar } from './src/components/LoopdeskBar';
 
 // Keep splash screen visible while loading fonts
 SplashScreen.preventAutoHideAsync();
 
 function  AppContent() {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { user, isAuthenticated, isLoading, logout } = useAuth();
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_600SemiBold,
@@ -43,6 +44,9 @@ function  AppContent() {
       />
       
       <SafeAreaView style={{ flex: 1, backgroundColor: '#ffffff' }}>
+        {isAuthenticated && (
+          <LoopdeskBar businessName={user?.defaultCompany?.companyName || user?.name} onLogout={logout} />
+        )}
         <NavigationContainer>
           <AppNavigator user={user} 
         isAuthenticated={isAuthenticated} />
