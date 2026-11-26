@@ -66,39 +66,58 @@ const ROLE_DISPLAY: Record<UserRole, string> = {
 };
 
 // ==================== ROLE-BASED STATS ====================
-const getRoleBasedStats = (role: UserRole) => {
-  switch (role) {
-    case UserRole.SUPERADMIN:
-      return [
-        { label: 'Companies', value: '24' },
-        { label: 'Total Admins', value: '48' },
-        { label: 'System Uptime', value: '99.9%' }
-      ];
-    case UserRole.ADMIN:
-      return [
-        { label: 'Total Users', value: '145' },
-        { label: 'Revenue', value: '₹18.5L' },
-        { label: 'Active Days', value: '156' }
-      ];
-    case UserRole.DISTRIBUTOR:
-      return [
-        { label: 'Dealers', value: '28' },
-        { label: 'Sales', value: '₹12.3L' },
-        { label: 'Orders', value: '245' }
-      ];
-    case UserRole.DEALER:
-      return [
-        { label: 'Orders', value: '89' },
-        { label: 'Sales', value: '₹5.8L' },
-        { label: 'Sub Dealers', value: '12' }
-      ];
-    default:
-      return [
-        { label: 'Orders', value: '145' },
-        { label: 'Total Sales', value: '₹18.5L' },
-        { label: 'Days Active', value: '156' }
-      ];
+// Real numbers only. Tiles start as "—" and fill in once loaded.
+type ProfileStat = { label: string; value: string };
+
+const formatRupees = (amount: number): string => {
+  if (!Number.isFinite(amount) || amount <= 0) return '₹0';
+  if (amount >= 10000000) return `₹${(amount / 10000000).toFixed(1)}Cr`;
+  if (amount >= 100000) return `₹${(amount / 100000).toFixed(1)}L`;
+  return `₹${Math.round(amount).toLocaleString('en-IN')}`;
+};
+
+const daysSince = (date?: string): string => {
+  if (!date) return '—';
+  const days = Math.floor((Date.now() - new Date(date).getTime()) / 86400000);
+  return Number.isFinite(days) && days >= 0 ? String(days + 1) : '—';
+};
+
+const placeholderStats = (role: UserRole): ProfileStat[] =>
+  role === UserRole.ADMIN
+    ? [{ label: 'Total Users', value: '—' }, { label: 'Revenue', value: '—' }, { label: 'Days Active', value: '—' }]
+    : role === UserRole.SUPERADMIN
+      ? [{ label: 'Days Active', value: '—' }]
+      : [{ label: 'Orders', value: '—' }, { label: 'Sales', value: '—' }, { label: 'Days Active', value: '—' }];
+
+const loadRoleBasedStats = async (role: UserRole, createdAt?: string): Promise<ProfileStat[]> => {
+  const days = daysSince(createdAt);
+  if (role === UserRole.SUPERADMIN) {
+    return [{ label: 'Days Active', value: days }];
   }
+
+  const [statsRes, usersRes] = await Promise.all([
+    apiService.getOrderStats().catch(() => null),
+    role === UserRole.ADMIN
+      ? apiService.getUserUsersByCompany({ page: 1, limit: 1 }).catch(() => null)
+      : Promise.resolve(null),
+  ]);
+  const stats: any = (statsRes as any)?.success ? (statsRes as any).stats : null;
+  const revenue = stats ? formatRupees(Number(stats.revenue ?? stats.totalAmount) || 0) : '—';
+
+  if (role === UserRole.ADMIN) {
+    const totalUsers = (usersRes as any)?.data?.pagination?.totalUsers;
+    return [
+      { label: 'Total Users', value: typeof totalUsers === 'number' ? String(totalUsers) : '—' },
+      { label: 'Revenue', value: revenue },
+      { label: 'Days Active', value: days },
+    ];
+  }
+
+  return [
+    { label: 'Orders', value: stats ? String(stats.totalOrders || 0) : '—' },
+    { label: 'Sales', value: revenue },
+    { label: 'Days Active', value: days },
+  ];
 };
 
 const ProfileScreen = () => {
@@ -169,7 +188,16 @@ const ProfileScreen = () => {
     }
   };
 
-  const roleBasedStats = getRoleBasedStats(user?.role as UserRole || UserRole.ADMIN);
+  const currentRole = (user?.role as UserRole) || UserRole.ADMIN;
+  const [roleBasedStats, setRoleBasedStats] = useState<ProfileStat[]>(() => placeholderStats(currentRole));
+
+  useEffect(() => {
+    let cancelled = false;
+    loadRoleBasedStats(currentRole, user?.createdAt)
+      .then((stats) => { if (!cancelled) setRoleBasedStats(stats); })
+      .catch((error) => console.error('Failed to load profile stats:', error));
+    return () => { cancelled = true; };
+  }, [currentRole, user?.createdAt]);
 
   const handleLogout = () => {
     Alert.alert(

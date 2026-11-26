@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -7,8 +7,11 @@ import {
   TouchableOpacity,
   Modal,
   SafeAreaView,
+  ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useAuth } from '../../../context/AuthContext';
 
 interface OrderItem {
   productId: string;
@@ -34,7 +37,7 @@ interface Order {
   items: OrderItem[];
   totalQuantity: number;
   totalAmount: number;
-  status: 'draft' | 'approved' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  status: string;
   createdAt: string;
   createdBy: string;
   createdByRole: string;
@@ -45,188 +48,103 @@ const DealerReceivedOrders = () => {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
 
-  // --- Static Received Orders Data ---
-  const RECEIVED_ORDERS: Order[] = [
-    {
-      _id: '1',
-      orderNumber: 'ORD-2026-001',
-      customerName: 'Tech Solutions Pvt Ltd',
-      customerEmail: 'contact@techsolutions.com',
-      customerMobile: '+91 98765 43210',
-      customerAddress: '123 MG Road, Bangalore, Karnataka, 560001',
-      shippingName: 'Delhi Warehouse',
-      shippingEmail: 'delhi@techsolutions.com',
-      shippingMobile: '+91 98765 11111',
-      shippingAddress: '456 Connaught Place, New Delhi, Delhi, 110001',
-      items: [
-        {
-          productId: 'p1',
-          productCode: 'SAM-LP-12',
-          productName: 'Samsung 12" Laptop',
-          unit: 'pcs',
-          unitPrice: 55000,
-          quantity: 5,
-          totalAmount: 275000,
-        },
-        {
-          productId: 'p2',
-          productCode: 'LEN-TB-10',
-          productName: 'Lenovo Tablet M10',
-          unit: 'pcs',
-          unitPrice: 18000,
-          quantity: 3,
-          totalAmount: 54000,
-        },
-      ],
-      totalQuantity: 8,
-      totalAmount: 329000,
-      status: 'approved',
-      createdAt: '2026-01-05T10:30:00Z',
-      createdBy: 'Rajesh Kumar',
-      createdByRole: 'Regional Manager',
-      notes: 'Urgent delivery required',
-    },
-    {
-      _id: '2',
-      orderNumber: 'ORD-2026-002',
-      customerName: 'Digital World Electronics',
-      customerEmail: 'info@digitalworld.com',
-      customerMobile: '+91 98765 22222',
-      customerAddress: '789 Park Street, Kolkata, West Bengal, 700016',
-      shippingName: 'Noida Store',
-      shippingEmail: 'noida@digitalworld.com',
-      shippingMobile: '+91 98765 33333',
-      shippingAddress: '321 Sector 18, Noida, Uttar Pradesh, 201301',
-      items: [
-        {
-          productId: 'p3',
-          productCode: 'HP-LJ-P1',
-          productName: 'HP LaserJet Pro',
-          unit: 'pcs',
-          unitPrice: 25000,
-          quantity: 8,
-          totalAmount: 200000,
-        },
-      ],
-      totalQuantity: 8,
-      totalAmount: 200000,
-      status: 'processing',
-      createdAt: '2026-01-04T14:20:00Z',
-      createdBy: 'Amit Sharma',
-      createdByRole: 'Sales Manager',
-    },
-    {
-      _id: '3',
-      orderNumber: 'ORD-2026-003',
-      customerName: 'Metro Computers',
-      customerEmail: 'sales@metrocomputers.com',
-      customerMobile: '+91 98765 44444',
-      customerAddress: '555 Brigade Road, Bangalore, Karnataka, 560025',
-      shippingName: 'Mumbai Branch',
-      shippingEmail: 'mumbai@metrocomputers.com',
-      shippingMobile: '+91 98765 55555',
-      shippingAddress: '777 Andheri East, Mumbai, Maharashtra, 400069',
-      items: [
-        {
-          productId: 'p4',
-          productCode: 'DELL-MON-24',
-          productName: 'Dell 24" Monitor',
-          unit: 'pcs',
-          unitPrice: 15000,
-          quantity: 12,
-          totalAmount: 180000,
-        },
-        {
-          productId: 'p5',
-          productCode: 'LOGI-WM-X2',
-          productName: 'Logitech Wireless Mouse',
-          unit: 'pcs',
-          unitPrice: 1500,
-          quantity: 50,
-          totalAmount: 75000,
-        },
-      ],
-      totalQuantity: 62,
-      totalAmount: 255000,
-      status: 'shipped',
-      createdAt: '2026-01-03T09:15:00Z',
-      createdBy: 'Suresh Patel',
-      createdByRole: 'Regional Manager',
-    },
-    {
-      _id: '4',
-      orderNumber: 'ORD-2026-004',
-      customerName: 'Tech Bazaar',
-      customerEmail: 'admin@techbazaar.com',
-      customerMobile: '+91 98765 66666',
-      customerAddress: '888 MG Road, Pune, Maharashtra, 411001',
-      shippingName: 'Pune Warehouse',
-      shippingEmail: 'pune@techbazaar.com',
-      shippingMobile: '+91 98765 77777',
-      shippingAddress: '999 Koregaon Park, Pune, Maharashtra, 411001',
-      items: [
-        {
-          productId: 'p1',
-          productCode: 'SAM-LP-12',
-          productName: 'Samsung 12" Laptop',
-          unit: 'pcs',
-          unitPrice: 55000,
-          quantity: 10,
-          totalAmount: 550000,
-        },
-      ],
-      totalQuantity: 10,
-      totalAmount: 550000,
-      status: 'delivered',
-      createdAt: '2026-01-02T11:00:00Z',
-      createdBy: 'Neha Gupta',
-      createdByRole: 'Sales Manager',
-    },
-    {
-      _id: '5',
-      orderNumber: 'ORD-2026-005',
-      customerName: 'Office Solutions',
-      customerEmail: 'contact@officesolutions.com',
-      customerMobile: '+91 98765 88888',
-      customerAddress: '111 Richmond Road, Bangalore, Karnataka, 560025',
-      shippingName: 'Chennai Office',
-      shippingEmail: 'chennai@officesolutions.com',
-      shippingMobile: '+91 98765 99999',
-      shippingAddress: '222 Anna Salai, Chennai, Tamil Nadu, 600002',
-      items: [
-        {
-          productId: 'p2',
-          productCode: 'LEN-TB-10',
-          productName: 'Lenovo Tablet M10',
-          unit: 'pcs',
-          unitPrice: 18000,
-          quantity: 15,
-          totalAmount: 270000,
-        },
-        {
-          productId: 'p3',
-          productCode: 'HP-LJ-P1',
-          productName: 'HP LaserJet Pro',
-          unit: 'pcs',
-          unitPrice: 25000,
-          quantity: 4,
-          totalAmount: 100000,
-        },
-      ],
-      totalQuantity: 19,
-      totalAmount: 370000,
-      status: 'draft',
-      createdAt: '2026-01-01T16:45:00Z',
-      createdBy: 'Vikram Mehta',
-      createdByRole: 'Sales Manager',
-      notes: 'Check stock availability before processing',
-    },
-  ];
+  const { user, getOrders } = useAuth();
+  const [receivedOrders, setReceivedOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  const formatAddress = (addr: any): string => {
+    if (!addr) return '';
+    if (typeof addr === 'string') return addr;
+    return [addr.street, addr.city, addr.state, addr.pincode].filter(Boolean).join(', ');
+  };
+
+  // Orders where this dealer is the buyer and someone else (their manager,
+  // admin, sales staff) placed the order.
+  const loadReceivedOrders = useCallback(async () => {
+    const myId = String(user?._id || '');
+    if (!myId) {
+      setReceivedOrders([]);
+      setLoading(false);
+      return;
+    }
+    try {
+      setLoadError(null);
+      const result = await getOrders({ dealerId: myId, limit: 100, sortBy: 'orderDate' });
+      const rows: any[] = result?.success ? result.orders || [] : [];
+      const mapped: Order[] = rows
+        .filter((o) => {
+          const creatorId = o.createdBy && typeof o.createdBy === 'object' ? String(o.createdBy._id || '') : String(o.createdBy || '');
+          return creatorId && creatorId !== myId;
+        })
+        .map((o) => {
+          const items: OrderItem[] = (o.items || []).map((it: any) => ({
+            productId: String(it.productId?._id || it.productId || ''),
+            productCode: it.productCode || it.productId?.productCode || '',
+            productName: it.productName || it.productId?.productName || '',
+            unit: it.unit || 'units',
+            unitPrice: Number(it.unitPrice) || 0,
+            quantity: Number(it.quantity) || 0,
+            totalAmount: Number(it.totalPrice) || 0,
+          }));
+          const sub = o.subDealerId && typeof o.subDealerId === 'object' ? o.subDealerId : null;
+          const dealer = o.dealerId && typeof o.dealerId === 'object' ? o.dealerId : null;
+          return {
+            _id: String(o._id),
+            orderNumber: o.orderNumber || '',
+            customerName: o.dealerName || o.customerName || dealer?.name || '',
+            customerEmail: o.customerEmail || dealer?.email || '',
+            customerMobile: o.customerMobile || dealer?.mobile || '',
+            customerAddress: formatAddress(o.customerAddress),
+            shippingName: o.subDealerName || sub?.name || o.dealerName || o.customerName || '',
+            shippingEmail: sub?.email || '',
+            shippingMobile: sub?.mobile || '',
+            shippingAddress: formatAddress(o.shippingAddress),
+            items,
+            totalQuantity: items.reduce((sum, it) => sum + it.quantity, 0),
+            totalAmount: Number(o.finalAmount) || 0,
+            status: o.status || 'draft',
+            createdAt: o.orderDate || o.createdAt,
+            createdBy: o.createdBy?.name || 'Unknown',
+            createdByRole: o.createdBy?.role || '',
+            notes: o.notes || undefined,
+          };
+        });
+      setReceivedOrders(mapped);
+    } catch (error: any) {
+      console.error('Failed to load received orders:', error);
+      setLoadError(error?.message || 'Could not load received orders');
+      setReceivedOrders([]);
+    } finally {
+      setLoading(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?._id]);
+
+  useEffect(() => {
+    loadReceivedOrders();
+  }, [loadReceivedOrders]);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await loadReceivedOrders();
+    setRefreshing(false);
+  };
+
+  const RECEIVED_ORDERS = receivedOrders;
+
+  const formatValue = (amount: number) =>
+    amount >= 100000 ? `₹${(amount / 100000).toFixed(1)}L` : `₹${Math.round(amount).toLocaleString()}`;
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'draft': return '#B45309';
+      case 'pending_approval': return '#B45309';
       case 'approved': return '#15803D';
+      case 'sent_to_tally': return '#B8142F';
+      case 'dispatched': return '#7D0B1E';
+      case 'returned': return '#B91C1C';
       case 'processing': return '#B8142F';
       case 'shipped': return '#7D0B1E';
       case 'delivered': return '#15803D';
@@ -238,6 +156,9 @@ const DealerReceivedOrders = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'draft': return 'document-outline';
+      case 'pending_approval': return 'time-outline';
+      case 'sent_to_tally': return 'cloud-upload-outline';
+      case 'dispatched': return 'car-outline';
       case 'approved': return 'checkmark-circle-outline';
       case 'processing': return 'time-outline';
       case 'shipped': return 'car-outline';
@@ -246,6 +167,12 @@ const DealerReceivedOrders = () => {
       default: return 'help-circle-outline';
     }
   };
+
+  const statusLabel = (status: string) =>
+    status
+      .split('_')
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
 
   const handleOrderPress = (order: Order) => {
     setSelectedOrder(order);
@@ -273,7 +200,7 @@ const DealerReceivedOrders = () => {
           <View style={styles.infoRow}>
             <Ionicons name="create-outline" size={12} color="#6B7280" />
             <Text style={styles.infoText}>
-              {order.createdBy} ({order.createdByRole})
+              {order.createdBy}{order.createdByRole ? ` (${order.createdByRole})` : ''}
             </Text>
           </View>
         </View>
@@ -289,7 +216,7 @@ const DealerReceivedOrders = () => {
               color={getStatusColor(order.status)} 
             />
             <Text style={[styles.statusText, { color: getStatusColor(order.status) }]}>
-              {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+              {statusLabel(order.status)}
             </Text>
           </View>
         </View>
@@ -362,7 +289,7 @@ const DealerReceivedOrders = () => {
                     styles.detailStatusText,
                     { color: getStatusColor(selectedOrder.status) }
                   ]}>
-                    {selectedOrder.status.charAt(0).toUpperCase() + selectedOrder.status.slice(1)}
+                    {statusLabel(selectedOrder.status)}
                   </Text>
                 </View>
               </View>
@@ -378,7 +305,7 @@ const DealerReceivedOrders = () => {
               <View style={styles.detailRow}>
                 <Text style={styles.detailLabel}>Created By</Text>
                 <Text style={styles.detailValue}>
-                  {selectedOrder.createdBy} ({selectedOrder.createdByRole})
+                  {selectedOrder.createdBy}{selectedOrder.createdByRole ? ` (${selectedOrder.createdByRole})` : ''}
                 </Text>
               </View>
             </View>
@@ -518,7 +445,7 @@ const DealerReceivedOrders = () => {
         <View style={[styles.summaryItem, styles.summaryDivider]}>
           <Ionicons name="cash" size={20} color="#fff" />
           <Text style={styles.summaryVal}>
-            ₹{(RECEIVED_ORDERS.reduce((sum, o) => sum + o.totalAmount, 0) / 100000).toFixed(1)}L
+            {formatValue(RECEIVED_ORDERS.reduce((sum, o) => sum + o.totalAmount, 0))}
           </Text>
           <Text style={styles.summaryLab}>Total Value</Text>
         </View>
@@ -529,8 +456,25 @@ const DealerReceivedOrders = () => {
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
-        {RECEIVED_ORDERS.map((order) => renderOrderCard(order))}
+        {loading ? (
+          <View style={{ paddingVertical: 48, alignItems: 'center' }}>
+            <ActivityIndicator size="large" color="#15803D" />
+          </View>
+        ) : RECEIVED_ORDERS.length === 0 ? (
+          <View style={{ paddingVertical: 48, alignItems: 'center', paddingHorizontal: 24 }}>
+            <Ionicons name={loadError ? 'alert-circle-outline' : 'file-tray-outline'} size={48} color="#9CA3AF" />
+            <Text style={{ marginTop: 12, fontSize: 16, fontWeight: '600', color: '#111827' }}>
+              {loadError ? 'Could not load orders' : 'No received orders yet'}
+            </Text>
+            <Text style={{ marginTop: 4, fontSize: 13, color: '#6B7280', textAlign: 'center' }}>
+              {loadError || 'Orders placed for you by your manager or the company will show here.'}
+            </Text>
+          </View>
+        ) : (
+          RECEIVED_ORDERS.map((order) => renderOrderCard(order))
+        )}
       </ScrollView>
     </SafeAreaView>
   );

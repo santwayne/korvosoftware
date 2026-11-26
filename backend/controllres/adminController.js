@@ -257,8 +257,8 @@ export const adminLogin = async (req, res) => {
 
     const admin = await User.findOne(adminQuery)
       .select('-password')
-      .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails')
-      .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails');
+      .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
+      .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin');
 
     if (!admin) {
       return res.status(401).json({
@@ -376,8 +376,8 @@ export const switchCompany = async (req, res) => {
     // Return updated admin data
     const updatedAdmin = await User.findById(adminId)
       .select('-password')
-      .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails')
-      .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails');
+      .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
+      .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin');
 
     return res.json({
       success: true,
@@ -1224,8 +1224,8 @@ export const createUser = async (req, res) => {
 
           const updatedUser = await User.findById(existingUser._id)
             .select('-password')
-            .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails')
-            .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails');
+            .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
+            .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin');
 
           return res.status(200).json({
             success: true,
@@ -1306,8 +1306,8 @@ export const createUser = async (req, res) => {
 
         const updatedUser = await User.findById(existingUser._id)
           .select('-password')
-          .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails')
-          .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails')
+          .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
+          .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
 
         return res.status(200).json({
           success: true,

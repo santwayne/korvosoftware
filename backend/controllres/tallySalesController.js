@@ -553,6 +553,9 @@ export const getSalesSummaryForGroupUser = async (req, res) => {
     const salesByItem = {};
     const transactionRegister = {};
 
+    // Raw (date, quantity) per item, for the trend
+    const saleHistory = {};
+
     allSales.forEach(sale => {
       const itemKey = sale.itemguid;
       
@@ -568,11 +571,13 @@ export const getSalesSummaryForGroupUser = async (req, res) => {
           averageRate: 0,
           transactionCount: 0,
           lastSaleDate: null,
-          trend: 'up',
+          trend: null, // set below from real sales; null = not enough sales
           status: 'Good'
         };
         transactionRegister[itemKey] = [];
+        saleHistory[itemKey] = [];
       }
+      saleHistory[itemKey].push({ date: new Date(sale.vchdate || 0).getTime(), quantity: sale.quantity || 0 });
       
       // Update summary
       const itemSummary = salesByItem[itemKey];
@@ -609,6 +614,15 @@ export const getSalesSummaryForGroupUser = async (req, res) => {
         ? Math.round(item.totalAmount / item.totalQuantitySold) 
         : 0;
       
+      // Trend: recent half of sales vs older half (needs 2+ sales)
+      const history = (saleHistory[item.id] || []).slice().sort((a, b) => b.date - a.date);
+      if (history.length >= 2) {
+        const mid = Math.floor(history.length / 2);
+        const recent = history.slice(0, mid).reduce((sum, h) => sum + h.quantity, 0);
+        const older = history.slice(mid).reduce((sum, h) => sum + h.quantity, 0);
+        item.trend = recent > older ? 'up' : recent < older ? 'down' : 'flat';
+      }
+
       // Determine status based on total amount
       if (item.totalAmount >= 2000000) {
         item.status = 'Top Seller';

@@ -33,7 +33,7 @@ export const authMiddleware = (requiredRoles = []) => {
       if (isLedger) {
         // Fetch ledger details from database
         const ledger = await Ledger.findById(userId)
-          .populate('companyId', 'companyName companyCode companyEmail companyMobile contactDetails')
+          .populate('companyId', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
           .populate('createdBy', 'name email');
 
         if (!ledger || !ledger.isActive) {
@@ -42,7 +42,7 @@ export const authMiddleware = (requiredRoles = []) => {
 
         // Get company
         const company = await Company.findById(ledger.companyId)
-          .select('companyName companyCode companyEmail companyMobile contactDetails');
+          .select('companyName companyCode companyEmail companyMobile contactDetails companyState gstin');
 
         // Format ledger as user-like object for consistency
         user = {

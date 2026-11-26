@@ -118,7 +118,7 @@ export const getLedgers = async (req, res) => {
 // positive = Cr (natural direction), negative = Dr (opposite).
 // We normalise so that our convention is always: positive = Dr, negative = Cr.
 const NATURAL_CR_GROUPS = ['sundry creditors', 'loans (liability)', 'current liabilities', 'accounts payable', 'creditors', 'provisions', 'bank od a/c', 'bank occ a/c'];
-const normalizeOpening = (ledger) => {
+export const normalizeOpening = (ledger) => {
   const raw = ledger.LedgerOpening || 0;
   const parent = (ledger.LedgerParent || '').toLowerCase().trim();
   if (!parent) {

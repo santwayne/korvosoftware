@@ -43,13 +43,14 @@ const SaleOrderApprove = ({ navigation, route }: any) => {
           text: action === 'approved' ? 'Approve' : 'Reject',
           style: action === 'rejected' ? 'destructive' : 'default',
           onPress: async () => {
+            if (processing) return;
             try {
               setProcessing(true);
               const res = await bulkApproveRejectOrders([orderId], action, notes || undefined);
               if (res?.success) {
-                Alert.alert('Success', `Order ${action} successfully`, [
-                  { text: 'OK', onPress: () => navigation.goBack() }
-                ]);
+                // Leave the screen right away so it can't be approved twice
+                navigation.goBack();
+                Alert.alert('Success', `Order ${action} successfully`);
               } else {
                 Alert.alert('Error', res?.message || `Failed to ${action} order`);
               }

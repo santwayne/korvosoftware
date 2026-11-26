@@ -21,6 +21,9 @@ interface Order {
   orderNumber: string;
   orderDate: string;
   finalAmount: number;
+  customerName?: string;
+  dealerName?: string;
+  subDealerName?: string;
   status: string;
   priority: string;
   paymentMethod: string;
@@ -72,7 +75,7 @@ interface OrderSummary {
 }
 
 const ApprovedOrdersScreen = () => {
-  const { getOrders, getOrderStats, getOrderById, updateOrderStatus, unapproveOrder } = useAuth();
+  const { getOrders, getOrderById, updateOrderStatus, unapproveOrder } = useAuth();
   const [orders, setOrders] = useState<Order[]>([]);
   const [summary, setSummary] = useState<OrderSummary | null>(null);
   const [loading, setLoading] = useState(true);
@@ -115,19 +118,20 @@ const ApprovedOrdersScreen = () => {
           })) || []
         }));
         setOrders(mappedOrders);
-      }
 
-      // Fetch order statistics
-      const statsResult = await getOrderStats();
-      if (statsResult?.success) {
-        const stats = statsResult.stats;
+        // Summary from the orders shown, so the count and value always match
+        // the list (company-wide stats counted every status, e.g. drafts).
+        const totalAmount = mappedOrders.reduce(
+          (sum: number, o: any) => sum + (Number(o.finalAmount) || 0),
+          0
+        );
         setSummary({
-          totalOrders: stats.totalOrders || 0,
-          totalAmount: stats.totalAmount || 0,
-          averageOrderValue: stats.averageOrderValue || 0,
-          ordersByStatus: stats.ordersByStatus || {},
-          ordersByPriority: stats.ordersByPriority || {},
-          ordersByPaymentMethod: stats.ordersByPaymentMethod || {}
+          totalOrders: mappedOrders.length,
+          totalAmount,
+          averageOrderValue: mappedOrders.length ? Math.round(totalAmount / mappedOrders.length) : 0,
+          ordersByStatus: {},
+          ordersByPriority: {},
+          ordersByPaymentMethod: {}
         });
       }
 
@@ -260,17 +264,23 @@ const ApprovedOrdersScreen = () => {
       <View style={styles.cardContent}>
         <View style={styles.amountRow}>
           <Text style={styles.amountLabel}>Amount:</Text>
-          <Text style={styles.amountValue}>₹{item.finalAmount.toLocaleString()}</Text>
+          <Text style={styles.amountValue}>₹{(Number(item.finalAmount) || 0).toLocaleString()}</Text>
         </View>
         
         <View style={styles.detailsRow}>
           <View style={styles.detailItem}>
             <Text style={styles.detailLabel}>Customer:</Text>
-            <Text style={styles.detailValue}>{item.createdBy?.name ?? 'Unknown'}</Text>
+            <Text style={styles.detailValue}>
+              {item.dealerName || item.customerName || item.subDealerName || 'Unknown'}
+            </Text>
           </View>
           <View style={styles.detailItem}>
-            <Text style={styles.detailLabel}>Role:</Text>
-            <Text style={styles.detailValue}>{item.createdBy?.role ?? 'Unknown'}</Text>
+            <Text style={styles.detailLabel}>Created by:</Text>
+            <Text style={styles.detailValue}>
+              {item.createdBy?.name
+                ? `${item.createdBy.name}${item.createdBy.role ? ` (${item.createdBy.role})` : ''}`
+                : 'Unknown'}
+            </Text>
           </View>
         </View>
 
@@ -352,7 +362,7 @@ const ApprovedOrdersScreen = () => {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Approved Orders</Text>
         <Text style={styles.headerSubtitle}>
-          {orders.length} orders • ₹{summary?.totalAmount?.toLocaleString() || '0'} total value
+          {summary?.totalOrders ?? orders.length} orders • ₹{summary?.totalAmount?.toLocaleString() || '0'} total value
         </Text>
       </View>
 

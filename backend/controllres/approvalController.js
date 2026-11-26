@@ -287,13 +287,17 @@ export const approveRejectOrder = async (req, res) => {
       });
     }
 
-    // Find the order
+    // Find the order. Pending Approvals also lists the user's own drafts (and an
+    // admin sees drafts made for the company), so those can be rejected too.
+    const draftScope = userRole === 'admin' ? {} : { createdBy: userId };
     const order = await Order.findOne({
       _id: orderId,
       companyId,
-      nextApprover: userId,
-      status: 'pending_approval',
-      isActive: true
+      isActive: true,
+      $or: [
+        { nextApprover: userId, status: 'pending_approval' },
+        ...(action === 'rejected' ? [{ status: 'draft', ...draftScope }] : [])
+      ]
     }).populate('createdBy', 'name role email');
 
     if (!order) {
@@ -434,15 +438,17 @@ export const bulkApproveRejectOrders = async (req, res) => {
 
     for (const orderId of orderIds) {
       try {
+        // Drafts shown in Pending Approvals can be rejected in bulk as well
+        const allowedStatuses = action === 'rejected' ? ['pending_approval', 'draft'] : ['pending_approval'];
         const order = await Order.findOne({
           _id: orderId,
           companyId,
-          status: 'pending_approval',
+          status: { $in: allowedStatuses },
           isActive: true
         });
 
         if (!order) {
-          results.push({ orderId, success: false, error: 'Order not found or not in pending_approval status' });
+          results.push({ orderId, success: false, error: `Order not found or not in ${allowedStatuses.join('/')} status` });
           failed++;
           continue;
         }

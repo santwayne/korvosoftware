@@ -15,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../../../context/AuthContext';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { apiService } from '../../../services/api';
 
 interface OrderItem {
   productId: string;
@@ -85,6 +86,16 @@ const AdminOrderList = () => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [userHierarchy, setUserHierarchy] = useState<UserNode[]>([]);
+  // Group users: member count from the Group Hierarchy, so both screens agree
+  const [groupMemberCount, setGroupMemberCount] = useState<number | null>(null);
+
+  const isGroupUser = user?.role === 'groupuser';
+  // The viewer's own group. Orders a group user sees are for their group's
+  // dealers, so creators with no group (e.g. the company admin) go under it.
+  const viewerGroupName: string =
+    (user?.groups || []).find((g: any) => g?.isActive && g?.groupName)?.groupName ||
+    user?.groupName ||
+    '';
 
   // ── Day filters (separate per tab) ───────────────────────────────────────
   const [myOrdersDayFilter, setMyOrdersDayFilter] = useState<'5' | '10' | '15' | '25' | '30'>('5');
@@ -126,7 +137,10 @@ const AdminOrderList = () => {
     orders.forEach((order: any) => {
       const creator = order.createdBy || {};
       const userId = creator._id ? String(creator._id) : 'unknown';
-      const grpName = (creator.groups || []).find((g: any) => g.isActive)?.groupName || '';
+      const grpName =
+        (creator.groups || []).find((g: any) => g.isActive && g.groupName)?.groupName ||
+        (isGroupUser ? viewerGroupName : '') ||
+        (creator.role === 'admin' || creator.role === 'superadmin' ? 'Company' : '');
 
       // parentUserId may be a nested-populated object (has ._id) or a plain ID string
       const parentRef = creator.hierarchy?.parentUserId;
@@ -222,7 +236,7 @@ const AdminOrderList = () => {
       if (nodes.length === 0 || !nodes.every(n => n.children.length === 0)) return nodes;
       const gMap = new Map<string, UserNode>();
       nodes.forEach(node => {
-        const key = node.groupName || 'Unknown Group';
+        const key = node.groupName || viewerGroupName || 'No Group';
         if (!gMap.has(key)) {
           gMap.set(key, {
             id: `grp__${key}`,
@@ -322,7 +336,11 @@ const AdminOrderList = () => {
   const fetchMyOrders = useCallback(async () => {
     try {
       setMyOrdersLoading(true);
-      const response = await getOrders({ limit: 100, page: 1, createdBy: user?._id });
+      // Group users: every order they can see (same set as the Hierarchy tab),
+      // including ones the admin placed for their dealers. Others: their own.
+      const response = await getOrders(
+        isGroupUser ? { limit: 100, page: 1 } : { limit: 100, page: 1, createdBy: user?._id }
+      );
       if (response?.success) {
         const raw = response.orders || [];
         setMyOrders(raw.map(mapOrder));
@@ -335,7 +353,7 @@ const AdminOrderList = () => {
     } finally {
       setMyOrdersLoading(false);
     }
-  }, [getOrders, user?._id]);
+  }, [getOrders, user?._id, isGroupUser]);
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -351,6 +369,18 @@ const AdminOrderList = () => {
     fetchOrders();
     fetchMyOrders();
   }, [fetchOrders, fetchMyOrders]);
+
+  useEffect(() => {
+    if (!isGroupUser) return;
+    apiService
+      .getGroupHierarchy()
+      .then((res: any) => {
+        if (res?.success && typeof res.data?.totalUsers === 'number') {
+          setGroupMemberCount(res.data.totalUsers);
+        }
+      })
+      .catch(() => setGroupMemberCount(null));
+  }, [isGroupUser]);
 
   // Refresh + notify when returning from AdminEditOrder
   useEffect(() => {
@@ -1257,9 +1287,15 @@ const AdminOrderList = () => {
 
     const hierTotalOrders = filteredHierarchy.reduce((s, g) => s + g.totalOrders, 0);
     const hierTotalValue = filteredHierarchy.reduce((s, g) => s + g.totalValue, 0);
-    const countNodes = (nodes: UserNode[]): number =>
-      nodes.reduce((s, n) => s + 1 + countNodes(n.children), 0);
-    const hierTotalMembers = countNodes(filteredHierarchy);
+    // Count people only, not the group / dealer placeholder rows in the tree
+    const countPeople = (nodes: UserNode[]): number =>
+      nodes.reduce(
+        (s, n) => s + (n.role === 'Group' || n.role === 'Dealer' ? 0 : 1) + countPeople(n.children),
+        0
+      );
+    const hierTotalMembers = isGroupUser && groupMemberCount !== null
+      ? groupMemberCount
+      : countPeople(filteredHierarchy);
 
     return (
       <>

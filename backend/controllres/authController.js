@@ -124,7 +124,7 @@ export const universalLogin = async (req, res) => {
     if (ledgerWithPassword && isLedgerUser) {
       // Get company from ledger
       const company = await Company.findById(ledgerWithPassword.companyId)
-        .select('companyName companyCode companyEmail companyMobile contactDetails');
+        .select('companyName companyCode companyEmail companyMobile contactDetails companyState gstin');
 
       // Generate token with ledger ID and role 'dealers'
       const token = jwt.sign(
@@ -562,7 +562,7 @@ async function getSubDealerData(user) {
 export async function userSession(userId) {
   const user = await User.findById(userId)
     .select('-password')
-    .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails')
+    .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
     .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails isActive')
     .populate('hierarchy.parentUserId', 'name email role mobile')
     .populate('createdBy', 'name email');

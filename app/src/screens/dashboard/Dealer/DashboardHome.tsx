@@ -87,8 +87,14 @@ const DashboardHome = () => {
         ? (approvedOrdersResult.pagination?.totalOrders || 0) 
         : (orderStats.confirmedOrders || 0); // Fallback to stats if pagination not available
 
+      // Total comes from the same query as My Orders / Recent Activity, so the
+      // number always matches what the dealer can see in those lists.
+      const myOrdersTotal = recentOrdersResult?.success
+        ? (recentOrdersResult.pagination?.totalOrders ?? (recentOrdersResult.orders || []).length)
+        : (orderStats.totalOrders || 0);
+
       setStats({
-        totalOrders: orderStats.totalOrders || 0,
+        totalOrders: myOrdersTotal,
         draftOrders: draftOrdersCount,
         approvedOrders: approvedOrdersCount,
         totalSales: orderStats.totalAmount || 0,

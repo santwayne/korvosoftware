@@ -7,6 +7,15 @@ import { Ionicons } from '@expo/vector-icons';
 import apiService from '../../../services/api';
 import { useAuth } from '../../../context/AuthContext';
 
+// Trend comes from real sales only (server sends null when there are too few)
+const TREND_UI: Record<string, { icon: string; color: string; label: string }> = {
+  up: { icon: 'trending-up', color: '#15803D', label: 'Trending Up' },
+  down: { icon: 'trending-down', color: '#B91C1C', label: 'Trending Down' },
+  flat: { icon: 'remove', color: '#6B7280', label: 'Steady' },
+  none: { icon: 'remove', color: '#9CA3AF', label: 'Not enough sales' },
+};
+const trendKey = (t: any): string => (t === 'up' || t === 'down' || t === 'flat' ? t : 'none');
+
 const SalesSummaryScreen = () => {
   const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
@@ -357,15 +366,15 @@ const SalesSummaryScreen = () => {
         <View style={styles.trendRow}>
           <View style={styles.trendIndicator}>
             <Ionicons 
-              name={item.trend === 'up' ? "trending-up" : "trending-down"} 
+              name={TREND_UI[trendKey(item.trend)].icon as any} 
               size={18} 
-              color={item.trend === 'up' ? "#15803D" : "#B91C1C"} 
+              color={TREND_UI[trendKey(item.trend)].color} 
             />
             <Text style={[
               styles.trendText,
-              { color: item.trend === 'up' ? "#15803D" : "#B91C1C" }
+              { color: TREND_UI[trendKey(item.trend)].color }
             ]}>
-              {item.trend === 'up' ? 'Trending Up' : 'Trending Down'}
+              {TREND_UI[trendKey(item.trend)].label}
             </Text>
           </View>
 

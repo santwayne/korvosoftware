@@ -17,19 +17,19 @@ interface SalesData {
   month: string;
   sales: number;
   orders: number;
-  growth: number;
+  growth: number | null; // null when there is no earlier month to compare with
 }
 
 interface SalesStats {
   totalSales: number;
   totalOrders: number;
-  averageGrowth: number;
+  averageGrowth: number | null;
   monthlyData: SalesData[];
 }
 
 const SalesReportScreen = () => {
   const navigation = useNavigation();
-  const { user, getOrderStats, getOrders } = useAuth();
+  const { user, getOrders } = useAuth();
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [salesStats, setSalesStats] = useState<SalesStats>({
@@ -39,61 +39,57 @@ const SalesReportScreen = () => {
     monthlyData: []
   });
 
+  // Orders that count towards a dealer's sales: ones they placed and ones
+  // placed for them. Cancelled/returned orders and drafts are left out.
+  const COUNTED_STATUSES = ['pending_approval', 'approved', 'sent_to_tally', 'dispatched', 'delivered'];
+
   const fetchSalesData = async () => {
     try {
       setLoading(true);
-      
-      // Fetch order statistics
-      const orderStatsResult = await getOrderStats();
-      
-      if (orderStatsResult?.success) {
-        const stats = orderStatsResult.stats;
-        
-        // Generate monthly data based on current stats
-        const currentDate = new Date();
-        const monthlyData: SalesData[] = [];
-        
-        // Generate last 6 months of data
-        for (let i = 5; i >= 0; i--) {
-          const date = new Date(currentDate.getFullYear(), currentDate.getMonth() - i, 1);
-          const monthName = date.toLocaleDateString('en-US', { month: 'long' });
-          
-          // Simulate monthly data based on current stats
-          const baseSales = stats.totalAmount || 0;
-          const baseOrders = stats.totalOrders || 0;
-          
-          // Add some variation to make it realistic
-          const variation = 0.8 + (Math.random() * 0.4); // 80% to 120% of base
-          const monthlySales = Math.round(baseSales * variation);
-          const monthlyOrders = Math.round(baseOrders * variation);
-          
-          // Calculate growth (simplified)
-          const growth = i === 0 ? 0 : Math.round((Math.random() - 0.5) * 20); // -10% to +10%
-          
-          monthlyData.push({
-            month: monthName,
-            sales: monthlySales,
-            orders: monthlyOrders,
-            growth
-          });
-        }
-        
-        // Calculate total sales and average growth
-        const totalSales = monthlyData.reduce((sum, month) => sum + month.sales, 0);
-        const totalOrders = monthlyData.reduce((sum, month) => sum + month.orders, 0);
-        const averageGrowth = monthlyData.length > 1 
-          ? Math.round(monthlyData.slice(1).reduce((sum, month) => sum + month.growth, 0) / (monthlyData.length - 1))
-          : 0;
-        
-        setSalesStats({
-          totalSales,
-          totalOrders,
-          averageGrowth,
-          monthlyData
+      const myId = String(user?._id || '');
+      const [placed, received] = await Promise.all([
+        getOrders({ createdBy: myId, limit: 500 }),
+        getOrders({ dealerId: myId, limit: 500 }),
+      ]);
+
+      const byId = new Map<string, any>();
+      [...(placed?.orders || []), ...(received?.orders || [])].forEach((o: any) => {
+        if (o?._id) byId.set(String(o._id), o);
+      });
+      const orders = [...byId.values()].filter((o) => COUNTED_STATUSES.includes(o.status));
+
+      // Last 6 months, oldest first
+      const now = new Date();
+      const buckets: SalesData[] = [];
+      for (let i = 5; i >= 0; i--) {
+        const start = new Date(now.getFullYear(), now.getMonth() - i, 1);
+        const end = new Date(now.getFullYear(), now.getMonth() - i + 1, 1);
+        const inMonth = orders.filter((o) => {
+          const d = new Date(o.orderDate || o.createdAt);
+          return d >= start && d < end;
         });
-      } else {
-        Alert.alert('Error', 'Failed to fetch sales data');
+        buckets.push({
+          month: start.toLocaleDateString('en-US', { month: 'long' }),
+          sales: Math.round(inMonth.reduce((sum, o) => sum + (Number(o.finalAmount) || 0), 0)),
+          orders: inMonth.length,
+          growth: null,
+        });
       }
+      // Growth vs the month before; only when the month before had sales
+      buckets.forEach((b, idx) => {
+        const prev = buckets[idx - 1];
+        if (prev && prev.sales > 0) {
+          b.growth = Math.round(((b.sales - prev.sales) / prev.sales) * 100);
+        }
+      });
+
+      const growths = buckets.map((b) => b.growth).filter((g): g is number => g !== null);
+      setSalesStats({
+        totalSales: buckets.reduce((sum, b) => sum + b.sales, 0),
+        totalOrders: buckets.reduce((sum, b) => sum + b.orders, 0),
+        averageGrowth: growths.length ? Math.round(growths.reduce((a, b) => a + b, 0) / growths.length) : null,
+        monthlyData: buckets,
+      });
     } catch (error) {
       console.error('Error fetching sales data:', error);
       Alert.alert('Error', 'Failed to load sales report');
@@ -116,7 +112,8 @@ const SalesReportScreen = () => {
     return `₹${amount.toLocaleString()}`;
   };
 
-  const formatGrowth = (growth: number) => {
+  const formatGrowth = (growth: number | null) => {
+    if (growth === null) return '—';
     const sign = growth >= 0 ? '+' : '';
     return `${sign}${growth}%`;
   };
@@ -156,7 +153,7 @@ const SalesReportScreen = () => {
         <View style={styles.summaryItem}>
           <Text style={styles.summaryLabel}>Avg Growth</Text>
           <Text style={[styles.summaryValue, { 
-            color: salesStats.averageGrowth >= 0 ? '#15803D' : '#B91C1C' 
+            color: salesStats.averageGrowth === null ? '#6B7280' : salesStats.averageGrowth >= 0 ? '#15803D' : '#B91C1C' 
           }]}>
             {formatGrowth(salesStats.averageGrowth)}
           </Text>
@@ -174,18 +171,20 @@ const SalesReportScreen = () => {
           <View key={index} style={styles.card}>
             <View style={styles.salesHeader}>
               <Text style={styles.monthText}>{item.month}</Text>
-              <View style={[styles.growthBadge, {
-                backgroundColor: item.growth >= 0 ? '#D1FAE5' : '#FEE2E2'
-              }]}>
-                <Ionicons 
-                  name={item.growth >= 0 ? 'trending-up' : 'trending-down'} 
-                  size={14} 
-                  color={item.growth >= 0 ? '#15803D' : '#B91C1C'} 
-                />
-                <Text style={[styles.growthText, {
-                  color: item.growth >= 0 ? '#15803D' : '#B91C1C'
-                }]}>{formatGrowth(item.growth)}</Text>
-              </View>
+              {item.growth !== null && (
+                <View style={[styles.growthBadge, {
+                  backgroundColor: item.growth >= 0 ? '#D1FAE5' : '#FEE2E2'
+                }]}>
+                  <Ionicons 
+                    name={item.growth >= 0 ? 'trending-up' : 'trending-down'} 
+                    size={14} 
+                    color={item.growth >= 0 ? '#15803D' : '#B91C1C'} 
+                  />
+                  <Text style={[styles.growthText, {
+                    color: item.growth >= 0 ? '#15803D' : '#B91C1C'
+                  }]}>{formatGrowth(item.growth)}</Text>
+                </View>
+              )}
             </View>
             <View style={styles.salesDetails}>
               <View style={styles.salesItem}>
@@ -214,7 +213,7 @@ const SalesReportScreen = () => {
             <View style={styles.insightContent}>
               <Text style={styles.insightLabel}>Best Performing Month</Text>
               <Text style={styles.insightValue}>
-                {salesStats.monthlyData.length > 0 
+                {salesStats.totalSales > 0
                   ? salesStats.monthlyData.reduce((best, current) => 
                       current.sales > best.sales ? current : best
                     ).month
