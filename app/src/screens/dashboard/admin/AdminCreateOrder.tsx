@@ -23,6 +23,8 @@ import {
   determineGstType,
   extractState,
   GstType,
+  companySellerState,
+  partyState,
 } from '../../../utils/gst';
 
 const MODE_OPTIONS = ['Cash', 'Cheque', 'Bank Transfer', 'UPI', 'Credit Card', 'Other'];
@@ -399,25 +401,16 @@ const AdminCreateOrder = () => {
     }
 
     return (
-      extractState(defaultCompany.companyState) ||
-      extractState(defaultCompany?.contactDetails?.address?.state)
+      companySellerState(defaultCompany)
     );
   }, [user]);
 
   const sellerState = useMemo(() => deriveSellerState(), [deriveSellerState]);
 
   const buyerState = useMemo(() => {
-    if (selectedSubDealer?.SDState) {
-      return extractState(selectedSubDealer.SDState);
-    }
-    if (selectedSubDealer?.address?.state) {
-      return extractState(selectedSubDealer.address.state);
-    }
-    if (selectedDealer?.LedgerState) {
-      return extractState(selectedDealer.LedgerState);
-    }
-    if (selectedDealer?.address?.state) {
-      return extractState(selectedDealer.address.state);
+    const fromParty = partyState(selectedSubDealer) || partyState(selectedDealer);
+    if (fromParty) {
+      return fromParty;
     }
     return '';
   }, [selectedDealer, selectedSubDealer]);
@@ -1144,7 +1137,7 @@ const AdminCreateOrder = () => {
             difference: plDifference,
             finalRate: plFinalRate,
             gstRate: previous.gstRate ?? resolvedGstRate,
-            availableStock: 0,
+            availableStock: getStockNumber(freshProduct.stock),
             partNo: previous.partNo || partNumber,
             itemHsn: previous.itemHsn || hsnCode,
             category: previous.category || category,
@@ -1185,7 +1178,7 @@ const AdminCreateOrder = () => {
             igstAmount: 0,
             totalTaxAmount: 0,
             totalAmount: 0,
-            availableStock: 0,
+            availableStock: getStockNumber(freshProduct.stock),
             priceListRate: plRate,
             difference: plDifference,
             finalRate: plFinalRate,
@@ -1283,7 +1276,9 @@ const AdminCreateOrder = () => {
     setPriceListDifference(0);
     setDealerDiscount(0);
   };
-  const handleCreateOrder = async () => {
+  const handleCreateOrder = async (confirmedOverStock?: unknown) => {
+    // onPress passes an event, so only a literal `true` skips the stock check
+    const skipStockCheck = confirmedOverStock === true;
     if (!selectedDealer) {
       Alert.alert('Validation Error', 'Please select a dealer');
       return;
@@ -1309,6 +1304,28 @@ const AdminCreateOrder = () => {
     const itemsWithQuantity = orderItems.filter(item => item.quantity > 0);
     if (itemsWithQuantity.length === 0) {
       Alert.alert('Validation Error', 'Please set quantity for at least one product');
+      return;
+    }
+
+    if (saving) {
+      return;
+    }
+
+    const overStock = itemsWithQuantity.filter(
+      (item) => item.quantity > (item.availableStock ?? 0)
+    );
+    if (!skipStockCheck && overStock.length > 0) {
+      const lines = overStock
+        .map((item) => `${item.productName}: ordering ${item.quantity}, only ${item.availableStock ?? 0} in stock`)
+        .join('\n');
+      Alert.alert(
+        'Not enough stock',
+        `${lines}\n\nPlace the order anyway?`,
+        [
+          { text: 'Change quantity', style: 'cancel' },
+          { text: 'Place anyway', style: 'destructive', onPress: () => handleCreateOrder(true) },
+        ]
+      );
       return;
     }
 
@@ -1380,7 +1397,8 @@ const AdminCreateOrder = () => {
           gstRate: item.gstRate ?? DEFAULT_GST_RATE,
           priceListRate: item.priceListRate ?? 0,
           difference: item.difference ?? 0,
-          finalRate: item.finalRate ?? item.unitPrice,
+          // 0 means no price list applied; never send it as the rate
+          finalRate: item.finalRate > 0 ? item.finalRate : item.unitPrice,
         })),
         priceListName: selectedPriceListName || null,
         totalQuantity: finalSummary.totalQuantity,
@@ -1396,6 +1414,7 @@ const AdminCreateOrder = () => {
         orderEntryDate: orderEntryDate,
         status: 'draft',
         orderType: 'admin_created',
+        stockChecked: true, // stock was already confirmed above
       };
       if (mode === 'Other') {
         orderData.customMode = trimmedCustomMode;

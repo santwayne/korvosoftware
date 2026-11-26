@@ -22,6 +22,8 @@ import {
   determineGstType,
   extractState,
   GstType,
+  companySellerState,
+  partyState,
 } from '../../../utils/gst';
 
 const MODE_OPTIONS = ['Cash', 'Cheque', 'Bank Transfer', 'UPI', 'Credit Card', 'Other'];
@@ -341,19 +343,16 @@ const ZonalCreateOrder = () => {
     }
 
     return (
-      extractState(defaultCompany.companyState) ||
-      extractState(defaultCompany?.contactDetails?.address?.state)
+      companySellerState(defaultCompany)
     );
   }, [user]);
 
   const sellerState = useMemo(() => deriveSellerState(), [deriveSellerState]);
 
   const buyerState = useMemo(() => {
-    if (selectedSubDealer?.address?.state) {
-      return extractState(selectedSubDealer.address.state);
-    }
-    if (selectedDealer?.address?.state) {
-      return extractState(selectedDealer.address.state);
+    const fromParty = partyState(selectedSubDealer) || partyState(selectedDealer);
+    if (fromParty) {
+      return fromParty;
     }
     return '';
   }, [selectedDealer, selectedSubDealer]);

@@ -7,6 +7,13 @@ import { Ionicons } from '@expo/vector-icons';
 import apiService from '../../../services/api';
 import { useAuth } from '../../../context/AuthContext';
 
+const TREND_UI: Record<string, { icon: string; color: string; label: string }> = {
+  up: { icon: 'trending-up', color: '#15803D', label: 'Trending Up' },
+  down: { icon: 'trending-down', color: '#B91C1C', label: 'Trending Down' },
+  flat: { icon: 'remove', color: '#6B7280', label: 'Steady' },
+  none: { icon: 'remove', color: '#9CA3AF', label: 'Not enough sales' },
+};
+
 const StockSummaryScreen = () => {
   const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
@@ -74,7 +81,9 @@ const StockSummaryScreen = () => {
   const getInHand = (s: any) => s.inHand ?? s.currentStock ?? s.quantity ?? 0;
   const getSold = (s: any) => s.subDealerSold ?? s.soldQuantity ?? s.sold ?? 0;
   const getLastSaleDate = (s: any) => s.lastSaleDate || '—';
-  const getTrend = (s: any) => s.trend || (getSold(s) > getInHand(s) ? 'up' : 'down');
+  // Trend comes from real sales only; null means not enough sales to tell
+  const getTrend = (s: any): 'up' | 'down' | 'flat' | null =>
+    s.trend === 'up' || s.trend === 'down' || s.trend === 'flat' ? s.trend : null;
   const getStatus = (s: any): string => {
     if (s.status) return s.status;
     const inHand = getInHand(s);
@@ -302,9 +311,9 @@ const StockSummaryScreen = () => {
 
         <View style={styles.trendRow}>
           <View style={styles.trendIndicator}>
-            <Ionicons name={trend === 'up' ? 'trending-up' : 'trending-down'} size={18} color={trend === 'up' ? '#15803D' : '#B91C1C'} />
-            <Text style={[styles.trendText, { color: trend === 'up' ? '#15803D' : '#B91C1C' }]}>
-              {trend === 'up' ? 'Trending Up' : 'Trending Down'}
+            <Ionicons name={TREND_UI[trend ?? 'none'].icon as any} size={18} color={TREND_UI[trend ?? 'none'].color} />
+            <Text style={[styles.trendText, { color: TREND_UI[trend ?? 'none'].color }]}>
+              {TREND_UI[trend ?? 'none'].label}
             </Text>
           </View>
           <TouchableOpacity style={styles.viewRegisterBtn} onPress={() => openSalesRegister(item)}>

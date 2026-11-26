@@ -1,11 +1,25 @@
 // src/context/AuthContext.tsx
 import React, { createContext, useContext, useEffect, ReactNode } from 'react';
+import { Alert } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { loginUser, logoutUser, checkAuthStatus, clearError, updateUser } from '../store/slices/authSlice';
 import { persistor } from '../store';
 import { apiService } from '../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { markLoopdeskSession } from '../utils/loopdeskSso';
+
+// Tax and stock notes the server sends back with a saved order (missing
+// company/dealer state, quantity above stock). Shown once, from one place, so
+// every role's create/edit screen gets them.
+const showOrderWarnings = (result: any, orderData?: any) => {
+  if (!result?.success) return;
+  const notes: string[] = [...(result.warnings || [])];
+  // Screens that already confirmed stock with the user set stockChecked.
+  if (!orderData?.stockChecked) notes.push(...(result.stockWarnings || []));
+  if (notes.length > 0) {
+    setTimeout(() => Alert.alert('Order saved, please check', notes.join('\n\n')), 300);
+  }
+};
 
 interface AuthContextType {
   user: any;
@@ -368,6 +382,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const result = await apiService.createOrder(orderData);
       console.log('API service result:', result);
+      showOrderWarnings(result, orderData);
       return result; // Return the full result, not result.data
     } catch (error) {
       console.error('Failed to create order:', error);
@@ -408,6 +423,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const updateOrder = async (orderId: string, data: any): Promise<any> => {
     try {
       const result = await apiService.updateOrder(orderId, data);
+      showOrderWarnings(result, data);
       return result;
     } catch (error) {
       console.error('Failed to update order:', error);

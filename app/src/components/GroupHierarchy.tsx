@@ -22,6 +22,7 @@ interface User {
   mobile?: string;
   role?: string;
   LedgerGUID?: string;
+  isCurrentUser?: boolean;
 }
 
 interface Voucher {
@@ -962,7 +963,9 @@ const GroupHierarchy: React.FC<GroupHierarchyProps> = ({ onClose }) => {
                     <Ionicons name="person" size={20} color="#B8142F" />
                   </View>
                   <View style={styles.memberInfo}>
-                    <Text style={styles.memberName}>{item.name}</Text>
+                    <Text style={styles.memberName}>
+                      {item.name}{(item as User).isCurrentUser ? ' (You)' : ''}
+                    </Text>
                     {!!item.mobile && (
                       <View style={styles.memberDetailRow}>
                         <Ionicons name="call-outline" size={12} color="#6B7280" />

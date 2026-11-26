@@ -2,6 +2,7 @@ import Outstanding from '../models/outstanding/outstandingModel.js';
 import Order from '../models/order/orderModel.js';
 import User from '../models/user/userModel.js';
 import Ledger from '../models/ledger/ledgerModel.js';
+import { normalizeOpening } from './ledgerController.js';
 import mongoose from 'mongoose';
 
 const getAllChildUserIds = async (parentUserId, companyId) => {
@@ -118,10 +119,15 @@ export const getOutstandingSummary = async (req, res) => {
   }
 };
 
-// Returns array of ledger GUIDs visible to the user based on hierarchy.
-// Returns null if user has no dealers (caller should return empty).
-const resolveVisibleLedgerGUIDs = async (userId, userRole, companyId) => {
-  const ledgerGUIDs = new Set();
+const LEDGER_FIELDS = 'LedgerGUID LedgerName LedgerOpening LedgerParent LedgerOpeningDate LedgerMobile Email';
+
+// Ledgers (dealers) visible to the user based on hierarchy. Admins see all.
+const resolveVisibleLedgers = async (userId, userRole, companyId) => {
+  if (userRole === 'admin' || userRole === 'superadmin') {
+    return Ledger.find({ companyId, isActive: true }).select(LEDGER_FIELDS).lean();
+  }
+  const byId = new Map();
+  const add = (list) => list.forEach(l => byId.set(String(l._id), l));
 
   if (userRole === 'groupuser') {
     const currentUser = await User.findById(userId).select('groups assignedDealerIds').lean();
@@ -132,13 +138,11 @@ const resolveVisibleLedgerGUIDs = async (userId, userRole, companyId) => {
       .filter(Boolean);
 
     if (activeGroupIds.length > 0) {
-      const groupLedgers = await Ledger.find({ groupId: { $in: activeGroupIds }, companyId, isActive: true }).select('LedgerGUID').lean();
-      groupLedgers.forEach(l => l.LedgerGUID && ledgerGUIDs.add(l.LedgerGUID));
+      add(await Ledger.find({ groupId: { $in: activeGroupIds }, companyId, isActive: true }).select(LEDGER_FIELDS).lean());
     }
 
     if (currentUser?.assignedDealerIds?.length > 0) {
-      const assignedLedgers = await Ledger.find({ _id: { $in: currentUser.assignedDealerIds }, companyId, isActive: true }).select('LedgerGUID').lean();
-      assignedLedgers.forEach(l => l.LedgerGUID && ledgerGUIDs.add(l.LedgerGUID));
+      add(await Ledger.find({ _id: { $in: currentUser.assignedDealerIds }, companyId, isActive: true }).select(LEDGER_FIELDS).lean());
     }
 
     const childUserIds = await getAllChildUserIds(userId, companyId);
@@ -148,23 +152,98 @@ const resolveVisibleLedgerGUIDs = async (userId, userRole, companyId) => {
         const childGroupIds = (child.groups || []).filter(g => g.isActive && g.groupId)
           .map(g => (typeof g.groupId === 'object' ? g.groupId._id : g.groupId)).filter(Boolean);
         if (childGroupIds.length > 0) {
-          const cl = await Ledger.find({ groupId: { $in: childGroupIds }, companyId, isActive: true }).select('LedgerGUID').lean();
-          cl.forEach(l => l.LedgerGUID && ledgerGUIDs.add(l.LedgerGUID));
+          add(await Ledger.find({ groupId: { $in: childGroupIds }, companyId, isActive: true }).select(LEDGER_FIELDS).lean());
         }
         if (child.assignedDealerIds?.length > 0) {
-          const al = await Ledger.find({ _id: { $in: child.assignedDealerIds }, companyId, isActive: true }).select('LedgerGUID').lean();
-          al.forEach(l => l.LedgerGUID && ledgerGUIDs.add(l.LedgerGUID));
+          add(await Ledger.find({ _id: { $in: child.assignedDealerIds }, companyId, isActive: true }).select(LEDGER_FIELDS).lean());
         }
       }
     }
   } else {
     const childUserIds = await getAllChildUserIds(userId, companyId);
     const allUserIds = [userId, ...childUserIds].map(id => new mongoose.Types.ObjectId(id));
-    const createdLedgers = await Ledger.find({ createdBy: { $in: allUserIds }, companyId, isActive: true }).select('LedgerGUID').lean();
-    createdLedgers.forEach(l => l.LedgerGUID && ledgerGUIDs.add(l.LedgerGUID));
+    add(await Ledger.find({ createdBy: { $in: allUserIds }, companyId, isActive: true }).select(LEDGER_FIELDS).lean());
+  }
+  return [...byId.values()];
+};
+
+// Returns array of ledger GUIDs visible to the user based on hierarchy.
+// Returns null if user has no dealers (caller should return empty).
+const resolveVisibleLedgerGUIDs = async (userId, userRole, companyId) => {
+  const ledgers = await resolveVisibleLedgers(userId, userRole, companyId);
+  const guids = [...new Set(ledgers.map(l => l.LedgerGUID).filter(Boolean))];
+  return guids.length > 0 ? guids : null;
+};
+
+// Outstanding that Korvo knows about but Tally has not sent yet:
+//  - a dealer's opening balance (Dr), when Tally has no outstanding bills for that dealer
+//  - approved Korvo orders not yet sent to Tally
+// Rows are marked source: 'korvo' so screens can label them.
+const buildKorvoOutstandingRows = async (ledgers, companyId, search) => {
+  if (!ledgers.length) return [];
+  const guids = ledgers.map(l => l.LedgerGUID).filter(Boolean);
+  const guidsWithTallyBills = new Set(
+    guids.length
+      ? await Outstanding.distinct('ledgerguid', { companyId, isActive: true, ledgerguid: { $in: guids } })
+      : []
+  );
+
+  const rows = [];
+  for (const ledger of ledgers) {
+    if (ledger.LedgerGUID && guidsWithTallyBills.has(ledger.LedgerGUID)) continue;
+    const opening = normalizeOpening(ledger);
+    if (opening > 0) {
+      rows.push({
+        _id: `opening-${ledger._id}`,
+        source: 'korvo',
+        rowType: 'opening_balance',
+        partyId: ledger._id,
+        partyName: ledger.LedgerName,
+        ledgerguid: ledger.LedgerGUID || null,
+        outstandingAmount: opening,
+        totalAmount: opening,
+        vchnumber: 'Opening balance',
+        vchdate: ledger.LedgerOpeningDate || null,
+        description: 'Opening balance (Dr)',
+        daysOverdue: 0,
+        status: 'pending',
+      });
+    }
   }
 
-  return ledgerGUIDs.size > 0 ? Array.from(ledgerGUIDs) : null;
+  const ledgerIds = ledgers.map(l => l._id);
+  const orders = await Order.find({
+    companyId,
+    isActive: true,
+    status: 'approved', // sent_to_tally orders come back from Tally as bills
+    $or: [{ dealerId: { $in: ledgerIds } }, { customerId: { $in: ledgerIds } }],
+  }).select('orderNumber orderDate finalAmount dealerId customerId dealerName customerName items').lean();
+
+  const nameById = new Map(ledgers.map(l => [String(l._id), l.LedgerName]));
+  for (const o of orders) {
+    const partyId = o.dealerId || o.customerId;
+    rows.push({
+      _id: `order-${o._id}`,
+      source: 'korvo',
+      rowType: 'approved_order',
+      partyId,
+      partyName: nameById.get(String(partyId)) || o.dealerName || o.customerName,
+      orderId: o._id,
+      orderNumber: o.orderNumber,
+      outstandingAmount: o.finalAmount || 0,
+      totalAmount: o.finalAmount || 0,
+      vchnumber: o.orderNumber,
+      vchdate: o.orderDate,
+      description: `Approved order, ${o.items?.length || 0} item(s), not in Tally yet`,
+      daysOverdue: 0,
+      status: 'pending',
+    });
+  }
+
+  const q = (search || '').toLowerCase();
+  return q
+    ? rows.filter(r => (r.partyName || '').toLowerCase().includes(q) || (r.orderNumber || '').toLowerCase().includes(q))
+    : rows;
 };
 
 // Get outstanding list with filters and pagination
@@ -188,14 +267,28 @@ export const getOutstandingList = async (req, res) => {
     // Build filter query
     let filters = { companyId, isActive: true };
 
+    const visibleLedgers = await resolveVisibleLedgers(userId, userRole, companyId);
+    const tallySynced = Boolean(await Outstanding.exists({ companyId, isActive: true }));
+
+    // Korvo-side rows only on the first, unfiltered page (they are not paged)
+    const includeKorvoRows = parseInt(page) === 1 && !status && !riskLevel && !partyType && !daysOverdue;
+    const korvoRows = includeKorvoRows
+      ? await buildKorvoOutstandingRows(visibleLedgers, companyId, search)
+      : [];
+
     // Apply hierarchy-based filtering for non-admin roles
     if (userRole !== 'admin' && userRole !== 'superadmin') {
-      const ledgerGUIDs = await resolveVisibleLedgerGUIDs(userId, userRole, companyId);
-      if (ledgerGUIDs === null) {
-        // No dealers found — return empty
+      const ledgerGUIDs = [...new Set(visibleLedgers.map(l => l.LedgerGUID).filter(Boolean))];
+      if (ledgerGUIDs.length === 0) {
+        // No Tally-linked dealers: only Korvo-side rows (if any)
         return res.status(200).json({
           success: true,
-          data: { outstandingList: [], pagination: { currentPage: 1, totalPages: 0, totalCount: 0, hasNext: false, hasPrev: false } },
+          data: {
+            outstandingList: korvoRows,
+            tallySynced,
+            korvoRowCount: korvoRows.length,
+            pagination: { currentPage: 1, totalPages: korvoRows.length ? 1 : 0, totalCount: korvoRows.length, hasNext: false, hasPrev: false }
+          },
           message: 'Outstanding list retrieved successfully'
         });
       }
@@ -239,11 +332,14 @@ export const getOutstandingList = async (req, res) => {
     res.status(200).json({
       success: true,
       data: {
-        outstandingList,
+        outstandingList: [...outstandingList, ...korvoRows],
+        // false = no outstanding has come from Tally yet for this company
+        tallySynced,
+        korvoRowCount: korvoRows.length,
         pagination: {
           currentPage: parseInt(page),
           totalPages: Math.ceil(totalCount / parseInt(limit)),
-          totalCount,
+          totalCount: totalCount + korvoRows.length,
           hasNext: skip + outstandingList.length < totalCount,
           hasPrev: parseInt(page) > 1
         }

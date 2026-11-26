@@ -147,8 +147,8 @@ export const switchCompany = async (req, res) => {
 
     // Fetch user with company assignments
     const user = await User.findById(userId)
-      .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails')
-      .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails')
+      .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
+      .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
 
     if (!user) {
       return res.status(404).json({
@@ -217,8 +217,8 @@ export const switchCompany = async (req, res) => {
 
     const updatedUser = await User.findById(userId)
       .select('-password')
-      .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails')
-      .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails')
+      .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
+      .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
       .populate('hierarchy.parentUserId', 'name email role mobile')
       .populate({
         path: 'groups.groupId',
@@ -801,16 +801,18 @@ export const getGroupHierarchy = async (req, res) => {
         'groups.isActive': true,
         'companies.companyId': currentCompanyId,
         'companies.isActive': true,
-        isActive: true,
-        _id: { $ne: userId }
+        isActive: true
       }).select('name email mobile role groups').lean()
 
+      // The logged-in user is a member of their own group too, so they are
+      // listed (and counted) here, flagged so screens can show "You".
       hierarchy.users = usersInGroup.map(u => ({
         _id: u._id,
         name: u.name,
         email: u.email,
         mobile: u.mobile,
-        role: u.role
+        role: u.role,
+        isCurrentUser: u._id.toString() === userId.toString()
       }))
 
       // Find dealers in this group (both User dealers and Ledger dealers)
@@ -877,7 +879,7 @@ export const getGroupHierarchy = async (req, res) => {
       
       // IMPORTANT: Also include the current logged-in user's ID
       // because they might be the only user in this group
-      const allUsersInGroup = [...usersInCurrentGroup, userId.toString()]
+      const allUsersInGroup = [...new Set([...usersInCurrentGroup, userId.toString()])]
       
       // ALSO include the current group's GUID to handle groups created before users were assigned
       const parentSearchCriteria = [groupGUID, ...allUsersInGroup]
@@ -1046,8 +1048,8 @@ export const getUserProfile = async (req, res) => {
     console.log('Fetching user from database...');
     const user = await User.findById(userId)
       .select('-password')
-      .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails')
-      .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails')
+      .populate('defaultCompany', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
+      .populate('companies.companyId', 'companyName companyCode companyEmail companyMobile contactDetails companyState gstin')
       .populate('hierarchy.parentUserId', 'name email role')
       .populate('createdBy', 'name email');
 

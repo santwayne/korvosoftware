@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -175,7 +175,12 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
 
   const selectedDealer = dealers.find(d => d._id === formData.dealerId);
 
+  // Blocks a second tap while the first save is still in flight (state
+  // updates are async, so `loading` alone lets a fast double tap through).
+  const savingRef = useRef(false);
+
   const handleCreate = async () => {
+    if (savingRef.current) return;
     if (!formData.SDName.trim()) {
       Alert.alert('Validation Error', 'Sub Dealer Name is required');
       return;
@@ -184,6 +189,7 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
     // Dealer selection is optional
     // If dealer is selected, it will be linked to the subdealer
 
+    savingRef.current = true;
     setLoading(true);
     try {
       const subdealerData: any = {
@@ -211,18 +217,18 @@ const CreateSubDealerModal: React.FC<CreateSubDealerModalProps> = ({ visible, on
       }
       
       if (result?.success) {
-        Alert.alert('Success', isEditMode ? 'Subdealer updated successfully' : 'Subdealer created successfully', [
-          { text: 'OK', onPress: () => {
-            onSuccess();
-            onClose();
-          }}
-        ]);
+        // Close first, then confirm: the form must not stay open (and be
+        // saved twice) if the message is dismissed without pressing OK.
+        onSuccess();
+        onClose();
+        Alert.alert('Success', isEditMode ? 'Subdealer updated successfully' : 'Subdealer created successfully');
       } else {
         Alert.alert('Error', result?.message || `Failed to ${isEditMode ? 'update' : 'create'} subdealer`);
       }
     } catch (error: any) {
       Alert.alert('Error', error?.message || `Failed to ${isEditMode ? 'update' : 'create'} subdealer`);
     } finally {
+      savingRef.current = false;
       setLoading(false);
     }
   };

@@ -269,28 +269,8 @@ const DashboardHome = () => {
           </View>
         </View>
 
-        {/* Dealer Management */}
-        <View style={styles.section}>
-          <Text style={styles.sectionLabel}>Dealer Management</Text>
-          <View style={styles.sectionCard}>
-            <TouchableOpacity
-              style={styles.listRow}
-              onPress={() => navigation.navigate('DealersListScreen' as never)}
-              activeOpacity={0.7}
-            >
-              <View style={styles.listRowLeft}>
-                <View style={[styles.listIconBox, { backgroundColor: '#F3E8FF' }]}>
-                  <Ionicons name="storefront-outline" size={22} color="#7D0B1E" />
-                </View>
-                <View>
-                  <Text style={styles.listTitle}>Dealers</Text>
-                  <Text style={styles.listSubtitle}>Manage all dealers</Text>
-                </View>
-              </View>
-              <Ionicons name="chevron-forward" size={20} color="#6B7280" />
-            </TouchableOpacity>
-          </View>
-        </View>
+        {/* Dealers: opened from the "My Dealers" tile above (a second
+            "Dealers" row here opened the same screen, so it was removed) */}
       </ScrollView>
 
       {/* Group Hierarchy Modal */}

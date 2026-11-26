@@ -16,6 +16,9 @@ const OutstandingApp = () => {
   const [loadingGroups, setLoadingGroups] = useState(false);
   const [summary, setSummary] = useState<any>(null);
   const [bills, setBills] = useState<any[]>([]);
+  // false = no outstanding has come from Tally yet; null = unknown
+  const [tallySynced, setTallySynced] = useState<boolean | null>(null);
+  const [korvoRowCount, setKorvoRowCount] = useState(0);
 
   useEffect(() => { fetchOutstandingList(); }, []);
 
@@ -25,6 +28,8 @@ const OutstandingApp = () => {
       const result = await apiService.getOutstandingList();
       if (result?.success && result?.data) {
         const items: any[] = result.data?.outstandingList || [];
+        setTallySynced(typeof result.data?.tallySynced === 'boolean' ? result.data.tallySynced : null);
+        setKorvoRowCount(result.data?.korvoRowCount || 0);
         const groupMap: Record<string, any> = {};
         items.forEach((item: any) => {
           const name = item.partyName || 'Unknown';
@@ -173,6 +178,18 @@ const OutstandingApp = () => {
             <Text style={styles.summaryBadgeText}>{filteredGroups.length} Parties</Text>
           </View>
         </View>
+        {!loadingGroups && (tallySynced === false || korvoRowCount > 0) && (
+          <View style={styles.syncNotice}>
+            <Text style={styles.syncNoticeTitle}>
+              {tallySynced === false ? 'Not synced from Tally yet' : 'Includes items not yet in Tally'}
+            </Text>
+            <Text style={styles.syncNoticeText}>
+              {tallySynced === false
+                ? 'Bills and payments come from Tally. Until a Tally sync runs, this shows opening balances and approved Korvo orders only.'
+                : `${korvoRowCount} item${korvoRowCount !== 1 ? 's' : ''} (opening balances or approved orders) come from Korvo and will be replaced by Tally bills after the next sync.`}
+            </Text>
+          </View>
+        )}
         <View style={styles.searchContainer}>
           <View style={styles.searchBox}>
             <Text style={styles.searchIcon}>🔍</Text>
@@ -210,8 +227,16 @@ const OutstandingApp = () => {
             ListEmptyComponent={
               <View style={styles.emptyState}>
                 <Text style={styles.emptyIcon}>🔍</Text>
-                <Text style={styles.emptyTitle}>{searchQuery ? 'No Results Found' : 'No Outstanding Records'}</Text>
-                <Text style={styles.emptySubtitle}>{searchQuery ? 'Try adjusting your search' : 'All accounts are clear'}</Text>
+                <Text style={styles.emptyTitle}>
+                  {searchQuery ? 'No Results Found' : tallySynced === false ? 'No data from Tally yet' : 'No Outstanding Records'}
+                </Text>
+                <Text style={styles.emptySubtitle}>
+                  {searchQuery
+                    ? 'Try adjusting your search'
+                    : tallySynced === false
+                      ? 'Outstanding fills in after a Tally sync.'
+                      : 'All accounts are clear'}
+                </Text>
               </View>
             }
             showsVerticalScrollIndicator={false}
@@ -472,6 +497,18 @@ const OutstandingApp = () => {
 };
 
 const styles = StyleSheet.create({
+  syncNotice: {
+    marginHorizontal: 16,
+    marginTop: 8,
+    marginBottom: 4,
+    padding: 12,
+    borderRadius: 10,
+    backgroundColor: '#FFFBEB',
+    borderWidth: 1,
+    borderColor: '#FDE68A',
+  },
+  syncNoticeTitle: { fontSize: 13, fontWeight: '700', color: '#92400E', marginBottom: 2 },
+  syncNoticeText: { fontSize: 12, color: '#92400E', lineHeight: 17 },
   safeArea: { flex: 1, backgroundColor: '#F5F7FA' },
   header: { backgroundColor: '#FFFFFF', paddingHorizontal: 20, paddingBottom: 15, borderBottomWidth: 1, borderBottomColor: '#E8ECF1' },
   headerTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: Platform.OS === 'android' ? 15 : 0, height: 56 },

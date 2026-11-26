@@ -234,7 +234,8 @@ export const getStockSummaryForGroupUser = async (req, res) => {
 
       // Determine status based on stock levels and sales
       let status = 'Healthy';
-      let trend = 'up';
+      // No trend until there are at least two sales to compare
+      let trend = null;
       
       if (inHand === 0) {
         status = 'Out of Stock';
@@ -252,7 +253,7 @@ export const getStockSummaryForGroupUser = async (req, res) => {
         const olderSales = itemSales.slice(Math.floor(itemSales.length / 2));
         const recentTotal = recentSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
         const olderTotal = olderSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
-        trend = recentTotal >= olderTotal ? 'up' : 'down';
+        trend = recentTotal > olderTotal ? 'up' : recentTotal < olderTotal ? 'down' : 'flat';
       }
 
       stockByItem[itemKey] = {

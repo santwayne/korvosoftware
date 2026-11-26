@@ -472,6 +472,11 @@ const DashboardHome = () => {
 
           {/* Chart */}
           <View style={styles.chartContainer}>
+            {!chartData.some((d: any) => (Number(d?.safe) || 0) + (Number(d?.pending) || 0) > 0) && (
+              <Text style={{ textAlign: 'center', color: '#6B7280', fontSize: 13, paddingVertical: 12 }}>
+                No data yet. This chart fills in after stock is synced from Tally.
+              </Text>
+            )}
             <View style={styles.chart}>
               {chartData.map((data, index) => (
                 <View key={index} style={styles.chartColumn}>

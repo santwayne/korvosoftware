@@ -21,7 +21,70 @@ export const extractState = (value?: string | null): string => {
   return value.toString().trim();
 };
 
-const normalizeState = (value?: string | null) => extractState(value).toLowerCase();
+// GST state codes: the first two digits of a GSTIN. Kept in step with
+// backend/services/gstState.js.
+const GST_STATE_CODES: Record<string, string> = {
+  '01': 'Jammu and Kashmir', '02': 'Himachal Pradesh', '03': 'Punjab', '04': 'Chandigarh',
+  '05': 'Uttarakhand', '06': 'Haryana', '07': 'Delhi', '08': 'Rajasthan', '09': 'Uttar Pradesh',
+  '10': 'Bihar', '11': 'Sikkim', '12': 'Arunachal Pradesh', '13': 'Nagaland', '14': 'Manipur',
+  '15': 'Mizoram', '16': 'Tripura', '17': 'Meghalaya', '18': 'Assam', '19': 'West Bengal',
+  '20': 'Jharkhand', '21': 'Odisha', '22': 'Chhattisgarh', '23': 'Madhya Pradesh', '24': 'Gujarat',
+  '26': 'Dadra and Nagar Haveli and Daman and Diu', '27': 'Maharashtra', '29': 'Karnataka',
+  '30': 'Goa', '31': 'Lakshadweep', '32': 'Kerala', '33': 'Tamil Nadu', '34': 'Puducherry',
+  '35': 'Andaman and Nicobar Islands', '36': 'Telangana', '37': 'Andhra Pradesh', '38': 'Ladakh',
+};
+
+const NAME_ALIASES: Record<string, string> = {
+  orissa: 'odisha',
+  pondicherry: 'puducherry',
+  'new delhi': 'delhi',
+  'nct of delhi': 'delhi',
+  'jammu & kashmir': 'jammu and kashmir',
+  'andaman & nicobar islands': 'andaman and nicobar islands',
+  uttaranchal: 'uttarakhand',
+};
+
+/** Canonical lowercase state name; accepts names, "03" and "03-Punjab". */
+const normalizeState = (value?: string | null): string => {
+  let s = extractState(value);
+  if (!s) return '';
+  const codeMatch = s.match(/^(\d{2})\b\s*-?\s*(.*)$/);
+  if (codeMatch) {
+    if (GST_STATE_CODES[codeMatch[1]]) return GST_STATE_CODES[codeMatch[1]].toLowerCase();
+    s = codeMatch[2];
+  }
+  s = s.replace(/\s+/g, ' ').trim().toLowerCase();
+  if (!s || s === 'n/a' || s === 'na') return '';
+  return NAME_ALIASES[s] || s;
+};
+
+export const stateFromGstin = (gstin?: string | null): string => {
+  if (!gstin || typeof gstin !== 'string') return '';
+  return GST_STATE_CODES[gstin.trim().slice(0, 2)] || '';
+};
+
+/** Seller state from the company profile: state, address state, then GSTIN. */
+export const companySellerState = (company: any): string => {
+  if (!company || typeof company !== 'object') return '';
+  return (
+    extractState(company.companyState) ||
+    extractState(company?.contactDetails?.address?.state) ||
+    stateFromGstin(company.gstin)
+  );
+};
+
+/** Buyer state for a dealer (Ledger) or sub-dealer, including from its GSTIN. */
+export const partyState = (party: any): string => {
+  if (!party || typeof party !== 'object') return '';
+  return (
+    extractState(party.SDState) ||
+    extractState(party.LedgerState) ||
+    extractState(party?.address?.state) ||
+    stateFromGstin(party.SDGSTNNumber) ||
+    stateFromGstin(party.LedgerGSTIN) ||
+    stateFromGstin(party.gstin)
+  );
+};
 
 export const determineGstType = (
   sellerState?: string | null,

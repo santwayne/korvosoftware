@@ -5,8 +5,35 @@ import Company from '../models/company/companyModel.js';
 import Ledger from '../models/ledger/ledgerModel.js';
 import SubDealer from '../models/subdealer/subdealerModel.js';
 import mongoose from 'mongoose';
+import {
+  determineGstType as determineGstTypeForStates,
+  companySellerState,
+  partyState,
+  firstState,
+  gstWarnings,
+} from '../services/gstState.js';
 
 const DEFAULT_GST_RATE = 18;
+
+// Price to charge for a line. The app sends unitPrice already set to the
+// price-list rate when one applies. A finalRate of 0 means "no price list
+// applied", not "free", so it must never zero out the entered unit price
+// (that was why approved/pending orders showed ₹0).
+const resolveUnitPrice = (item, product) => {
+  const unitPrice = safeNumber(item.unitPrice ?? item.price, 0);
+  if (unitPrice > 0) return unitPrice;
+  const finalRate = safeNumber(item.finalRate, 0);
+  if (finalRate > 0) return finalRate;
+  return safeNumber(product?.sellingPrice ?? product?.price, 0);
+};
+
+// Stock warnings: ordered quantity is more than the product's current stock.
+const stockWarnings = (lines) =>
+  lines
+    .filter(({ product, quantity }) => product && typeof product.stock === 'number' && quantity > product.stock)
+    .map(({ product, quantity }) =>
+      `${product.productName}: ordered ${quantity}, only ${product.stock} in stock.`
+    );
 
 const normalizePaymentMethod = (value) => {
   if (!value) {
@@ -42,24 +69,9 @@ const normalizePaymentMethod = (value) => {
   }
 };
 
-const extractState = (value) => {
-  if (!value) return '';
-  if (typeof value === 'string') {
-    return value.trim();
-  }
-  return value.state ? String(value.state).trim() : '';
-};
-
-const normalizeState = (value) => extractState(value).toLowerCase();
-
-const determineGstType = (sellerState, buyerState) => {
-  if (!sellerState || !buyerState) {
-    return 'UNKNOWN';
-  }
-  return normalizeState(sellerState) === normalizeState(buyerState)
-    ? 'INTRA_STATE'
-    : 'INTER_STATE';
-};
+// Accepts names, GST state codes ("03") and "03-Punjab"; case-insensitive.
+const determineGstType = (sellerState, buyerState) =>
+  determineGstTypeForStates(sellerState, buyerState);
 
 const safeNumber = (value, fallback = 0) => {
   if (typeof value === 'number') {
@@ -223,9 +235,7 @@ export const createOrder = async (req, res) => {
       }
     }
 
-    const sellerState =
-      extractState(company.companyState) ||
-      extractState(company?.contactDetails?.address?.state);
+    const sellerState = companySellerState(company);
 
     // Determine shipping address for buyer state calculation
     // Priority: manual shipping address > subdealer address > dealer address > customer address
@@ -238,15 +248,19 @@ export const createOrder = async (req, res) => {
          customer?.address ||
          {});
 
-    const buyerState =
-      extractState(finalShippingAddress?.state) ||
-      extractState(shippingAddress?.state) ||
-      extractState(customerAddress?.state) ||
-      extractState(customer?.address?.state) ||
-      extractState(subDealerDoc?.SDState || subDealerDoc?.address?.state) ||
-      extractState(dealerDoc?.LedgerState || dealerDoc?.address?.state);
+    const buyerState = firstState(
+      finalShippingAddress?.state,
+      shippingAddress?.state,
+      customerAddress?.state,
+      customer?.address?.state,
+      partyState(subDealerDoc),
+      partyState(dealerDoc),
+      partyState(customer)
+    );
 
     const gstType = determineGstType(sellerState, buyerState);
+    const orderWarnings = gstWarnings(sellerState, buyerState);
+    const stockLines = [];
 
     // Validate and process items with GST calculations
     const processedItems = [];
@@ -272,8 +286,9 @@ export const createOrder = async (req, res) => {
         });
       }
 
-      // Use finalRate from price list if provided, otherwise fall back to product selling price
-      const unitPrice = safeNumber(item.finalRate ?? item.unitPrice, product.sellingPrice);
+      // Price-list finalRate if set (> 0), else the entered unit price, else product price
+      const unitPrice = resolveUnitPrice(item, product);
+      stockLines.push({ product, quantity: safeNumber(item.quantity, 0) });
       const discountPercent = item.discount || 0;
       const gstRateInput = item.gstRate !== undefined ? item.gstRate : product.gstRate;
 
@@ -306,7 +321,7 @@ export const createOrder = async (req, res) => {
         totalPrice: taxDetails.lineTotal,
         priceListRate: safeNumber(item.priceListRate, 0),
         difference: safeNumber(item.difference, 0),
-        finalRate: safeNumber(item.finalRate ?? item.unitPrice, unitPrice),
+        finalRate: unitPrice,
       });
 
       grossAmountTotal += taxDetails.baseAmount;
@@ -317,6 +332,9 @@ export const createOrder = async (req, res) => {
       igstTotal += taxDetails.igstAmount;
       taxAmountTotal += taxDetails.totalTaxAmount;
     }
+
+    // Stock is warned, not blocked: products default to 0 stock until Tally syncs.
+    const orderStockWarnings = stockWarnings(stockLines);
 
     // Determine payment information
     const resolvedModeSelectionRaw = (modeSelection || paymentMethod || mode || '').toString().trim();
@@ -397,7 +415,9 @@ export const createOrder = async (req, res) => {
     res.status(201).json({
       success: true,
       message: 'Order created successfully',
-      order
+      order,
+      warnings: orderWarnings,
+      stockWarnings: orderStockWarnings
     });
 
   } catch (error) {
@@ -1315,42 +1335,21 @@ export const updateOrder = async (req, res) => {
       order.shippingAddress ??
       customerAddress;
 
-    const sellerState =
-      extractState(company.companyState) ||
-      extractState(company?.contactDetails?.address?.state);
+    const sellerState = companySellerState(company);
 
-    // Extract buyer state from various sources, handling both Ledger/SubDealer and User models
-    let buyerStateFromSubDealer = '';
-    let buyerStateFromDealer = '';
-    
-    if (subDealerDoc) {
-      // Check if it's from SubDealer model (has SDState field)
-      if (subDealerDoc.SDState) {
-        buyerStateFromSubDealer = extractState(subDealerDoc.SDState);
-      } else if (subDealerDoc.address?.state) {
-        // User model or address object
-        buyerStateFromSubDealer = extractState(subDealerDoc.address.state);
-      }
-    }
-    
-    if (dealerDoc) {
-      // Check if it's from Ledger model (has LedgerState field)
-      if (dealerDoc.LedgerState) {
-        buyerStateFromDealer = extractState(dealerDoc.LedgerState);
-      } else if (dealerDoc.address?.state) {
-        // User model or address object
-        buyerStateFromDealer = extractState(dealerDoc.address.state);
-      }
-    }
-
-    const buyerState =
-      extractState(shippingAddress?.state) ||
-      extractState(customerAddress?.state) ||
-      extractState(customer?.address?.state) ||
-      buyerStateFromSubDealer ||
-      buyerStateFromDealer;
+    // Buyer state from the address, then sub-dealer / dealer (Ledger, SubDealer
+    // or User model), including the state code inside a GSTIN.
+    const buyerState = firstState(
+      shippingAddress?.state,
+      customerAddress?.state,
+      customer?.address?.state,
+      partyState(subDealerDoc),
+      partyState(dealerDoc)
+    );
 
     const gstType = determineGstType(sellerState, buyerState);
+    const orderWarnings = gstWarnings(sellerState, buyerState);
+    const stockLines = [];
 
     const rawItems = (updateData.items && Array.isArray(updateData.items))
       ? updateData.items
@@ -1402,10 +1401,8 @@ export const updateOrder = async (req, res) => {
         continue;
       }
 
-      const unitPrice = safeNumber(
-        item.unitPrice ?? item.price,
-        productDoc?.sellingPrice ?? productDoc?.price ?? 0
-      );
+      const unitPrice = resolveUnitPrice(item, productDoc);
+      stockLines.push({ product: productDoc, quantity });
       const discountPercent = safeNumber(item.discount, 0);
       const gstRateInput =
         item.gstRate !== undefined
@@ -1441,7 +1438,7 @@ export const updateOrder = async (req, res) => {
         totalPrice: taxDetails.lineTotal,
         priceListRate: safeNumber(item.priceListRate, 0),
         difference: safeNumber(item.difference, 0),
-        finalRate: safeNumber(item.finalRate ?? item.unitPrice, unitPrice),
+        finalRate: unitPrice,
       });
 
       grossAmountTotal += taxDetails.baseAmount;
@@ -1506,10 +1503,14 @@ export const updateOrder = async (req, res) => {
       { path: 'companyId', select: 'companyName companyCode' }
     ]);
 
+    const orderStockWarnings = stockWarnings(stockLines);
+
     res.json({
       success: true,
       message: 'Order updated successfully',
-      order
+      order,
+      warnings: orderWarnings,
+      stockWarnings: orderStockWarnings
     });
   } catch (error) {
     console.error('Update order error:', error);
@@ -1560,9 +1561,21 @@ export const getOrderStats = async (req, res) => {
   try {
     const companyId = req.user.userDetails.defaultCompany._id || req.user.userDetails.defaultCompany;
     const { startDate, endDate } = req.query;
+    const userRole = req.user.userDetails.role;
 
     const filter = { companyId, isActive: true };
-    
+
+    // Admins see company totals. Everyone else sees the same orders getOrders
+    // lists for them: their own plus their team's. (Dealer dashboards used to
+    // show the whole company's order count while their lists were empty.)
+    if (userRole !== 'admin' && userRole !== 'superadmin') {
+      const userId = req.user.userId;
+      const childUserIds = await getAllChildUserIdsForOrders(userId, companyId);
+      filter.createdBy = {
+        $in: [userId.toString(), ...childUserIds].map(id => new mongoose.Types.ObjectId(id))
+      };
+    }
+
     if (startDate || endDate) {
       filter.orderDate = {};
       if (startDate) filter.orderDate.$gte = new Date(startDate);
@@ -1583,6 +1596,10 @@ export const getOrderStats = async (req, res) => {
             $sum: { $cond: [{ $in: ['$status', ['pending', 'pending_approval', 'draft']] }, '$finalAmount', 0] }
           },
           averageOrderValue: { $avg: '$finalAmount' },
+          // Value of orders that went through (not drafts, pending or cancelled)
+          revenue: {
+            $sum: { $cond: [{ $in: ['$status', ['approved', 'sent_to_tally', 'dispatched', 'delivered']] }, '$finalAmount', 0] }
+          },
           confirmedOrders: {
             $sum: { $cond: [{ $in: ['$status', ['confirmed', 'approved']] }, 1, 0] }
           },
@@ -1613,6 +1630,7 @@ export const getOrderStats = async (req, res) => {
       pendingOrders: raw.pendingOrders || 0,
       pendingAmount: raw.pendingAmount || 0,
       averageOrderValue: raw.averageOrderValue || 0,
+      revenue: raw.revenue || 0,
       confirmedOrders: raw.confirmedOrders || 0,
       processingOrders: raw.processingOrders || 0,
       shippedOrders: raw.shippedOrders || 0,

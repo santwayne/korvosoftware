@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -219,7 +219,12 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
 
   const selectedGroupUser = groupUsers.find(u => u._id === formData.groupUserId);
 
+  // Blocks a second tap while the first save is still in flight (state
+  // updates are async, so `loading` alone lets a fast double tap through).
+  const savingRef = useRef(false);
+
   const handleCreate = async () => {
+    if (savingRef.current) return;
     if (!formData.LedgerName.trim()) {
       Alert.alert('Validation Error', 'Ledger Name is required');
       return;
@@ -233,6 +238,7 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
       return;
     }
 
+    savingRef.current = true;
     setLoading(true);
     try {
       // Company info is automatically fetched from user's current company
@@ -270,18 +276,18 @@ const CreateDealerModal: React.FC<CreateDealerModalProps> = ({ visible, onClose,
       }
       
       if (result?.success) {
-        Alert.alert('Success', isEditMode ? 'Dealer updated successfully' : 'Dealer created successfully', [
-          { text: 'OK', onPress: () => {
-            onSuccess();
-            onClose();
-          }}
-        ]);
+        // Close first, then confirm: the form must not stay open (and be
+        // saved twice) if the message is dismissed without pressing OK.
+        onSuccess();
+        onClose();
+        Alert.alert('Success', isEditMode ? 'Dealer updated successfully' : 'Dealer created successfully');
       } else {
         Alert.alert('Error', result?.message || `Failed to ${isEditMode ? 'update' : 'create'} dealer`);
       }
     } catch (error: any) {
       Alert.alert('Error', error?.message || `Failed to ${isEditMode ? 'update' : 'create'} dealer`);
     } finally {
+      savingRef.current = false;
       setLoading(false);
     }
   };

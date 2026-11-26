@@ -20,6 +20,8 @@ import {
   determineGstType,
   extractState,
   GstType,
+  companySellerState,
+  partyState,
 } from '../../../utils/gst';
 
 const MODE_OPTIONS = ['Cash', 'Cheque', 'Bank Transfer', 'UPI', 'Credit Card', 'Credit', 'Other'];
@@ -406,8 +408,7 @@ const [termsOfDelivery2, setTermsOfDelivery2] = useState('');
     }
 
     return (
-      extractState(defaultCompany.companyState) ||
-      extractState(defaultCompany?.contactDetails?.address?.state)
+      companySellerState(defaultCompany)
     );
   }, [order, user]);
 
@@ -430,11 +431,9 @@ const [termsOfDelivery2, setTermsOfDelivery2] = useState('');
   }, [order]);
 
   const buyerState = useMemo(() => {
-    if (selectedSubDealer?.address?.state) {
-      return extractState(selectedSubDealer.address.state);
-    }
-    if (selectedDealer?.address?.state) {
-      return extractState(selectedDealer.address.state);
+    const fromParty = partyState(selectedSubDealer) || partyState(selectedDealer);
+    if (fromParty) {
+      return fromParty;
     }
     return buyerStateFromOrder;
   }, [selectedDealer, selectedSubDealer, buyerStateFromOrder]);

@@ -81,6 +81,18 @@ const FILTER_PILLS = [
   { key: 'dispatched',      label: 'Shipped', color: '#7D0B1E' },
 ];
 
+// Korvo order statuses that are still pending (not yet sent to Tally)
+const KORVO_PENDING_STATUSES = ['draft', 'pending_approval', 'approved'];
+
+// Which order statuses each filter pill shows. Tally dispatch rows are
+// 'pending' (awaiting dispatch) or 'fully_dispatched'.
+const STATUS_FILTER_MATCH: Record<string, string[]> = {
+  pending_approval: ['draft', 'pending_approval'],
+  approved: ['approved'],
+  processing: ['sent_to_tally', 'pending'],
+  dispatched: ['dispatched', 'fully_dispatched'],
+};
+
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 interface Order {
@@ -173,8 +185,31 @@ const PendingOrdersScreen = () => {
         ? (dispatchResult.data?.dispatches || []).map(mapDispatchToOrder)
         : [];
 
+      // Korvo orders not yet in Tally (draft / pending approval / approved).
+      // Orders already sent to Tally come back above as dispatch records.
+      // Loaded once, with the first page.
+      let korvoOrders: Order[] = [];
       if (reset) {
-        setAllOrders(tallyOrders);
+        const korvoResult: any = await apiService.getOrders({ page: 1, limit: 100 }).catch(() => null);
+        korvoOrders = (korvoResult?.success ? korvoResult.orders || [] : [])
+          .filter((o: any) => KORVO_PENDING_STATUSES.includes(o.status))
+          .map((o: any): Order => ({
+            _id: o._id,
+            orderNumber: o.orderNumber || '',
+            orderDate: o.orderDate || o.createdAt || '',
+            finalAmount: Number(o.finalAmount) || 0,
+            status: o.status,
+            priority: o.priority || '',
+            customerName: o.customerName || '',
+            dealerName: o.dealerName || o.customerName || '',
+            items: o.items || [],
+            createdBy: o.createdBy && typeof o.createdBy === 'object' ? o.createdBy : null,
+            orderCategory: o.orderCategory,
+          }));
+      }
+
+      if (reset) {
+        setAllOrders([...korvoOrders, ...tallyOrders]);
         setPage(2);
       } else {
         setAllOrders(prev => [...prev, ...tallyOrders]);
@@ -191,7 +226,9 @@ const PendingOrdersScreen = () => {
   };
 
   // Derive the visible list for the active tab
-  const orders = allOrders.filter(o => getOrderCategory(o) === (activeTab === 'sales' ? 'sale' : 'purchase'));
+  const orders = allOrders
+    .filter(o => getOrderCategory(o) === (activeTab === 'sales' ? 'sale' : 'purchase'))
+    .filter(o => filterStatus === 'all' || (STATUS_FILTER_MATCH[filterStatus] || [filterStatus]).includes(o.status));
 
   // Stats computed from the filtered view
   const stats = {
